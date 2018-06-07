@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Caliburn.Micro;
 using Marvin.Products.UI.Interaction.InteractionSvc;
 using Marvin.Serialization;
@@ -17,7 +18,7 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// Ingrediants of this recipe model
         /// </summary>
-        protected Entry[] IngredientsModel
+        protected List<Entry> IngredientsModel
         {
             get { return Model.Ingredients; }
             set { Model.Ingredients = value; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Marvin.AbstractionLayer.UI;
 using Marvin.Container;
@@ -16,7 +17,7 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// Represents the product structure tree
         /// </summary>
-        ProductStructureEntry[] Structure { get; }
+        List<ProductStructureEntry> Structure { get; }
 
         /// <summary>
         /// Customization of this application
@@ -44,14 +45,19 @@ namespace Marvin.Products.UI.Interaction
         /// <param name="importer">Name of the importer</param>
         /// <param name="currentParameters">List of parameters</param>
         /// <returns>List of importer parameters</returns>
-        Task<ImportParameter[]> UpdateParameters(string importer, ImportParameter[] currentParameters);
+        Task<List<ImportParameter>> UpdateParameters(string importer, List<ImportParameter> currentParameters);
         /// <summary>
         /// Import product
         /// </summary>
         /// <param name="importerName">Name of the importer</param>
         /// <param name="parameters">List of parameters</param>
         /// <returns>Imported product</returns>
-       Task<ProductModel> ImportProduct(string importerName, ImportParameter[] parameters);
+        Task<ProductModel> ImportProduct(string importerName, List<ImportParameter> parameters);
+
+        /// <summary>
+        /// Remove a product from the database
+        /// </summary>
+        Task<List<ProductModel>> RemoveProduct(long id);
 
         /// <summary>
         /// Create product revision
@@ -67,7 +73,7 @@ namespace Marvin.Products.UI.Interaction
         /// </summary>
         /// <param name="identifier">Product indentifier</param>
         /// <returns>Array of ProductRevisionEntry</returns>
-        Task<ProductRevisionEntry[]> GetProductRevisions(string identifier);
+        Task<List<ProductRevisionEntry>> GetProductRevisions(string identifier);
 
         /// <summary>
         /// Event which will be raised if the product structure will be updated
@@ -78,11 +84,11 @@ namespace Marvin.Products.UI.Interaction
     [Component(LifeCycle.Singleton, typeof(IProductsController))]
     internal class ProductsController : HttpServiceConnectorBase<ProductInteractionClient, IProductInteraction>, IProductsController
     {
-        protected override string MinServerVersion => "1.1.1.0";
+        protected override string MinServerVersion => "1.1.2.0";
 
-        protected override string ClientVersion => "1.1.1.0";
+        protected override string ClientVersion => "1.1.2.0";
 
-        public ProductStructureEntry[] Structure { get; private set; }
+        public List<ProductStructureEntry> Structure { get; private set; }
 
         public ProductCustomization Customization { get; private set; }
 
@@ -117,14 +123,19 @@ namespace Marvin.Products.UI.Interaction
             return WcfClient.SaveProductAsync(product);
         }
 
-        public Task<ImportParameter[]> UpdateParameters(string importer, ImportParameter[] currentParameters)
+        public Task<List<ImportParameter>> UpdateParameters(string importer, List<ImportParameter> currentParameters)
         {
             return WcfClient.UpdateParametersAsync(importer, currentParameters);
         }
 
-        public Task<ProductModel> ImportProduct(string importerName, ImportParameter[] parameters)
+        public Task<ProductModel> ImportProduct(string importerName, List<ImportParameter> parameters)
         {
             return WcfClient.ImportProductAsync(importerName, parameters);
+        }
+
+        public Task<List<ProductModel>> RemoveProduct(long id)
+        {
+            return WcfClient.DeleteProductAsync(id);
         }
 
         public event EventHandler StructureUpdated;
@@ -138,7 +149,7 @@ namespace Marvin.Products.UI.Interaction
             return WcfClient.CreateRevisionAsync(productId, revisionNo, comment);
         }
 
-        public Task<ProductRevisionEntry[]> GetProductRevisions(string identifier)
+        public Task<List<ProductRevisionEntry>> GetProductRevisions(string identifier)
         {
             return WcfClient.GetProductRevisionsAsync(identifier);
         }

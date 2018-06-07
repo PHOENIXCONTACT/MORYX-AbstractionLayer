@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System.Collections.Generic;
+using Caliburn.Micro;
 using Marvin.Container;
 
 namespace Marvin.Products.UI.Interaction
@@ -13,6 +14,11 @@ namespace Marvin.Products.UI.Interaction
         /// Create ImportViewModel instance
         /// </summary>
         IImportViewModel CreateImportDialog();
+
+        /// <summary>
+        /// Create a dialog to remove a product
+        /// </summary>
+        IRemoveProductViewModel CreateRemoveProductViewModel(StructureEntryViewModel productToRemove);
 
         /// <summary>
         /// Creates a dialog to show revisions

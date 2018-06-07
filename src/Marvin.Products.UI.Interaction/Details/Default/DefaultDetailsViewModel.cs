@@ -42,7 +42,7 @@ namespace Marvin.Products.UI.Interaction
         {
             base.EndEdit();
 
-            ProductProperties = Properties.SubEntries.Select(se => se.Entry).ToArray();
+            ProductProperties = Properties.SubEntries.Select(se => se.Entry).ToList();
         }
 
         public override void CancelEdit()

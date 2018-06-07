@@ -23,7 +23,7 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// Represents the product properties
         /// </summary>
-        public Entry[] ProductProperties
+        public List<Entry> ProductProperties
         {
             get { return _model.Properties; }
             protected set { _model.Properties = value; }

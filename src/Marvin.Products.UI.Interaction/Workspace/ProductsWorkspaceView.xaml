@@ -25,8 +25,12 @@
 
             <Grid Grid.Column="0">
                 <DockPanel>
-                    <EddieButton DockPanel.Dock="Bottom" Content="Import" Icon="Copy" Command="{Binding ImportDialogCmd}"
-                                 HorizontalAlignment="Left" Margin="0,5,0,0"/>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                        <EddieButton Content="Import" Icon="Copy" Command="{Binding ImportDialogCmd}"
+                                     HorizontalAlignment="Left" Margin="0,5,0,0"/>
+                        <EddieButton Content="Remove" Icon="Minus" Command="{Binding RemoveProductCmd}"
+                                     HorizontalAlignment="Left" Margin="12,5,0,0"/>
+                    </StackPanel>
                     <EddieTextBox DockPanel.Dock="Top" Margin="0,0,5,5" Watermark="Search" Icon="Magnifier" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
                     <EddieTreeView DockPanel.Dock="Top" ItemsSource="{Binding DisplayStructure}" VerticalAlignment="Stretch"
                                    cal:Message.Attach="[Event SelectedItemChanged] = [Action OnMasterItemChanged($source, $eventArgs)]"

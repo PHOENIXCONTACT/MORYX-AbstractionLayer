@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Marvin.Controls;
@@ -21,7 +22,7 @@ namespace Marvin.Products.UI.Interaction
             CreateParameterViewModel(_importer.Parameters);
         }
 
-        private void CreateParameterViewModel(ImportParameter[] parameters)
+        private void CreateParameterViewModel(IList<ImportParameter> parameters)
         {
             if (Parameters != null)
             {
@@ -54,7 +55,7 @@ namespace Marvin.Products.UI.Interaction
         /// </summary>
         private async void OnUpdateTriggerChanged(object sender, ImportParameter importParameter)
         {
-            var parameters = Parameters.SubEntries.Cast<ImportParameterViewModel>().Select(ip => ip.Model).ToArray();
+            var parameters = Parameters.SubEntries.Cast<ImportParameterViewModel>().Select(ip => ip.Model).ToList();
             parameters = await _productsController.UpdateParameters(_importer.Name, parameters);
             CreateParameterViewModel(parameters);
         }
@@ -91,7 +92,7 @@ namespace Marvin.Products.UI.Interaction
         /// <returns></returns>
         public Task<ProductModel> Import()
         {
-            var parameters = Parameters.SubEntries.Cast<ImportParameterViewModel>().Select(ip => ip.Model).ToArray();
+            var parameters = Parameters.SubEntries.Cast<ImportParameterViewModel>().Select(ip => ip.Model).ToList();
             return _productsController.ImportProduct(_importer.Name, parameters);
         }
     }

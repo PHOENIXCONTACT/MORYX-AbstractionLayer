@@ -72,6 +72,12 @@
   <wsdl:message name="IProductInteraction_ImportProduct_OutputMessage">
     <wsdl:part name="parameters" element="tns:ImportProductResponse" />
   </wsdl:message>
+  <wsdl:message name="IProductInteraction_DeleteProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProduct" />
+  </wsdl:message>
+  <wsdl:message name="IProductInteraction_DeleteProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductResponse" />
+  </wsdl:message>
   <wsdl:message name="IProductInteraction_GetRecipe_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRecipe" />
   </wsdl:message>
@@ -160,6 +166,10 @@
     <wsdl:operation name="ImportProduct">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductInteraction/ImportProduct" message="tns:IProductInteraction_ImportProduct_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProductInteraction/ImportProductResponse" message="tns:IProductInteraction_ImportProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductInteraction/DeleteProduct" message="tns:IProductInteraction_DeleteProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductInteraction/DeleteProductResponse" message="tns:IProductInteraction_DeleteProduct_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetRecipe">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductInteraction/GetRecipe" message="tns:IProductInteraction_GetRecipe_InputMessage" />
@@ -279,6 +289,15 @@
     </wsdl:operation>
     <wsdl:operation name="ImportProduct">
       <soap:operation soapAction="http://tempuri.org/IProductInteraction/ImportProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProduct">
+      <soap:operation soapAction="http://tempuri.org/IProductInteraction/DeleteProduct" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

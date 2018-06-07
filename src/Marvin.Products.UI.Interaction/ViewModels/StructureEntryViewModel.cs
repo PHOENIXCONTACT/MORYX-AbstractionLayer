@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Caliburn.Micro;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -14,7 +15,7 @@ namespace Marvin.Products.UI.Interaction
     public class StructureEntryViewModel :PropertyChangedBase,  ITreeItemViewModel
     {
         private readonly ProductStructureEntry _model;
-        private StructureEntryViewModel[] _branches;
+        private ObservableCollection<StructureEntryViewModel> _branches;
 
         /// <summary>
         /// Create ViewModel using all its branches
@@ -87,26 +88,18 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// Transfroms the children tree items.
         /// </summary>
-        private static StructureEntryViewModel[] TransfromBranches(IList<ProductStructureEntry> children)
+        private static ObservableCollection<StructureEntryViewModel> TransfromBranches(IList<ProductStructureEntry> children)
         {
-            var result = new StructureEntryViewModel[children.Count];
-
-            for (var i = 0; i < children.Count; i++)
+            return new ObservableCollection<StructureEntryViewModel>(children.Select(child => new StructureEntryViewModel(child)
             {
-                var current = children[i];
-                result[i] = new StructureEntryViewModel(current)
-                {
-                    Branches = TransfromBranches(current.Branches)
-                };
-            }
-
-            return result;
+                Branches = TransfromBranches(child.Branches)
+            }));
         }
 
         /// <summary>
         /// The children of the current tree item
         /// </summary>
-        public StructureEntryViewModel[] Branches
+        public ObservableCollection<StructureEntryViewModel> Branches
         {
             get { return _branches; }
             set

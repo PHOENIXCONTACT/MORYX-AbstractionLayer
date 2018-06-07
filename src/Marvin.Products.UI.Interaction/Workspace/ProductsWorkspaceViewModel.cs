@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -7,6 +8,8 @@ using Marvin.AbstractionLayer.UI;
 using Marvin.ClientFramework;
 using Marvin.ClientFramework.Commands;
 using Marvin.Container;
+using MessageBoxImage = Marvin.ClientFramework.Dialog.MessageBoxImage;
+using MessageBoxOptions = Marvin.ClientFramework.Dialog.MessageBoxOptions;
 
 namespace Marvin.Products.UI.Interaction
 {
@@ -27,17 +30,19 @@ namespace Marvin.Products.UI.Interaction
         #region Fields and Properties
 
         private FilterStatus _filterStatus;
-        private StructureEntryViewModel[] _fullTree;
-        private StructureEntryViewModel[] _displayStructure;
+        private ObservableCollection<StructureEntryViewModel> _fullTree;
+        private ObservableCollection<StructureEntryViewModel> _displayStructure;
         private long _selectedProductId;
-        
+
         public AsyncCommand ImportDialogCmd { get; private set; }
+
+        public AsyncCommand RemoveProductCmd { get; private set; }
 
         public AsyncCommand ShowRevisionsCmd { get; private set; }
 
         public AsyncCommand CreateRevisionCmd { get; private set; }
 
-        public StructureEntryViewModel[] DisplayStructure
+        public ObservableCollection<StructureEntryViewModel> DisplayStructure
         {
             get { return _displayStructure; }
             private set
@@ -56,7 +61,9 @@ namespace Marvin.Products.UI.Interaction
             get { return _selectedProduct; }
             set
             {
-                if (Equals(value, _selectedProduct)) return;
+                if (Equals(value, _selectedProduct))
+                    return;
+
                 _selectedProduct = value;
                 NotifyOfPropertyChange();
             }
@@ -82,9 +89,11 @@ namespace Marvin.Products.UI.Interaction
         protected override void OnInitialize()
         {
             base.OnInitialize();
+
             ImportDialogCmd = new AsyncCommand(ImportProductDialog, o => true, true);
             ShowRevisionsCmd = new AsyncCommand(ShowRevisionsDialog, CanShowRevisions, true);
             CreateRevisionCmd = new AsyncCommand(CreateRevision, CanCreateRevision, true);
+            RemoveProductCmd = new AsyncCommand(RemoveProduct, o => SelectedProduct != null, true);
 
             Controller.StructureUpdated += OnStructureUpdated;
 
@@ -103,7 +112,7 @@ namespace Marvin.Products.UI.Interaction
         {
             //TODO: merge tree expansion
             IsMasterBusy = false;
-            _fullTree = Controller.Structure.Select(m => new StructureEntryViewModel(m)).ToArray();
+            _fullTree = new ObservableCollection<StructureEntryViewModel>(Controller.Structure.Select(m => new StructureEntryViewModel(m)));
 
             if (_selectedProductId != 0)
             {
@@ -140,9 +149,9 @@ namespace Marvin.Products.UI.Interaction
         /// Filter the given array recursively and expand all elements which contain 
         /// elements that fit the search criteria
         /// </summary>
-        private static StructureEntryViewModel[] FilterRecursive(IEnumerable<StructureEntryViewModel> searchSpace, FilterStatus filter)
+        private static ObservableCollection<StructureEntryViewModel> FilterRecursive(IEnumerable<StructureEntryViewModel> searchSpace, FilterStatus filter)
         {
-            var results = new List<StructureEntryViewModel>();
+            var results = new ObservableCollection<StructureEntryViewModel>();
             foreach (var entry in searchSpace)
             {
                 // Check the entry itself
@@ -151,10 +160,10 @@ namespace Marvin.Products.UI.Interaction
                     results.Add(entry);
                 }
                 // Check its branches
-                else if (entry.Branches.Length > 0)
+                else if (entry.Branches.Count > 0)
                 {
                     var matchingBranches = FilterRecursive(entry.Branches, filter);
-                    if (matchingBranches.Length == 0)
+                    if (matchingBranches.Count == 0)
                         continue;
 
                     var clone = entry.Clone();
@@ -164,7 +173,7 @@ namespace Marvin.Products.UI.Interaction
                 }
             }
 
-            return results.ToArray();
+            return results;
         }
 
         public override Task OnMasterItemChanged(object sender, RoutedPropertyChangedEventArgs<object> args)
@@ -224,6 +233,37 @@ namespace Marvin.Products.UI.Interaction
             }
 
             ProductDialogFactory.Destroy(dialog);
+        }
+
+        private async Task RemoveProduct(object obj)
+        {
+            var dialog = ProductDialogFactory.CreateRemoveProductViewModel(SelectedProduct);
+
+            await DialogManager.ShowDialogAsync(dialog);
+
+            if (!dialog.Result)
+                return;
+
+            // Remove product from the tree
+            var productId = SelectedProduct.Id;
+            RemoveFromCollection(Controller.Structure, e => e.Id == productId, e => e.Branches);
+            RemoveFromCollection(_fullTree, e => e.Id == productId, e => e.Branches);
+
+            if (_filterStatus.FilterRequired)
+                RemoveFromCollection(DisplayStructure, e => e.Id == productId, e => e.Branches);
+
+            SelectedProduct = null;
+        }
+
+        private void RemoveFromCollection<TEntry>(ICollection<TEntry> collection, Func<TEntry, bool> predicate, Func<TEntry, ICollection<TEntry>> recursionSelector)
+        {
+            foreach (var entry in collection.ToArray())
+            {
+                RemoveFromCollection(recursionSelector(entry), predicate, recursionSelector);
+
+                if (predicate(entry))
+                    collection.Remove(entry);
+            }
         }
 
         /// <summary>
@@ -311,6 +351,6 @@ namespace Marvin.Products.UI.Interaction
                     break;
             }
             _selectedProductId = 0;
-		}
+        }
     }
 }

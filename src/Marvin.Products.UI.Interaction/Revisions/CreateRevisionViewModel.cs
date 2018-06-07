@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using C4I;
@@ -33,7 +34,7 @@ namespace Marvin.Products.UI.Interaction
 
         public string Comment { get; set; }
 
-        private ProductRevisionEntry[] _productRevsions;
+        private List<ProductRevisionEntry> _productRevsions;
 
         public string RevisionNumber
         {

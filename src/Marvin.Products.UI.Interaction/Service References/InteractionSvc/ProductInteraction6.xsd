@@ -160,6 +160,7 @@
       <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Marvin.Workflows" minOccurs="0" name="State" type="q14:WorkplanState" />
+      <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Marvin.Workflows" minOccurs="0" name="Steps" nillable="true" type="q15:ArrayOfWorkplanStepModel" />
       <xs:element minOccurs="0" name="Version" type="xs:int" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
