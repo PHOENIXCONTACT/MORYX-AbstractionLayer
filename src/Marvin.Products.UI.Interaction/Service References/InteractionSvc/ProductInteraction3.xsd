@@ -131,6 +131,7 @@
   <xs:element name="ArrayOfOutputDescription" nillable="true" type="tns:ArrayOfOutputDescription" />
   <xs:complexType name="OutputDescription">
     <xs:sequence>
+      <xs:element minOccurs="0" name="MappingValue" type="xs:long" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Success" type="xs:boolean" />
     </xs:sequence>
