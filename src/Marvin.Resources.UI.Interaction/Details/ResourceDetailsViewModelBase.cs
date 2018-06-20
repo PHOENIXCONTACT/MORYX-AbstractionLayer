@@ -104,7 +104,7 @@ namespace Marvin.Resources.UI.Interaction
 
             Methods = resource.Methods.Select(method => new ResourceMethodViewModel(method, this)).ToArray();
             References = resource.References.OrderBy(r => r.IsCollection)
-                .Where(r => r.RelationType != ResourceRelationType.ParentChild) // Filter parent child relationship
+                .Where(r => r.Targets != null && r.RelationType != ResourceRelationType.ParentChild) // Filter unset or parent child relationship
                 .Select(ReferenceViewModel.Create).ToArray();
 
             await OnConfigLoaded();
