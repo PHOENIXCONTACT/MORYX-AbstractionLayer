@@ -31,8 +31,9 @@
                 </EddieComboBox.ItemTemplate>
             </EddieComboBox>
 
-            <controls:EntryEditor BreadcrumbVisibility="Hidden" DockPanel.Dock="Top" IsEditMode="True"
-                                   RootEntry="{Binding SelectedImporter.Parameters}"/>
+            <controls:EntryEditor BreadcrumbVisibility="Visible" DockPanel.Dock="Top" IsEditMode="True"
+                                   RootEntry="{Binding SelectedImporter.Parameters}"
+                                   MaxHeight="450"/>
 
             <TextBlock DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Center" 
                        FontWeight="Bold" Foreground="Red" Margin="2,20,0,20" 
