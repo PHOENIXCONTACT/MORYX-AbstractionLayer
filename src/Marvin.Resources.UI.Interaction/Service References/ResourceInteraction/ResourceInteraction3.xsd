@@ -31,6 +31,7 @@
   <xs:element name="ArrayOfResourceModel" nillable="true" type="tns:ArrayOfResourceModel" />
   <xs:complexType name="ResourceModel">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GlobalIdentifier" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element minOccurs="0" name="LocalIdentifier" nillable="true" type="xs:string" />

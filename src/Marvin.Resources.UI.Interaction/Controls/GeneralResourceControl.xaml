@@ -30,6 +30,11 @@
                 <EddieTextBox Text="{Binding Resource.LocalIdentifier, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ElementName=UserControl}" 
                               IsEnabled="{Binding IsEditMode, ElementName=UserControl}"/>
             </LabeledControlHost>
+
+            <LabeledControlHost LabelA="Description:">
+                <EddieTextBox Text="{Binding Resource.Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ElementName=UserControl}" 
+                              IsEnabled="{Binding IsEditMode, ElementName=UserControl}"/>
+            </LabeledControlHost>
         </UniformGrid>
     </StackPanel>
 </UserControl>

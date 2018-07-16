@@ -164,6 +164,9 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string GlobalIdentifierField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -197,6 +200,19 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        internal string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
             }
         }
         

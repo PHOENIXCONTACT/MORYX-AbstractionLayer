@@ -15,6 +15,7 @@ namespace Marvin.Resources.UI.Interaction
         private string _name;
         private string _globalIdentifier;
         private string _localIdentifier;
+        private string _description;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourceViewModelBase"/> class.
@@ -77,6 +78,20 @@ namespace Marvin.Resources.UI.Interaction
                 NotifyOfPropertyChange();
             }
         }
+
+        /// <summary>
+        /// Description of this resource
+        /// </summary>
+        public string Description
+        {
+            get { return _description; }
+            set
+            {
+                _description = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         #region IEditableObject
 
         ///
@@ -99,6 +114,7 @@ namespace Marvin.Resources.UI.Interaction
             _model.Name = Name;
             _model.GlobalIdentifier = GlobalIdentifier;
             _model.LocalIdentifier = LocalIdentifier;
+            _model.Description = Description;
         }
 
         ///
@@ -112,6 +128,7 @@ namespace Marvin.Resources.UI.Interaction
             Name = _model.Name;
             GlobalIdentifier = _model.GlobalIdentifier;
             LocalIdentifier = _model.LocalIdentifier;
+            Description = _model.Description;
         }
 
         #endregion

@@ -24,5 +24,10 @@
         /// The local identifier of the resource
         /// </summary>
         string LocalIdentifier { get; set; }
+
+        /// <summary>
+        /// Description of the resource
+        /// </summary>
+        string Description { get; set; }
     }
 }
