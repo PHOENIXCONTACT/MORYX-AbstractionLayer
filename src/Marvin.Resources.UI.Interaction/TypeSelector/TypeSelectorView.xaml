@@ -12,7 +12,9 @@
         <KeyBinding Command="{Binding CancelCmd}" Key="Escape" />
         <KeyBinding Command="{Binding CreateCmd}" Key="Enter" />
     </UserControl.InputBindings>
-    <DialogPanel Background="White">
+    <DialogPanel Background="White"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <DialogPanel.Header>
             <TextBlock Margin="0,5,0,5">
                 Please select the resource type to create a resource instance.
@@ -67,24 +69,28 @@
                 </LabeledControlHost>
             </StackPanel>
 
-            <ItemsControl Grid.Row="1" Grid.Column="1"
-                ItemsSource="{Binding SelectedType.Constructors}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Margin="0,10, 0, 10" Orientation="Vertical"></StackPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <RadioButton GroupName="Constructor" IsChecked="{Binding IsSelected}" Content="{Binding DisplayName}"/>
-                            <controls:EntryEditor BreadcrumbVisibility="Collapsed" IsEditMode="True" 
-                                   DockPanel.Dock="Bottom"
-                                   RootEntry="{Binding Parameters}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <ScrollViewer Grid.Row="1" Grid.Column="1"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                <ItemsControl
+                    ItemsSource="{Binding SelectedType.Constructors}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Margin="0,10, 0, 10" Orientation="Vertical"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <RadioButton GroupName="Constructor" IsChecked="{Binding IsSelected}" Content="{Binding DisplayName}"/>
+                                <controls:EntryEditor BreadcrumbVisibility="Collapsed" IsEditMode="True" 
+                                       DockPanel.Dock="Bottom"
+                                       RootEntry="{Binding Parameters}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
     </DialogPanel>
 </UserControl>
