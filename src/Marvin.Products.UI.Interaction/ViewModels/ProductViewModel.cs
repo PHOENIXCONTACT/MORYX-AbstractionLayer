@@ -9,7 +9,7 @@ namespace Marvin.Products.UI.Interaction
     /// <summary>
     /// View model representing the product
     /// </summary>
-    public class ProductViewModel : PropertyChangedBase, IEditableObject
+    public class ProductViewModel : PropertyChangedBase, IEditableObject, IProductHead
     {
         internal ProductModel Model { get; }
         private string _name;

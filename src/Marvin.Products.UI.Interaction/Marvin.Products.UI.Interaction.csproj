@@ -91,6 +91,10 @@
       <DependentUpon>EmptyDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Details\Default\EmptyDetailsViewModel.cs" />
+    <Compile Include="Controls\GeneralProductControl.xaml.cs">
+      <DependentUpon>GeneralProductControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IProductHead.cs" />
     <Compile Include="Details\IProductDetailsFactory.cs" />
     <Compile Include="Details\ProductDetailsComponentSelector.cs" />
     <Compile Include="Details\ProductDetailsViewModelBase.cs" />
@@ -197,6 +201,10 @@
     <Page Include="Details\Default\EmptyDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\GeneralProductControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Import\ImportView.xaml">
       <SubType>Designer</SubType>

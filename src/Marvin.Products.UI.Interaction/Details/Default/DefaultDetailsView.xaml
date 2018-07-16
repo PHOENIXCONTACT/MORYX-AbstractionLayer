@@ -12,41 +12,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <Border Grid.Row="0" Background="#FFF1F3F5" BorderBrush="#FFC5CACE" BorderThickness="1,1,1,1" Margin="5" Padding="5">
-            <StackPanel Margin="5,5" HorizontalAlignment="Left" Width="400">
-                <StackPanel.Resources>
-                    <Style TargetType="LabeledControlHost" BasedOn="{StaticResource {x:Type LabeledControlHost}}">
-                        <Setter Property="LabelMinWidth" Value="70" />
-                        <Setter Property="Margin" Value="0,10,0,0" />
-                        <Setter Property="Eddie.TextFormat" Value="Bold" />
-                    </Style>
-                </StackPanel.Resources>
 
-                <TextBlock Text="General" Eddie.TextFormat="Header2" />
-
-                <LabeledControlHost LabelA="Name:" Height="25">
-                    <EddieTextBox Text="{Binding EditableObject.Name}" IsEnabled="{Binding IsEditMode}" />
-                </LabeledControlHost>
-
-                <LabeledControlHost LabelA="State:" Margin="0,10,0,0" Height="25">
-                    <TextBlock Text="{Binding EditableObject.State, FallbackValue=%}" VerticalAlignment="Center"/>
-                </LabeledControlHost>
-
-                <LabeledControlHost LabelA="Type:" Height="25">
-                    <TextBlock Text="{Binding EditableObject.Type, FallbackValue=%}" VerticalAlignment="Center"/>
-                </LabeledControlHost>
-
-                <LabeledControlHost LabelA="Material:" Height="25">
-                    <TextBlock Text="{Binding EditableObject.Identifier, FallbackValue=%}" VerticalAlignment="Center"/>
-                </LabeledControlHost>
-
-                <LabeledControlHost LabelA="Revision:" Height="25">
-                    <TextBlock Text="{Binding EditableObject.Revision, FallbackValue=%}" VerticalAlignment="Center"/>
-                </LabeledControlHost>
-            </StackPanel>
-        </Border>
-
+        <interaction:GeneralProductControl Grid.Row="0" Product="{Binding EditableObject}" IsEditMode="{Binding IsEditMode}"/>
 
         <controls:EntryEditor Grid.Row="1" Margin="5, 10, 5, 5" Padding="5"
                                VerticalAlignment="Top" HorizontalAlignment="Stretch"
