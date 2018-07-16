@@ -6,10 +6,7 @@ namespace Marvin.Resources.UI.Interaction
     [ResourceDetailsRegistration(DetailsConstants.EmptyType)]
     internal class EmptyDetailsViewModel : EmptyDetailsViewModelBase, IResourceDetails
     {
-        public long CurrentResourceId
-        {
-            get { return 0; }
-        }
+        public long CurrentResourceId => 0;
 
         public Task Load(long resourceId)
         {

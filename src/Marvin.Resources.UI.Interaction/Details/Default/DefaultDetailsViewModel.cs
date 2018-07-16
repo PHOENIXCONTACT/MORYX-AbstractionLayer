@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Marvin.AbstractionLayer.UI;
 using Marvin.Controls;
-using Marvin.Serialization;
 
 namespace Marvin.Resources.UI.Interaction
 {

@@ -31,7 +31,7 @@ namespace Marvin.Resources.UI.Interaction
         /// <summary>
         /// Display name of the type
         /// </summary>
-        public string DisplayName => _model.DisplayName ?? _model.Name;
+        public string DisplayName => _model.DisplayName;
 
         /// <summary>
         /// Description of the type

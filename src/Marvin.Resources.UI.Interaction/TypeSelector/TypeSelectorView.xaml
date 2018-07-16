@@ -50,11 +50,15 @@
                     <Style TargetType="LabeledControlHost">
                         <Setter Property="Eddie.TextFormat" Value="Bold" />
                         <Setter Property="Margin" Value="0,0,0,10" />
-                        <Setter Property="LabelMinWidth" Value="65" />
+                        <Setter Property="LabelMinWidth" Value="95" />
                     </Style>
                 </StackPanel.Resources>
 
                 <LabeledControlHost LabelA="Name:">
+                    <TextBlock Text="{Binding SelectedType.DisplayName}" />
+                </LabeledControlHost>
+
+                <LabeledControlHost LabelA="Internal:">
                     <TextBlock Text="{Binding SelectedType.Name}" />
                 </LabeledControlHost>
 
