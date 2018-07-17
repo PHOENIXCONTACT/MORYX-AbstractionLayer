@@ -7,7 +7,6 @@
              xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance it:DefaultDetailsViewModel }"
              d:DesignHeight="680" d:DesignWidth="717">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,7 +16,7 @@
 
         <Border Grid.Row="0" Grid.Column="0" Background="#FFF1F3F5" BorderBrush="#FFC5CACE" BorderThickness="0,1,0,1"/>
 
-        <it:GeneralResourceControl Grid.Row="0" Resource="{Binding EditableObject}" IsEditMode="{Binding IsEditMode}" />
+        <it:GeneralResourceControl Grid.Row="0" Resource="{Binding EditableObject}" Type="{Binding Type.DisplayName}" IsEditMode="{Binding IsEditMode}" />
 
         <it:ResourceMethodsControl Grid.Row="1" Methods="{Binding Methods}"/>
 

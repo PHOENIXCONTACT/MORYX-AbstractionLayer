@@ -6,11 +6,6 @@
     public interface IResourceHead
     {
         /// <summary>
-        /// Type of the resource
-        /// </summary>
-        string Type { get; }
-
-        /// <summary>
         /// The name of the resource
         /// </summary>
         string Name { get; }

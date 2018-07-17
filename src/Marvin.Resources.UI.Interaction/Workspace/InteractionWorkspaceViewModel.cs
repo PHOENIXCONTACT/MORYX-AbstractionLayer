@@ -127,8 +127,8 @@ namespace Marvin.Resources.UI.Interaction
             SelectedResource = resource;
 
             //Select view model for the right resource type
-            var detailsVm = DetailsFactory.Create(SelectedResource.Type);
-            await LoadDetails(async delegate { await detailsVm.Load(_selectedResource.Id); });
+            var detailsVm = DetailsFactory.Create(resource.Type);
+            await LoadDetails(() => detailsVm.Load(resource.Id));
 
             ActivateItem(detailsVm);
         }

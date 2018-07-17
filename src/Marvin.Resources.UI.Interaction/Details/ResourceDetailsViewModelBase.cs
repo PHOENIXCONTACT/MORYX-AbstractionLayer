@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Marvin.AbstractionLayer.UI;
 using Marvin.Logging;
 using Marvin.Resources.UI.Interaction.ResourceInteraction;
 using Marvin.Serialization;
+using Marvin.Tools;
 
 namespace Marvin.Resources.UI.Interaction
 {
@@ -31,7 +31,7 @@ namespace Marvin.Resources.UI.Interaction
 
         #region Fields and Properties
 
-        ///
+        /// <inheritdoc />
         public long CurrentResourceId { get; private set; }
 
         /// <summary>
@@ -53,6 +53,11 @@ namespace Marvin.Resources.UI.Interaction
         /// All references of the resource
         /// </summary>
         public ReferenceViewModel[] References { get; private set; }
+
+        /// <summary>
+        /// ViewModel of the ResourceType
+        /// </summary>
+        public ResourceTypeViewModel Type { get; private set; }
 
         /// <summary>
         /// Depth of the resource tree for GetDetails
@@ -106,6 +111,10 @@ namespace Marvin.Resources.UI.Interaction
             References = resource.References.OrderBy(r => r.IsCollection)
                 .Where(r => r.Targets != null && r.RelationType != ResourceRelationType.ParentChild) // Filter unset or parent child relationship
                 .Select(ReferenceViewModel.Create).ToArray();
+
+            // Load type from type tree
+            var typeModel = ResourceController.TypeTree.Flatten(t => t.DerivedTypes).SingleOrDefault(t => t.Name == EditableObject.Type);
+            Type = new ResourceTypeViewModel(typeModel);
 
             await OnConfigLoaded();
 

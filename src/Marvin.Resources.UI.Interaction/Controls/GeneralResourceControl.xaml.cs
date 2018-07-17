@@ -32,6 +32,21 @@ namespace Marvin.Resources.UI.Interaction
         }
 
         /// <summary>
+        /// Dependency property for the <see cref="Type"/>
+        /// </summary>
+        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
+            "Type", typeof(string), typeof(GeneralResourceControl), new PropertyMetadata(default(string)));
+
+        /// <summary>
+        /// Property for the type name
+        /// </summary>
+        public string Type
+        {
+            get { return (string) GetValue(TypeProperty); }
+            set { SetValue(TypeProperty, value); }
+        }
+
+        /// <summary>
         /// Dependency property for the <see cref="IsEditMode"/>
         /// </summary>
         public static readonly DependencyProperty IsEditModeProperty = DependencyProperty.Register(
