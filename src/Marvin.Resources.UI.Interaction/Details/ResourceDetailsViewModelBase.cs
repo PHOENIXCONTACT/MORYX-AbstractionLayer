@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Marvin.AbstractionLayer.UI;
@@ -37,12 +36,11 @@ namespace Marvin.Resources.UI.Interaction
         /// <summary>
         /// Current config entries
         /// </summary>
-        protected List<Entry> ConfigEntries
+        protected Entry ConfigEntries
         {
             get { return EditableObject.Model.Properties; }
             set { EditableObject.Model.Properties = value; }
         }
-
 
         /// <summary>
         /// All methods of this type of resource
@@ -207,13 +205,13 @@ namespace Marvin.Resources.UI.Interaction
             await base.OnConfigLoaded();
 
             ConfigViewModel = new T();
-            ConfigConverter.FromConfig(ConfigEntries, ConfigViewModel);
+            ConfigConverter.FromConfig(ConfigEntries.SubEntries, ConfigViewModel);
         }
 
         ///
         public override void CancelEdit()
         {
-            ConfigConverter.FromConfig(ConfigEntries, ConfigViewModel);
+            ConfigConverter.FromConfig(ConfigEntries.SubEntries, ConfigViewModel);
 
             base.CancelEdit();
         }
@@ -221,7 +219,7 @@ namespace Marvin.Resources.UI.Interaction
         ///
         public override void EndEdit()
         {
-            ConfigConverter.ToConfig(ConfigViewModel, ConfigEntries);
+            ConfigConverter.ToConfig(ConfigViewModel, ConfigEntries.SubEntries);
 
             base.EndEdit();
         }

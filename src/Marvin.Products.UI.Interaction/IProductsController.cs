@@ -5,6 +5,7 @@ using Marvin.AbstractionLayer.UI;
 using Marvin.Container;
 using Marvin.Modules;
 using Marvin.Products.UI.Interaction.InteractionSvc;
+using Marvin.Serialization;
 using Marvin.Tools.Wcf;
 
 namespace Marvin.Products.UI.Interaction
@@ -45,14 +46,15 @@ namespace Marvin.Products.UI.Interaction
         /// <param name="importer">Name of the importer</param>
         /// <param name="currentParameters">List of parameters</param>
         /// <returns>List of importer parameters</returns>
-        Task<List<ImportParameter>> UpdateParameters(string importer, List<ImportParameter> currentParameters);
+        Task<Entry> UpdateParameters(string importer, Entry currentParameters);
+
         /// <summary>
         /// Import product
         /// </summary>
         /// <param name="importerName">Name of the importer</param>
         /// <param name="parameters">List of parameters</param>
         /// <returns>Imported product</returns>
-        Task<ProductModel> ImportProduct(string importerName, List<ImportParameter> parameters);
+        Task<ProductModel> ImportProduct(string importerName, Entry parameters);
 
         /// <summary>
         /// Remove a product from the database
@@ -123,12 +125,12 @@ namespace Marvin.Products.UI.Interaction
             return WcfClient.SaveProductAsync(product);
         }
 
-        public Task<List<ImportParameter>> UpdateParameters(string importer, List<ImportParameter> currentParameters)
+        public Task<Entry> UpdateParameters(string importer, Entry currentParameters)
         {
             return WcfClient.UpdateParametersAsync(importer, currentParameters);
         }
 
-        public Task<ProductModel> ImportProduct(string importerName, List<ImportParameter> parameters)
+        public Task<ProductModel> ImportProduct(string importerName, Entry parameters)
         {
             return WcfClient.ImportProductAsync(importerName, parameters);
         }

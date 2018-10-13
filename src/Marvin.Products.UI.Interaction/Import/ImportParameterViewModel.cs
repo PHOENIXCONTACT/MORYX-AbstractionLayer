@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using Marvin.Controls;
-using Marvin.Products.UI.Interaction.InteractionSvc;
 using Marvin.Serialization;
 
 namespace Marvin.Products.UI.Interaction
@@ -15,12 +14,10 @@ namespace Marvin.Products.UI.Interaction
         ///     Constructor
         /// </summary>
         /// <param name="property">Importer parameter</param>
-        public ImportParameterViewModel(ImportParameter property) : base(property)
+        public ImportParameterViewModel(Entry property) : base(property)
         {
             Model = property;
-
-            if (Model.TriggersUpdate)
-                PropertyChanged += OnPropertyChanged;
+            PropertyChanged += OnPropertyChanged;
         }
 
         /// <summary>
@@ -38,11 +35,11 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         ///     Base importer parameter
         /// </summary>
-        internal ImportParameter Model { get; }
+        internal Entry Model { get; }
 
         /// <summary>
         ///     Event raised when the values was changed
         /// </summary>
-        public event EventHandler<ImportParameter> ValueChanged;
+        public event EventHandler<Entry> ValueChanged;
     }
 }

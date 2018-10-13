@@ -30,14 +30,14 @@ namespace Marvin.Resources.UI.Interaction
 
         public override void BeginEdit()
         {
-            ConfigViewModel = new EntryViewModel(ConfigEntries.Select(e => e.Clone(true)).ToArray());
+            ConfigViewModel = new EntryViewModel(ConfigEntries.Clone(true));
 
             base.BeginEdit();
         }
 
         public override void EndEdit()
         {
-            ConfigEntries = ConfigViewModel.SubEntries.Select(se => se.Entry).ToList();
+            ConfigEntries = ConfigViewModel.Entry;
 
             base.EndEdit();
         }

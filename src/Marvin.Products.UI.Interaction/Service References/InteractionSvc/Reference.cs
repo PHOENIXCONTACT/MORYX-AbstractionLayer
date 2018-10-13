@@ -151,7 +151,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> ParametersField;
+        private Marvin.Serialization.Entry ParametersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -177,7 +177,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        internal System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> Parameters {
+        internal Marvin.Serialization.Entry Parameters {
             get {
                 return this.ParametersField;
             }
@@ -246,51 +246,6 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
                 if ((object.ReferenceEquals(this.ValuesField, value) != true)) {
                     this.ValuesField = value;
                     this.RaisePropertyChanged("Values");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ImportParameter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
-    [System.SerializableAttribute()]
-    internal partial class ImportParameter : Marvin.Serialization.Entry, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool TriggersUpdateField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal bool TriggersUpdate {
-            get {
-                return this.TriggersUpdateField;
-            }
-            set {
-                if ((this.TriggersUpdateField.Equals(value) != true)) {
-                    this.TriggersUpdateField = value;
-                    this.RaisePropertyChanged("TriggersUpdate");
                 }
             }
         }
@@ -512,7 +467,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         private System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.PartConnector> PartsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Marvin.Serialization.Entry> PropertiesField;
+        private Marvin.Serialization.Entry PropertiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.RecipeModel> RecipesField;
@@ -602,7 +557,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        internal System.Collections.Generic.List<Marvin.Serialization.Entry> Properties {
+        internal Marvin.Serialization.Entry Properties {
             get {
                 return this.PropertiesField;
             }
@@ -778,7 +733,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         private System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.PartModel> PartsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Marvin.Serialization.Entry> PropertyTemplatesField;
+        private Marvin.Serialization.Entry PropertyTemplatesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
@@ -859,7 +814,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        internal System.Collections.Generic.List<Marvin.Serialization.Entry> PropertyTemplates {
+        internal Marvin.Serialization.Entry PropertyTemplates {
             get {
                 return this.PropertyTemplatesField;
             }
@@ -907,7 +862,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         private long IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Marvin.Serialization.Entry> IngredientsField;
+        private Marvin.Serialization.Entry IngredientsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsDefaultField;
@@ -951,7 +906,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        internal System.Collections.Generic.List<Marvin.Serialization.Entry> Ingredients {
+        internal Marvin.Serialization.Entry Ingredients {
             get {
                 return this.IngredientsField;
             }
@@ -1078,7 +1033,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         private Marvin.Products.UI.Interaction.InteractionSvc.ProductModel ProductField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Marvin.Serialization.Entry> PropertiesField;
+        private Marvin.Serialization.Entry PropertiesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1104,7 +1059,7 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        internal System.Collections.Generic.List<Marvin.Serialization.Entry> Properties {
+        internal Marvin.Serialization.Entry Properties {
             get {
                 return this.PropertiesField;
             }
@@ -1401,10 +1356,10 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.ProductCustomization> GetCustomizationAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
-        System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> UpdateParameters(string importer, System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> currentParameters);
+        Marvin.Serialization.Entry UpdateParameters(string importer, Marvin.Serialization.Entry currentParameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter>> UpdateParametersAsync(string importer, System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> currentParameters);
+        System.Threading.Tasks.Task<Marvin.Serialization.Entry> UpdateParametersAsync(string importer, Marvin.Serialization.Entry currentParameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductStructure", ReplyAction="http://tempuri.org/IProductInteraction/GetProductStructureResponse")]
         System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ProductStructureEntry> GetProductStructure();
@@ -1449,10 +1404,10 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.ProductModel> CreateRevisionAsync(long id, short revisionNo, string comment);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ImportProduct", ReplyAction="http://tempuri.org/IProductInteraction/ImportProductResponse")]
-        Marvin.Products.UI.Interaction.InteractionSvc.ProductModel ImportProduct(string importerName, System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> parametersModel);
+        Marvin.Products.UI.Interaction.InteractionSvc.ProductModel ImportProduct(string importerName, Marvin.Serialization.Entry parametersModel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ImportProduct", ReplyAction="http://tempuri.org/IProductInteraction/ImportProductResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.ProductModel> ImportProductAsync(string importerName, System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> parametersModel);
+        System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.ProductModel> ImportProductAsync(string importerName, Marvin.Serialization.Entry parametersModel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DeleteProduct", ReplyAction="http://tempuri.org/IProductInteraction/DeleteProductResponse")]
         System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ProductModel> DeleteProduct(long id);
@@ -1544,11 +1499,11 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
             return base.Channel.GetCustomizationAsync();
         }
         
-        public System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> UpdateParameters(string importer, System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> currentParameters) {
+        public Marvin.Serialization.Entry UpdateParameters(string importer, Marvin.Serialization.Entry currentParameters) {
             return base.Channel.UpdateParameters(importer, currentParameters);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter>> UpdateParametersAsync(string importer, System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> currentParameters) {
+        public System.Threading.Tasks.Task<Marvin.Serialization.Entry> UpdateParametersAsync(string importer, Marvin.Serialization.Entry currentParameters) {
             return base.Channel.UpdateParametersAsync(importer, currentParameters);
         }
         
@@ -1608,11 +1563,11 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
             return base.Channel.CreateRevisionAsync(id, revisionNo, comment);
         }
         
-        public Marvin.Products.UI.Interaction.InteractionSvc.ProductModel ImportProduct(string importerName, System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> parametersModel) {
+        public Marvin.Products.UI.Interaction.InteractionSvc.ProductModel ImportProduct(string importerName, Marvin.Serialization.Entry parametersModel) {
             return base.Channel.ImportProduct(importerName, parametersModel);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.ProductModel> ImportProductAsync(string importerName, System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter> parametersModel) {
+        public System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.ProductModel> ImportProductAsync(string importerName, Marvin.Serialization.Entry parametersModel) {
             return base.Channel.ImportProductAsync(importerName, parametersModel);
         }
         

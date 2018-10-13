@@ -55,7 +55,7 @@ namespace Marvin.Resources.UI.Interaction
         /// <summary>
         /// Parameters of the method
         /// </summary>
-        public Entry[] Parameters => Model.Parameters;
+        public Entry Parameters => Model.Parameters;
 
         /// <summary>
         /// ViewModel for the ConfigEditor

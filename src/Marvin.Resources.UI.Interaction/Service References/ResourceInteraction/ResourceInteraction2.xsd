@@ -12,16 +12,10 @@
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ArrayOfEntry" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:Entry" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MethodEntry" nillable="true" type="tns:MethodEntry" />
-  <xs:complexType name="ArrayOfEntry">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Entry" nillable="true" type="tns:Entry" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfEntry" nillable="true" type="tns:ArrayOfEntry" />
   <xs:complexType name="Entry">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
@@ -40,6 +34,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="EntryKey" nillable="true" type="tns:EntryKey" />
+  <xs:complexType name="ArrayOfEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Entry" nillable="true" type="tns:Entry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEntry" nillable="true" type="tns:ArrayOfEntry" />
   <xs:complexType name="EntryValidation">
     <xs:sequence>
       <xs:element minOccurs="0" name="IsPassword" type="xs:boolean" />
@@ -76,6 +76,7 @@
       <xs:enumeration value="Enum" />
       <xs:enumeration value="Class" />
       <xs:enumeration value="Collection" />
+      <xs:enumeration value="Exception" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="EntryValueType" nillable="true" type="tns:EntryValueType" />

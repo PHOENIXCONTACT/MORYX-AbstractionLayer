@@ -106,7 +106,7 @@
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OutputDescriptions" nillable="true" type="tns:ArrayOfOutputDescription" />
       <xs:element minOccurs="0" name="Outputs" nillable="true" type="tns:ArrayOfConnectorModel" />
-      <xs:element minOccurs="0" name="Properties" nillable="true" type="tns:ArrayOfWorkplanStepInitializer" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q1:Entry" />
       <xs:element minOccurs="0" name="SubworkplanId" type="xs:long" />
       <xs:element minOccurs="0" name="TemporaryId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
@@ -137,21 +137,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="OutputDescription" nillable="true" type="tns:OutputDescription" />
-  <xs:complexType name="ArrayOfWorkplanStepInitializer">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkplanStepInitializer" nillable="true" type="tns:WorkplanStepInitializer" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfWorkplanStepInitializer" nillable="true" type="tns:ArrayOfWorkplanStepInitializer" />
-  <xs:complexType name="WorkplanStepInitializer">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Marvin.Serialization" base="q1:Entry">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="FromConstructor" type="xs:boolean" />
-          <xs:element minOccurs="0" name="SubWorkplan" type="xs:boolean" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="WorkplanStepInitializer" nillable="true" type="tns:WorkplanStepInitializer" />
 </xs:schema>

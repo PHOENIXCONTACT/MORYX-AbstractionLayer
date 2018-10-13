@@ -25,26 +25,10 @@
   <xs:complexType name="ProductImporter">
     <xs:sequence>
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ArrayOfImportParameter" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Parameters" nillable="true" type="q3:Entry" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductImporter" nillable="true" type="tns:ProductImporter" />
-  <xs:complexType name="ArrayOfImportParameter">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImportParameter" nillable="true" type="tns:ImportParameter" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfImportParameter" nillable="true" type="tns:ArrayOfImportParameter" />
-  <xs:complexType name="ImportParameter">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Marvin.Serialization" base="q3:Entry">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="TriggersUpdate" type="xs:boolean" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="ImportParameter" nillable="true" type="tns:ImportParameter" />
   <xs:complexType name="ArrayOfStorageValue">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="StorageValue" nillable="true" type="tns:StorageValue" />
@@ -71,7 +55,7 @@
       <xs:element minOccurs="0" name="Identifier" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Parts" nillable="true" type="tns:ArrayOfPartConnector" />
-      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q6:ArrayOfEntry" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q6:Entry" />
       <xs:element minOccurs="0" name="Recipes" nillable="true" type="tns:ArrayOfRecipeModel" />
       <xs:element minOccurs="0" name="Revision" type="xs:short" />
       <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer" minOccurs="0" name="State" type="q7:ProductState" />
@@ -94,7 +78,7 @@
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Part" nillable="true" type="tns:PartModel" />
       <xs:element minOccurs="0" name="Parts" nillable="true" type="tns:ArrayOfPartModel" />
-      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="PropertyTemplates" nillable="true" type="q8:ArrayOfEntry" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="PropertyTemplates" nillable="true" type="q8:Entry" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
@@ -104,7 +88,7 @@
   <xs:complexType name="PartModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="Product" nillable="true" type="tns:ProductModel" />
-      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q9:ArrayOfEntry" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q9:Entry" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -125,7 +109,7 @@
   <xs:complexType name="RecipeModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:long" />
-      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Ingredients" nillable="true" type="q10:ArrayOfEntry" />
+      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Ingredients" nillable="true" type="q10:Entry" />
       <xs:element minOccurs="0" name="IsDefault" type="xs:boolean" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Revision" type="xs:int" />

@@ -185,7 +185,7 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
         private long ParentIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Marvin.Serialization.Entry> PropertiesField;
+        private Marvin.Serialization.Entry PropertiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceReferenceModel> ReferencesField;
@@ -295,7 +295,7 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        internal System.Collections.Generic.List<Marvin.Serialization.Entry> Properties {
+        internal Marvin.Serialization.Entry Properties {
             get {
                 return this.PropertiesField;
             }
