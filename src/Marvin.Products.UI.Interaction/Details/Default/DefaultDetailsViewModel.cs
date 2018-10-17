@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Marvin.AbstractionLayer.UI;
+﻿using Marvin.AbstractionLayer.UI;
 using Marvin.Controls;
 
 namespace Marvin.Products.UI.Interaction
@@ -34,15 +33,15 @@ namespace Marvin.Products.UI.Interaction
         {
             base.BeginEdit();
 
-            var propertyClones = ProductProperties.Select(e => e.Clone(true)).ToList();
-            Properties = new EntryViewModel(propertyClones);
+            var clone = ProductProperties.Clone(true);
+            Properties = new EntryViewModel(clone);
         }
 
         public override void EndEdit()
         {
             base.EndEdit();
 
-            ProductProperties = Properties.SubEntries.Select(se => se.Entry).ToList();
+            ProductProperties = Properties.Entry;
         }
 
         public override void CancelEdit()

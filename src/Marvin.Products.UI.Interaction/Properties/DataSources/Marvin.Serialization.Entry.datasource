@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="ImportParameter" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Marvin.Products.UI.Interaction.InteractionSvc.ImportParameter, Service References.InteractionSvc.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="Entry" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>Marvin.Serialization.Entry, Marvin, Version=3.0.0.1883, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

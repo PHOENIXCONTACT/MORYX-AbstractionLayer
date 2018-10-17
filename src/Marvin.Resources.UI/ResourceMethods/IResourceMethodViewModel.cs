@@ -31,6 +31,6 @@ namespace Marvin.Resources.UI
         /// <summary>
         /// Parameters of the method
         /// </summary>
-        Entry[] Parameters { get; }
+        Entry Parameters { get; }
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" />
+  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Marvin.Serialization" />
   <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management" />
   <xs:element name="GetCustomization">
     <xs:complexType>
@@ -18,14 +19,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="importer" nillable="true" type="xs:string" />
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="currentParameters" nillable="true" type="q2:ArrayOfImportParameter" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="currentParameters" nillable="true" type="q2:Entry" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateParametersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="UpdateParametersResult" nillable="true" type="q3:ArrayOfImportParameter" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="UpdateParametersResult" nillable="true" type="q3:Entry" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -129,7 +130,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="importerName" nillable="true" type="xs:string" />
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="parametersModel" nillable="true" type="q12:ArrayOfImportParameter" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="parametersModel" nillable="true" type="q12:Entry" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

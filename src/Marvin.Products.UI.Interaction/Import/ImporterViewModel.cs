@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Marvin.Controls;
@@ -22,7 +21,7 @@ namespace Marvin.Products.UI.Interaction
             CreateParameterViewModel(_importer.Parameters);
         }
 
-        private void CreateParameterViewModel(IList<ImportParameter> parameters)
+        private void CreateParameterViewModel(Entry parameters)
         {
             if (Parameters != null)
             {
@@ -33,11 +32,10 @@ namespace Marvin.Products.UI.Interaction
             }
 
             Parameters = new EntryViewModel(new Entry { Key = new EntryKey { Name = "Root" } });
-            foreach (var parameter in parameters)
+            foreach (var parameter in parameters.SubEntries)
             {
-                var viewModel = new ImportParameterViewModel(new ImportParameter
+                var viewModel = new ImportParameterViewModel(new Entry
                 {   // Create clone to clear after every import
-                    TriggersUpdate = parameter.TriggersUpdate,
                     Key = parameter.Key,
                     Validation = parameter.Validation,
                     Description = parameter.Description,
@@ -51,13 +49,16 @@ namespace Marvin.Products.UI.Interaction
         }
 
         /// <summary>
-        /// Update parameters if a <see cref="ImportParameter.TriggersUpdate"/> was modified
+        /// Update parameters if they were was modified
         /// </summary>
-        private async void OnUpdateTriggerChanged(object sender, ImportParameter importParameter)
+        private async void OnUpdateTriggerChanged(object sender, Entry importParameter)
         {
+            var root = new Entry {Key = new EntryKey {Name = "Root"}};
             var parameters = Parameters.SubEntries.Cast<ImportParameterViewModel>().Select(ip => ip.Model).ToList();
-            parameters = await _productsController.UpdateParameters(_importer.Name, parameters);
-            CreateParameterViewModel(parameters);
+            root.SubEntries = parameters;
+
+            root = await _productsController.UpdateParameters(_importer.Name, root);
+            CreateParameterViewModel(root);
         }
 
         /// <summary>
@@ -92,8 +93,11 @@ namespace Marvin.Products.UI.Interaction
         /// <returns></returns>
         public Task<ProductModel> Import()
         {
+            var root = new Entry { Key = new EntryKey { Name = "Root" } };
             var parameters = Parameters.SubEntries.Cast<ImportParameterViewModel>().Select(ip => ip.Model).ToList();
-            return _productsController.ImportProduct(_importer.Name, parameters);
+            root.SubEntries = parameters;
+
+            return _productsController.ImportProduct(_importer.Name, root);
         }
     }
 }

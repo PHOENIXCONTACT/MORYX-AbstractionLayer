@@ -61,6 +61,7 @@
       <xs:enumeration value="Enum" />
       <xs:enumeration value="Class" />
       <xs:enumeration value="Collection" />
+      <xs:enumeration value="Exception" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="EntryValueType" nillable="true" type="tns:EntryValueType" />

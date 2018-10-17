@@ -18,7 +18,7 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// Ingrediants of this recipe model
         /// </summary>
-        protected List<Entry> IngredientsModel
+        protected Entry IngredientsModel
         {
             get { return Model.Ingredients; }
             set { Model.Ingredients = value; }
