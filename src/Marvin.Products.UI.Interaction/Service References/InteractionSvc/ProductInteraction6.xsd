@@ -4,7 +4,6 @@
   <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Marvin.Serialization" />
   <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer" />
   <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Marvin.Workflows" />
   <xs:complexType name="ProductCustomization">
     <xs:sequence>
       <xs:element minOccurs="0" name="HasRecipes" type="xs:boolean" />
@@ -138,23 +137,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductRevisionEntry" nillable="true" type="tns:ProductRevisionEntry" />
-  <xs:complexType name="WorkplanModel">
-    <xs:sequence>
-      <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Marvin.Workflows" minOccurs="0" name="Connectors" nillable="true" type="q13:ArrayOfConnectorModel" />
-      <xs:element minOccurs="0" name="Id" type="xs:long" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Marvin.Workflows" minOccurs="0" name="State" type="q14:WorkplanState" />
-      <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Marvin.Workflows" minOccurs="0" name="Steps" nillable="true" type="q15:ArrayOfWorkplanStepModel" />
-      <xs:element minOccurs="0" name="Version" type="xs:int" />
-    </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
-  </xs:complexType>
-  <xs:element name="WorkplanModel" nillable="true" type="tns:WorkplanModel" />
-  <xs:complexType name="ArrayOfWorkplanModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkplanModel" nillable="true" type="tns:WorkplanModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfWorkplanModel" nillable="true" type="tns:ArrayOfWorkplanModel" />
 </xs:schema>

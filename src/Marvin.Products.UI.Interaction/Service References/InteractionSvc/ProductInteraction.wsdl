@@ -9,7 +9,6 @@
       <xsd:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management" />
       <xsd:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer" />
-      <xsd:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Marvin.Workflows" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IProductInteraction_GetCustomization_InputMessage">
@@ -102,24 +101,6 @@
   <wsdl:message name="IProductInteraction_CreateProductionRecipe_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateProductionRecipeResponse" />
   </wsdl:message>
-  <wsdl:message name="IProductInteraction_CreateWorkplan_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateWorkplan" />
-  </wsdl:message>
-  <wsdl:message name="IProductInteraction_CreateWorkplan_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateWorkplanResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProductInteraction_GetWorkplans_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkplans" />
-  </wsdl:message>
-  <wsdl:message name="IProductInteraction_GetWorkplans_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkplansResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProductInteraction_GetWorkplan_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkplan" />
-  </wsdl:message>
-  <wsdl:message name="IProductInteraction_GetWorkplan_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkplanResponse" />
-  </wsdl:message>
   <wsdl:message name="IProductInteraction_GetRecipeProviderName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRecipeProviderName" />
   </wsdl:message>
@@ -186,18 +167,6 @@
     <wsdl:operation name="CreateProductionRecipe">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductInteraction/CreateProductionRecipe" message="tns:IProductInteraction_CreateProductionRecipe_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProductInteraction/CreateProductionRecipeResponse" message="tns:IProductInteraction_CreateProductionRecipe_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CreateWorkplan">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProductInteraction/CreateWorkplan" message="tns:IProductInteraction_CreateWorkplan_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProductInteraction/CreateWorkplanResponse" message="tns:IProductInteraction_CreateWorkplan_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetWorkplans">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProductInteraction/GetWorkplans" message="tns:IProductInteraction_GetWorkplans_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProductInteraction/GetWorkplansResponse" message="tns:IProductInteraction_GetWorkplans_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetWorkplan">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProductInteraction/GetWorkplan" message="tns:IProductInteraction_GetWorkplan_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProductInteraction/GetWorkplanResponse" message="tns:IProductInteraction_GetWorkplan_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetRecipeProviderName">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductInteraction/GetRecipeProviderName" message="tns:IProductInteraction_GetRecipeProviderName_InputMessage" />
@@ -334,33 +303,6 @@
     </wsdl:operation>
     <wsdl:operation name="CreateProductionRecipe">
       <soap:operation soapAction="http://tempuri.org/IProductInteraction/CreateProductionRecipe" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CreateWorkplan">
-      <soap:operation soapAction="http://tempuri.org/IProductInteraction/CreateWorkplan" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetWorkplans">
-      <soap:operation soapAction="http://tempuri.org/IProductInteraction/GetWorkplans" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetWorkplan">
-      <soap:operation soapAction="http://tempuri.org/IProductInteraction/GetWorkplan" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

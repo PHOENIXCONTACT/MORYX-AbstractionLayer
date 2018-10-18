@@ -1220,131 +1220,6 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WorkplanModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification", IsReference=true)]
-    [System.SerializableAttribute()]
-    internal partial class WorkplanModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Marvin.Workflows.ConnectorModel> ConnectorsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Workflows.WorkplanState StateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Marvin.Workflows.WorkplanStepModel> StepsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int VersionField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal System.Collections.Generic.List<Marvin.Workflows.ConnectorModel> Connectors {
-            get {
-                return this.ConnectorsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ConnectorsField, value) != true)) {
-                    this.ConnectorsField = value;
-                    this.RaisePropertyChanged("Connectors");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal long Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal Marvin.Workflows.WorkplanState State {
-            get {
-                return this.StateField;
-            }
-            set {
-                if ((this.StateField.Equals(value) != true)) {
-                    this.StateField = value;
-                    this.RaisePropertyChanged("State");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal System.Collections.Generic.List<Marvin.Workflows.WorkplanStepModel> Steps {
-            get {
-                return this.StepsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StepsField, value) != true)) {
-                    this.StepsField = value;
-                    this.RaisePropertyChanged("Steps");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal int Version {
-            get {
-                return this.VersionField;
-            }
-            set {
-                if ((this.VersionField.Equals(value) != true)) {
-                    this.VersionField = value;
-                    this.RaisePropertyChanged("Version");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="InteractionSvc.IProductInteraction")]
     internal interface IProductInteraction {
@@ -1438,24 +1313,6 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateProductionRecipe", ReplyAction="http://tempuri.org/IProductInteraction/CreateProductionRecipeResponse")]
         System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.RecipeModel> CreateProductionRecipeAsync(long productId, long workplanId, string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateWorkplan", ReplyAction="http://tempuri.org/IProductInteraction/CreateWorkplanResponse")]
-        Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel CreateWorkplan(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateWorkplan", ReplyAction="http://tempuri.org/IProductInteraction/CreateWorkplanResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel> CreateWorkplanAsync(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplans", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplansResponse")]
-        System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel> GetWorkplans();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplans", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplansResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel>> GetWorkplansAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplan", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplanResponse")]
-        Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel GetWorkplan(long id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplan", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplanResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel> GetWorkplanAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipeProviderName", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipeProviderNameResponse")]
         string GetRecipeProviderName();
@@ -1609,30 +1466,6 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         
         public System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.RecipeModel> CreateProductionRecipeAsync(long productId, long workplanId, string name) {
             return base.Channel.CreateProductionRecipeAsync(productId, workplanId, name);
-        }
-        
-        public Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel CreateWorkplan(string name) {
-            return base.Channel.CreateWorkplan(name);
-        }
-        
-        public System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel> CreateWorkplanAsync(string name) {
-            return base.Channel.CreateWorkplanAsync(name);
-        }
-        
-        public System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel> GetWorkplans() {
-            return base.Channel.GetWorkplans();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel>> GetWorkplansAsync() {
-            return base.Channel.GetWorkplansAsync();
-        }
-        
-        public Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel GetWorkplan(long id) {
-            return base.Channel.GetWorkplan(id);
-        }
-        
-        public System.Threading.Tasks.Task<Marvin.Products.UI.Interaction.InteractionSvc.WorkplanModel> GetWorkplanAsync(long id) {
-            return base.Channel.GetWorkplanAsync(id);
         }
         
         public string GetRecipeProviderName() {
