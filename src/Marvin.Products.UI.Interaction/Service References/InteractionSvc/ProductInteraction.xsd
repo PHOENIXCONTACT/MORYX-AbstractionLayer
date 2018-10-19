@@ -214,46 +214,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CreateWorkplan">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateWorkplanResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="CreateWorkplanResult" nillable="true" type="q19:WorkplanModel" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetWorkplans">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetWorkplansResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="GetWorkplansResult" nillable="true" type="q20:ArrayOfWorkplanModel" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetWorkplan">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="id" type="xs:long" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetWorkplanResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="GetWorkplanResult" nillable="true" type="q21:WorkplanModel" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetRecipeProviderName">
     <xs:complexType>
       <xs:sequence />
