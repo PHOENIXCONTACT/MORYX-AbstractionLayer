@@ -75,7 +75,6 @@
       <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IsCollection" type="xs:boolean" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Part" nillable="true" type="tns:PartModel" />
       <xs:element minOccurs="0" name="Parts" nillable="true" type="tns:ArrayOfPartModel" />
       <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="PropertyTemplates" nillable="true" type="q8:Entry" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
@@ -84,6 +83,12 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="PartConnector" nillable="true" type="tns:PartConnector" />
+  <xs:complexType name="ArrayOfPartModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PartModel" nillable="true" type="tns:PartModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPartModel" nillable="true" type="tns:ArrayOfPartModel" />
   <xs:complexType name="PartModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="Product" nillable="true" type="tns:ProductModel" />
@@ -93,12 +98,6 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="PartModel" nillable="true" type="tns:PartModel" />
-  <xs:complexType name="ArrayOfPartModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PartModel" nillable="true" type="tns:PartModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPartModel" nillable="true" type="tns:ArrayOfPartModel" />
   <xs:complexType name="ArrayOfRecipeModel">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeModel" nillable="true" type="tns:RecipeModel" />

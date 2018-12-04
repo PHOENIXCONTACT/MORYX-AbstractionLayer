@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Marvin.AbstractionLayer.UI;
 using Marvin.Products.UI.Interaction.InteractionSvc;
@@ -30,6 +31,11 @@ namespace Marvin.Products.UI.Interaction
         }
 
         /// <summary>
+        /// All parts of this product
+        /// </summary>
+        public List<PartConnectorViewModel> Parts { get; set; }
+
+        /// <summary>
         /// List of recipes of the product
         /// </summary>
         public RecipeViewModel[] Recipes { get; private set; }
@@ -59,6 +65,7 @@ namespace Marvin.Products.UI.Interaction
             _model = await ProductsController.GetDetails(productId);
 
             EditableObject = new ProductViewModel(_model);
+            Parts = _model.Parts.Select(p => new PartConnectorViewModel(p)).ToList();
 
             // Convert recipes
             var recipeViewModels = new List<RecipeViewModel>();

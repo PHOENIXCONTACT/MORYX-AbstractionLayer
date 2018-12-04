@@ -727,9 +727,6 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.Interaction.InteractionSvc.PartModel PartField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<Marvin.Products.UI.Interaction.InteractionSvc.PartModel> PartsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -783,19 +780,6 @@ namespace Marvin.Products.UI.Interaction.InteractionSvc {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal Marvin.Products.UI.Interaction.InteractionSvc.PartModel Part {
-            get {
-                return this.PartField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PartField, value) != true)) {
-                    this.PartField = value;
-                    this.RaisePropertyChanged("Part");
                 }
             }
         }
