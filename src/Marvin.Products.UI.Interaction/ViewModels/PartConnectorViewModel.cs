@@ -63,7 +63,7 @@ namespace Marvin.Products.UI.Interaction
             var partModel = new PartModel
             {
                 Product = product,
-                Properties = _connector.PropertyTemplates.Instantiate()
+                Properties = _connector.PropertyTemplates.Select(t => t.Instantiate()).ToList()
             };
 
             return new PartViewModel(partModel, productViewModel);
