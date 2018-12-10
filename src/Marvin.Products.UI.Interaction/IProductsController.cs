@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Marvin.AbstractionLayer.UI;
 using Marvin.Container;
+using Marvin.Logging;
 using Marvin.Modules;
 using Marvin.Products.UI.Interaction.InteractionSvc;
 using Marvin.Serialization;
@@ -94,14 +95,26 @@ namespace Marvin.Products.UI.Interaction
 
         public ProductCustomization Customization { get; private set; }
 
+        public IModuleLogger Logger { get; set; }
+
         protected override async void ClientCallback(ConnectionState state, ProductInteractionClient client)
         {
             base.ClientCallback(state, client);
+           
+            Logger.LogEntry(LogLevel.Info, "Product interaction service changed state to {0}", state);
             if (state != ConnectionState.Success)
                 return;
 
-            await LoadStructure();
-            Customization = await WcfClient.GetCustomizationAsync();
+            try
+            {
+                await LoadStructure();
+                Customization = await WcfClient.GetCustomizationAsync();
+            }
+            catch (Exception ex)
+            {
+                //ToDo: Maybe the wcf is ready and connected before the underlying components are ready. 
+                Logger.LogException(LogLevel.Error, ex, "Fail to get basic informations after state changed to connected!");
+            }
         }
 
         private async Task LoadStructure()
