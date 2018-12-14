@@ -1,6 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using Marvin.AbstractionLayer.UI;
 using Marvin.Logging;
 using Marvin.Resources.UI.Interaction.ResourceInteraction;
@@ -48,9 +51,9 @@ namespace Marvin.Resources.UI.Interaction
         public ResourceMethodViewModel[] Methods { get; private set; }
 
         /// <summary>
-        /// All references of the resource
+        /// Reference collection
         /// </summary>
-        public ReferenceViewModel[] References { get; private set; }
+        public ReferenceCollectionViewModel References { get; private set; }
 
         /// <summary>
         /// ViewModel of the ResourceType
@@ -64,7 +67,7 @@ namespace Marvin.Resources.UI.Interaction
 
         #endregion
 
-        ///
+        /// <inheritdoc />
         public void Initialize(IInteractionController controller, string typeName)
         {
             base.Initialize();
@@ -73,7 +76,18 @@ namespace Marvin.Resources.UI.Interaction
             Logger = Logger.GetChild(typeName, GetType());
 
             Methods = new ResourceMethodViewModel[0];
-            References = new ReferenceViewModel[0];
+        }
+
+        /// <inheritdoc />
+        protected override void OnActivate()
+        {
+            ScreenExtensions.TryActivate(References);
+        }
+
+        /// <inheritdoc />
+        protected override void OnDeactivate(bool close)
+        {
+            ScreenExtensions.TryDeactivate(References, close);
         }
 
         /// 
@@ -103,12 +117,17 @@ namespace Marvin.Resources.UI.Interaction
         private async Task AssignLoadedResource(ResourceModel resource)
         {
             EditableObject = new ResourceViewModel(resource);
-            NotifyOfPropertyChange(() => EditableObject);
+            NotifyOfPropertyChange(nameof(EditableObject));
 
             Methods = resource.Methods.Select(method => new ResourceMethodViewModel(method, this)).ToArray();
-            References = resource.References.OrderBy(r => r.IsCollection)
-                .Where(r => r.Targets != null && r.RelationType != ResourceRelationType.ParentChild) // Filter unset or parent child relationship
+
+            // Filter unset or parent child relationship
+            var references = resource.References.OrderBy(r => r.IsCollection)
+                .Where(r => r.Targets != null && r.RelationType != ResourceRelationType.ParentChild) 
                 .Select(ReferenceViewModel.Create).ToArray();
+
+            References = new ReferenceCollectionViewModel(references);
+            NotifyOfPropertyChange(nameof(References));
 
             // Load type from type tree
             var typeModel = ResourceController.TypeTree.Flatten(t => t.DerivedTypes).SingleOrDefault(t => t.Name == EditableObject.Type);
@@ -168,7 +187,7 @@ namespace Marvin.Resources.UI.Interaction
         {
             return await ResourceController.InvokeMethod(CurrentResourceId, method.Model);
         }
-        
+
         ///
         protected override bool CanSave(object parameters)
         {
@@ -180,6 +199,27 @@ namespace Marvin.Resources.UI.Interaction
         {
             await ResourceController.SaveResource(EditableObject.Model);
             await base.OnSave(parameters);
+        }
+
+        /// <inheritdoc />
+        public override void BeginEdit()
+        {
+            base.BeginEdit();
+            References.BeginEdit();
+        }
+
+        /// <inheritdoc />
+        public override void EndEdit()
+        {
+            base.EndEdit();
+            References.EndEdit();
+        }
+
+        /// <inheritdoc />
+        public override void CancelEdit()
+        {
+            base.CancelEdit();
+            References.CancelEdit();
         }
     }
 

@@ -95,10 +95,6 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Controls\ReferenceDataTemplateSelector.cs" />
-    <Compile Include="Controls\ReferencesControl.xaml.cs">
-      <DependentUpon>ReferencesControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\IResourceHead.cs" />
     <Compile Include="Controls\GeneralResourceControl.xaml.cs">
       <DependentUpon>GeneralResourceControl.xaml</DependentUpon>
@@ -106,6 +102,7 @@
     <Compile Include="Controls\ResourceMethodsControl.xaml.cs">
       <DependentUpon>ResourceMethodsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\EqualityConverter.cs" />
     <Compile Include="Details\Default\EmptyDetailsView.xaml.cs">
       <DependentUpon>EmptyDetailsView.xaml</DependentUpon>
     </Compile>
@@ -114,10 +111,22 @@
       <DependentUpon>DefaultDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Details\Default\DefaultDetailsViewModel.cs" />
+    <Compile Include="Details\References\MultiReferenceView.xaml.cs">
+      <DependentUpon>MultiReferenceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\References\MultiReferenceViewModel.cs" />
+    <Compile Include="Details\References\ReferenceCollectionView.xaml.cs">
+      <DependentUpon>ReferenceCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\References\ReferenceCollectionViewModel.cs" />
+    <Compile Include="Details\References\SingleReferenceView.xaml.cs">
+      <DependentUpon>SingleReferenceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\References\SingleReferenceViewModel.cs" />
     <Compile Include="Details\ResourceDetailsComponentSelector.cs" />
     <Compile Include="Details\ResourceDetailsViewModelBase.cs" />
     <Compile Include="Details\IResourceDetailsFactory.cs" />
-    <Compile Include="ViewModels\ReferenceViewModel.cs" />
+    <Compile Include="Details\References\ReferenceViewModel.cs" />
     <Compile Include="MethodParameterEditor\MethodInvocationViewModel.cs" />
     <Compile Include="MethodParameterEditor\MethodInvocationView.xaml.cs">
       <DependentUpon>MethodInvocationView.xaml</DependentUpon>
@@ -156,10 +165,6 @@
     <Compile Include="ViewModels\ResourceViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\ReferencesControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\GeneralResourceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +180,18 @@
     <Page Include="Details\Default\DefaultDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\References\MultiReferenceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\References\ReferenceCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\References\SingleReferenceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MethodParameterEditor\MethodInvocationView.xaml">
       <SubType>Designer</SubType>

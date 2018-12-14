@@ -29,6 +29,7 @@ namespace Marvin.Resources.UI.Interaction
         #region Fields and Properties
 
         public AsyncCommand AddResourceCmd { get; private set; }
+
         public AsyncCommand RemoveResourceCmd { get; private set; }
 
         public ResourceTreeItemViewModel[] ResourceTree { get; private set; }

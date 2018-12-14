@@ -20,7 +20,7 @@ namespace Marvin.Resources.UI.Interaction
             }
         }
 
-        ///
+        /// <inheritdoc />
         protected override Task OnConfigLoaded()
         {
             ConfigViewModel = new EntryViewModel(ConfigEntries);
@@ -28,24 +28,24 @@ namespace Marvin.Resources.UI.Interaction
             return base.OnConfigLoaded();
         }
 
+        /// <inheritdoc />
         public override void BeginEdit()
         {
             ConfigViewModel = new EntryViewModel(ConfigEntries.Clone(true));
-
             base.BeginEdit();
         }
 
+        /// <inheritdoc />
         public override void EndEdit()
         {
             ConfigEntries = ConfigViewModel.Entry;
-
             base.EndEdit();
         }
 
+        /// <inheritdoc />
         public override void CancelEdit()
         {
             ConfigViewModel = new EntryViewModel(ConfigEntries);
-
             base.CancelEdit();
         }
     }

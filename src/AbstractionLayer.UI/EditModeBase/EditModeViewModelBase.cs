@@ -173,7 +173,7 @@ namespace Marvin.AbstractionLayer.UI
             }
             catch (Exception)
             {
-                DialogManager.ShowMessageBox("Cannot save the current product.", "Error while saving!");
+                DialogManager.ShowMessageBox("Error while saving the current instance!", "Error while saving!");
                 throw;
             }
             finally

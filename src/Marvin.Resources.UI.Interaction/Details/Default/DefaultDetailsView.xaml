@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:it="clr-namespace:Marvin.Resources.UI.Interaction"
              xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance it:DefaultDetailsViewModel }"
              d:DesignHeight="680" d:DesignWidth="717">
     <Grid>
@@ -26,10 +27,7 @@
                                    IsEditMode="{Binding IsEditMode}"
                                    RootEntry="{Binding ConfigViewModel}"/>
             </TabItem>
-            <TabItem Header="References">
-                <it:ReferencesControl IsEditMode="{Binding IsEditMode}"
-                                      References="{Binding References}"></it:ReferencesControl>
-            </TabItem>
+            <TabItem Header="References" cal:View.Model="{Binding References}" />
         </TabControl>
     </Grid>
 </UserControl>
