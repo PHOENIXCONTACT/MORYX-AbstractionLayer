@@ -14,10 +14,21 @@ namespace Marvin.Resources.UI.Interaction
         /// </summary>
         public RelayCommand SetTargetCmd { get; }
 
+        /// <summary>
+        /// Command to clear the current target
+        /// </summary>
+        public RelayCommand ClearTargetCmd { get; }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         internal SingleReferenceViewModel(ResourceReferenceModel model) : base(model)
         {
             SetTargetCmd = new RelayCommand(SetTarget, CanSelectTarget);
-            SelectedTarget = PossibleTargets.SingleOrDefault(p => p.Name == Model.Targets[0].Name);
+            ClearTargetCmd = new RelayCommand(ClearTarget, CanClearTarget);
+
+            if (model.Targets.Count == 1)
+                SelectedTarget = PossibleTargets.SingleOrDefault(p => p.Name == Model.Targets[0].Name);
         }
 
         private bool CanSelectTarget(object obj) => 
@@ -25,6 +36,12 @@ namespace Marvin.Resources.UI.Interaction
 
         private void SetTarget(object parameters) => 
             SelectedTarget = (ResourceViewModel) parameters;
+
+        private bool CanClearTarget(object parameters) =>
+            SelectedTarget != null && IsEditMode;
+
+        private void ClearTarget(object parameters) =>
+            SelectedTarget = null;
 
         private ResourceViewModel _selectedTarget;
 

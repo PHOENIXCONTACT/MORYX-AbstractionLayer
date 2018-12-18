@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Marvin.Resources.UI.Interaction"
              mc:Ignorable="d" x:Name="UserControl"
-             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance references:SingleReferenceViewModel}">
+             d:DesignHeight="226.904" d:DesignWidth="1006.599" d:DataContext="{d:DesignInstance interaction:SingleReferenceViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
             <interaction:EqualityConverter x:Key="EqualityConverter" />
@@ -58,10 +58,12 @@
             </ListView.View>
         </ListView>
 
-        <StackPanel Grid.Row="1">
-            <EddieButton Content="Set Target" Command="{Binding SetTargetCmd}" Margin="0,5,0,0" HorizontalAlignment="Right" Icon="CheckMark"
+        <StackPanel Grid.Row="1" Margin="0,5,0,0" Orientation="Horizontal" HorizontalAlignment="Right" >
+            <EddieButton Content="Clear" Command="{Binding ClearTargetCmd}" Icon="Delete" />
+
+            <EddieButton Content="Set Target" Command="{Binding SetTargetCmd}" Margin="5,0,0,0" Icon="CheckMark"
                      CommandParameter="{Binding ElementName=ReferenceListView, Path=SelectedItem}" />
         </StackPanel>
     </Grid>
-        
+
 </UserControl>
