@@ -28,7 +28,7 @@ namespace Marvin.Resources.UI.Interaction
             ClearTargetCmd = new RelayCommand(ClearTarget, CanClearTarget);
 
             if (model.Targets.Count == 1)
-                SelectedTarget = PossibleTargets.SingleOrDefault(p => p.Name == Model.Targets[0].Name);
+                SelectedTarget = PossibleTargets.SingleOrDefault(p => p.Id == Model.Targets[0].Id);
         }
 
         private bool CanSelectTarget(object obj) => 
@@ -84,7 +84,7 @@ namespace Marvin.Resources.UI.Interaction
         {
             base.CancelEdit();
 
-            SelectedTarget = PossibleTargets.SingleOrDefault(p => p.Name == Model.Targets[0].Name);
+            SelectedTarget = PossibleTargets.SingleOrDefault(p => p.Id == Model.Targets[0].Id);
         }
     }
 }
