@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Marvin.Resources.UI.Interaction.ResourceInteraction;
+using Marvin.Serialization;
 
 namespace Marvin.Resources.UI.Interaction
 {
@@ -16,6 +19,7 @@ namespace Marvin.Resources.UI.Interaction
         private string _globalIdentifier;
         private string _localIdentifier;
         private string _description;
+        private Entry[] _properties;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourceViewModelBase"/> class.
@@ -23,6 +27,7 @@ namespace Marvin.Resources.UI.Interaction
         internal ResourceViewModelBase(ResourceModel model)
         {
             _model = model;
+            Properties = new Entry[0];
 
             CopyFromModel();
         }
@@ -91,6 +96,19 @@ namespace Marvin.Resources.UI.Interaction
             }
         }
 
+        /// <summary>
+        /// Properties of this resource
+        /// </summary>
+        public Entry[] Properties
+        {
+            get { return _properties; }
+            set
+            {
+                _properties = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         #region IEditableObject
 
         ///
@@ -114,6 +132,8 @@ namespace Marvin.Resources.UI.Interaction
             _model.GlobalIdentifier = GlobalIdentifier;
             _model.LocalIdentifier = LocalIdentifier;
             _model.Description = Description;
+
+            _model.Properties = Properties.ToList();
         }
 
         ///
@@ -128,6 +148,11 @@ namespace Marvin.Resources.UI.Interaction
             GlobalIdentifier = _model.GlobalIdentifier;
             LocalIdentifier = _model.LocalIdentifier;
             Description = _model.Description;
+
+            if (_model.Properties != null)
+            {
+                Properties = _model.Properties.Select(property => property.Clone() as Entry).ToArray();
+            }
         }
 
         #endregion

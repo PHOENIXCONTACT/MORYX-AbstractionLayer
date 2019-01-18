@@ -41,8 +41,8 @@ namespace Marvin.Resources.UI.Interaction
         /// </summary>
         protected Entry ConfigEntries
         {
-            get { return EditableObject.Model.Properties; }
-            set { EditableObject.Model.Properties = value; }
+            get { return EditableObject.Properties.ToList(); }
+            set { EditableObject.Properties = value.ToArray(); }
         }
 
         /// <summary>
