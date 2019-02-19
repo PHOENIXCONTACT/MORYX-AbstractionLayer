@@ -46,24 +46,6 @@
   <wsdl:message name="IResourceInteraction_Save_OutputMessage">
     <wsdl:part name="parameters" element="tns:SaveResponse" />
   </wsdl:message>
-  <wsdl:message name="IResourceInteraction_Start_InputMessage">
-    <wsdl:part name="parameters" element="tns:Start" />
-  </wsdl:message>
-  <wsdl:message name="IResourceInteraction_Start_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StartResponse" />
-  </wsdl:message>
-  <wsdl:message name="IResourceInteraction_Reset_InputMessage">
-    <wsdl:part name="parameters" element="tns:Reset" />
-  </wsdl:message>
-  <wsdl:message name="IResourceInteraction_Reset_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ResetResponse" />
-  </wsdl:message>
-  <wsdl:message name="IResourceInteraction_Stop_InputMessage">
-    <wsdl:part name="parameters" element="tns:Stop" />
-  </wsdl:message>
-  <wsdl:message name="IResourceInteraction_Stop_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StopResponse" />
-  </wsdl:message>
   <wsdl:message name="IResourceInteraction_Remove_InputMessage">
     <wsdl:part name="parameters" element="tns:Remove" />
   </wsdl:message>
@@ -94,18 +76,6 @@
     <wsdl:operation name="Save">
       <wsdl:input wsaw:Action="http://tempuri.org/IResourceInteraction/Save" message="tns:IResourceInteraction_Save_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IResourceInteraction/SaveResponse" message="tns:IResourceInteraction_Save_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Start">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceInteraction/Start" message="tns:IResourceInteraction_Start_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceInteraction/StartResponse" message="tns:IResourceInteraction_Start_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Reset">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceInteraction/Reset" message="tns:IResourceInteraction_Reset_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceInteraction/ResetResponse" message="tns:IResourceInteraction_Reset_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Stop">
-      <wsdl:input wsaw:Action="http://tempuri.org/IResourceInteraction/Stop" message="tns:IResourceInteraction_Stop_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IResourceInteraction/StopResponse" message="tns:IResourceInteraction_Stop_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Remove">
       <wsdl:input wsaw:Action="http://tempuri.org/IResourceInteraction/Remove" message="tns:IResourceInteraction_Remove_InputMessage" />
@@ -161,33 +131,6 @@
     </wsdl:operation>
     <wsdl:operation name="Save">
       <soap:operation soapAction="http://tempuri.org/IResourceInteraction/Save" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Start">
-      <soap:operation soapAction="http://tempuri.org/IResourceInteraction/Start" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Reset">
-      <soap:operation soapAction="http://tempuri.org/IResourceInteraction/Reset" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Stop">
-      <soap:operation soapAction="http://tempuri.org/IResourceInteraction/Stop" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

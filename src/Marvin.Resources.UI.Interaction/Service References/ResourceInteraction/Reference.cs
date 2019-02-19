@@ -182,9 +182,6 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long ParentIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Marvin.Serialization.Entry PropertiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -277,19 +274,6 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal long ParentId {
-            get {
-                return this.ParentIdField;
-            }
-            set {
-                if ((this.ParentIdField.Equals(value) != true)) {
-                    this.ParentIdField = value;
-                    this.RaisePropertyChanged("ParentId");
                 }
             }
         }
@@ -585,34 +569,16 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
         System.Threading.Tasks.Task<Marvin.Serialization.Entry> InvokeMethodAsync(long id, Marvin.Serialization.MethodEntry method);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Create", ReplyAction="http://tempuri.org/IResourceInteraction/CreateResponse")]
-        Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel Create(string resourceType, long parentResourceId, Marvin.Serialization.MethodEntry constructor);
+        Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel Create(string resourceType, Marvin.Serialization.MethodEntry constructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Create", ReplyAction="http://tempuri.org/IResourceInteraction/CreateResponse")]
-        System.Threading.Tasks.Task<Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel> CreateAsync(string resourceType, long parentResourceId, Marvin.Serialization.MethodEntry constructor);
+        System.Threading.Tasks.Task<Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel> CreateAsync(string resourceType, Marvin.Serialization.MethodEntry constructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Save", ReplyAction="http://tempuri.org/IResourceInteraction/SaveResponse")]
         Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel Save(Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel resource);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Save", ReplyAction="http://tempuri.org/IResourceInteraction/SaveResponse")]
         System.Threading.Tasks.Task<Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel> SaveAsync(Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel resource);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Start", ReplyAction="http://tempuri.org/IResourceInteraction/StartResponse")]
-        bool Start(long id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Start", ReplyAction="http://tempuri.org/IResourceInteraction/StartResponse")]
-        System.Threading.Tasks.Task<bool> StartAsync(long id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Reset", ReplyAction="http://tempuri.org/IResourceInteraction/ResetResponse")]
-        bool Reset(long id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Reset", ReplyAction="http://tempuri.org/IResourceInteraction/ResetResponse")]
-        System.Threading.Tasks.Task<bool> ResetAsync(long id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Stop", ReplyAction="http://tempuri.org/IResourceInteraction/StopResponse")]
-        bool Stop(long id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Stop", ReplyAction="http://tempuri.org/IResourceInteraction/StopResponse")]
-        System.Threading.Tasks.Task<bool> StopAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Remove", ReplyAction="http://tempuri.org/IResourceInteraction/RemoveResponse")]
         bool Remove(long id);
@@ -680,12 +646,12 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
             return base.Channel.InvokeMethodAsync(id, method);
         }
         
-        public Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel Create(string resourceType, long parentResourceId, Marvin.Serialization.MethodEntry constructor) {
-            return base.Channel.Create(resourceType, parentResourceId, constructor);
+        public Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel Create(string resourceType, Marvin.Serialization.MethodEntry constructor) {
+            return base.Channel.Create(resourceType, constructor);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel> CreateAsync(string resourceType, long parentResourceId, Marvin.Serialization.MethodEntry constructor) {
-            return base.Channel.CreateAsync(resourceType, parentResourceId, constructor);
+        public System.Threading.Tasks.Task<Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel> CreateAsync(string resourceType, Marvin.Serialization.MethodEntry constructor) {
+            return base.Channel.CreateAsync(resourceType, constructor);
         }
         
         public Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel Save(Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel resource) {
@@ -694,30 +660,6 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
         
         public System.Threading.Tasks.Task<Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel> SaveAsync(Marvin.Resources.UI.Interaction.ResourceInteraction.ResourceModel resource) {
             return base.Channel.SaveAsync(resource);
-        }
-        
-        public bool Start(long id) {
-            return base.Channel.Start(id);
-        }
-        
-        public System.Threading.Tasks.Task<bool> StartAsync(long id) {
-            return base.Channel.StartAsync(id);
-        }
-        
-        public bool Reset(long id) {
-            return base.Channel.Reset(id);
-        }
-        
-        public System.Threading.Tasks.Task<bool> ResetAsync(long id) {
-            return base.Channel.ResetAsync(id);
-        }
-        
-        public bool Stop(long id) {
-            return base.Channel.Stop(id);
-        }
-        
-        public System.Threading.Tasks.Task<bool> StopAsync(long id) {
-            return base.Channel.StopAsync(id);
         }
         
         public bool Remove(long id) {

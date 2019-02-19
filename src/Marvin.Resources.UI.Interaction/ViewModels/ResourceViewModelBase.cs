@@ -19,7 +19,7 @@ namespace Marvin.Resources.UI.Interaction
         private string _globalIdentifier;
         private string _localIdentifier;
         private string _description;
-        private Entry[] _properties;
+        private Entry _properties;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourceViewModelBase"/> class.
@@ -27,7 +27,7 @@ namespace Marvin.Resources.UI.Interaction
         internal ResourceViewModelBase(ResourceModel model)
         {
             _model = model;
-            Properties = new Entry[0];
+            Properties = new Entry();
 
             CopyFromModel();
         }
@@ -99,7 +99,7 @@ namespace Marvin.Resources.UI.Interaction
         /// <summary>
         /// Properties of this resource
         /// </summary>
-        public Entry[] Properties
+        public Entry Properties
         {
             get { return _properties; }
             set
@@ -133,7 +133,7 @@ namespace Marvin.Resources.UI.Interaction
             _model.LocalIdentifier = LocalIdentifier;
             _model.Description = Description;
 
-            _model.Properties = Properties.ToList();
+            _model.Properties = Properties;
         }
 
         ///
@@ -151,7 +151,7 @@ namespace Marvin.Resources.UI.Interaction
 
             if (_model.Properties != null)
             {
-                Properties = _model.Properties.Select(property => property.Clone() as Entry).ToArray();
+                Properties = _model.Properties.Clone(true);
             }
         }
 

@@ -41,8 +41,8 @@ namespace Marvin.Resources.UI.Interaction
         /// </summary>
         protected Entry ConfigEntries
         {
-            get { return EditableObject.Properties.ToList(); }
-            set { EditableObject.Properties = value.ToArray(); }
+            get { return EditableObject.Properties; }
+            set { EditableObject.Properties = value; }
         }
 
         /// <summary>
@@ -104,7 +104,12 @@ namespace Marvin.Resources.UI.Interaction
         ///
         public virtual async Task Create(string resourceTypeName, long parentResourceId, object constructorModel)
         {
-            var resource = await ResourceController.CreateResource(resourceTypeName, parentResourceId, constructorModel as MethodEntry);
+            var resource = await ResourceController.CreateResource(resourceTypeName, constructorModel as MethodEntry);
+            // Set parent relation
+            var parent = resource.References.First(r => r.RelationType == ResourceRelationType.ParentChild && r.Role == ResourceReferenceRole.Source);
+            var target = parent.PossibleTargets.FirstOrDefault(r => r.Id == parentResourceId);
+            if (target != null)
+                parent.Targets.Add(target);
             CurrentResourceId = resource.Id;
 
             await AssignLoadedResource(resource);
@@ -123,7 +128,7 @@ namespace Marvin.Resources.UI.Interaction
 
             // Filter unset or parent child relationship
             var references = resource.References.OrderBy(r => r.IsCollection)
-                .Where(r => r.Targets != null && r.RelationType != ResourceRelationType.ParentChild) 
+                .Where(r => r.Targets != null && r.RelationType != ResourceRelationType.ParentChild)
                 .Select(ReferenceViewModel.Create).ToArray();
 
             References = new ReferenceCollectionViewModel(references);
