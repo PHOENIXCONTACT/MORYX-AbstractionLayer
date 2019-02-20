@@ -23,7 +23,7 @@ namespace Marvin.Resources.UI.Interaction
         /// <summary>
         /// Creates a new resource with the given plugin name
         /// </summary>
-        Task<ResourceModel> CreateResource(string typeName, long parentResourceId, MethodEntry constructor);
+        Task<ResourceModel> CreateResource(string typeName, MethodEntry constructor);
 
         /// <summary>
         /// Saves the given resource with all changes
@@ -110,9 +110,9 @@ namespace Marvin.Resources.UI.Interaction
             handler?.Invoke(this, EventArgs.Empty);
         }
 
-        public Task<ResourceModel> CreateResource(string typeName, long parentResourceId, MethodEntry constructor)
+        public Task<ResourceModel> CreateResource(string typeName, MethodEntry constructor)
         {
-            return WcfClient.CreateAsync(typeName, parentResourceId, constructor);
+            return WcfClient.CreateAsync(typeName, constructor);
         }
 
         public Task<ResourceModel> SaveResource(ResourceModel resource)
