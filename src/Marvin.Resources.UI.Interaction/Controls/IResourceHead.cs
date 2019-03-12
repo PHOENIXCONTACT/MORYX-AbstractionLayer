@@ -6,19 +6,14 @@
     public interface IResourceHead
     {
         /// <summary>
+        /// The Id of the resource
+        /// </summary>
+        long Id { get; }
+
+        /// <summary>
         /// The name of the resource
         /// </summary>
         string Name { get; }
-
-        /// <summary>
-        /// The global identifier of the resource
-        /// </summary>
-        string GlobalIdentifier { get; set; }
-
-        /// <summary>
-        /// The local identifier of the resource
-        /// </summary>
-        string LocalIdentifier { get; set; }
 
         /// <summary>
         /// Description of the resource

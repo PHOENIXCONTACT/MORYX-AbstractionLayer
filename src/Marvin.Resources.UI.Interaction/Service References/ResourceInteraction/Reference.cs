@@ -167,13 +167,7 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string GlobalIdentifierField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private long IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LocalIdentifierField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<Marvin.Serialization.MethodEntry> MethodsField;
@@ -214,19 +208,6 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        internal string GlobalIdentifier {
-            get {
-                return this.GlobalIdentifierField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GlobalIdentifierField, value) != true)) {
-                    this.GlobalIdentifierField = value;
-                    this.RaisePropertyChanged("GlobalIdentifier");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         internal long Id {
             get {
                 return this.IdField;
@@ -235,19 +216,6 @@ namespace Marvin.Resources.UI.Interaction.ResourceInteraction {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal string LocalIdentifier {
-            get {
-                return this.LocalIdentifierField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LocalIdentifierField, value) != true)) {
-                    this.LocalIdentifierField = value;
-                    this.RaisePropertyChanged("LocalIdentifier");
                 }
             }
         }
