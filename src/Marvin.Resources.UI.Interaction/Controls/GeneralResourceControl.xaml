@@ -14,22 +14,21 @@
         </StackPanel.Resources>
         <TextBlock Eddie.TextFormat="Header2" Text="{Binding Type, ElementName=UserControl}"/>
 
-        <UniformGrid Margin="0,10,0,0" Rows="1">
-            <LabeledControlHost LabelA="Name:" LabelMinWidth="90">
+        <Grid Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+            <LabeledControlHost Grid.Column="0" LabelA="Name:" LabelMinWidth="90">
                 <EddieTextBox Text="{Binding Resource.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ElementName=UserControl}"
-                              IsEnabled="{Binding IsEditMode, ElementName=UserControl}"/>
+                              IsEnabled="{Binding IsEditMode, ElementName=UserControl}" />
             </LabeledControlHost>
 
-            <LabeledControlHost LabelA="Global Identifier:">
-                <EddieTextBox Text="{Binding Resource.GlobalIdentifier, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ElementName=UserControl}" 
-                              IsEnabled="{Binding IsEditMode, ElementName=UserControl}"/>
+            <LabeledControlHost Grid.Column="1" LabelA="Id:">
+                <EddieTextBox Text="{Binding Resource.Id, ElementName=UserControl, Mode=OneWay}" 
+                              IsEnabled="false"/>
             </LabeledControlHost>
-
-            <LabeledControlHost LabelA="Local Identifier:">
-                <EddieTextBox Text="{Binding Resource.LocalIdentifier, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ElementName=UserControl}" 
-                              IsEnabled="{Binding IsEditMode, ElementName=UserControl}"/>
-            </LabeledControlHost>
-        </UniformGrid>
+        </Grid>
 
         <LabeledControlHost Margin="0,10,10,10" LabelA="Description:" LabelMinWidth="90">
             <EddieTextBox Text="{Binding Resource.Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ElementName=UserControl}" 

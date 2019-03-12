@@ -18,8 +18,6 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="260" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="LocalIdentifier" Width="180" DisplayMemberBinding="{Binding LocalIdentifier}" />
-                    <GridViewColumn Header="GlobalIdentifier" Width="180" DisplayMemberBinding="{Binding GlobalIdentifier}" />
                     <GridViewColumn Header="Type" Width="280" DisplayMemberBinding="{Binding Type}" />
                 </GridView>
             </ListView.View>

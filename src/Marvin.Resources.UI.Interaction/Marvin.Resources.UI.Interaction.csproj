@@ -232,22 +232,22 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ResourceInteraction\ResourceInteraction.wsdl" />
-    <None Include="Service References\ResourceInteraction\ResourceInteraction.xsd">
+    <None Include="Service References\ResourceInteraction\ResourceInteraction6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ResourceInteraction\ResourceInteraction1.xsd">
+    <None Include="Service References\ResourceInteraction\ResourceInteraction61.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ResourceInteraction\ResourceInteraction2.xsd">
+    <None Include="Service References\ResourceInteraction\ResourceInteraction62.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ResourceInteraction\ResourceInteraction3.xsd">
+    <None Include="Service References\ResourceInteraction\ResourceInteraction63.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ResourceInteraction\ResourceInteraction4.xsd">
+    <None Include="Service References\ResourceInteraction\ResourceInteraction64.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ResourceInteraction\ResourceInteraction5.xsd">
+    <None Include="Service References\ResourceInteraction\ResourceInteraction65.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
