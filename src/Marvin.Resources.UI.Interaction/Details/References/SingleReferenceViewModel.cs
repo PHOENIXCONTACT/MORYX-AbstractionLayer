@@ -31,10 +31,10 @@ namespace Marvin.Resources.UI.Interaction
                 SelectedTarget = PossibleTargets.SingleOrDefault(p => p.Id == Model.Targets[0].Id);
         }
 
-        private bool CanSelectTarget(object obj) => 
+        private bool CanSelectTarget(object obj) =>
             obj is ResourceViewModel && IsEditMode;
 
-        private void SetTarget(object parameters) => 
+        private void SetTarget(object parameters) =>
             SelectedTarget = (ResourceViewModel) parameters;
 
         private bool CanClearTarget(object parameters) =>
@@ -59,7 +59,7 @@ namespace Marvin.Resources.UI.Interaction
                 NotifyOfPropertyChange();
             }
         }
-        
+
         /// <inheritdoc />
         public override void BeginEdit()
         {
@@ -84,7 +84,9 @@ namespace Marvin.Resources.UI.Interaction
         {
             base.CancelEdit();
 
-            SelectedTarget = PossibleTargets.SingleOrDefault(p => p.Id == Model.Targets[0].Id);
+            SelectedTarget = Model.Targets.Count == 1
+                ? PossibleTargets.SingleOrDefault(p => p.Id == Model.Targets[0].Id)
+                : null;
         }
     }
 }
