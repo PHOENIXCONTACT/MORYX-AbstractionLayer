@@ -15,19 +15,19 @@ namespace Marvin.AbstractionLayer.UI
     /// <typeparam name="TDetailsFactory">The type of the details factory.</typeparam>
     /// <typeparam name="TEmptyDetails">The type of the empty details</typeparam>
     public abstract class MasterDetailsWorkspace<TDetailsType, TDetailsFactory, TEmptyDetails> : ModuleWorkspace<IScreen>.OneActive
-        where TDetailsType : class, IEditModeViewModel 
+        where TDetailsType : class, IEditModeViewModel
         where TDetailsFactory : IDetailsFactory<TDetailsType>
         where TEmptyDetails : EmptyDetailsViewModelBase, new()
     {
         #region Dependencies
 
         /// <summary>
-        /// Factory to create or destory detail view models
+        /// Factory to create or destroy detail view models
         /// </summary>
         public TDetailsFactory DetailsFactory { get; set; }
 
         /// <summary>
-        /// Default dependency to show dialogs and messageboxes
+        /// Default dependency to show dialogs and MessageBoxes
         /// </summary>
         public IDialogManager DialogManager { get; set; }
 
@@ -43,10 +43,7 @@ namespace Marvin.AbstractionLayer.UI
         /// <summary>
         /// Will represent the <see cref="ConductorBaseWithActiveItem{T}.ActiveItem"/> but in the detail type
         /// </summary>
-        public TDetailsType CurrentDetails
-        {
-            get { return (TDetailsType)ActiveItem; }
-        }
+        public TDetailsType CurrentDetails => (TDetailsType)ActiveItem;
 
         private bool _isDetailsInEditMode;
 
@@ -56,7 +53,7 @@ namespace Marvin.AbstractionLayer.UI
         public bool IsDetailsInEditMode
         {
             get { return _isDetailsInEditMode; }
-            protected set  
+            protected set
             {
                 _isDetailsInEditMode = value;
                 NotifyOfPropertyChange();
@@ -100,7 +97,7 @@ namespace Marvin.AbstractionLayer.UI
 
         #endregion
 
-        /// 
+        ///
         protected override void OnInitialize()
         {
             base.OnInitialize();
@@ -143,7 +140,7 @@ namespace Marvin.AbstractionLayer.UI
             }
         }
 
-        ///
+        /// <inheritdoc />
         public override void ActivateItem(IScreen item)
         {
             if (item == ActiveItem)
@@ -173,7 +170,7 @@ namespace Marvin.AbstractionLayer.UI
         /// </summary>
         protected virtual void OnDetailsSaved(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>

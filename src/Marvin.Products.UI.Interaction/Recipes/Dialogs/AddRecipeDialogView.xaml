@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Marvin.Products.UI.Interaction.AddRecipeDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
+             xmlns:recipes="clr-namespace:Marvin.Products.UI.Recipes;assembly=Marvin.Products.UI"
+             xmlns:ui="clr-namespace:Marvin.Products.UI;assembly=Marvin.Products.UI"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance interaction:AddRecipeDialogViewModel}">
+    <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
+        <DialogPanel.Buttons>
+            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateCmd}" Content="Create" />
+            <EddieButton Content="Cancel" Icon="Cross" EddieStyle="Gray"
+                         Command="{Binding CloseCmd}" Margin="10,0,0,0"/>
+        </DialogPanel.Buttons>
+
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Stretch"
+                    Grid.IsSharedSizeScope="True">
+
+            <LabeledControlHost LabelA="Product"
+                                SharedSizeGroupName="AddRecipe"
+                                Margin="0,0,0,5">
+                <TextBlock Text="{Binding ProductName}" VerticalAlignment="Center"/>
+            </LabeledControlHost>
+
+            <LabeledControlHost LabelA="RecipeName"
+                                SharedSizeGroupName="AddRecipe"
+                                Margin="0,0,0,5">
+                <EddieTextBox Text="{Binding RecipeName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" />
+            </LabeledControlHost>
+
+            <LabeledControlHost LabelA="Workplan"
+                                SharedSizeGroupName="AddRecipe"
+                                Margin="0,0,0,5">
+                <EddieComboBox ItemsSource="{Binding Workplans}"
+                               SelectedItem="{Binding SelectedWorkplan, Mode=TwoWay}">
+                    <EddieComboBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type ui:WorkplanViewModel}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,0,5,0" />
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}({0} / v{1})">
+                                            <Binding Path="State" />
+                                            <Binding Path="Version" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </EddieComboBox.ItemTemplate>
+                </EddieComboBox>
+            </LabeledControlHost>
+        </StackPanel>
+    </DialogPanel>
+</UserControl>
