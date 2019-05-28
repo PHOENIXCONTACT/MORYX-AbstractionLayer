@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Marvin.Products.UI.Interaction.RemoveProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marvin.Products.UI.Interaction"
+             xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance local:RemoveProductViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DialogPanel Background="White">
+        <DialogPanel.Header>
+            <TextBlock>
+                <Run Text="Remove Product"/>
+                <Run Text="{Binding ProductToRemove.Name, Mode=OneWay}"/>
+            </TextBlock>
+        </DialogPanel.Header>
+        <DialogPanel.Buttons>
+            <EddieButton  DockPanel.Dock="Bottom" Content="Cancel" Icon="Cross" EddieStyle="Gray"
+                          HorizontalAlignment="Right"
+                          Margin="5" Command="{Binding CancelCommand}" />
+            <EddieButton IsDefault="True" Margin="5" Icon="Ok"
+                         Command="{Binding OkCommand}"
+                         Content="Remove Product" />
+        </DialogPanel.Buttons>
+        <StackPanel>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AffectedProducts.Count}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <TextBlock Text="The product can not be removed because it is still used in other products" />
+            <EddieListBox ItemsSource="{Binding AffectedProducts}">
+                <EddieListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock DockPanel.Dock="Left">
+                                <Run Text="{Binding FullIdentifier, Mode=OneWay}"/>
+                                <Run Text="{Binding Name, Mode=OneWay}"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </EddieListBox.ItemTemplate>
+            </EddieListBox>
+        </StackPanel>
+    </DialogPanel>
+</UserControl>

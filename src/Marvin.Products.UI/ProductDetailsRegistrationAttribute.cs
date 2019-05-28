@@ -10,7 +10,7 @@ namespace Marvin.Products.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductDetailsRegistrationAttribute"/> class.
         /// </summary>
-        public ProductDetailsRegistrationAttribute(string typeName) 
+        public ProductDetailsRegistrationAttribute(string typeName)
             : base(typeName, typeof(IProductDetails))
         {
 

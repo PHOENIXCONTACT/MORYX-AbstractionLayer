@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Caliburn.Micro;
 using Marvin.Container;
+using Marvin.Products.UI.Recipes;
 
 namespace Marvin.Products.UI.Interaction
 {
@@ -26,9 +28,15 @@ namespace Marvin.Products.UI.Interaction
         IRevisionsViewModel CreateShowRevisionsDialog(string identifier);
 
         /// <summary>
-        /// Create CreateReviosionViewModel instance
+        /// Create CreateRevisionViewModel instance
         /// </summary>
         ICreateRevisionViewModel CreateCreateRevisionDialog(StructureEntryViewModel structureEntry);
+
+        /// <summary>
+        /// Creates a dialog to a add recipes
+        /// </summary>
+        IAddRecipeDialog CreateAddRecipeDialog(string productName, long productId,
+            ICollection<WorkplanViewModel> workplans);
 
         /// <summary>
         /// Destroy DiagramInfoViewModel instance

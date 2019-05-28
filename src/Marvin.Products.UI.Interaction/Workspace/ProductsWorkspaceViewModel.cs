@@ -4,12 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using C4I;
 using Marvin.AbstractionLayer.UI;
 using Marvin.ClientFramework;
 using Marvin.ClientFramework.Commands;
+using Marvin.ClientFramework.History;
 using Marvin.Container;
-using MessageBoxImage = Marvin.ClientFramework.Dialog.MessageBoxImage;
-using MessageBoxOptions = Marvin.ClientFramework.Dialog.MessageBoxOptions;
 
 namespace Marvin.Products.UI.Interaction
 {
@@ -20,10 +20,13 @@ namespace Marvin.Products.UI.Interaction
 
         #region Dependencies
 
-        public IProductsController Controller { get; set; }
+        public IProductServiceModel Controller { get; set; }
 
         public IProductDialogFactory ProductDialogFactory { get; set; }
 
+        public IRecipeEditorFactory RecipeEditorFactory { get; set; }
+
+        public IHistoryWriter History { get; set; }
 
         #endregion
 
@@ -34,13 +37,15 @@ namespace Marvin.Products.UI.Interaction
         private ObservableCollection<StructureEntryViewModel> _displayStructure;
         private long _selectedProductId;
 
-        public AsyncCommand ImportDialogCmd { get; private set; }
+        public RelayCommand ImportDialogCmd { get; private set; }
 
-        public AsyncCommand RemoveProductCmd { get; private set; }
+        public DelegateCommand RemoveProductCmd { get; private set; }
 
-        public AsyncCommand ShowRevisionsCmd { get; private set; }
+        public RelayCommand ShowRevisionsCmd { get; private set; }
 
-        public AsyncCommand CreateRevisionCmd { get; private set; }
+        public RelayCommand CreateRevisionCmd { get; private set; }
+
+        public RelayCommand ShowRecipeEditorCmd { get; private set; }
 
         public ObservableCollection<StructureEntryViewModel> DisplayStructure
         {
@@ -61,11 +66,10 @@ namespace Marvin.Products.UI.Interaction
             get { return _selectedProduct; }
             set
             {
-                if (Equals(value, _selectedProduct))
-                    return;
-
+                if (Equals(value, _selectedProduct)) return;
                 _selectedProduct = value;
                 NotifyOfPropertyChange();
+                RemoveProductCmd.RaiseCanExecuteChanged();
             }
         }
 
@@ -89,11 +93,11 @@ namespace Marvin.Products.UI.Interaction
         protected override void OnInitialize()
         {
             base.OnInitialize();
-
-            ImportDialogCmd = new AsyncCommand(ImportProductDialog, o => true, true);
-            ShowRevisionsCmd = new AsyncCommand(ShowRevisionsDialog, CanShowRevisions, true);
-            CreateRevisionCmd = new AsyncCommand(CreateRevision, CanCreateRevision, true);
-            RemoveProductCmd = new AsyncCommand(RemoveProduct, o => SelectedProduct != null, true);
+            ImportDialogCmd = new RelayCommand(ImportProductDialog);
+            RemoveProductCmd = new DelegateCommand(RemoveProduct, o => SelectedProduct != null);
+            ShowRevisionsCmd = new RelayCommand(ShowRevisionsDialog, CanShowRevisions);
+            CreateRevisionCmd = new RelayCommand(CreateRevision, CanCreateRevision);
+            ShowRecipeEditorCmd = new RelayCommand(ShowRecipeEditor, CanShowRecipeEditor);
 
             Controller.StructureUpdated += OnStructureUpdated;
 
@@ -146,7 +150,7 @@ namespace Marvin.Products.UI.Interaction
         }
 
         /// <summary>
-        /// Filter the given array recursively and expand all elements which contain 
+        /// Filter the given array recursively and expand all elements which contain
         /// elements that fit the search criteria
         /// </summary>
         private static ObservableCollection<StructureEntryViewModel> FilterRecursive(IEnumerable<StructureEntryViewModel> searchSpace, FilterStatus filter)
@@ -221,38 +225,38 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// Show import product dialog
         /// </summary>
-        private async Task ImportProductDialog(object parameters)
+        private void ImportProductDialog(object parameters)
         {
             var dialog = ProductDialogFactory.CreateImportDialog();
-            await DialogManager.ShowDialogAsync(dialog).ConfigureAwait(false);
-
-            if (dialog.ImportedProduct != null)
+            DialogManager.ShowDialog(dialog, delegate
             {
-                _selectedProductId = dialog.ImportedProduct.Id;
-                Controller.UpdateStructure();
-            }
+                if (dialog.ImportedProduct != null)
+                {
+                    _selectedProductId = dialog.ImportedProduct.Id;
+                    Controller.UpdateStructure();
+                }
 
-            ProductDialogFactory.Destroy(dialog);
+                ProductDialogFactory.Destroy(dialog);
+            });
         }
 
-        private async Task RemoveProduct(object obj)
+
+        private void RemoveProduct(object obj)
         {
             var dialog = ProductDialogFactory.CreateRemoveProductViewModel(SelectedProduct);
+            DialogManager.ShowDialog(dialog, dialogResult =>
+            {
+                if (!dialog.Result)
+                    return;
 
-            await DialogManager.ShowDialogAsync(dialog);
-
-            if (!dialog.Result)
-                return;
-
-            // Remove product from the tree
-            var productId = SelectedProduct.Id;
-            RemoveFromCollection(Controller.Structure, e => e.Id == productId, e => e.Branches);
-            RemoveFromCollection(_fullTree, e => e.Id == productId, e => e.Branches);
-
-            if (_filterStatus.FilterRequired)
-                RemoveFromCollection(DisplayStructure, e => e.Id == productId, e => e.Branches);
-
-            SelectedProduct = null;
+                // Remove product from the tree
+                var productId = SelectedProduct.Id;
+                RemoveFromCollection(Controller.Structure, e => e.Id == productId, e => e.Branches);
+                RemoveFromCollection(_fullTree, e => e.Id == productId, e => e.Branches);
+                if (_filterStatus.FilterRequired)
+                    RemoveFromCollection(DisplayStructure, e => e.Id == productId, e => e.Branches);
+                SelectedProduct = null;
+            });
         }
 
         private void RemoveFromCollection<TEntry>(ICollection<TEntry> collection, Func<TEntry, bool> predicate, Func<TEntry, ICollection<TEntry>> recursionSelector)
@@ -267,7 +271,7 @@ namespace Marvin.Products.UI.Interaction
         }
 
         /// <summary>
-        /// Checks if the current product is not in the edit mode to enshure 
+        /// Checks if the current product is not in the edit mode to ensure
         /// that no data will be lost after selecting a revision
         /// </summary>
         private bool CanShowRevisions(object obj)
@@ -278,26 +282,32 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// Shows the revision dialog
         /// </summary>
-        private async Task ShowRevisionsDialog(object obj)
+        private void ShowRevisionsDialog(object obj)
         {
             var dialog = ProductDialogFactory.CreateShowRevisionsDialog(SelectedProduct.MaterialNumber);
-            await DialogManager.ShowDialogAsync(dialog);
-
-            if (dialog.Result && dialog.SelectedRevision.HasValue)
+            DialogManager.ShowDialog(dialog, delegate (IRevisionsViewModel model)
             {
-                var selectedRevision = dialog.SelectedRevision.Value;
+                var result = model.Result;
 
-                var detailsVm = DetailsFactory.Create(SelectedProduct.Type);
-                await LoadDetails(() => detailsVm.Load(selectedRevision));
+                if (result && model.SelectedRevision.HasValue)
+                {
+                    var selectedRevision = model.SelectedRevision.Value;
 
-                ActivateItem(detailsVm);
-            }
+                    Task.Run(async delegate
+                    {
+                        var detailsVm = DetailsFactory.Create(SelectedProduct.Type);
+                        await LoadDetails(() => detailsVm.Load(selectedRevision));
 
-            ProductDialogFactory.Destroy(dialog);
+                        ActivateItem(detailsVm);
+                    });
+                }
+
+                ProductDialogFactory.Destroy(dialog);
+            });
         }
 
         /// <summary>
-        /// Checks if the current product is not in the edit mode to enshure 
+        /// Checks if the current product is not in the edit mode to ensure
         /// that no data will be lost after creation of a new revision
         /// </summary>
         protected virtual bool CanCreateRevision(object parameters)
@@ -308,25 +318,39 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// Opens a dialog for creating a new revision of the current product
         /// </summary>
-        protected async Task CreateRevision(object parameters)
+        protected void CreateRevision(object parameters)
         {
-            var dialog = ProductDialogFactory.CreateCreateRevisionDialog(SelectedProduct);
-            await DialogManager.ShowDialogAsync(dialog);
-
-            if (dialog.CreatedProductRevision != 0)
+            var dialogModel = ProductDialogFactory.CreateCreateRevisionDialog(SelectedProduct);
+            DialogManager.ShowDialog(dialogModel, delegate
             {
-                var detailsVm = DetailsFactory.Create(SelectedProduct.Type);
-                await LoadDetails(() => detailsVm.Load(dialog.CreatedProductRevision));
+                if (dialogModel.CreatedProductRevision != 0)
+                {
+                    Task.Run(async delegate
+                    {
+                        var detailsVm = DetailsFactory.Create(SelectedProduct.Type);
+                        await LoadDetails(() => detailsVm.Load(dialogModel.CreatedProductRevision));
 
-                ActivateItem(detailsVm);
-                Controller.UpdateStructure();
-            }
-
-            ProductDialogFactory.Destroy(dialog);
+                        ActivateItem(detailsVm);
+                        Controller.UpdateStructure();
+                    });
+                }
+                ProductDialogFactory.Destroy(dialogModel);
+            });
         }
 
-        //TODO: find a better way to reselect the old product. 
-        //TODO: have alook on resource tree merge. It is allready done there
+        private bool CanShowRecipeEditor(object parameters)
+        {
+            return CurrentDetails.IsEditMode == false && SelectedProduct != null && SelectedProduct.IsProduct;
+        }
+
+        private void ShowRecipeEditor(object parameters)
+        {
+            var recipeWorkspace = RecipeEditorFactory.CreateRecipeEditor(SelectedProduct.Name, SelectedProduct.Id);
+            History.Push(recipeWorkspace);
+        }
+
+        //TODO: Find a better way to reselect the old product.
+        //TODO: Have a look on resource tree merge. It is already done there
         private void SelectProductById()
         {
             bool found = false;

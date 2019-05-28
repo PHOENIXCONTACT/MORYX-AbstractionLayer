@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Marvin.Products.UI.Interaction.RecipesWorkspaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:c4I="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:RecipesWorkspaceViewModel}" d:DesignHeight="949">
+    <UserControl.Resources>
+        <c4I:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+        <c4I:GenericEnumConverter x:Key="EnumToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <DockPanel Margin="5,5,5,5" Background="White" LastChildFill="True">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <TextBlock Text="Recipes" Eddie.TextFormat="Header1"  VerticalAlignment="Center" Margin="0,0,5,0" />
+            <TextBlock Text="{Binding Title, StringFormat={} {0}}" Eddie.TextFormat="Header1" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="300" Width="Auto" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                        <EddieButton Content="Add Recipe" Icon="Plus" Margin="0,5,0,0"
+                                     Command="{Binding AddRecipeCmd}" HorizontalAlignment="Left"
+                                     Visibility="{Binding EditorMode, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static interaction:RecipeEditorMode.Product}}"/>
+                    </StackPanel>
+
+                    <EddieListBox ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}">
+                        <EddieListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type interaction:RecipeViewModel}">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                                        <TextBlock Text="{Binding Classification, StringFormat={}({0})}" Margin="3,0,0,0" FontWeight="Bold" />
+                                    </StackPanel>
+                                    <TextBlock FontStyle="Italic" Margin="0,3,0,0">
+                                        <Run Text="Workplan" />
+                                        <Run Text="{Binding Workplan.Name, Mode=OneWay}" />
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </EddieListBox.ItemTemplate>
+                    </EddieListBox>
+                </DockPanel>
+                <EddieBusyIndicator Width="60" Height="60"
+                                    Visibility="{Binding IsMasterBusy, Converter={StaticResource VisibilityConverter}}" />
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="Bottom" Margin="0,10,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <EddieButton Icon="Cross" Margin="0,0,5,0" EddieStyle="Gray" Content="Cancel"
+                                    Command="{Binding CurrentDetails.CancelEditCmd}"/>
+                            <EddieButton Icon="Pencil" Margin="0,0,5,0" EddieStyle="Gray" Content="Edit"
+                                    Command="{Binding CurrentDetails.EditModeCmd}"/>
+                            <EddieButton Icon="CheckMark" EddieStyle="Gray" Content="Save"
+                                    Command="{Binding CurrentDetails.SaveCmd}"/>
+                        </StackPanel>
+                    </DockPanel>
+
+                    <ContentControl DockPanel.Dock="Top" Margin="5,0"
+                                    cal:View.Model="{Binding ActiveItem}" />
+                </DockPanel>
+
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"
+                      Visibility="{Binding IsDetailsInBusyMode, Converter={StaticResource VisibilityConverter}}">
+
+                    <EddieBusyIndicator Width="60" Height="60" Visibility="{Binding IsDetailsInBusyMode, Converter={StaticResource VisibilityConverter}}" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</UserControl>

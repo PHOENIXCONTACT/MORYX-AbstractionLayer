@@ -34,7 +34,7 @@ namespace Marvin.AbstractionLayer.UI
         private bool _isBusy;
 
         /// <summary>
-        /// Static representation of a successfull task
+        /// Static representation of a successful task
         /// </summary>
         protected static Task<bool> SuccessTask = Task.FromResult(true);
 
@@ -44,12 +44,12 @@ namespace Marvin.AbstractionLayer.UI
         ///
         public ICommand CancelEditCmd { get; private set; }
 
-        /// 
+        ///
         public IAsyncCommand SaveCmd { get; private set; }
 
         #endregion
 
-        /// 
+        /// <inheritdoc />
         protected override void OnInitialize()
         {
             base.OnInitialize();
@@ -105,8 +105,8 @@ namespace Marvin.AbstractionLayer.UI
         }
 
         /// <summary>
-        /// Method will be called by the <see cref="EditModeCmd"/> to check if the 
-        /// Editmode can be entered or not
+        /// Method will be called by the <see cref="EditModeCmd"/> to check if the
+        /// EditMode can be entered or not
         /// </summary>
         protected virtual bool CanEnterEditMode(object parameters)
         {
@@ -125,7 +125,7 @@ namespace Marvin.AbstractionLayer.UI
         }
 
         /// <summary>
-        /// Method will be called by the <see cref="EditModeCmd"/> to check if the 
+        /// Method will be called by the <see cref="EditModeCmd"/> to check if the
         /// Editmode can be canceled or not
         /// </summary>
         protected virtual bool CanCancelEditMode(object parameters)
@@ -229,7 +229,7 @@ namespace Marvin.AbstractionLayer.UI
     }
 
     /// <summary>
-    /// Base class for viewmodels with an edit mode
+    /// Base class for ViewModels with an edit mode
     /// </summary>
     public abstract class EditModeViewModelBase<T> : EditModeViewModelBase
         where T : IEditableObject
