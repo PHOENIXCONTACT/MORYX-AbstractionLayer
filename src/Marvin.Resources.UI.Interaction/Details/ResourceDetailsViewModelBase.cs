@@ -141,7 +141,7 @@ namespace Marvin.Resources.UI.Interaction
             await OnConfigLoaded();
 
             await OnResourceLoaded();
-            Logger.LogEntry(LogLevel.Trace, "Loaded resource with id {0}.", EditableObject.Id);
+            Logger.Log(LogLevel.Trace, "Loaded resource with id {0}.", EditableObject.Id);
         }
 
         /// <summary>
