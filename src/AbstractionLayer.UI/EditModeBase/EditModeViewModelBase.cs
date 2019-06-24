@@ -193,19 +193,19 @@ namespace Marvin.AbstractionLayer.UI
         ///
         public virtual void BeginEdit()
         {
-            Logger.LogEntry(LogLevel.Trace, "Will beginn edit mode.");
+            Logger.Log(LogLevel.Trace, "Will beginn edit mode.");
         }
 
         ///
         public virtual void EndEdit()
         {
-            Logger.LogEntry(LogLevel.Trace, "Will end edit mode.");
+            Logger.Log(LogLevel.Trace, "Will end edit mode.");
         }
 
         ///
         public virtual void CancelEdit()
         {
-            Logger.LogEntry(LogLevel.Trace, "Will cancel edit mode.");
+            Logger.Log(LogLevel.Trace, "Will cancel edit mode.");
         }
 
         ///

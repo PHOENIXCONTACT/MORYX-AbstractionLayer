@@ -32,7 +32,7 @@ namespace Marvin.Products.UI
         {
             base.ClientCallback(state, client);
 
-            _logger.LogEntry(LogLevel.Info, "Product interaction service changed state to {0}", state);
+            _logger.Log(LogLevel.Info, "Product interaction service changed state to {0}", state);
             if (state != ConnectionState.Success)
                 return;
 
