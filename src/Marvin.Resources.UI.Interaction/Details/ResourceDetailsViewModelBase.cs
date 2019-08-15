@@ -250,13 +250,13 @@ namespace Marvin.Resources.UI.Interaction
             await base.OnConfigLoaded();
 
             ConfigViewModel = new T();
-            ConfigConverter.FromConfig(ConfigEntries.SubEntries, ConfigViewModel);
+            ConfigConverter.FromModel(ConfigEntries, ConfigViewModel);
         }
 
         ///
         public override void CancelEdit()
         {
-            ConfigConverter.FromConfig(ConfigEntries.SubEntries, ConfigViewModel);
+            ConfigConverter.FromModel(ConfigEntries, ConfigViewModel);
 
             base.CancelEdit();
         }
@@ -264,7 +264,7 @@ namespace Marvin.Resources.UI.Interaction
         ///
         public override void EndEdit()
         {
-            ConfigConverter.ToConfig(ConfigViewModel, ConfigEntries.SubEntries);
+            ConfigConverter.ToModel(ConfigViewModel, ConfigEntries);
 
             base.EndEdit();
         }
