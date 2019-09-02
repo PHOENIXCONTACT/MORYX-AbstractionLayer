@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Aq5lYt+U1lHzvtta+oT/Q9AukRw=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="IeGDh8wSEl2CAil0dZOVoFK7on4=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IProductInteraction">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IProductInteraction" contract="ProductService.IProductInteraction" bindingType="basicHttpBinding" address="http://localhost/ProductInteraction" bindingConfiguration="BasicHttpBinding_IProductInteraction">
+    <endpoint name="BasicHttpBinding_IProductInteraction" contract="ProductService.IProductInteraction" bindingType="basicHttpBinding" address="http://pxc-n2228/ProductInteraction" bindingConfiguration="BasicHttpBinding_IProductInteraction">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost/ProductInteraction</serializedValue>
+          <serializedValue>http://pxc-n2228/ProductInteraction</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

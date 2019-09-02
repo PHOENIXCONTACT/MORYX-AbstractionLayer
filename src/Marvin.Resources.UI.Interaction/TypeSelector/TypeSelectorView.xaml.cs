@@ -7,6 +7,9 @@ namespace Marvin.Resources.UI.Interaction
     /// </summary>
     public partial class TypeSelectorView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TypeSelectorView"/> class.
+        /// </summary>
         public TypeSelectorView()
         {
             InitializeComponent();

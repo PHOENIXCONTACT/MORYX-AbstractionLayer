@@ -9,13 +9,13 @@ namespace Marvin.Products.UI
     public interface IProductDetails : IEditModeViewModel, IDetailsViewModel
     {
         /// <summary>
+        /// Product view model which will be presented by this detail view
+        /// </summary>
+        ProductViewModel EditableObject { get; }
+
+        /// <summary>
         /// Method to load the product details
         /// </summary>
         Task Load(long productId);
-
-        /// <summary>
-        /// Id of the product which is currently selected to show its details
-        /// </summary>
-        long ProductId { get; }
     }
 }

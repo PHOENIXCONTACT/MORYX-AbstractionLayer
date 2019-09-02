@@ -7,9 +7,9 @@ namespace Marvin.Products.UI.Interaction
     /// Component selector for resource view models
     /// </summary>
     [Plugin(LifeCycle.Singleton)]
-    internal class ProductDetailsComponentSelector : DetailsComponentSelector<IProductDetails, IProductServiceModel>
+    internal class ProductDetailsComponentSelector : DetailsComponentSelector<IProductDetails>
     {
-        public ProductDetailsComponentSelector(IContainer container, IProductServiceModel controller) : base(container, controller)
+        public ProductDetailsComponentSelector(IContainer container) : base(container)
         {
         }
     }

@@ -7,6 +7,9 @@ namespace Marvin.Products.UI.Interaction
     /// </summary>
     public partial class RemoveProductView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoveProductView"/> class.
+        /// </summary>
         public RemoveProductView()
         {
             InitializeComponent();

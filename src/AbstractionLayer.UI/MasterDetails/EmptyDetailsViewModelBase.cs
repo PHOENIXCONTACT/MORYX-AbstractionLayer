@@ -1,17 +1,16 @@
 ﻿using System.Windows.Media;
-using Marvin.ClientFramework.Commands;
 
 namespace Marvin.AbstractionLayer.UI
 {
     /// <summary>
-    /// Serverity for the messages which are displayed in the empty details view
+    /// Severity for the messages which are displayed in the empty details view
     /// </summary>
     public enum MessageSeverity
     {
         /// <summary>
         /// Severity for an error
         /// </summary>
-        Error, 
+        Error,
 
         /// <summary>
         /// Severity for an info
@@ -35,7 +34,7 @@ namespace Marvin.AbstractionLayer.UI
         private readonly SolidColorBrush _warningColorBrush = Brushes.DarkOrange;
 
         #endregion
-        
+
         #region Properties
 
         /// <summary>
@@ -51,42 +50,8 @@ namespace Marvin.AbstractionLayer.UI
         #endregion
 
         ///
-        public void Initialize(IInteractionController controller, string typeName)
+        public void Initialize(string typeName)
         {
-           
-        }
-
-        ///
-        protected override void OnInitialize()
-        {
-            base.Initialize();
-        }
-
-        ///
-        protected override void OnActivate()
-        {
-            base.OnActivate();
-
-            ((DelegateCommand)EditModeCmd).RaiseCanExecuteChanged();
-            ((DelegateCommand)CancelEditCmd).RaiseCanExecuteChanged();
-        }
-
-        ///
-        protected override bool CanEnterEditMode(object parameters)
-        {
-            return false;
-        }
-
-        ///
-        protected override bool CanCancelEditMode(object parameters)
-        {
-            return false;
-        }
-
-        ///
-        protected override bool CanSave(object parameters)
-        {
-            return false;
         }
 
         /// <summary>

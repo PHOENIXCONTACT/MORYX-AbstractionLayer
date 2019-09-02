@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Input;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using Caliburn.Micro;
-using Marvin.ClientFramework.Commands;
 
 namespace Marvin.AbstractionLayer.UI
 {
@@ -12,43 +12,32 @@ namespace Marvin.AbstractionLayer.UI
     public interface IEditModeViewModel : IScreen, IEditableObject
     {
         /// <summary>
-        /// Will trigger the edit mode
-        /// </summary>
-        void EnterEditMode();
-
-        /// <summary>
         /// <c>true</c> if view model is in edit mode
         /// </summary>
         bool IsEditMode { get; }
 
         /// <summary>
-        /// Command to enter the edit mode for this current view
+        /// Indicates if the view is busy like during the save process
         /// </summary>
-        ICommand EditModeCmd { get; }
+        bool IsBusy { get; }
 
         /// <summary>
-        /// Command to cancel the edit mode for the current view
+        /// EditMode can be entered or not
         /// </summary>
-        ICommand CancelEditCmd { get; }
+        bool CanBeginEdit();
 
         /// <summary>
-        /// Command to save the current work and exit the edit mode
+        /// EditMode can be canceled or not
         /// </summary>
-        IAsyncCommand SaveCmd { get; }
+        bool CanCancelEdit();
 
         /// <summary>
-        /// Occurs when resource saved
+        /// Check if the current viewmodel can be saved
         /// </summary>
-        event EventHandler Saved;
+        bool CanEndEdit();
 
-        /// <summary>
-        /// Will be raised when the edit mode of this view model changed
-        /// </summary>
-        event EventHandler<EditModeChange> EditModeChanged;
+        void Validate(ICollection<ValidationResult> validationErrors);
 
-        /// <summary>
-        /// Will be called if the busy mode changed
-        /// </summary>
-        event EventHandler<bool> BusyChanged;
+        Task Save();
     }
 }

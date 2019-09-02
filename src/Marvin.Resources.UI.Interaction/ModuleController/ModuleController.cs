@@ -1,6 +1,9 @@
 ﻿using System.Windows.Media;
 using C4I;
+using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.ClientFramework;
+using Marvin.Logging;
+using Marvin.Tools.Wcf;
 
 namespace Marvin.Resources.UI.Interaction
 {
@@ -12,53 +15,53 @@ namespace Marvin.Resources.UI.Interaction
     {
         internal const string ModuleName = "Resources";
 
-        private IModuleWorkspace _defaultWorkspace;
-
         /// <inheritdoc />
         public override Geometry Icon => ShapeFactory.GetShapeGeometry(CommonShapeType.Cells);
 
         ///
         protected override void OnInitialize()
         {
-            // Register type factory
-            Container.Register<IResourceDialogFactory>();
+
+            // Register aspect factory
+            Container.Register<IAspectFactory>();
 
             // Load ResourceDetails to this container
             Container.LoadComponents<IResourceDetails>();
 
-            // Load ResourceInteractionControllers to the local container
-            Container.LoadComponents<IResourceInteractionController>();
+            // Load resource aspects to this container
+            Container.LoadComponents<IResourceAspect>();
+            
+            // Register and start service model
+            var clientFactory = Container.Resolve<IWcfClientFactory>();
+            var logger = Container.Resolve<IModuleLogger>();
 
-            // Start resource controller to connect to interaction web service
-            var interactionControllers = Container.ResolveAll<IResourceInteractionController>();
-            foreach (var controller in interactionControllers)
-            {
-                controller.Start();
-            }
+            var serviceModel = Resources.CreateServiceModel(clientFactory, logger);
 
-            // Set the default workspace
-            _defaultWorkspace = Container.Resolve<IModuleWorkspace>(InteractionWorkspaceViewModel.WorkspaceName);
+            Container.SetInstance(serviceModel);
+
+            serviceModel.Start();
         }
 
-        ///
+        /// <inheritdoc />
         protected override void OnActivate()
         {
 
         }
 
-        ///
+        /// <inheritdoc />
         protected override void OnDeactivate(bool close)
         {
-
+            if(close)
+                Container.Resolve<IResourceServiceModel>().Stop();
         }
 
-        ///
+        /// <inheritdoc />
         protected override IModuleWorkspace OnCreateWorkspace()
         {
-            return _defaultWorkspace;
+            return Container.Resolve<IModuleWorkspace>(InteractionWorkspaceViewModel.WorkspaceName);
         }
 
-        ///
+        /// <inheritdoc />
         protected override void OnDestroyWorkspace(IModuleWorkspace workspace)
         {
 

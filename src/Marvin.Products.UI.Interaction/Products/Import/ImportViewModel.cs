@@ -5,30 +5,21 @@ using System.Windows.Input;
 using C4I;
 using Caliburn.Micro;
 using Marvin.ClientFramework.Commands;
-using Marvin.Container;
+using Marvin.ClientFramework.Dialog;
+using Marvin.ClientFramework.Tasks;
 using Marvin.Logging;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction
 {
-    [Plugin(LifeCycle.Transient, typeof(IImportViewModel))]
-    internal class ImportViewModel : Screen, IImportViewModel
+    internal class ImportViewModel : DialogScreen
     {
-        #region Dependencies
-
-        /// <summary>
-        /// Injected products controller
-        /// </summary>
-        public IProductServiceModel ProductServiceModel { get; set; }
-
-        public IModuleLogger Logger { get; set; }
-
-
-        #endregion
-
         #region Fields and Properties
 
-        public AsyncCommand OkCmd { get; private set; }
+        private readonly IProductServiceModel _productServiceModel;
+        private readonly IModuleLogger _logger;
+
+        public ICommand OkCmd { get; private set; }
 
         public ICommand CancelCmd { get; private set; }
 
@@ -58,7 +49,10 @@ namespace Marvin.Products.UI.Interaction
                 NotifyOfPropertyChange();
             }
         }
+
         private ImporterViewModel _selectedImporter;
+        private TaskNotifier _taskNotifier;
+
         /// <summary>
         /// Selected importer
         /// </summary>
@@ -72,11 +66,30 @@ namespace Marvin.Products.UI.Interaction
             }
         }
 
+        public TaskNotifier TaskNotifier
+        {
+            get { return _taskNotifier; }
+            set
+            {
+                _taskNotifier = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         /// <summary>
         /// Imported product
         /// </summary>
         public ProductModel ImportedProduct { get; private set; }
-        
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="ImportViewModel"/>
+        /// </summary>
+        public ImportViewModel(IModuleLogger logger, IProductServiceModel productServiceModel)
+        {
+            _logger = logger;
+            _productServiceModel = productServiceModel;
+        }
+
         protected override void OnInitialize()
         {
             DisplayName = "Product Importer";
@@ -84,10 +97,21 @@ namespace Marvin.Products.UI.Interaction
             OkCmd = new AsyncCommand(Ok);
             CancelCmd = new RelayCommand(Cancel);
 
-            var importers = ProductServiceModel.Customization.Importers.Select(i => new ImporterViewModel(i, ProductServiceModel));
-            Importers = new BindableCollection<ImporterViewModel>(importers);
-            if (Importers.Count > 0)
-                SelectedImporter = Importers[0];
+
+            var loaderTask = Task.Run(async delegate
+            {
+                var customization = await _productServiceModel.GetCustomization().ConfigureAwait(false);
+                await Execute.OnUIThreadAsync(delegate
+                {
+                    var importers = customization.Importers.Select(i => new ImporterViewModel(i, _productServiceModel));
+                    Importers = new BindableCollection<ImporterViewModel>(importers);
+
+                    if (Importers.Count > 0)
+                        SelectedImporter = Importers[0];
+                });
+            });
+
+            TaskNotifier = new TaskNotifier(loaderTask);
         }
 
         /// <summary>
@@ -107,10 +131,10 @@ namespace Marvin.Products.UI.Interaction
             catch (Exception ex)
             {
                 ErrorText = (string.IsNullOrEmpty(ex.Message) ? "An error occured while creating the product." : ex.Message) + "\nPlease check the current input.";
-                Logger.LogException(LogLevel.Error, ex, ex.Message);
+                _logger.LogException(LogLevel.Error, ex, ex.Message);
                 return;
             }
-            
+
             TryClose(true);
         }
 

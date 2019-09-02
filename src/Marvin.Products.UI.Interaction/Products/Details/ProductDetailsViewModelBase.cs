@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using Marvin.AbstractionLayer.UI;
-using Marvin.Products.UI.ProductService;
-using Marvin.Serialization;
+using Marvin.AbstractionLayer.UI.Aspects;
+using Marvin.Tools;
 
 namespace Marvin.Products.UI.Interaction
 {
@@ -13,62 +14,149 @@ namespace Marvin.Products.UI.Interaction
     /// </summary>
     public abstract class ProductDetailsViewModelBase : EditModeViewModelBase<ProductViewModel>, IProductDetails
     {
+        #region Dependency Injection
+
         /// <summary>
         /// Service model to load additional information from the server
         /// </summary>
-        public IProductServiceModel ProductServiceModel { get; private set; }
+        public IProductServiceModel ProductServiceModel { get; set; }
 
         /// <summary>
-        /// Model visualized by this view model
+        /// Factory to create aspects
         /// </summary>
-        private ProductModel _model;
+        public IAspectFactory AspectFactory { get; set; }
+
+        /// <summary>
+        /// Configuration of the module
+        /// </summary>
+        public ModuleConfig Config { get; set; }
+
+        #endregion
 
         #region Properties
 
         /// <summary>
-        /// Represents the product properties
+        /// View models of aspects from this product
         /// </summary>
-        public Entry ProductProperties
-        {
-            get { return _model.Properties; }
-            protected set { _model.Properties = value ; }
-        }
+        public AspectConductorViewModel Aspects { get; } = new AspectConductorViewModel("There are no relevant aspects for the selected product.");
 
         /// <summary>
-        /// All parts of this product
+        /// Property defining if aspects should be loaded or not
         /// </summary>
-        public List<PartConnectorViewModel> Parts { get; set; }
-
-        ///
-        public long ProductId => EditableObject?.Id ?? 0;
+        protected virtual bool AspectUsage => false;
 
         #endregion
 
         /// <inheritdoc />
-        public void Initialize(IInteractionController controller, string typeName)
+        public void Initialize(string typeName)
         {
-            base.Initialize();
-
-            ProductServiceModel = (IProductServiceModel)controller;
         }
 
-        ///
+        /// <inheritdoc />
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+            ScreenExtensions.TryActivate(Aspects);
+        }
+
+        /// <inheritdoc />
+        protected override void OnDeactivate(bool close)
+        {
+            base.OnDeactivate(close);
+
+            // Copy aspects, because they are cleared on deactivation
+            var aspects = Aspects.Items.Cast<IProductAspect>().ToArray();
+            ScreenExtensions.TryDeactivate(Aspects, close);
+
+            if (close)
+                aspects.ForEach(aspect => AspectFactory.Destroy(aspect));
+        }
+
+        /// <inheritdoc />
         public async Task Load(long productId)
         {
-            _model = await ProductServiceModel.GetDetails(productId);
+            Execute.OnUIThread(() => IsBusy = true);
 
-            EditableObject = new ProductViewModel(_model);
-            Parts = _model.Parts.Select(p => new PartConnectorViewModel(p)).ToList();
+            try
+            {
+                var model = await ProductServiceModel.GetProductDetails(productId);
+                EditableObject = new ProductViewModel(model);
+
+                if (AspectUsage)
+                {
+                    var typedAspects = Config.AspectConfigurations.FirstOrDefault(ac => ac.TypeName == model.Type);
+                    var aspectConfigurations = typedAspects == null ? Config.DefaultAspects : typedAspects.Aspects;
+
+                    // Load aspects
+                    var aspects = aspectConfigurations.Select(ca => (IProductAspect)AspectFactory.Create(ca.PluginName))
+                        .Where(a => a.IsRelevant(EditableObject)).ToArray();
+
+                    var aspectLoadTasks = new List<Task>(aspects.Select(aspect => aspect.Load(EditableObject)));
+
+                    await Task.WhenAll(aspectLoadTasks);
+                    Aspects.Items.AddRange(aspects);
+                }
+            }
+            catch
+            {
+                //TODO
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        /// <inheritdoc />
+        public override void Validate(ICollection<ValidationResult> validationErrors)
+        {
+            base.Validate(validationErrors);
+            Aspects.Items.OfType<IProductAspect>().ForEach(a => a.Validate(validationErrors));
         }
 
         ///
-        protected override async Task OnSave(object parameters)
+        public override async Task Save()
         {
-            var product = await ProductServiceModel.Save(_model);
-            EditableObject = new ProductViewModel(product);
-            NotifyOfPropertyChange(() => EditableObject);
+            IsBusy = true;
 
-            await base.OnSave(parameters);
+            try
+            {
+                foreach (var aspect in Aspects.Items.Cast<IProductAspect>())
+                    await aspect.Save();
+
+                var updated = await ProductServiceModel.SaveProduct(EditableObject.Model);
+                EditableObject.UpdateModel(updated);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        /// <inheritdoc />
+        public override void BeginEdit()
+        {
+            Aspects.BeginEdit();
+            base.BeginEdit();
+        }
+
+        /// <inheritdoc />
+        public override void EndEdit()
+        {
+            Aspects.EndEdit();
+            base.EndEdit();
+        }
+
+        /// <inheritdoc />
+        public override void CancelEdit()
+        {
+            Aspects.CancelEdit();
+            base.CancelEdit();
         }
     }
 }

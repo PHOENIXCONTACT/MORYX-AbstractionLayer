@@ -1,55 +1,58 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using C4I;
+using Caliburn.Micro;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
-using Marvin.Container;
+using Marvin.ClientFramework.Tasks;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction
 {
-    public interface ICreateRevisionViewModel : IDialogScreen
+    internal class CreateRevisionViewModel : DialogScreen
     {
-        long CreatedProductRevision { get; set; }
-    }
-
-    [Plugin(LifeCycle.Transient, typeof(ICreateRevisionViewModel))]
-    internal class CreateRevisionViewModel : DialogScreen, ICreateRevisionViewModel
-    {
-        #region Fields and Properties
-
+        private readonly IProductServiceModel _productServiceModel;
         private string _numberErrorMessage;
-        private string _revisionNumber;
+        private short _newRevision;
+        private TaskNotifier _taskNotifier;
+        private string _errorMessage;
 
         /// <summary>
-        ///     Display name for Create Revision popup
+        /// Command to create the new revision
         /// </summary>
-        public override string DisplayName => "Create new revision";
+        public ICommand CreateCmd { get; }
 
-        public AsyncCommand CreateRevisionCmd { get; private set; }
+        /// <summary>
+        /// Command for closing the dialog
+        /// </summary>
+        public ICommand CancelCmd { get; }
 
-        public RelayCommand CloseCmd { get; private set; }
+        private ProductModel[] _currentRevisions;
 
-        public string Comment { get; set; }
-
-        private ProductRevisionEntry[] _productRevisions;
-
-        public string RevisionNumber
+        public short NewRevision
         {
-            get { return _revisionNumber; }
+            get { return _newRevision; }
             set
             {
-                if (!StringHasOnlyDigits(value))
-                    return;
-
-                _revisionNumber = value;
-                CreateRevisionCmd.RaiseCanExecuteChanged();
+                _newRevision = value;
                 NotifyOfPropertyChange();
             }
         }
 
-        public string ProductName => _structureEntry.Name;
+        /// <summary>
+        /// Task notifier to display a busy indicator
+        /// </summary>
+        public TaskNotifier TaskNotifier
+        {
+            get { return _taskNotifier; }
+            private set
+            {
+                _taskNotifier = value;
+                NotifyOfPropertyChange();
+            }
+        }
 
         /// <summary>
         /// Displays error message from revision number validation
@@ -64,122 +67,115 @@ namespace Marvin.Products.UI.Interaction
             }
         }
 
-        private string _generalErrorMessage;
-        private readonly StructureEntryViewModel _structureEntry;
+        /// <summary>
+        /// Product to duplicate
+        /// </summary>
+        public ProductInfoViewModel Product { get; }
 
         /// <summary>
         /// Displays general error messages if new revision creation is failed
         /// </summary>
-        public string GeneralErrorMessage
+        public string ErrorMessage
         {
-            get { return _generalErrorMessage; }
+            get { return _errorMessage; }
             set
             {
-                _generalErrorMessage = value;
+                _errorMessage = value;
                 NotifyOfPropertyChange();
             }
         }
 
         /// <summary>
-        /// Product revision which should be created after succeed OnCreateClick() call
+        /// Product which was be created after succeed OnCreateClick() call
         /// </summary>
-        public long CreatedProductRevision { get; set; }
-
-        #endregion
-
-        #region Dependecies
+        public ProductInfoViewModel CreatedProduct { get; private set; }
 
         /// <summary>
-        ///     Injected products controller
+        /// Constructor for this view model
         /// </summary>
-        public IProductServiceModel ProductServiceModel { get; set; }
-
-        #endregion
-
-        /// <summary>
-        ///     Constructor
-        /// </summary>
-        public CreateRevisionViewModel(StructureEntryViewModel structureEntry)
+        public CreateRevisionViewModel(IProductServiceModel productServiceModel, ProductInfoViewModel product)
         {
-            _structureEntry = structureEntry;
+            _productServiceModel = productServiceModel;
+            Product = product;
+
+            CreateCmd = new AsyncCommand(CreateRevision, CanCreateRevision, true);
+            CancelCmd = new RelayCommand(Cancel, CanCancel);
         }
 
-        protected override async void OnInitialize()
+        /// <inheritdoc />
+        protected override void OnInitialize()
         {
             base.OnInitialize();
+            DisplayName = "New Revision";
 
-            CreateRevisionCmd = new AsyncCommand(CreateRevision, CanCreateRevision);
-            CloseCmd = new RelayCommand(Close, CanClose);
+            var loadingTask = Task.Run(async delegate
+            {
+                try
+                {
+                    _currentRevisions = await _productServiceModel.GetProducts(new ProductQuery
+                    {
+                        Identifier =  Product.Identifier ,
+                        RevisionFilter = RevisionFilter.All
+                    }).ConfigureAwait(false);
 
-            _productRevisions = await ProductServiceModel.GetProductRevisions(_structureEntry.MaterialNumber);
+                    await Execute.OnUIThreadAsync(() => NewRevision = (short)(_currentRevisions.Max(pr => pr.Revision) + 1));
+                }
+                catch (Exception e)
+                {
+                    await Execute.OnUIThreadAsync(() => ErrorMessage = e.Message);
+                }
+            });
 
-            RevisionNumber = GetNextRevisionNumber().ToString();
-        }
-
-        private short GetNextRevisionNumber()
-        {
-            return (short)(_productRevisions.Max(pr => pr.Revision) + 1);
-        }
-
-        private bool CanClose(object obj)
-        {
-            return !CreateRevisionCmd.IsExecuting;
+            TaskNotifier = new TaskNotifier(loadingTask);
         }
 
         private bool CanCreateRevision(object arg)
         {
+            if (TaskNotifier != null && !TaskNotifier.IsCompleted)
+                return false;
+
             NumberErrorMessage = string.Empty;
 
-            short result;
-            if (!short.TryParse(RevisionNumber, out result))
-            {
-                NumberErrorMessage = "Revision number has no valid format.";
-                return false;
-            }
-
-            var isRevisionNumberFree = _productRevisions.All(pr => pr.Revision != short.Parse(RevisionNumber));
-
+            var isRevisionNumberFree = _currentRevisions.All(pr => pr.Revision != NewRevision);
             if (!isRevisionNumberFree)
             {
-                NumberErrorMessage = "Revision not available.";
+                NumberErrorMessage = "Revision not available";
                 return false;
             }
 
             return true;
         }
 
-        private Task CreateRevision(object arg)
+        private async Task CreateRevision(object arg)
         {
-            GeneralErrorMessage = string.Empty;
-            return ProductServiceModel.CreateRevision(_structureEntry.Id, short.Parse(RevisionNumber), Comment).ContinueWith(
-                delegate(Task<ProductModel> t)
+            ErrorMessage = string.Empty;
+
+            try
+            {
+                var duplicateTask = _productServiceModel.DuplicateProduct(Product.Id, Product.Identifier, NewRevision);
+                TaskNotifier = new TaskNotifier(duplicateTask);
+
+                var response =  await duplicateTask;
+                if (response.IdentityConflict || response.InvalidSource)
                 {
-                    switch (t.Status)
-                    {
-                        case TaskStatus.Faulted:
-                            GeneralErrorMessage = "Revision cannot be created.";
-                            break;
-                        case TaskStatus.RanToCompletion:
-                            CreatedProductRevision = t.Result.Id;
-                            TryClose(true);
-                            break;
-                    }
-                });
+                    ErrorMessage = "The given identity and revision conflicts with an existing.";
+                }
+                else
+                {
+                    CreatedProduct = new ProductInfoViewModel(response.Duplicate);
+                    TryClose(true);
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorMessage = e.Message;
+            }
         }
 
-        /// <summary>
-        ///     Method call on Cancel
-        /// </summary>
-        private void Close(object parameters)
-        {
+        private bool CanCancel(object obj) =>
+            !((AsyncCommand)CreateCmd).IsExecuting;
+
+        private void Cancel(object parameters) =>
             TryClose(false);
-        }
-
-        private static bool StringHasOnlyDigits(string text)
-        {
-            var regex = new Regex("^[0-9]?[0-9]?$");
-            var result = regex.IsMatch(text);
-            return result;
-        }
     }
 }

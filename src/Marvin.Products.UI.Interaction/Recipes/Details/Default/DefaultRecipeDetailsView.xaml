@@ -5,14 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
              xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
-             xmlns:converters="clr-namespace:Marvin.Products.UI.Interaction.Converters"
-             xmlns:recipes="clr-namespace:Marvin.Products.UI.Recipes;assembly=Marvin.Products.UI"
-             xmlns:ui="clr-namespace:Marvin.Products.UI;assembly=Marvin.Products.UI"
+             xmlns:c4I="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:productService1="clr-namespace:Marvin.Products.UI.ProductService;assembly=Marvin.Products.UI"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance interaction:DefaultRecipeDetailsViewModel}">
     <UserControl.Resources>
-        <converters:EnumToNameConverter x:Key="EnumToNameConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Marvin.Products.UI;component/Templates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <c4I:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+
+            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                x:Key="RecipeClassificationValues">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="productService1:RecipeClassificationModel" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </ResourceDictionary>
     </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -20,11 +34,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Border Background="#FFF1F3F5" BorderBrush="#FFC5CACE" BorderThickness="1" Margin="0,0,0,10" Padding="5">
+        <Border Background="#FFF1F3F5" BorderBrush="#FFC5CACE" BorderThickness="1" Margin="0,0,0,5" Padding="5">
             <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True">
                 <TextBlock Text="General" Eddie.TextFormat="Header2" />
 
-                <LabeledControlHost LabelA="Name" Width="100"
+                <LabeledControlHost LabelA="Name"
                                     SharedSizeGroupName="EditRecipe"
                                     Margin="0,0,0,5">
                     <EddieTextBox Text="{Binding EditableObject.Name, UpdateSourceTrigger=PropertyChanged}"
@@ -34,34 +48,19 @@
                 </LabeledControlHost>
 
                 <LabeledControlHost LabelA="Workplan"
-                                    SharedSizeGroupName="EditRecipe"
-                                    Margin="0,0,0,5">
+                                    SharedSizeGroupName="EditRecipe" Margin="0,0,0,5"
+                                    Visibility="{Binding Type.HasWorkplans, Converter={StaticResource VisibilityConverter}}">
                     <EddieComboBox ItemsSource="{Binding Workplans}"
                                    SelectedItem="{Binding EditableObject.Workplan, Mode=TwoWay}"
-                                   IsEnabled="{Binding IsEditMode}">
-                        <EddieComboBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type ui:WorkplanViewModel}">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,0,5,0" />
-                                    <TextBlock>
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="{}({0} / v{1})">
-                                                <Binding Path="State" />
-                                                <Binding Path="Version" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </StackPanel>
-                            </DataTemplate>
-                        </EddieComboBox.ItemTemplate>
-                    </EddieComboBox>
+                                   ItemTemplate="{StaticResource WorkplanComboBoxTemplate}"
+                                   IsEnabled="{Binding IsEditMode}" />
                 </LabeledControlHost>
 
                 <LabeledControlHost LabelA="Classification"
                                     SharedSizeGroupName="EditRecipe"
                                     Margin="0,0,0,5">
-                    <EddieComboBox ItemsSource="{Binding AvailableClassifications}"
-                                   SelectedItem="{Binding EditableObject.Classification, Mode=TwoWay, Converter={StaticResource EnumToNameConverter}}"
+                    <EddieComboBox ItemsSource="{Binding Source={StaticResource RecipeClassificationValues}}"
+                                   SelectedItem="{Binding EditableObject.Classification, Mode=TwoWay}"
                                    IsEnabled="{Binding IsEditMode}">
                     </EddieComboBox>
                 </LabeledControlHost>
@@ -69,11 +68,34 @@
             </StackPanel>
         </Border>
 
-        <TextBlock Grid.Row="1" Text="Ingredients" Eddie.TextFormat="Header2" />
+        <TextBlock Grid.Row="1" Text="Properties" Eddie.TextFormat="Header2" />
 
-        <controls:EntryEditor Grid.Row="2"
-                               VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                               BreadcrumbVisibility="Visible" IsEditMode="{Binding IsEditMode}"
-                               RootEntry="{Binding EditableObject.Ingredients}"/>
+        <ContentControl Grid.Row="2" DockPanel.Dock="Bottom">
+            <ContentControl.Resources>
+                <ControlTemplate x:Key="DefaultContent">
+                    <controls:EntryEditor VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                           BreadcrumbVisibility="Visible" IsEditMode="{Binding IsEditMode}"
+                                           RootEntry="{Binding EditableObject.Properties}"/>
+                </ControlTemplate>
+
+                <ControlTemplate x:Key="NoProperties">
+                    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                        <Path c4I:Eddie.Icon="Gear" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" c4I:Eddie.TextFormat="Bold"
+                                   Text="The recipe does not have any configurable properties."/>
+                    </StackPanel>
+                </ControlTemplate>
+            </ContentControl.Resources>
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="Template" Value="{StaticResource DefaultContent}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding EditableObject.Properties.SubEntries.Count}" Value="0">
+                            <Setter Property="Template" Value="{StaticResource NoProperties}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
     </Grid>
 </UserControl>

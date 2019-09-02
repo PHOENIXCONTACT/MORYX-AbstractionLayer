@@ -1,79 +1,207 @@
 ﻿<UserControl x:Class="Marvin.Resources.UI.Interaction.InteractionWorkspaceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Marvin.Resources.UI.Interaction"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:c4i="clr-namespace:C4I;assembly=Controls4Industry"
-             mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:InteractionWorkspaceViewModel }" 
-             d:DesignHeight="416" d:DesignWidth="956">  
+             xmlns:controls="clr-namespace:Marvin.AbstractionLayer.UI.Controls;assembly=Marvin.AbstractionLayer.UI"
+             xmlns:ui="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:InteractionWorkspaceViewModel }"
+             d:DesignHeight="416" d:DesignWidth="956">
+
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+
     <UserControl.Resources>
-        <c4i:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
-        <c4i:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Marvin.AbstractionLayer.UI;component/ToolbarButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <c4i:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+            <c4i:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="DisplayName" />
+
+            <Style x:Key="IconPathStyle" TargetType="Path">
+                <Setter Property="Width" Value="16"/>
+                <Setter Property="Margin" Value="10,5,10,5"/>
+                <Setter Property="Stretch" Value="Uniform"/>
+                <Setter Property="Fill" Value="Black"/>
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Fill" Value="#FF838383"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,5,5,5" />
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Foreground" Value="#FF838383"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="ExtendedToolBarButtonStyle" TargetType="Button" BasedOn="{StaticResource ToolBarButtonStyle}">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            </Style>
+
+            <ControlTemplate x:Key="SelectedResourceTemplate">
+                <DockPanel>
+                    <controls:EditModeButtonControl DockPanel.Dock="Bottom"
+                                                        Margin="0,5,0,0"
+                                                        HorizontalAlignment="Right"
+                                                        EnterEditCmd="{Binding EnterEditCmd}"
+                                                        EnterEditContent="Edit"
+                                                        CancelEditCmd="{Binding CancelEditCmd}"
+                                                        CancelEditContent="Cancel"
+                                                        SaveCmd="{Binding SaveCmd}"
+                                                        SaveContent="Save"/>
+
+                    <Border DockPanel.Dock="Top"
+                                Background="#FFF1F3F5"
+                                BorderBrush="#FFC5CACE"
+                                BorderThickness="1"
+                                Margin="0,0,0,5">
+                        <DockPanel LastChildFill="True">
+                            <Border DockPanel.Dock="Right" BorderThickness="1,0,0,0" BorderBrush="DarkGray" Margin="3">
+                                <StackPanel MinWidth="155" Margin="3,0,0,0">
+
+                                    <Button Style="{StaticResource ExtendedToolBarButtonStyle}"
+                                            Command="{Binding RemoveResourceCmd}">
+                                        <DockPanel>
+                                            <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Minus"/>
+                                            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Remove"/>
+                                        </DockPanel>
+                                    </Button>
+
+                                    <Separator BorderBrush="DarkGray"/>
+                                </StackPanel>
+                            </Border>
+
+                            <StackPanel DockPanel.Dock="Left" Margin="10" HorizontalAlignment="Stretch">
+                                <StackPanel.Resources>
+                                    <Style TargetType="LabeledControlHost">
+                                        <Setter Property="Eddie.TextFormat" Value="Bold" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Eddie.TextFormat="Header2" Margin="0" Text="{Binding CurrentDetails.Type.DisplayName}"/>
+
+                                <Grid Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <LabeledControlHost LabelA="Name:" LabelMinWidth="100" Margin="0,0,10,0">
+                                        <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Name, UpdateSourceTrigger=PropertyChanged}"
+                                                      IsEnabled="{Binding IsEditMode}"/>
+                                    </LabeledControlHost>
+
+                                    <LabeledControlHost Grid.Column="1" LabelA="Id:">
+                                        <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Id, Mode=OneWay}" 
+                                                      IsEnabled="false"/>
+                                    </LabeledControlHost>
+                                </Grid>
+
+                                <LabeledControlHost Margin="0,10,0,0" LabelA="Description:" LabelMinWidth="100">
+                                    <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Description, UpdateSourceTrigger=PropertyChanged}"
+                                                  IsEnabled="{Binding IsEditMode}"/>
+                                </LabeledControlHost>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+
+                    <ContentControl DockPanel.Dock="Top"
+                                    cal:View.Model="{Binding ActiveItem}" />
+                </DockPanel>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="NoSelectedResourceTemplate">
+                <ContentControl cal:View.Model="{Binding ActiveItem}"/>
+            </ControlTemplate>
+        </ResourceDictionary>
     </UserControl.Resources>
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding AddResourceCmd}" Modifiers="Control" Key="N"/>
     </UserControl.InputBindings>
-    <DockPanel Margin="5,5,5,5" Background="White" LastChildFill="True">
-        <TextBlock Eddie.TextFormat="Header1" DockPanel.Dock="Top">
-            Resources
-        </TextBlock>
+    <DockPanel Margin="5" LastChildFill="True">
+        <TextBlock c4i:Eddie.TextFormat="Header1" DockPanel.Dock="Top"
+                   Text="Resources" />
 
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="300" Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0">
-                <DockPanel>
-                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,10,0,0">
-                        <EddieButton Command="{Binding AddResourceCmd}" Icon="Plus" EddieStyle="Gray" Margin="0,0,5,0">Add</EddieButton>
-                        <EddieButton Command="{Binding RemoveResourceCmd}" Icon="Minus" EddieStyle="Gray" Margin="0,0,5,0">Remove</EddieButton>
-                    </StackPanel>
-                    
-                    <EddieTreeView x:Name="ResourceTreeView" DockPanel.Dock="Top" ItemsSource="{Binding ResourceTree}" VerticalAlignment="Stretch" 
-                                   MouseDown="OnResourceTreeeMouseDown"
-                                   cal:Message.Attach="[Event SelectedItemChanged] = [Action OnMasterItemChanged($source, $eventArgs)]" 
-                                   IsEnabled="{Binding IsDetailsInEditMode, Converter={StaticResource InverseBooleanConverter}}" Margin="0,0,5,0">
-                        <EddieTreeView.ItemContainerStyle>
-                            <Style TargetType="{x:Type EddieTreeViewItem}">
-                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
-                                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
-                            </Style>
-                        </EddieTreeView.ItemContainerStyle>
-                        <EddieTreeView.Resources>
-                            <HierarchicalDataTemplate DataType="{x:Type interaction:ResourceTreeItemViewModel}" ItemsSource="{Binding Children}">
-                                <TextBlock Text="{Binding Name}" Eddie.TextFormat="Bold" />
-                            </HierarchicalDataTemplate>
-                        </EddieTreeView.Resources>
-                    </EddieTreeView>
-                </DockPanel>
-                <EddieBusyIndicator Width="60" Height="60" Visibility="{Binding IsMasterBusy, Converter={StaticResource VisibilityConverter}}" />
-            </Grid>
+            <DockPanel Grid.Column="0" MinWidth="350" Width="Auto" Margin="0,0,5,0">
+                <UniformGrid DockPanel.Dock="Top" Rows="1" Margin="0,0,0,5">
+                    <Button Style="{StaticResource ToolBarButtonStyle}"
+                            Command="{Binding RefreshCmd}"
+                            Padding="0" Height="30" HorizontalContentAlignment="Left"
+                            Margin="0,0,2.5,0">
+                        <DockPanel>
+                            <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Refresh"/>
+                            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Refresh"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Style="{StaticResource ToolBarButtonStyle}"
+                            Command="{Binding AddResourceCmd}"
+                            Padding="0" Height="30" HorizontalContentAlignment="Left"
+                            Margin="2.5,0,0,0">
+                        <DockPanel>
+                            <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Plus"/>
+                            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Add"/>
+                        </DockPanel>
+                    </Button>
+                </UniformGrid>
+                <EddieTreeView x:Name="ResourceTreeView"
+                               ItemsSource="{Binding Tree, Converter={StaticResource SortedCollectionViewSourceConverter}}"
+                               VerticalAlignment="Stretch"
+                               MouseDown="OnResourceTreeeMouseDown"
+                               cal:Message.Attach="[Event SelectedItemChanged] = [Action OnMasterItemChanged($source, $eventArgs)]"
+                               IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBooleanConverter}}">
+                    <EddieTreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type EddieTreeViewItem}">
+                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                        </Style>
+                    </EddieTreeView.ItemContainerStyle>
+                    <EddieTreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type interaction:ResourceTreeItemViewModel}"
+                                                  ItemsSource="{Binding Children, Converter={StaticResource SortedCollectionViewSourceConverter}}">
+                            <TextBlock Text="{Binding DisplayName}" Eddie.TextFormat="Bold" />
+                        </HierarchicalDataTemplate>
+                    </EddieTreeView.Resources>
+                </EddieTreeView>
+            </DockPanel>
 
-            <Grid Grid.Column="1">
-                <DockPanel >
-                    <DockPanel DockPanel.Dock="Bottom" Margin="0,10,0,0" HorizontalAlignment="Right">
-                        <EddieButton Icon="Cross" Margin="0,0,5,0" EddieStyle="Gray"
-                                     Command="{Binding CurrentDetails.CancelEditCmd}">Cancel</EddieButton>
-                        <EddieButton Icon="Pencil" Margin="0,0,5,0" EddieStyle="Gray"
-                                     Command="{Binding CurrentDetails.EditModeCmd}">Edit</EddieButton>
-                        <EddieButton Icon="CheckMark" EddieStyle="Gray"
-                                     Command="{Binding CurrentDetails.SaveCmd}">Save</EddieButton>
-                    </DockPanel>
+            <ContentControl Grid.Column="1">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Template" Value="{StaticResource SelectedResourceTemplate}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CurrentDetails.EditableObject}" Value="{x:Null}">
+                                <Setter Property="Template" Value="{StaticResource NoSelectedResourceTemplate}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
 
-                    <ContentControl DockPanel.Dock="Top" 
-                                    cal:View.Model="{Binding ActiveItem}" />
-                </DockPanel>
-                
-                
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"
-                      Visibility="{Binding IsDetailsInBusyMode, Converter={StaticResource VisibilityConverter}}">
-                    <EddieBusyIndicator Width="60" Height="60" Visibility="{Binding IsDetailsInBusyMode, Converter={StaticResource VisibilityConverter}}" />
-                </Grid>
-            </Grid>
+            <Border Grid.Column="0" Grid.ColumnSpan="2" Background="#33D3D3D3"
+                    Visibility="{Binding IsBusy, Converter={StaticResource VisibilityConverter}}">
+                <EddieBusyIndicator Width="60" Height="60" Visibility="{Binding IsBusy, Converter={StaticResource VisibilityConverter}}" />
+            </Border>
         </Grid>
     </DockPanel>
 </UserControl>

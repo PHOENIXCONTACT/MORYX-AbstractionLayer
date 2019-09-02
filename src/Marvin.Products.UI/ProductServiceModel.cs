@@ -1,107 +1,111 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Marvin.Logging;
+﻿using System.Threading.Tasks;
 using Marvin.Products.UI.ProductService;
 using Marvin.Serialization;
-using Marvin.Tools;
 using Marvin.Tools.Wcf;
 
 namespace Marvin.Products.UI
 {
     internal class ProductServiceModel : HttpServiceConnectorBase<ProductInteractionClient, IProductInteraction>, IProductServiceModel
     {
-        private readonly IModuleLogger _logger;
-
-        public ProductServiceModel(IWcfClientFactory clientFactory, IModuleLogger logger)
+        public ProductServiceModel(IWcfClientFactory clientFactory)
         {
-            _logger = logger;
             ClientFactory = clientFactory;
-            Structure = new ObservableCollection<ProductStructureEntry>();
         }
 
         protected override string MinServerVersion => "1.1.2.0";
 
         protected override string ClientVersion => "1.1.2.0";
 
-        public ObservableCollection<ProductStructureEntry> Structure { get; }
-
-        public ProductCustomization Customization { get; private set; }
-
-        protected override async void ClientCallback(ConnectionState state, ProductInteractionClient client)
+        protected override void ClientCallback(ConnectionState state, ProductInteractionClient client)
         {
             base.ClientCallback(state, client);
 
-            _logger.Log(LogLevel.Info, "Product interaction service changed state to {0}", state);
             if (state != ConnectionState.Success)
-                return;
-
-            try
-            {
-                await LoadStructure();
-                Customization = await WcfClient.GetCustomizationAsync();
-            }
-            catch (Exception ex)
-            {
-                //ToDo: Maybe the wcf is ready and connected before the underlying components are ready.
-                _logger.LogException(LogLevel.Error, ex, "Fail to get basic information after state changed to connected!");
-            }
+                _customization = null;
         }
 
-        private async Task LoadStructure()
+        private ProductCustomization _customization;
+
+        public async Task<ProductCustomization> GetCustomization()
         {
-            var structure = await WcfClient.GetProductStructureAsync();
-            Structure.Clear();
-            Structure.AddRange(structure);
+            if (_customization != null)
+                return _customization;
 
-            RaiseStructureUpdated();
+            _customization = await WcfClient.GetCustomizationAsync();
+            return _customization;
         }
 
-        public void UpdateStructure() => Task.Run(LoadStructure);
-        public Task<ProductModel[]> GetAll() =>
-            WcfClient.GetAllProductsAsync();
+        public Task<ProductCustomization> GetCustomization(bool force)
+        {
+            if (force)
+                _customization = null;
 
-        public Task<ProductModel> GetDetails(long id) =>
-            WcfClient.GetProductDetailsAsync(id);
+            return GetCustomization();
+        }
 
-        public Task<ProductModel> Save(ProductModel product) =>
-            WcfClient.SaveProductAsync(product);
+        public Task<ProductModel[]> GetProducts(ProductQuery query)
+        {
+            return WcfClient.GetProductsAsync(query);
+        }
 
-        public Task<Entry> UpdateParameters(string importer, Entry currentParameters) =>
-            WcfClient.UpdateParametersAsync(importer, currentParameters);
+        public Task<ProductModel> CreateProduct(string type)
+        {
+            return WcfClient.CreateProductAsync(type);
+        }
 
-        public Task<ProductModel> ImportProduct(string importerName, Entry parameters) =>
-            WcfClient.ImportProductAsync(importerName, parameters);
+        public Task<ProductModel> GetProductDetails(long id)
+        {
+            return WcfClient.GetProductDetailsAsync(id);
+        }
 
-        public Task<ProductModel[]> RemoveProduct(long id) =>
-            WcfClient.DeleteProductAsync(id);
+        public Task<ProductModel> SaveProduct(ProductModel product)
+        {
+            return WcfClient.SaveProductAsync(product);
+        }
 
-        public Task<RecipeModel[]> GetProductionRecipes(long productId) =>
-            WcfClient.GetRecipesAsync(productId);
+        public Task<DuplicateProductResponse> DuplicateProduct(long sourceId, string identifier, short revisionNo)
+        {
+            return WcfClient.DuplicateProductAsync(sourceId, identifier, revisionNo);
+        }
 
-        public Task<RecipeModel> CreateProductionRecipe(long productId, long workplanId, string name) =>
-            WcfClient.CreateProductionRecipeAsync(productId, workplanId, name);
+        public Task<Entry> UpdateImportParameters(string importer, Entry currentParameters)
+        {
+            return WcfClient.UpdateParametersAsync(importer, currentParameters);
+        }
 
-        public Task<bool> SaveProductionRecipe(RecipeModel recipe) =>
-            WcfClient.SaveProductionRecipeAsync(recipe);
+        public Task<ProductModel> ImportProduct(string importerName, Entry parameters)
+        {
+            return WcfClient.ImportProductAsync(importerName, parameters);
+        }
 
-        public Task<RecipeModel> GetRecipe(long recipeId) =>
-            WcfClient.GetRecipeAsync(recipeId);
+        public Task<bool> DeleteProduct(long productId)
+        {
+            return WcfClient.DeleteProductAsync(productId);
+        }
 
-        public Task<WorkplanModel[]> GetWorkplans() =>
-            WcfClient.GetWorkplansAsync();
+        public Task<RecipeModel> GetRecipe(long recipeId)
+        {
+            return WcfClient.GetRecipeAsync(recipeId);
+        }
 
-        public WorkplanModel GetWorkplanById(long workplanId) =>
-            WcfClient.GetWorkplan(workplanId);
+        public Task<RecipeModel[]> GetRecipes(long productId)
+        {
+            return WcfClient.GetRecipesAsync(productId);
+        }
 
-        public Task<ProductModel> CreateRevision(long productId, short revisionNo, string comment) =>
-            WcfClient.CreateRevisionAsync(productId, revisionNo, comment);
+        public Task<RecipeModel> CreateRecipe(string recipeType)
+        {
+            return WcfClient.CreateRecipeAsync(recipeType);
+        }
 
-        public Task<ProductRevisionEntry[]> GetProductRevisions(string identifier) =>
-            WcfClient.GetProductRevisionsAsync(identifier);
+        public Task<RecipeModel> SaveRecipe(RecipeModel recipe)
+        {
+            return WcfClient.SaveRecipeAsync(recipe);
+        }
 
-        public event EventHandler StructureUpdated;
-        private void RaiseStructureUpdated() =>
-            StructureUpdated?.Invoke(this, EventArgs.Empty);
+        public Task<WorkplanModel[]> GetWorkplans()
+        {
+            return WcfClient.GetWorkplansAsync();
+        }
     }
 }

@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Marvin.Resources.UI.Interaction.Aspects.Methods.ResourceMethodsAspectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="clr-namespace:Marvin.Resources.UI;assembly=Marvin.Resources.UI"
+             xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
+             xmlns:methods="clr-namespace:Marvin.Resources.UI.Interaction.Aspects.Methods"
+             xmlns:al="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance methods:ResourceMethodsAspectViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Marvin.AbstractionLayer.UI;component/styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <al:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="DisplayName" />
+
+            <ControlTemplate x:Key="NoSelectedMethodTemplate">
+                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                    <Path Eddie.Icon="ArrowRight" Style="{StaticResource CentralPathIconStyle}" Margin="0,0,0,14"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Eddie.TextFormat="Bold"
+                               Text="Please select a method to invoke it"/>
+                </StackPanel>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="EmptyParametersTemplate">
+                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                    <Path Eddie.Icon="Gear" Style="{StaticResource CentralPathIconStyle}" Margin="0,0,0,14"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Eddie.TextFormat="Bold"
+                               Text="There are no parameters necessary for this method call"/>
+                </StackPanel>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="ParametersTemplate">
+                <controls:EntryEditor BreadcrumbVisibility="Collapsed"
+                                       IsEditMode="True"
+                                       DockPanel.Dock="Top"
+                                       RootEntry="{Binding SelectedMethod.Parameters}"/>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="ResultTemplate">
+                <controls:EntryEditor BreadcrumbVisibility="Collapsed"
+                                       IsEditMode="True"
+                                       DockPanel.Dock="Bottom"
+                                       RootEntry="{Binding MethodInvocationResult}"/>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="EmptyResultTemplate">
+                <TextBlock Text="Method was invoked"/>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="SelectedMethodTemplate">
+                <DockPanel LastChildFill="True">
+                    <TextBlock DockPanel.Dock="Top"
+                               Eddie.TextFormat="Header2"
+                               Margin="0,0,0,10">
+                        <Run Text="Method:"/>
+                        <Run Text="{Binding SelectedMethod.DisplayName, Mode=OneWay}"/>
+                    </TextBlock>
+
+                    <TextBlock DockPanel.Dock="Top"
+                               TextWrapping="Wrap">
+                        <Run Text="Description:"/>
+                        <Run Text="{Binding SelectedMethod.Description, Mode=OneWay}"/>
+                    </TextBlock>
+
+                    <Grid Margin="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.618*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ContentControl Grid.Row="0">
+                            <ContentControl.Style>
+                                <Style TargetType="ContentControl">
+                                    <Setter Property="Template" Value="{StaticResource ParametersTemplate}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedMethod.Parameters.SubEntries.Count}" Value="0">
+                                            <Setter Property="Template" Value="{StaticResource EmptyParametersTemplate}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+                        </ContentControl>
+
+                        <DockPanel Grid.Row="1">
+                            <DockPanel.Style>
+                                <Style TargetType="DockPanel">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding MethodInvocationResult}" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DockPanel.Style>
+
+                            <TextBlock DockPanel.Dock="Top" Eddie.TextFormat="Header2"
+                                       Text="Result" />
+
+                            <ContentControl Grid.Row="0">
+                                <ContentControl.Style>
+                                    <Style TargetType="ContentControl">
+                                        <Setter Property="Template" Value="{StaticResource ResultTemplate}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding MethodInvocationResult.SubEntries.Count}" Value="0">
+                                                <Setter Property="Template" Value="{StaticResource EmptyResultTemplate}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                        </DockPanel>
+
+                        <EddieButton Grid.Row="2" DockPanel.Dock="Bottom"
+                                     HorizontalAlignment="Left"
+                                     Command="{Binding MethodInvokeCmd}" CommandParameter="{Binding SelectedMethod}"
+                                     Content="Invoke" Icon="CheckMark" />
+                    </Grid>
+                </DockPanel>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <EddieListBox Grid.Column="0"
+                      MinWidth="150" MaxWidth="350"
+                      ItemsSource="{Binding Resource.Methods, Converter={StaticResource SortedCollectionViewSourceConverter}}"
+                      SelectedItem="{Binding SelectedMethod}">
+            <EddieListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type ui:ResourceMethodViewModel}">
+                    <StackPanel Orientation="Horizontal">
+                        <Path x:Name="Path" Fill="Black" Eddie.Icon="ArrowRight"
+                              Stretch="Uniform" Margin="0,0,5,0" Width="16" Height="16"/>
+                        <TextBlock x:Name="TextBlock" Text="{Binding DisplayName}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </EddieListBox.ItemTemplate>
+        </EddieListBox>
+
+        <ContentControl Margin="5,0,0,0" Grid.Column="1">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="Template" Value="{StaticResource SelectedMethodTemplate}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedMethod}" Value="{x:Null}">
+                            <Setter Property="Template" Value="{StaticResource NoSelectedMethodTemplate}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </Grid>
+</UserControl>

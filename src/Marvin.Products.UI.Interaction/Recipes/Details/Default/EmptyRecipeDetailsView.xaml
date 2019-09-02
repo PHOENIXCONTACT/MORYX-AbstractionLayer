@@ -1,17 +1,18 @@
 ﻿<UserControl x:Class="Marvin.Products.UI.Interaction.EmptyRecipeDetailsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
+             xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:EmptyRecipeDetailsViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
+
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Path Eddie.Icon="Document"  Stretch="Uniform" Fill="LightGray" 
+        <Path Eddie.Icon="Document"  Stretch="Uniform" Fill="LightGray"
               Width="150" Height="150" Margin="0,0,0,20" />
-        
-        <TextBlock Eddie.TextFormat="Bold" Text="{Binding CurrentMessage}" 
-                   Foreground="{Binding CurrentColorBrush}" 
+
+        <TextBlock Eddie.TextFormat="Bold" Text="{Binding CurrentMessage}"
+                   Foreground="{Binding CurrentColorBrush}"
                    TextWrapping="Wrap" />
     </StackPanel>
-    
 </UserControl>

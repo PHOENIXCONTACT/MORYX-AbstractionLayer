@@ -1,58 +1,60 @@
 ﻿<UserControl x:Class="Marvin.Resources.UI.Interaction.TypeSelectorView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Marvin.Resources.UI.Interaction"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
+             xmlns:ui="clr-namespace:Marvin.Resources.UI;assembly=Marvin.Resources.UI"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:TypeSelectorViewModel }"
-             d:DesignHeight="441" d:DesignWidth="728">
+             d:DesignHeight="441" d:DesignWidth="728" Height="450" Width="760">
+
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding CancelCmd}" Key="Escape" />
         <KeyBinding Command="{Binding CreateCmd}" Key="Enter" />
     </UserControl.InputBindings>
-    <DialogPanel Background="White">
+
+    <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <DialogPanel.Header>
-            <TextBlock Margin="0,5,0,5">
-                Please select the resource type to create a resource instance.
-            </TextBlock>
+            <TextBlock Margin="0,5,0,5" Text="Please select the resource type to create a resource instance." />
         </DialogPanel.Header>
         <DialogPanel.Buttons>
-            <EddieButton Command="{Binding CancelCmd}" 
-                         Content="Cancel" Icon="Cross" />
-            
-            <EddieButton Command="{Binding CreateCmd}" 
-                         Content="Create" Icon="CheckMark" />
+            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateCmd}" Content="Create" />
+            <EddieButton Content="Cancel" Icon="Cross" EddieStyle="Gray"
+                         Command="{Binding CancelCmd}" Margin="10,0,0,0"/>
         </DialogPanel.Buttons>
 
-        <Grid MaxHeight="450" Width="760">
+        <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
 
             <EddieTreeView ItemsSource="{Binding TypeTree}" Width="320" Margin="0,0,5,0"
                            cal:Message.Attach="[Event SelectedItemChanged] = [Action OnTreeItemChanged($source, $eventArgs)]">
                 <EddieTreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type interaction:ResourceTypeViewModel}" ItemsSource="{Binding DerivedTypes}">
+                    <HierarchicalDataTemplate DataType="{x:Type ui:ResourceTypeViewModel}" ItemsSource="{Binding DerivedTypes}">
                         <TextBlock Text="{Binding DisplayName}" Eddie.TextFormat="Bold"/>
                     </HierarchicalDataTemplate>
                 </EddieTreeView.Resources>
             </EddieTreeView>
 
-            <ScrollViewer Grid.Column="1" Grid.Row="0"
-                          HorizontalScrollBarVisibility="Disabled"
-                          VerticalScrollBarVisibility="Auto">
-                <StackPanel>
+            <DockPanel Grid.Column="1">
+                <StackPanel DockPanel.Dock="Top">
                     <StackPanel.Resources>
                         <Style TargetType="LabeledControlHost">
                             <Setter Property="Eddie.TextFormat" Value="Bold" />
                             <Setter Property="Margin" Value="0,0,0,10" />
-                            <Setter Property="LabelMinWidth" Value="95" />
+                            <Setter Property="LabelMinWidth" Value="90" />
                         </Style>
                     </StackPanel.Resources>
 
@@ -67,7 +69,19 @@
                     <LabeledControlHost LabelA="Description:">
                         <TextBlock Text="{Binding SelectedType.Description}" />
                     </LabeledControlHost>
+                </StackPanel>
 
+                <TextBlock DockPanel.Dock="Bottom"
+                           Margin="0,10,0,0"
+                           HorizontalAlignment="Center"
+                           Text="{Binding ErrorMessage}"
+                           FontWeight="Bold"
+                           Foreground="Red"
+                           TextWrapping="Wrap"/>
+
+                <ScrollViewer DockPanel.Dock="Bottom"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
                     <ItemsControl ItemsSource="{Binding SelectedType.Constructors}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -78,15 +92,16 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <RadioButton GroupName="Constructor" IsChecked="{Binding IsSelected}" Content="{Binding DisplayName}"/>
-                                    <controls:EntryEditor BreadcrumbVisibility="Collapsed" IsEditMode="True" 
-                                                          DockPanel.Dock="Bottom"
-                                                          RootEntry="{Binding Parameters}"/>
+                                    <controls:EntryEditor BreadcrumbVisibility="Collapsed" IsEditMode="True"
+                                                           DockPanel.Dock="Bottom"
+                                                           RootEntry="{Binding Parameters}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </StackPanel>
-            </ScrollViewer>
+                </ScrollViewer>
+
+            </DockPanel>
         </Grid>
     </DialogPanel>
 </UserControl>

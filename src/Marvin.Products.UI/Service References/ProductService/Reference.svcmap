@@ -22,15 +22,14 @@
     <MetadataSource Address="http://localhost/Metadata/ProductInteraction" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ProductInteraction.xsd" MetadataType="Schema" ID="55df79a3-b69b-446d-bb82-317b15aab146" SourceId="1" SourceUrl="http://localhost/Metadata/ProductInteraction?xsd=xsd0" />
-    <MetadataFile FileName="ProductInteraction1.xsd" MetadataType="Schema" ID="cf6b1933-63b9-40f1-838d-8a9c1743310e" SourceId="1" SourceUrl="http://localhost/Metadata/ProductInteraction?xsd=xsd1" />
+    <MetadataFile FileName="ProductInteraction31.xsd" MetadataType="Schema" ID="010baa51-fd48-40ff-b725-d92fea375705" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ProductInteraction?xsd=xsd1" />
+    <MetadataFile FileName="ProductInteraction32.xsd" MetadataType="Schema" ID="258afb2e-c7ca-419a-97c6-e002f42ad2b6" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ProductInteraction?xsd=xsd0" />
     <MetadataFile FileName="ProductInteraction.wsdl" MetadataType="Wsdl" ID="7e5df67a-0888-4933-9e2a-7b8e44e9e2a0" SourceId="1" SourceUrl="http://localhost/Metadata/ProductInteraction" />
-    <MetadataFile FileName="ProductInteraction2.xsd" MetadataType="Schema" ID="6dd1894d-e676-4395-b4e9-c1a041b44ea2" SourceId="1" SourceUrl="http://localhost/Metadata/ProductInteraction?xsd=xsd6" />
-    <MetadataFile FileName="ProductInteraction3.xsd" MetadataType="Schema" ID="7e71f0e3-6bf7-421a-a622-2c654a424876" SourceId="1" SourceUrl="http://localhost/Metadata/ProductInteraction?xsd=xsd7" />
-    <MetadataFile FileName="ProductInteraction4.xsd" MetadataType="Schema" ID="f98b7fe1-910f-4cd7-8748-8cf4bf654d6f" SourceId="1" SourceUrl="http://localhost/Metadata/ProductInteraction?xsd=xsd4" />
-    <MetadataFile FileName="ProductInteraction5.xsd" MetadataType="Schema" ID="1ec514b3-1ba2-4571-8d5c-44e05b09b611" SourceId="1" SourceUrl="http://localhost/Metadata/ProductInteraction?xsd=xsd5" />
-    <MetadataFile FileName="ProductInteraction6.xsd" MetadataType="Schema" ID="57e880e6-51ee-4937-87bf-a3feed32ec44" SourceId="1" SourceUrl="http://localhost/Metadata/ProductInteraction?xsd=xsd2" />
-    <MetadataFile FileName="ProductInteraction7.xsd" MetadataType="Schema" ID="96f4a8e8-5453-4c1c-9783-879addaa4cbf" SourceId="1" SourceUrl="http://localhost/Metadata/ProductInteraction?xsd=xsd3" />
+    <MetadataFile FileName="ProductInteraction33.xsd" MetadataType="Schema" ID="e168061b-e251-4892-b525-55513b34b4dd" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ProductInteraction?xsd=xsd6" />
+    <MetadataFile FileName="ProductInteraction34.xsd" MetadataType="Schema" ID="c61c2fc6-bbd1-4f8e-855f-051bf96f6a21" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ProductInteraction?xsd=xsd5" />
+    <MetadataFile FileName="ProductInteraction35.xsd" MetadataType="Schema" ID="5b315fbb-d6b2-47d5-9388-fbea14f13805" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ProductInteraction?xsd=xsd4" />
+    <MetadataFile FileName="ProductInteraction36.xsd" MetadataType="Schema" ID="20ae5e81-7881-4556-8cfe-bb690f6ea7f5" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ProductInteraction?xsd=xsd3" />
+    <MetadataFile FileName="ProductInteraction37.xsd" MetadataType="Schema" ID="f3ca8b6d-7b07-40ba-822d-7b283e47b070" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ProductInteraction?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

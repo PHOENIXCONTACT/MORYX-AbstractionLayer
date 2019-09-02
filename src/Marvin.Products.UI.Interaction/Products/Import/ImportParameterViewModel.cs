@@ -18,11 +18,12 @@ namespace Marvin.Products.UI.Interaction
         public ImportParameterViewModel(Entry property) : base(property)
         {
             Model = property;
+
             PropertyChanged += OnPropertyChanged;
         }
 
         /// <summary>
-        /// Listen to property changed and check if the value was modified. In that case 
+        /// Listen to property changed and check if the value was modified. In that case
         /// invoke the value changed event
         /// </summary>
         /// <param name="sender"></param>

@@ -16,7 +16,7 @@ namespace Marvin.AbstractionLayer.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="DetailsRegistrationAttribute"/> class.
         /// </summary>
-        protected DetailsRegistrationAttribute(string typeName, Type detailsType) 
+        protected DetailsRegistrationAttribute(string typeName, Type detailsType)
             : base(LifeCycle.Transient, detailsType)
         {
             TypeName = typeName;

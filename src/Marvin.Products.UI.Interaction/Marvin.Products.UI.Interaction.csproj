@@ -78,6 +78,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -92,11 +93,56 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Products\Aspects\Parts\CollectionPartConnectorView.xaml.cs">
+      <DependentUpon>CollectionPartConnectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Parts\CollectionPartConnectorViewModel.cs" />
+    <Compile Include="Products\Aspects\Parts\IPartConnectorViewModel.cs" />
+    <Compile Include="Products\Aspects\Parts\IPartDialogsFactory.cs" />
+    <Compile Include="Products\Aspects\Parts\PartsAspectView.xaml.cs">
+      <DependentUpon>PartsAspectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Parts\PartsAspectViewModel.cs" />
+    <Compile Include="Products\Aspects\Parts\SelectPartLinkDialogView.xaml.cs">
+      <DependentUpon>SelectPartLinkDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Parts\SelectPartLinkDialogViewModel.cs" />
+    <Compile Include="Products\Aspects\Parts\SinglePartConnectorPartView.xaml.cs">
+      <DependentUpon>SinglePartConnectorPartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Parts\SinglePartConnectorPartViewModel.cs" />
+    <Compile Include="Products\Aspects\ProductAspectViewModelBase.cs" />
+    <Compile Include="Products\Aspects\Properties\PropertiesAspectView.xaml.cs">
+      <DependentUpon>PropertiesAspectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Properties\PropertiesAspectViewModel.cs" />
+    <Compile Include="Products\Aspects\Recipes\AddRecipeDialogView.xaml.cs">
+      <DependentUpon>AddRecipeDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Recipes\AddRecipeDialogViewModel.cs" />
+    <Compile Include="Products\Aspects\Recipes\RecipeConductor.cs" />
+    <Compile Include="Products\Aspects\Recipes\RecipesAspectView.xaml.cs">
+      <DependentUpon>RecipesAspectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Recipes\RecipesAspectViewModel.cs" />
+    <Compile Include="Products\Aspects\Relations\RelationsAspectView.xaml.cs">
+      <DependentUpon>RelationsAspectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Relations\RelationsAspectViewModel.cs" />
     <Compile Include="Products\Details\Default\DefaultDetailsView.xaml.cs">
       <DependentUpon>DefaultDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\EnumToNameConverter.cs" />
     <Compile Include="Products\Details\Default\DefaultDetailsViewModel.cs" />
+    <Compile Include="Products\Duplicate\DuplicateProductDialogView.xaml.cs">
+      <DependentUpon>DuplicateProductDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Duplicate\DuplicateProductDialogViewModel.cs" />
+    <Compile Include="Products\ProductItemViewModel.cs" />
+    <Compile Include="Products\ProductQueryViewModel.cs" />
+    <Compile Include="Products\ProductsWorkspaceView.xaml.cs">
+      <DependentUpon>ProductsWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\ProductsWorkspaceViewModel.cs" />
     <Compile Include="Recipes\Details\Default\DefaultRecipeDetailsView.xaml.cs">
       <DependentUpon>DefaultRecipeDetailsView.xaml</DependentUpon>
     </Compile>
@@ -109,24 +155,18 @@
     </Compile>
     <Compile Include="Recipes\Details\Default\EmptyRecipeDetailsViewModel.cs" />
     <Compile Include="Products\Details\Default\EmptyDetailsViewModel.cs" />
-    <Compile Include="Products\Controls\GeneralProductControl.xaml.cs">
-      <DependentUpon>GeneralProductControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Products\Controls\IProductHead.cs" />
     <Compile Include="Recipes\Details\IRecipeDetailsFactory.cs" />
     <Compile Include="Recipes\Details\RecipeDetailsComponentSelector.cs" />
     <Compile Include="Recipes\Details\RecipeDetailsViewModelBase.cs" />
     <Compile Include="Products\Details\IProductDetailsFactory.cs" />
     <Compile Include="Products\Details\ProductDetailsComponentSelector.cs" />
     <Compile Include="Products\Details\ProductDetailsViewModelBase.cs" />
-    <Compile Include="Products\Import\IImportViewModel.cs" />
     <Compile Include="Products\Import\ImporterViewModel.cs" />
     <Compile Include="Products\Import\ImportParameterViewModel.cs" />
     <Compile Include="Products\Import\ImportView.xaml.cs">
       <DependentUpon>ImportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Products\Import\ImportViewModel.cs" />
-    <Compile Include="IProductDialogFactory.cs" />
     <Compile Include="ModuleController\ModuleConfig.cs" />
     <Compile Include="ModuleController\ModuleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,7 +174,6 @@
       <DependentUpon>RemoveProductView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Products\Removal\RemoveProductViewModel.cs" />
-    <Compile Include="Products\Removal\IRemoveProductViewModel.cs" />
     <Compile Include="Products\Revisions\CreateRevisionView.xaml.cs">
       <DependentUpon>CreateRevisionView.xaml</DependentUpon>
     </Compile>
@@ -143,26 +182,11 @@
       <DependentUpon>RevisionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Products\Revisions\RevisionsViewModel.cs" />
-    <Compile Include="Recipes\Dialogs\AddRecipeDialogView.xaml.cs">
-      <DependentUpon>AddRecipeDialogView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Recipes\Dialogs\AddRecipeDialogViewModel.cs" />
-    <Compile Include="Products\ViewModels\PartConnectorViewModel.cs" />
-    <Compile Include="Products\ViewModels\PartViewModel.cs" />
-    <Compile Include="Products\ViewModels\ProductRevisionViewModel.cs" />
-    <Compile Include="Products\ViewModels\ProductViewModel.cs" />
-    <Compile Include="Products\ViewModels\RecipeViewModel.cs" />
-    <Compile Include="Products\ViewModels\StructureEntryViewModel.cs" />
-    <Compile Include="Products\FilterStatus.cs" />
-    <Compile Include="Workspace\IRecipeEditorFactory.cs" />
-    <Compile Include="Workspace\ProductsWorkspaceView.xaml.cs">
-      <DependentUpon>ProductsWorkspaceView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Workspace\ProductsWorkspaceViewModel.cs" />
-    <Compile Include="Workspace\RecipesWorkspaceView.xaml.cs">
+    <Compile Include="Recipes\IRecipeWorkspaceFactory.cs" />
+    <Compile Include="Recipes\RecipesWorkspaceView.xaml.cs">
       <DependentUpon>RecipesWorkspaceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Workspace\RecipesWorkspaceViewModel.cs" />
+    <Compile Include="Recipes\RecipesWorkspaceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -171,9 +195,49 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Products\Aspects\Parts\CollectionPartConnectorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Parts\PartsAspectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Parts\SelectPartLinkDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Parts\SinglePartConnectorPartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Properties\PropertiesAspectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Recipes\AddRecipeDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Recipes\RecipesAspectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Relations\RelationsAspectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Products\Details\Default\DefaultDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Products\Duplicate\DuplicateProductDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\ProductsWorkspaceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Recipes\Details\Default\DefaultRecipeDetailsView.xaml">
       <SubType>Designer</SubType>
@@ -186,10 +250,6 @@
     <Page Include="Products\Details\Default\EmptyDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Products\Controls\GeneralProductControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Products\Import\ImportView.xaml">
       <SubType>Designer</SubType>
@@ -207,15 +267,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Recipes\Dialogs\AddRecipeDialogView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Workspace\ProductsWorkspaceView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Workspace\RecipesWorkspaceView.xaml">
+    <Page Include="Recipes\RecipesWorkspaceView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -229,21 +281,6 @@
       <Project>{e04d4a2d-70fc-48cf-a412-853ce51d5d40}</Project>
       <Name>Marvin.Products.UI</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\InteractionSvc\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\InteractionSvc\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\InteractionSvc\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
