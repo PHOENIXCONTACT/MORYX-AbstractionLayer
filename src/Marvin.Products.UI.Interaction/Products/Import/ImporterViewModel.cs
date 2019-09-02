@@ -11,12 +11,12 @@ namespace Marvin.Products.UI.Interaction
     internal class ImporterViewModel : PropertyChangedBase
     {
         private readonly ProductImporter _importer;
-        private readonly IProductServiceModel _productsController;
+        private readonly IProductServiceModel _productServiceModel;
 
-        public ImporterViewModel(ProductImporter importer, IProductServiceModel productsController)
+        public ImporterViewModel(ProductImporter importer, IProductServiceModel productServiceModel)
         {
             _importer = importer;
-            _productsController = productsController;
+            _productServiceModel = productServiceModel;
 
             // Create fake root
             CreateParameterViewModel(_importer.Parameters);
@@ -35,31 +35,20 @@ namespace Marvin.Products.UI.Interaction
             Parameters = new EntryViewModel(new Entry { Key = new EntryKey { Name = "Root" } });
             foreach (var parameter in parameters.SubEntries)
             {
-                var viewModel = new ImportParameterViewModel(new Entry
-                {   // Create clone to clear after every import
-                    Key = parameter.Key,
-                    Validation = parameter.Validation,
-                    Description = parameter.Description,
-                    Value = parameter.Value.Clone(false),
-                    Prototypes = parameter.Prototypes,
-                    SubEntries = parameter.SubEntries.Select(se => se.Clone(true)).ToList()
-                });
+                var viewModel = new ImportParameterViewModel(parameter.Clone(true));
                 viewModel.ValueChanged += OnUpdateTriggerChanged;
                 Parameters.SubEntries.Add(viewModel);
             }
         }
 
         /// <summary>
-        /// Update parameters if they were was modified
+        /// Update parameters if a <see cref="ImportParameter.TriggersUpdate"/> was modified
         /// </summary>
         private async void OnUpdateTriggerChanged(object sender, Entry importParameter)
         {
-            var root = new Entry { Key = new EntryKey { Name = "Root" } };
-            var parameters = Parameters.SubEntries.Cast<ImportParameterViewModel>().Select(ip => ip.Model).ToList();
-            root.SubEntries = parameters;
-
-            root = await _productsController.UpdateParameters(_importer.Name, root);
-            CreateParameterViewModel(root);
+            var parameters = Parameters.Entry;
+            parameters = await _productServiceModel.UpdateImportParameters(_importer.Name, parameters);
+            CreateParameterViewModel(parameters);
         }
 
         /// <summary>
@@ -94,11 +83,8 @@ namespace Marvin.Products.UI.Interaction
         /// <returns></returns>
         public Task<ProductModel> Import()
         {
-            var root = new Entry { Key = new EntryKey { Name = "Root" } };
-            var parameters = Parameters.SubEntries.Cast<ImportParameterViewModel>().Select(ip => ip.Model).ToList();
-            root.SubEntries = parameters;
-
-            return _productsController.ImportProduct(_importer.Name, root);
+            var parameters = Parameters.Entry;
+            return _productServiceModel.ImportProduct(_importer.Name, parameters);
         }
     }
 }

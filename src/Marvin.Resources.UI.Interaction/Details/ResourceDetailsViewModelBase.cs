@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Marvin.AbstractionLayer.UI;
+using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.Logging;
-using Marvin.Resources.UI.Interaction.ResourceInteraction;
-using Marvin.Serialization;
+using Marvin.Resources.UI.ResourceService;
 using Marvin.Tools;
 
 namespace Marvin.Resources.UI.Interaction
@@ -22,38 +22,26 @@ namespace Marvin.Resources.UI.Interaction
         /// <summary>
         /// Internal resource controller
         /// </summary>
-        internal IResourceController ResourceController { get; private set; }
+        public IResourceServiceModel ResourceServiceModel { get; set; }
 
         /// <summary>
-        /// Dialog factory for type selectors and method invocation
+        /// Its a logger ...
         /// </summary>
-        public IResourceDialogFactory DialogFactory { get; set; }
+        public IModuleLogger Logger { get; set; }
+
+        /// <summary>
+        /// Factory to create aspects
+        /// </summary>
+        public IAspectFactory AspectFactory { get; set; }
+
+        /// <summary>
+        /// Configuration of the module
+        /// </summary>
+        public ModuleConfig Config { get; set; }
 
         #endregion
 
         #region Fields and Properties
-
-        /// <inheritdoc />
-        public long CurrentResourceId { get; private set; }
-
-        /// <summary>
-        /// Current config entries
-        /// </summary>
-        protected Entry ConfigEntries
-        {
-            get { return EditableObject.Properties; }
-            set { EditableObject.Properties = value; }
-        }
-
-        /// <summary>
-        /// All methods of this type of resource
-        /// </summary>
-        public ResourceMethodViewModel[] Methods { get; private set; }
-
-        /// <summary>
-        /// Reference collection
-        /// </summary>
-        public ReferenceCollectionViewModel References { get; private set; }
 
         /// <summary>
         /// ViewModel of the ResourceType
@@ -65,208 +53,145 @@ namespace Marvin.Resources.UI.Interaction
         /// </summary>
         protected virtual int DetailsDepth => 1;
 
+        /// <summary>
+        /// Property defining if aspects should be loaded or not
+        /// </summary>
+        protected virtual bool AspectUsage => false;
+
+        /// <summary>
+        /// View models of aspects from this resource
+        /// </summary>
+        public AspectConductorViewModel Aspects { get; } = new AspectConductorViewModel("No Aspects");
+
         #endregion
 
         /// <inheritdoc />
-        public void Initialize(IInteractionController controller, string typeName)
+        public void Initialize(string typeName)
         {
-            base.Initialize();
-
-            ResourceController = (IResourceController)controller;
             Logger = Logger.GetChild(typeName, GetType());
-
-            Methods = new ResourceMethodViewModel[0];
         }
 
         /// <inheritdoc />
         protected override void OnActivate()
         {
-            ScreenExtensions.TryActivate(References);
+            base.OnActivate();
+            ScreenExtensions.TryActivate(Aspects);
+
         }
 
         /// <inheritdoc />
         protected override void OnDeactivate(bool close)
         {
-            ScreenExtensions.TryDeactivate(References, close);
+            base.OnDeactivate(close);
+            ScreenExtensions.TryDeactivate(Aspects, close);
         }
 
-        /// 
+        /// <inheritdoc />
         public virtual async Task Load(long resourceId)
         {
-            CurrentResourceId = resourceId;
+            var resources = await ResourceServiceModel.GetDetails(resourceId);
 
-            // Load resource
-            var resource = await ResourceController.GetDetails(resourceId, DetailsDepth);
-
-            await AssignLoadedResource(resource);
+            await AssignLoadedResource(resources[0]);
         }
 
-        ///
-        public virtual async Task Create(string resourceTypeName, long parentResourceId, object constructorModel)
-        {
-            var resource = await ResourceController.CreateResource(resourceTypeName, constructorModel as MethodEntry);
-            // Set parent relation
-            var parent = resource.References.First(r => r.RelationType == ResourceRelationType.ParentChild && r.Role == ResourceReferenceRole.Source);
-            var target = parent.PossibleTargets.FirstOrDefault(r => r.Id == parentResourceId);
-            if (target != null)
-                parent.Targets.Add(target);
-            CurrentResourceId = resource.Id;
-
-            await AssignLoadedResource(resource);
-        }
+        /// <inheritdoc />
+        public virtual Task Load(ResourceModel resource) =>
+            AssignLoadedResource(resource);
 
         /// <summary>
-        /// If an resource was loaded (new or extisting), the resource 
+        /// If an resource was loaded (new or existing), the resource
         /// can be assigned to this view model
         /// </summary>
         private async Task AssignLoadedResource(ResourceModel resource)
         {
-            EditableObject = new ResourceViewModel(resource);
-            NotifyOfPropertyChange(nameof(EditableObject));
+            IsBusy = true;
 
-            Methods = resource.Methods.Select(method => new ResourceMethodViewModel(method, this)).ToArray();
+            try
+            {
+                // Load type from type tree
+                var typeTreeModel = await ResourceServiceModel.GetTypeTree();
+                var flatTypeTree = typeTreeModel.DerivedTypes.Flatten(t => t.DerivedTypes).SingleOrDefault(t => t.Name == resource.Type);
+                Type = new ResourceTypeViewModel(flatTypeTree);
 
-            // Filter unset or parent child relationship
-            var references = resource.References.OrderBy(r => r.IsCollection)
-                .Where(r => r.Targets != null && r.RelationType != ResourceRelationType.ParentChild)
-                .Select(ReferenceViewModel.Create).ToArray();
+                EditableObject = new ResourceViewModel(resource, Type);
 
-            References = new ReferenceCollectionViewModel(references);
-            NotifyOfPropertyChange(nameof(References));
+                if (AspectUsage)
+                {
+                    var typedAspects = Config.AspectConfigurations.FirstOrDefault(ac => ac.TypeName == resource.Type);
+                    var aspectConfigurations = typedAspects == null ? Config.DefaultAspects : typedAspects.Aspects;
 
-            // Load type from type tree
-            var typeModel = ResourceController.TypeTree.Flatten(t => t.DerivedTypes).SingleOrDefault(t => t.Name == EditableObject.Type);
-            Type = new ResourceTypeViewModel(typeModel);
+                    var aspects = aspectConfigurations.Select(ca => (IResourceAspect)AspectFactory.Create(ca.PluginName))
+                        .Where(a => a.IsRelevant(EditableObject)).ToArray();
 
-            await OnConfigLoaded();
+                    var aspectLoadTask = new List<Task>(aspects.Select(aspect => aspect.Load(EditableObject)));
 
-            await OnResourceLoaded();
-            Logger.Log(LogLevel.Trace, "Loaded resource with id {0}.", EditableObject.Id);
+                    await Task.WhenAll(aspectLoadTask);
+                    Aspects.Items.AddRange(aspects);
+                }
+
+                Logger.Log(LogLevel.Trace, "Loaded resource with id {0}.", EditableObject.Id);
+            }
+            catch (Exception e)
+            {
+                //TODO
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
-        /// <summary>
-        /// Method will be called if the resource was successfully loaded
-        /// </summary>
-        protected virtual Task OnResourceLoaded()
+        /// <inheritdoc />
+        public override void Validate(ICollection<ValidationResult> validationErrors)
         {
-            return SuccessTask;
-        }
-
-        /// <summary>
-        /// Method will be called if the config was loaded successfully
-        /// </summary>
-        protected virtual Task OnConfigLoaded()
-        {
-            return SuccessTask;
-        }
-
-        /// <summary>
-        /// Reload config of the object from the server
-        /// </summary>
-        /// <returns></returns>
-        public async Task UpdateConfig()
-        {
-            var model = await ResourceController.GetDetails(CurrentResourceId, DetailsDepth);
-
-            ConfigEntries = model.Properties;
-        }
-
-        /// <summary>
-        /// Open the invocation dialog to execute a resource method
-        /// </summary>
-        protected internal async Task<Entry> OpenMethodInvocationDialog(ResourceMethodViewModel method)
-        {
-            var dialog = DialogFactory.CreateMethodInvocation(method);
-
-            await DialogManager.ShowDialogAsync(dialog).ConfigureAwait(false);
-
-            DialogFactory.Destroy(dialog);
-
-            return dialog.ResultEntry;
-        }
-
-        /// <summary>
-        /// Invoke a resource method directly
-        /// </summary>
-        protected async Task<Entry> InvokeResourceMethod(ResourceMethodViewModel method)
-        {
-            return await ResourceController.InvokeMethod(CurrentResourceId, method.Model);
+            base.Validate(validationErrors);
+            Aspects.Items.OfType<IResourceAspect>().ForEach(a => a.Validate(validationErrors));
         }
 
         ///
-        protected override bool CanSave(object parameters)
+        public override async Task Save()
         {
-            return base.CanSave(parameters) && EditableObject.IsValid;
-        }
+            IsBusy = true;
 
-        ///
-        protected override async Task OnSave(object parameters)
-        {
-            await ResourceController.SaveResource(EditableObject.Model);
-            await base.OnSave(parameters);
+            try
+            {
+                foreach (var aspect in Aspects.Items.Cast<IResourceAspect>())
+                    await aspect.Save();
+
+                var updated = await ResourceServiceModel.SaveResource(EditableObject.Model);
+                EditableObject.UpdateModel(updated);
+            }
+            catch
+            {
+                //TODO
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         /// <inheritdoc />
         public override void BeginEdit()
         {
+            Aspects.BeginEdit();
             base.BeginEdit();
-            References.BeginEdit();
         }
 
         /// <inheritdoc />
         public override void EndEdit()
         {
+            Aspects.EndEdit();
             base.EndEdit();
-            References.EndEdit();
         }
 
         /// <inheritdoc />
         public override void CancelEdit()
         {
+            Aspects.CancelEdit();
             base.CancelEdit();
-            References.CancelEdit();
-        }
-    }
-
-
-    /// <summary>
-    /// Typed base class of <see cref="ResourceDetailsViewModelBase"/>
-    /// </summary>
-    public class ResourceDetailsViewModelBase<T> : ResourceDetailsViewModelBase where T : INotifyPropertyChanged, new()
-    {
-        /// <summary>
-        /// Dedicated converter for this type of details view model
-        /// </summary>
-        public static readonly EntryToModelConverter ConfigConverter = EntryToModelConverter.Create<T>();
-
-        /// <summary>
-        /// Typed view model for the config
-        /// </summary>
-        public T ConfigViewModel { get; private set; }
-
-        ///
-        protected override async Task OnConfigLoaded()
-        {
-            await base.OnConfigLoaded();
-
-            ConfigViewModel = new T();
-            ConfigConverter.FromModel(ConfigEntries, ConfigViewModel);
-        }
-
-        ///
-        public override void CancelEdit()
-        {
-            ConfigConverter.FromModel(ConfigEntries, ConfigViewModel);
-
-            base.CancelEdit();
-        }
-
-        ///
-        public override void EndEdit()
-        {
-            ConfigConverter.ToModel(ConfigViewModel, ConfigEntries);
-
-            base.EndEdit();
         }
     }
 }

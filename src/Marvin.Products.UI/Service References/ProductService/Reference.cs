@@ -23,22 +23,13 @@ namespace Marvin.Products.UI.ProductService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool HasRecipesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Marvin.Products.UI.ProductService.ProductImporter[] ImportersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] ProductTypesField;
+        private Marvin.Products.UI.ProductService.ProductTypeModel[] ProductTypesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] RecipeTypesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ReleasedProductsEditableField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.StorageValue[] StorageValuesField;
+        private Marvin.Products.UI.ProductService.RecipeTypeModel[] RecipeTypesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -47,19 +38,6 @@ namespace Marvin.Products.UI.ProductService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool HasRecipes {
-            get {
-                return this.HasRecipesField;
-            }
-            set {
-                if ((this.HasRecipesField.Equals(value) != true)) {
-                    this.HasRecipesField = value;
-                    this.RaisePropertyChanged("HasRecipes");
-                }
             }
         }
         
@@ -77,7 +55,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] ProductTypes {
+        public Marvin.Products.UI.ProductService.ProductTypeModel[] ProductTypes {
             get {
                 return this.ProductTypesField;
             }
@@ -90,7 +68,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] RecipeTypes {
+        public Marvin.Products.UI.ProductService.RecipeTypeModel[] RecipeTypes {
             get {
                 return this.RecipeTypesField;
             }
@@ -98,32 +76,6 @@ namespace Marvin.Products.UI.ProductService {
                 if ((object.ReferenceEquals(this.RecipeTypesField, value) != true)) {
                     this.RecipeTypesField = value;
                     this.RaisePropertyChanged("RecipeTypes");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ReleasedProductsEditable {
-            get {
-                return this.ReleasedProductsEditableField;
-            }
-            set {
-                if ((this.ReleasedProductsEditableField.Equals(value) != true)) {
-                    this.ReleasedProductsEditableField = value;
-                    this.RaisePropertyChanged("ReleasedProductsEditable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.StorageValue[] StorageValues {
-            get {
-                return this.StorageValuesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StorageValuesField, value) != true)) {
-                    this.StorageValuesField = value;
-                    this.RaisePropertyChanged("StorageValues");
                 }
             }
         }
@@ -201,18 +153,21 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="StorageValue", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
     [System.SerializableAttribute()]
-    public partial class StorageValue : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ProductTypeModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string KeyField;
+        private string BaseTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] ValuesField;
+        private string DisplayNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -225,27 +180,40 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Key {
+        public string BaseType {
             get {
-                return this.KeyField;
+                return this.BaseTypeField;
             }
             set {
-                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
-                    this.KeyField = value;
-                    this.RaisePropertyChanged("Key");
+                if ((object.ReferenceEquals(this.BaseTypeField, value) != true)) {
+                    this.BaseTypeField = value;
+                    this.RaisePropertyChanged("BaseType");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Values {
+        public string DisplayName {
             get {
-                return this.ValuesField;
+                return this.DisplayNameField;
             }
             set {
-                if ((object.ReferenceEquals(this.ValuesField, value) != true)) {
-                    this.ValuesField = value;
-                    this.RaisePropertyChanged("Values");
+                if ((object.ReferenceEquals(this.DisplayNameField, value) != true)) {
+                    this.DisplayNameField = value;
+                    this.RaisePropertyChanged("DisplayName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -262,33 +230,113 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductStructureEntry", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
     [System.SerializableAttribute()]
-    public partial class ProductStructureEntry : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class RecipeTypeModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.BranchType BranchTypeField;
+        private string DisplayNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductStructureEntry[] BranchesField;
+        private bool HasWorkplansField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long IdField;
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DisplayName {
+            get {
+                return this.DisplayNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DisplayNameField, value) != true)) {
+                    this.DisplayNameField = value;
+                    this.RaisePropertyChanged("DisplayName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasWorkplans {
+            get {
+                return this.HasWorkplansField;
+            }
+            set {
+                if ((this.HasWorkplansField.Equals(value) != true)) {
+                    this.HasWorkplansField = value;
+                    this.RaisePropertyChanged("HasWorkplans");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductQuery", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    [System.SerializableAttribute()]
+    public partial class ProductQuery : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MaterialNumberField;
+        private bool ExcludeDerivedTypesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdentifierField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IncludeDeletedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Marvin.Products.UI.ProductService.RecipeFilter RecipeFilterField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private short RevisionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductState StateField;
+        private Marvin.Products.UI.ProductService.RevisionFilter RevisionFilterField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Marvin.Products.UI.ProductService.Selector SelectorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
@@ -304,53 +352,40 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.BranchType BranchType {
+        public bool ExcludeDerivedTypes {
             get {
-                return this.BranchTypeField;
+                return this.ExcludeDerivedTypesField;
             }
             set {
-                if ((this.BranchTypeField.Equals(value) != true)) {
-                    this.BranchTypeField = value;
-                    this.RaisePropertyChanged("BranchType");
+                if ((this.ExcludeDerivedTypesField.Equals(value) != true)) {
+                    this.ExcludeDerivedTypesField = value;
+                    this.RaisePropertyChanged("ExcludeDerivedTypes");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductStructureEntry[] Branches {
+        public string Identifier {
             get {
-                return this.BranchesField;
+                return this.IdentifierField;
             }
             set {
-                if ((object.ReferenceEquals(this.BranchesField, value) != true)) {
-                    this.BranchesField = value;
-                    this.RaisePropertyChanged("Branches");
+                if ((object.ReferenceEquals(this.IdentifierField, value) != true)) {
+                    this.IdentifierField = value;
+                    this.RaisePropertyChanged("Identifier");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id {
+        public bool IncludeDeleted {
             get {
-                return this.IdField;
+                return this.IncludeDeletedField;
             }
             set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MaterialNumber {
-            get {
-                return this.MaterialNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MaterialNumberField, value) != true)) {
-                    this.MaterialNumberField = value;
-                    this.RaisePropertyChanged("MaterialNumber");
+                if ((this.IncludeDeletedField.Equals(value) != true)) {
+                    this.IncludeDeletedField = value;
+                    this.RaisePropertyChanged("IncludeDeleted");
                 }
             }
         }
@@ -369,6 +404,19 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public Marvin.Products.UI.ProductService.RecipeFilter RecipeFilter {
+            get {
+                return this.RecipeFilterField;
+            }
+            set {
+                if ((this.RecipeFilterField.Equals(value) != true)) {
+                    this.RecipeFilterField = value;
+                    this.RaisePropertyChanged("RecipeFilter");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public short Revision {
             get {
                 return this.RevisionField;
@@ -382,14 +430,27 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductState State {
+        public Marvin.Products.UI.ProductService.RevisionFilter RevisionFilter {
             get {
-                return this.StateField;
+                return this.RevisionFilterField;
             }
             set {
-                if ((this.StateField.Equals(value) != true)) {
-                    this.StateField = value;
-                    this.RaisePropertyChanged("State");
+                if ((this.RevisionFilterField.Equals(value) != true)) {
+                    this.RevisionFilterField = value;
+                    this.RaisePropertyChanged("RevisionFilter");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Marvin.Products.UI.ProductService.Selector Selector {
+            get {
+                return this.SelectorField;
+            }
+            set {
+                if ((this.SelectorField.Equals(value) != true)) {
+                    this.SelectorField = value;
+                    this.RaisePropertyChanged("Selector");
                 }
             }
         }
@@ -418,28 +479,45 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BranchType", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management")]
-    public enum BranchType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeFilter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    public enum RecipeFilter : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Group = 0,
+        Unset = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Product = 1,
+        WithRecipe = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        PartCollector = 2,
+        WithoutRecipes = 2,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductState", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
-    public enum ProductState : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="RevisionFilter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    public enum RevisionFilter : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Created = 0,
+        All = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Released = 1,
+        Latest = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Specific = 2,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Selector", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    public enum Selector : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Direct = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Parent = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Parts = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -474,9 +552,6 @@ namespace Marvin.Products.UI.ProductService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private short RevisionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductState StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
@@ -591,19 +666,6 @@ namespace Marvin.Products.UI.ProductService {
                 if ((this.RevisionField.Equals(value) != true)) {
                     this.RevisionField = value;
                     this.RaisePropertyChanged("Revision");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductState State {
-            get {
-                return this.StateField;
-            }
-            set {
-                if ((this.StateField.Equals(value) != true)) {
-                    this.StateField = value;
-                    this.RaisePropertyChanged("State");
                 }
             }
         }
@@ -849,10 +911,10 @@ namespace Marvin.Products.UI.ProductService {
         private long IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Serialization.Entry IngredientsField;
+        private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
+        private Marvin.Serialization.Entry PropertiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RevisionField;
@@ -903,19 +965,6 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Serialization.Entry Ingredients {
-            get {
-                return this.IngredientsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IngredientsField, value) != true)) {
-                    this.IngredientsField = value;
-                    this.RaisePropertyChanged("Ingredients");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -924,6 +973,19 @@ namespace Marvin.Products.UI.ProductService {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Marvin.Serialization.Entry Properties {
+            get {
+                return this.PropertiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PropertiesField, value) != true)) {
+                    this.PropertiesField = value;
+                    this.RaisePropertyChanged("Properties");
                 }
             }
         }
@@ -1014,6 +1076,9 @@ namespace Marvin.Products.UI.ProductService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Marvin.Products.UI.ProductService.ProductModel ProductField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1026,6 +1091,19 @@ namespace Marvin.Products.UI.ProductService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
             }
         }
         
@@ -1101,30 +1179,21 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductRevisionEntry", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DuplicateProductResponse", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
     [System.SerializableAttribute()]
-    public partial class ProductRevisionEntry : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DuplicateProductResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CommentField;
+        private Marvin.Products.UI.ProductService.ProductModel DuplicateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime CreateDateField;
+        private bool IdentityConflictField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long ProductIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> ReleaseDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private short RevisionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductState StateField;
+        private bool InvalidSourceField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1137,79 +1206,40 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Comment {
+        public Marvin.Products.UI.ProductService.ProductModel Duplicate {
             get {
-                return this.CommentField;
+                return this.DuplicateField;
             }
             set {
-                if ((object.ReferenceEquals(this.CommentField, value) != true)) {
-                    this.CommentField = value;
-                    this.RaisePropertyChanged("Comment");
+                if ((object.ReferenceEquals(this.DuplicateField, value) != true)) {
+                    this.DuplicateField = value;
+                    this.RaisePropertyChanged("Duplicate");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime CreateDate {
+        public bool IdentityConflict {
             get {
-                return this.CreateDateField;
+                return this.IdentityConflictField;
             }
             set {
-                if ((this.CreateDateField.Equals(value) != true)) {
-                    this.CreateDateField = value;
-                    this.RaisePropertyChanged("CreateDate");
+                if ((this.IdentityConflictField.Equals(value) != true)) {
+                    this.IdentityConflictField = value;
+                    this.RaisePropertyChanged("IdentityConflict");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long ProductId {
+        public bool InvalidSource {
             get {
-                return this.ProductIdField;
+                return this.InvalidSourceField;
             }
             set {
-                if ((this.ProductIdField.Equals(value) != true)) {
-                    this.ProductIdField = value;
-                    this.RaisePropertyChanged("ProductId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> ReleaseDate {
-            get {
-                return this.ReleaseDateField;
-            }
-            set {
-                if ((this.ReleaseDateField.Equals(value) != true)) {
-                    this.ReleaseDateField = value;
-                    this.RaisePropertyChanged("ReleaseDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public short Revision {
-            get {
-                return this.RevisionField;
-            }
-            set {
-                if ((this.RevisionField.Equals(value) != true)) {
-                    this.RevisionField = value;
-                    this.RaisePropertyChanged("Revision");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductState State {
-            get {
-                return this.StateField;
-            }
-            set {
-                if ((this.StateField.Equals(value) != true)) {
-                    this.StateField = value;
-                    this.RaisePropertyChanged("State");
+                if ((this.InvalidSourceField.Equals(value) != true)) {
+                    this.InvalidSourceField = value;
+                    this.RaisePropertyChanged("InvalidSource");
                 }
             }
         }
@@ -1327,23 +1357,17 @@ namespace Marvin.Products.UI.ProductService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetCustomization", ReplyAction="http://tempuri.org/IProductInteraction/GetCustomizationResponse")]
         System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductCustomization> GetCustomizationAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
-        Marvin.Serialization.Entry UpdateParameters(string importer, Marvin.Serialization.Entry currentParameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProducts", ReplyAction="http://tempuri.org/IProductInteraction/GetProductsResponse")]
+        Marvin.Products.UI.ProductService.ProductModel[] GetProducts(Marvin.Products.UI.ProductService.ProductQuery query);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
-        System.Threading.Tasks.Task<Marvin.Serialization.Entry> UpdateParametersAsync(string importer, Marvin.Serialization.Entry currentParameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProducts", ReplyAction="http://tempuri.org/IProductInteraction/GetProductsResponse")]
+        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel[]> GetProductsAsync(Marvin.Products.UI.ProductService.ProductQuery query);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductStructure", ReplyAction="http://tempuri.org/IProductInteraction/GetProductStructureResponse")]
-        Marvin.Products.UI.ProductService.ProductStructureEntry[] GetProductStructure();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateProduct", ReplyAction="http://tempuri.org/IProductInteraction/CreateProductResponse")]
+        Marvin.Products.UI.ProductService.ProductModel CreateProduct(string type);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductStructure", ReplyAction="http://tempuri.org/IProductInteraction/GetProductStructureResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductStructureEntry[]> GetProductStructureAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetAllProducts", ReplyAction="http://tempuri.org/IProductInteraction/GetAllProductsResponse")]
-        Marvin.Products.UI.ProductService.ProductModel[] GetAllProducts();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetAllProducts", ReplyAction="http://tempuri.org/IProductInteraction/GetAllProductsResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel[]> GetAllProductsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateProduct", ReplyAction="http://tempuri.org/IProductInteraction/CreateProductResponse")]
+        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> CreateProductAsync(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductDetails", ReplyAction="http://tempuri.org/IProductInteraction/GetProductDetailsResponse")]
         Marvin.Products.UI.ProductService.ProductModel GetProductDetails(long id);
@@ -1351,29 +1375,23 @@ namespace Marvin.Products.UI.ProductService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductDetails", ReplyAction="http://tempuri.org/IProductInteraction/GetProductDetailsResponse")]
         System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> GetProductDetailsAsync(long id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductRevisions", ReplyAction="http://tempuri.org/IProductInteraction/GetProductRevisionsResponse")]
-        Marvin.Products.UI.ProductService.ProductRevisionEntry[] GetProductRevisions(string identifier);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductRevisions", ReplyAction="http://tempuri.org/IProductInteraction/GetProductRevisionsResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductRevisionEntry[]> GetProductRevisionsAsync(string identifier);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveProduct", ReplyAction="http://tempuri.org/IProductInteraction/SaveProductResponse")]
         Marvin.Products.UI.ProductService.ProductModel SaveProduct(Marvin.Products.UI.ProductService.ProductModel instance);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveProduct", ReplyAction="http://tempuri.org/IProductInteraction/SaveProductResponse")]
         System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> SaveProductAsync(Marvin.Products.UI.ProductService.ProductModel instance);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ReleaseProduct", ReplyAction="http://tempuri.org/IProductInteraction/ReleaseProductResponse")]
-        Marvin.Products.UI.ProductService.ProductModel ReleaseProduct(long id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DuplicateProduct", ReplyAction="http://tempuri.org/IProductInteraction/DuplicateProductResponse")]
+        Marvin.Products.UI.ProductService.DuplicateProductResponse DuplicateProduct(long sourceId, string identifier, short revisionNo);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ReleaseProduct", ReplyAction="http://tempuri.org/IProductInteraction/ReleaseProductResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> ReleaseProductAsync(long id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DuplicateProduct", ReplyAction="http://tempuri.org/IProductInteraction/DuplicateProductResponse")]
+        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(long sourceId, string identifier, short revisionNo);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateRevision", ReplyAction="http://tempuri.org/IProductInteraction/CreateRevisionResponse")]
-        Marvin.Products.UI.ProductService.ProductModel CreateRevision(long id, short revisionNo, string comment);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DeleteProduct", ReplyAction="http://tempuri.org/IProductInteraction/DeleteProductResponse")]
+        bool DeleteProduct(long id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateRevision", ReplyAction="http://tempuri.org/IProductInteraction/CreateRevisionResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> CreateRevisionAsync(long id, short revisionNo, string comment);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DeleteProduct", ReplyAction="http://tempuri.org/IProductInteraction/DeleteProductResponse")]
+        System.Threading.Tasks.Task<bool> DeleteProductAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ImportProduct", ReplyAction="http://tempuri.org/IProductInteraction/ImportProductResponse")]
         Marvin.Products.UI.ProductService.ProductModel ImportProduct(string importerName, Marvin.Serialization.Entry parametersModel);
@@ -1381,11 +1399,11 @@ namespace Marvin.Products.UI.ProductService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ImportProduct", ReplyAction="http://tempuri.org/IProductInteraction/ImportProductResponse")]
         System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> ImportProductAsync(string importerName, Marvin.Serialization.Entry parametersModel);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DeleteProduct", ReplyAction="http://tempuri.org/IProductInteraction/DeleteProductResponse")]
-        Marvin.Products.UI.ProductService.ProductModel[] DeleteProduct(long id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
+        Marvin.Serialization.Entry UpdateParameters(string importer, Marvin.Serialization.Entry currentParameters);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DeleteProduct", ReplyAction="http://tempuri.org/IProductInteraction/DeleteProductResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel[]> DeleteProductAsync(long id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
+        System.Threading.Tasks.Task<Marvin.Serialization.Entry> UpdateParametersAsync(string importer, Marvin.Serialization.Entry currentParameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipe", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipeResponse")]
         Marvin.Products.UI.ProductService.RecipeModel GetRecipe(long recipeId);
@@ -1405,41 +1423,17 @@ namespace Marvin.Products.UI.ProductService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateRecipe", ReplyAction="http://tempuri.org/IProductInteraction/CreateRecipeResponse")]
         System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> CreateRecipeAsync(string recipeType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductionRecipe", ReplyAction="http://tempuri.org/IProductInteraction/GetProductionRecipeResponse")]
-        Marvin.Products.UI.ProductService.RecipeModel GetProductionRecipe(long productId, long workplanId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveRecipe", ReplyAction="http://tempuri.org/IProductInteraction/SaveRecipeResponse")]
+        Marvin.Products.UI.ProductService.RecipeModel SaveRecipe(Marvin.Products.UI.ProductService.RecipeModel recipe);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductionRecipe", ReplyAction="http://tempuri.org/IProductInteraction/GetProductionRecipeResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> GetProductionRecipeAsync(long productId, long workplanId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateProductionRecipe", ReplyAction="http://tempuri.org/IProductInteraction/CreateProductionRecipeResponse")]
-        Marvin.Products.UI.ProductService.RecipeModel CreateProductionRecipe(long productId, long workplanId, string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateProductionRecipe", ReplyAction="http://tempuri.org/IProductInteraction/CreateProductionRecipeResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> CreateProductionRecipeAsync(long productId, long workplanId, string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveProductionRecipe", ReplyAction="http://tempuri.org/IProductInteraction/SaveProductionRecipeResponse")]
-        bool SaveProductionRecipe(Marvin.Products.UI.ProductService.RecipeModel recipe);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveProductionRecipe", ReplyAction="http://tempuri.org/IProductInteraction/SaveProductionRecipeResponse")]
-        System.Threading.Tasks.Task<bool> SaveProductionRecipeAsync(Marvin.Products.UI.ProductService.RecipeModel recipe);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateWorkplan", ReplyAction="http://tempuri.org/IProductInteraction/CreateWorkplanResponse")]
-        Marvin.Products.UI.ProductService.WorkplanModel CreateWorkplan(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateWorkplan", ReplyAction="http://tempuri.org/IProductInteraction/CreateWorkplanResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.WorkplanModel> CreateWorkplanAsync(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveRecipe", ReplyAction="http://tempuri.org/IProductInteraction/SaveRecipeResponse")]
+        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Marvin.Products.UI.ProductService.RecipeModel recipe);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplans", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplansResponse")]
         Marvin.Products.UI.ProductService.WorkplanModel[] GetWorkplans();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplans", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplansResponse")]
         System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.WorkplanModel[]> GetWorkplansAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplan", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplanResponse")]
-        Marvin.Products.UI.ProductService.WorkplanModel GetWorkplan(long id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplan", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplanResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.WorkplanModel> GetWorkplanAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipeProviderName", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipeProviderNameResponse")]
         string GetRecipeProviderName();
@@ -1483,28 +1477,20 @@ namespace Marvin.Products.UI.ProductService {
             return base.Channel.GetCustomizationAsync();
         }
         
-        public Marvin.Serialization.Entry UpdateParameters(string importer, Marvin.Serialization.Entry currentParameters) {
-            return base.Channel.UpdateParameters(importer, currentParameters);
+        public Marvin.Products.UI.ProductService.ProductModel[] GetProducts(Marvin.Products.UI.ProductService.ProductQuery query) {
+            return base.Channel.GetProducts(query);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Serialization.Entry> UpdateParametersAsync(string importer, Marvin.Serialization.Entry currentParameters) {
-            return base.Channel.UpdateParametersAsync(importer, currentParameters);
+        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel[]> GetProductsAsync(Marvin.Products.UI.ProductService.ProductQuery query) {
+            return base.Channel.GetProductsAsync(query);
         }
         
-        public Marvin.Products.UI.ProductService.ProductStructureEntry[] GetProductStructure() {
-            return base.Channel.GetProductStructure();
+        public Marvin.Products.UI.ProductService.ProductModel CreateProduct(string type) {
+            return base.Channel.CreateProduct(type);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductStructureEntry[]> GetProductStructureAsync() {
-            return base.Channel.GetProductStructureAsync();
-        }
-        
-        public Marvin.Products.UI.ProductService.ProductModel[] GetAllProducts() {
-            return base.Channel.GetAllProducts();
-        }
-        
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel[]> GetAllProductsAsync() {
-            return base.Channel.GetAllProductsAsync();
+        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> CreateProductAsync(string type) {
+            return base.Channel.CreateProductAsync(type);
         }
         
         public Marvin.Products.UI.ProductService.ProductModel GetProductDetails(long id) {
@@ -1515,14 +1501,6 @@ namespace Marvin.Products.UI.ProductService {
             return base.Channel.GetProductDetailsAsync(id);
         }
         
-        public Marvin.Products.UI.ProductService.ProductRevisionEntry[] GetProductRevisions(string identifier) {
-            return base.Channel.GetProductRevisions(identifier);
-        }
-        
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductRevisionEntry[]> GetProductRevisionsAsync(string identifier) {
-            return base.Channel.GetProductRevisionsAsync(identifier);
-        }
-        
         public Marvin.Products.UI.ProductService.ProductModel SaveProduct(Marvin.Products.UI.ProductService.ProductModel instance) {
             return base.Channel.SaveProduct(instance);
         }
@@ -1531,20 +1509,20 @@ namespace Marvin.Products.UI.ProductService {
             return base.Channel.SaveProductAsync(instance);
         }
         
-        public Marvin.Products.UI.ProductService.ProductModel ReleaseProduct(long id) {
-            return base.Channel.ReleaseProduct(id);
+        public Marvin.Products.UI.ProductService.DuplicateProductResponse DuplicateProduct(long sourceId, string identifier, short revisionNo) {
+            return base.Channel.DuplicateProduct(sourceId, identifier, revisionNo);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> ReleaseProductAsync(long id) {
-            return base.Channel.ReleaseProductAsync(id);
+        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(long sourceId, string identifier, short revisionNo) {
+            return base.Channel.DuplicateProductAsync(sourceId, identifier, revisionNo);
         }
         
-        public Marvin.Products.UI.ProductService.ProductModel CreateRevision(long id, short revisionNo, string comment) {
-            return base.Channel.CreateRevision(id, revisionNo, comment);
+        public bool DeleteProduct(long id) {
+            return base.Channel.DeleteProduct(id);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> CreateRevisionAsync(long id, short revisionNo, string comment) {
-            return base.Channel.CreateRevisionAsync(id, revisionNo, comment);
+        public System.Threading.Tasks.Task<bool> DeleteProductAsync(long id) {
+            return base.Channel.DeleteProductAsync(id);
         }
         
         public Marvin.Products.UI.ProductService.ProductModel ImportProduct(string importerName, Marvin.Serialization.Entry parametersModel) {
@@ -1555,12 +1533,12 @@ namespace Marvin.Products.UI.ProductService {
             return base.Channel.ImportProductAsync(importerName, parametersModel);
         }
         
-        public Marvin.Products.UI.ProductService.ProductModel[] DeleteProduct(long id) {
-            return base.Channel.DeleteProduct(id);
+        public Marvin.Serialization.Entry UpdateParameters(string importer, Marvin.Serialization.Entry currentParameters) {
+            return base.Channel.UpdateParameters(importer, currentParameters);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel[]> DeleteProductAsync(long id) {
-            return base.Channel.DeleteProductAsync(id);
+        public System.Threading.Tasks.Task<Marvin.Serialization.Entry> UpdateParametersAsync(string importer, Marvin.Serialization.Entry currentParameters) {
+            return base.Channel.UpdateParametersAsync(importer, currentParameters);
         }
         
         public Marvin.Products.UI.ProductService.RecipeModel GetRecipe(long recipeId) {
@@ -1587,36 +1565,12 @@ namespace Marvin.Products.UI.ProductService {
             return base.Channel.CreateRecipeAsync(recipeType);
         }
         
-        public Marvin.Products.UI.ProductService.RecipeModel GetProductionRecipe(long productId, long workplanId) {
-            return base.Channel.GetProductionRecipe(productId, workplanId);
+        public Marvin.Products.UI.ProductService.RecipeModel SaveRecipe(Marvin.Products.UI.ProductService.RecipeModel recipe) {
+            return base.Channel.SaveRecipe(recipe);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> GetProductionRecipeAsync(long productId, long workplanId) {
-            return base.Channel.GetProductionRecipeAsync(productId, workplanId);
-        }
-        
-        public Marvin.Products.UI.ProductService.RecipeModel CreateProductionRecipe(long productId, long workplanId, string name) {
-            return base.Channel.CreateProductionRecipe(productId, workplanId, name);
-        }
-        
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> CreateProductionRecipeAsync(long productId, long workplanId, string name) {
-            return base.Channel.CreateProductionRecipeAsync(productId, workplanId, name);
-        }
-        
-        public bool SaveProductionRecipe(Marvin.Products.UI.ProductService.RecipeModel recipe) {
-            return base.Channel.SaveProductionRecipe(recipe);
-        }
-        
-        public System.Threading.Tasks.Task<bool> SaveProductionRecipeAsync(Marvin.Products.UI.ProductService.RecipeModel recipe) {
-            return base.Channel.SaveProductionRecipeAsync(recipe);
-        }
-        
-        public Marvin.Products.UI.ProductService.WorkplanModel CreateWorkplan(string name) {
-            return base.Channel.CreateWorkplan(name);
-        }
-        
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.WorkplanModel> CreateWorkplanAsync(string name) {
-            return base.Channel.CreateWorkplanAsync(name);
+        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Marvin.Products.UI.ProductService.RecipeModel recipe) {
+            return base.Channel.SaveRecipeAsync(recipe);
         }
         
         public Marvin.Products.UI.ProductService.WorkplanModel[] GetWorkplans() {
@@ -1625,14 +1579,6 @@ namespace Marvin.Products.UI.ProductService {
         
         public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.WorkplanModel[]> GetWorkplansAsync() {
             return base.Channel.GetWorkplansAsync();
-        }
-        
-        public Marvin.Products.UI.ProductService.WorkplanModel GetWorkplan(long id) {
-            return base.Channel.GetWorkplan(id);
-        }
-        
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.WorkplanModel> GetWorkplanAsync(long id) {
-            return base.Channel.GetWorkplanAsync(id);
         }
         
         public string GetRecipeProviderName() {

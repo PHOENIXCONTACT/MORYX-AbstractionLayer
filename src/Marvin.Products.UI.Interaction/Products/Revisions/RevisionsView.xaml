@@ -1,81 +1,60 @@
 ﻿<UserControl x:Class="Marvin.Products.UI.Interaction.RevisionsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
-             mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:RevisionsViewModel}">
+             xmlns:ui="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:RevisionsViewModel}" d:DesignWidth="325.354" d:DesignHeight="88.955"
+             MinHeight="300" MinWidth="550">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Marvin.Products.UI;component/Templates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="Revision" />
+        </ResourceDictionary>
+    </UserControl.Resources>
 
-    <DialogPanel BusyVisibility="{Binding CurrentTask.BusyVisibility}">
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+
+    <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}" MinWidth="480">
         <DialogPanel.Buttons>
-            <EddieButton Command="{Binding OpenCmd}" Content="Open" />
-            <EddieButton Command="{Binding CloseCmd}" Content="Close" />
+            <EddieButton Icon="Ok" Command="{Binding CreateCmd}" Content="Create" Margin="0,0,10,0"/>
+            <EddieButton Icon="Open" Command="{Binding OpenCmd}" CommandParameter="{Binding ElementName=RevisionsList, Path=SelectedItem}"
+                         Content="Open" />
+
+            <EddieButton Icon="Cross" Command="{Binding CloseCmd}" Content="Close" EddieStyle="Gray"/>
         </DialogPanel.Buttons>
 
-        <ListView ItemsSource="{Binding Revisions}" SelectedItem="{Binding SelectedRevision, Mode=TwoWay}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader>
-                            <GridViewColumnHeader.Content>
-                                <Label Content="Revision" />
-                            </GridViewColumnHeader.Content>
-                        </GridViewColumnHeader>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate DataType="interaction:ProductRevisionViewModel">
-                                <TextBlock VerticalAlignment="Center" Text="{Binding Revision}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+        <DockPanel LastChildFill="True">
+            <TextBlock DockPanel.Dock="Bottom"
+                       Margin="0,10,0,0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding ErrorMessage}"
+                       FontWeight="Bold" Foreground="Red"/>
 
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader>
-                            <GridViewColumnHeader.Content>
-                                <Label Content="Creation date" Width="Auto" />
-                            </GridViewColumnHeader.Content>
-                        </GridViewColumnHeader>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate DataType="interaction:ProductRevisionViewModel">
-                                <TextBlock VerticalAlignment="Center" Text="{Binding CreatedDate, StringFormat=d}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader>
-                            <GridViewColumnHeader.Content>
-                                <Label Content="Release date" Width="Auto" />
-                            </GridViewColumnHeader.Content>
-                        </GridViewColumnHeader>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate DataType="interaction:ProductRevisionViewModel">
-                                <TextBlock VerticalAlignment="Center" Text="{Binding ReleaseDate, StringFormat=d}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Width="70">
-                        <GridViewColumnHeader>
-                            <GridViewColumnHeader.Content>
-                                <Label Content="State" Width="Auto" />
-                            </GridViewColumnHeader.Content>
-                        </GridViewColumnHeader>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate DataType="interaction:ProductRevisionViewModel">
-                                <TextBlock VerticalAlignment="Center" Text="{Binding State}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="150">
-                        <GridViewColumnHeader Content="Comment" />
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate DataType="interaction:ProductRevisionViewModel">
-                                <TextBlock VerticalAlignment="Center" Text="{Binding Comment}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+            <EddieListBox x:Name="RevisionsList"
+                          DockPanel.Dock="Top"
+                          ItemsSource="{Binding Revisions, Converter={StaticResource SortedCollectionViewSourceConverter}}"
+                          SelectedItem="{Binding SelectedRevision, Mode=TwoWay}">
+                <EddieListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center"
+                                   Text="{Binding DisplayName, Mode=OneWay}">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftDoubleClick"
+                                              Command="{Binding DataContext.OpenCmd, RelativeSource={RelativeSource AncestorType={x:Type EddieListBox}}}"
+                                              CommandParameter="{Binding}" />
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </DataTemplate>
+                </EddieListBox.ItemTemplate>
+            </EddieListBox>
+        </DockPanel>
     </DialogPanel>
 </UserControl>

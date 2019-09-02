@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5f7da72d-e789-406f-a83e-8407bf7c529a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Metadata/ResourceInteraction" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ResourceInteraction.xsd" MetadataType="Schema" ID="de00bea2-3871-4afc-bee8-4cb1705cc1bd" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd5" />
+    <MetadataFile FileName="ResourceInteraction1.xsd" MetadataType="Schema" ID="b34ab391-44fc-473f-9c60-0719a469f46a" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd4" />
+    <MetadataFile FileName="ResourceInteraction2.xsd" MetadataType="Schema" ID="14f7413b-1fc1-4a72-9501-9a25aff89a16" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd3" />
+    <MetadataFile FileName="ResourceInteraction.wsdl" MetadataType="Wsdl" ID="eca925ac-bbc0-496b-aa38-1c9ff68dd73c" SourceId="1" SourceUrl="http://localhost/Metadata/ResourceInteraction" />
+    <MetadataFile FileName="ResourceInteraction3.xsd" MetadataType="Schema" ID="00d2642a-7c2b-48e0-909c-f52a242482d9" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd1" />
+    <MetadataFile FileName="ResourceInteraction4.xsd" MetadataType="Schema" ID="deec2968-1672-4336-9da8-a452e279941f" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd0" />
+    <MetadataFile FileName="ResourceInteraction5.xsd" MetadataType="Schema" ID="bf9136bd-ddd7-4b74-91f8-087c4e7b57f5" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

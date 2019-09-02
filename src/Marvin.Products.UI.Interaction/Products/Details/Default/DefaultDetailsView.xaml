@@ -4,21 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
-             xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:DefaultDetailsViewModel}"
              d:DesignHeight="300" d:DesignWidth="500">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <interaction:GeneralProductControl Grid.Row="0" Product="{Binding EditableObject}"
-                                           Margin="0,0,0,10" IsEditMode="{Binding IsEditMode}"/>
-
-        <controls:EntryEditor Grid.Row="1"
-                               VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                               BreadcrumbVisibility="Visible" IsEditMode="{Binding IsEditMode}"
-                               RootEntry="{Binding Properties}"/>
-    </Grid>
+    <ContentControl cal:View.Model="{Binding Aspects}" />
 </UserControl>

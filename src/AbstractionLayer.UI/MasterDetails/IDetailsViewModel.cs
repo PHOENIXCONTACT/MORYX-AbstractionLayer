@@ -8,6 +8,6 @@
         /// <summary>
         /// Initializes this instance with all needed information
         /// </summary>
-        void Initialize(IInteractionController controller, string typeName);
+        void Initialize(string typeName);
     }
 }

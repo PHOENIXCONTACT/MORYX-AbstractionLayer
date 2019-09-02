@@ -1,86 +1,148 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using C4I;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
-using Marvin.Container;
+using Marvin.ClientFramework.Tasks;
+using Marvin.Resources.UI.ResourceService;
+using Marvin.Tools;
 
 namespace Marvin.Resources.UI.Interaction
 {
-    [Plugin(LifeCycle.Transient, typeof(ITypeSelectorViewModel))]
-    internal class TypeSelectorViewModel : DialogScreen, ITypeSelectorViewModel
+    internal class TypeSelectorViewModel : DialogScreen
     {
+        private readonly IResourceServiceModel _resourceServiceModel;
         private ResourceTypeViewModel _selectedType;
+        private string _errorMessage;
+        private TaskNotifier _taskNotifier;
 
         #region Fields and properties
 
-        public ICommand CancelCmd { get; private set; }
+        public ICommand CancelCmd { get; }
 
-        public DelegateCommand CreateCmd { get; private set; }
+        public AsyncCommand CreateCmd { get; }
 
         /// <summary>
         /// Type tree is set depending on selected node
         /// </summary>
-        public IEnumerable<IResourceTypeViewModel> TypeTree { get; set; }
+        public IEnumerable<ResourceTypeViewModel> TypeTree { get; set; }
 
         public ResourceTypeViewModel SelectedType
         {
             get { return _selectedType; }
             private set
             {
-                if (Equals(value, _selectedType)) return;
                 _selectedType = value;
                 NotifyOfPropertyChange();
                 CreateCmd.RaiseCanExecuteChanged();
             }
         }
 
-        ///
-        public string SelectedTypeName => SelectedType != null ? SelectedType.Name : string.Empty;
+        public ResourceModel ResourcePrototype { get; private set; }
 
-        public IConstructorViewModel Constructor => SelectedType?.Constructors.FirstOrDefault(c => c.IsSelected);
+        /// <summary>
+        /// Error message while adding the resource
+        /// </summary>
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public TaskNotifier TaskNotifier
+        {
+            get { return _taskNotifier; }
+            set
+            {
+                _taskNotifier = value;
+                NotifyOfPropertyChange();
+            }
+        }
 
         #endregion
+
+        public TypeSelectorViewModel(IResourceServiceModel resourceServiceModel, ResourceTreeItemViewModel resource)
+        {
+            _resourceServiceModel = resourceServiceModel;
+
+            var rootType = _resourceServiceModel.TypeTree;
+            var constraint = new[] { rootType.Name };
+            // Extract children constraint
+            if (resource != null)
+            {
+                var resourceType = _resourceServiceModel.TypeTree.DerivedTypes
+                    .Flatten(t => t.DerivedTypes).First(t => t.Name == resource.Resource.TypeName);
+                constraint = resourceType.References.First(r => r.Name == "Children").SupportedTypes;
+            }
+
+            var matches = FilterTypes(rootType, constraint);
+            // If there is a single, abstract root node, we can skip it
+            if (matches.Count == 1 && !matches[0].Creatable)
+                matches = matches[0].DerivedTypes;
+
+            TypeTree = matches.Select(type => new ResourceTypeViewModel(type));
+
+            CreateCmd = new AsyncCommand(Create, CanCreate);
+            CancelCmd = new RelayCommand(Cancel, CanCancel);
+        }
+
+        private static IReadOnlyList<ResourceTypeModel> FilterTypes(ResourceTypeModel typeNode, string[] constraint)
+        {
+            if (constraint.Contains(typeNode.Name))
+                return new[] { typeNode };
+
+            return typeNode.DerivedTypes.SelectMany(dt => FilterTypes(dt, constraint)).ToArray();
+        }
 
         ///
         protected override void OnInitialize()
         {
             base.OnInitialize();
-
-            CreateCmd = new DelegateCommand(Create, CanCreate);
-            CancelCmd = new DelegateCommand(Cancel);
-
             DisplayName = "Resource type selection:";
         }
 
         /// <summary>
         /// Checks if the resource type can be created <see cref="CreateCmd"/>
         /// </summary>
-        private bool CanCreate(object obj)
-        {
-            return SelectedType != null && SelectedType.Creatable;
-        }
+        private bool CanCreate(object obj) =>
+            SelectedType != null && SelectedType.Creatable && _resourceServiceModel.IsAvailable;
 
         /// <summary>
         /// Will be called by <see cref="CreateCmd"/> and will return a true result
         /// </summary>
-        private void Create(object obj)
+        private async Task Create(object obj)
         {
-            TryClose(true);
+            try
+            {
+                ResourcePrototype = await _resourceServiceModel.CreateResource(SelectedType.Name, SelectedType.Constructors.FirstOrDefault(c => c.IsSelected)?.Model);
+                TryClose(true);
+            }
+            catch (Exception e)
+            {
+                ErrorMessage = e.Message;
+            }
         }
+
+        private bool CanCancel(object obj) =>
+            !CreateCmd.IsExecuting;
 
         /// <summary>
         /// Will be called by <see cref="CancelCmd"/> and will return a false result
         /// </summary>
-        private void Cancel(object obj)
-        {
+        private void Cancel(object obj) =>
             TryClose(false);
-        }
-        
+
         public void OnTreeItemChanged(object sender, RoutedPropertyChangedEventArgs<object> args)
         {
-            var selected = (ResourceTypeViewModel) args.NewValue;
+            var selected = (ResourceTypeViewModel)args.NewValue;
             SelectedType = selected;
         }
     }

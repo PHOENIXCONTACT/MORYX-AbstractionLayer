@@ -1,66 +1,138 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using C4I;
+using Caliburn.Micro;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
-using Marvin.Container;
+using Marvin.ClientFramework.Tasks;
+using Marvin.Products.UI.ProductService;
+using Marvin.Tools;
 
 namespace Marvin.Products.UI.Interaction
 {
-    [Plugin(LifeCycle.Transient, typeof(IRemoveProductViewModel))]
-    internal class RemoveProductViewModel : DialogScreen, IRemoveProductViewModel
+    internal class RemoveProductViewModel : DialogScreen
     {
-        private ICollection<ProductViewModel> _affectedProducts;
-
-        #region Dependencies
+        private readonly IProductServiceModel _productServiceModel;
+        private TaskNotifier _taskNotifier;
+        private string _errorMessage;
 
         /// <summary>
-        /// Injected products controller
+        /// Product which should be removed
         /// </summary>
-        public IProductServiceModel ProductServiceModel { get; set; }
+        public ProductInfoViewModel ProductToRemove { get; }
 
-        #endregion
+        /// <summary>
+        /// Command to execute the removal
+        /// </summary>
+        public AsyncCommand RemoveCmd { get; }
 
-        public RemoveProductViewModel(StructureEntryViewModel productToRemove)
+        /// <summary>
+        /// Command to cancel this dialog
+        /// </summary>
+        public ICommand CancelCmd { get; }
+
+        /// <summary>
+        /// List of affected products
+        /// </summary>
+        public ObservableCollection<ProductInfoViewModel> AffectedProducts { get; } = new ObservableCollection<ProductInfoViewModel>();
+
+        /// <summary>
+        /// Task notifier to display a busy indicator
+        /// </summary>
+        public TaskNotifier TaskNotifier
         {
-            ProductToRemove = productToRemove;
-
-            OkCommand = new AsyncCommand(TryRemoveProduct, o => AffectedProducts?.Count == 0);
-            CancelCommand = new DelegateCommand(o => TryClose(false));
-        }
-
-        public StructureEntryViewModel ProductToRemove { get; }
-
-        public AsyncCommand OkCommand { get; }
-
-        public ICommand CancelCommand { get; }
-
-        public ICollection<ProductViewModel> AffectedProducts
-        {
-            get { return _affectedProducts; }
+            get { return _taskNotifier; }
             set
             {
-                if (Equals(value, _affectedProducts))
-                    return;
-                _affectedProducts = value;
+                _taskNotifier = value;
                 NotifyOfPropertyChange();
-                OkCommand.RaiseCanExecuteChanged();
             }
         }
 
+        /// <summary>
+        /// Error message while removing the product
+        /// </summary>
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        /// <summary>
+        /// Constructor for this view model
+        /// </summary>
+        public RemoveProductViewModel(IProductServiceModel productServiceModel, ProductInfoViewModel product)
+        {
+            _productServiceModel = productServiceModel;
+            ProductToRemove = product;
+
+            RemoveCmd = new AsyncCommand(Remove, CanRemove, true);
+            CancelCmd = new RelayCommand(Cancel, CanCancel);
+        }
+
+        /// <inheritdoc />
         protected override void OnInitialize()
         {
             DisplayName = "Remove Product";
+
+            var loadingTask = Task.Run(async delegate
+            {
+                var affectedProducts = await _productServiceModel.GetProducts(new ProductQuery
+                {
+                    Identifier = ProductToRemove.Identifier,
+                    Revision = ProductToRemove.Revision,
+                    RevisionFilter = RevisionFilter.All,
+                    Selector = Selector.Parent
+                }).ConfigureAwait(false);
+
+                var vms = affectedProducts.Select(r => new ProductInfoViewModel(r)).ToArray();
+                await Execute.OnUIThreadAsync(delegate
+                {
+                    AffectedProducts.AddRange(vms);
+                    ErrorMessage = "The product cannot be removed because it is still used in other products";
+                });
+            });
+
+            TaskNotifier = new TaskNotifier(loadingTask);
         }
 
-        private async Task TryRemoveProduct(object unused)
+        private bool CanRemove(object parameters) =>
+            AffectedProducts.Count == 0 && _productServiceModel.IsAvailable;
+
+        private async Task Remove(object parameter)
         {
-            AffectedProducts = (await ProductServiceModel.RemoveProduct(ProductToRemove.Id))
-                .Select(ap => new ProductViewModel(ap)).ToArray();
+            try
+            {
+                var removalTask = _productServiceModel.DeleteProduct(ProductToRemove.Id);
+                TaskNotifier = new TaskNotifier(removalTask);
 
-            if (AffectedProducts.Count == 0)
-                TryClose(true);
+                var result = await removalTask;
+                if (result == false)
+                {
+                    ErrorMessage = "The product was not removed!";
+                }
+                else
+                {
+                    TryClose(true);
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorMessage = e.Message;
+            }
         }
+
+        private bool CanCancel(object obj) =>
+            !RemoveCmd.IsExecuting;
+
+        private void Cancel(object obj) =>
+            TryClose(false);
     }
 }

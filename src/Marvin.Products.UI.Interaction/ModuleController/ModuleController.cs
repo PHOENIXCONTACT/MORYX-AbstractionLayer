@@ -1,7 +1,7 @@
 ﻿using System.Windows.Media;
+using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.ClientFramework;
 using Marvin.Logging;
-using Marvin.Products.UI.Recipes;
 using Marvin.Tools.Wcf;
 
 namespace Marvin.Products.UI.Interaction
@@ -29,9 +29,13 @@ namespace Marvin.Products.UI.Interaction
         /// </summary>
         protected override void OnInitialize()
         {
+            // Register aspect factory
+            Container.Register<IAspectFactory>();
+
             // Load ResourceDetails and RecipeDetails to the current module container
             Container.LoadComponents<IProductDetails>();
             Container.LoadComponents<IRecipeDetails>();
+            Container.LoadComponents<IProductAspect>();
 
             // Register and start service model
             var clientFactory = Container.Resolve<IWcfClientFactory>();
@@ -78,17 +82,10 @@ namespace Marvin.Products.UI.Interaction
         }
 
         /// <inheritdoc />
-        public IRecipeWorkspace CreateWorkspace(string title, params long[] recipeIds)
+        IRecipeWorkspace IRecipeWorkspaceProvider.CreateWorkspace(string title, params long[] recipeIds)
         {
-            var recipeEditorFactory = Container.Resolve<IRecipeEditorFactory>();
-            return recipeEditorFactory.CreateRecipeEditor(title, recipeIds);
-        }
-
-        /// <inheritdoc />
-        public IRecipeWorkspace CreateWorkspace(string title, long productId)
-        {
-            var recipeEditorFactory = Container.Resolve<IRecipeEditorFactory>();
-            return recipeEditorFactory.CreateRecipeEditor(title, productId);
+            var recipeEditorFactory = Container.Resolve<IRecipeWorkspaceFactory>();
+            return recipeEditorFactory.CreateRecipeWorkspace(title, recipeIds);
         }
     }
 }

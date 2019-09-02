@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using C4I;
 using Caliburn.Micro;
 using Marvin.ClientFramework;
+using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
 using Marvin.Logging;
+using MessageBoxImage = Marvin.ClientFramework.Dialog.MessageBoxImage;
+using MessageBoxOptions = Marvin.ClientFramework.Dialog.MessageBoxOptions;
 
 namespace Marvin.AbstractionLayer.UI
 {
@@ -41,51 +49,51 @@ namespace Marvin.AbstractionLayer.UI
         #region Fields and Properties
 
         /// <summary>
+        /// Command to enter the edit mode
+        /// </summary>
+        public ICommand EnterEditCmd { get; }
+
+        /// <summary>
+        /// Command to cancel the edit mode
+        /// </summary>
+        public ICommand CancelEditCmd { get; }
+
+        /// <summary>
+        /// Command to save the current details
+        /// </summary>
+        public IAsyncCommand SaveCmd { get; }
+
+        /// <summary>
         /// Will represent the <see cref="ConductorBaseWithActiveItem{T}.ActiveItem"/> but in the detail type
         /// </summary>
         public TDetailsType CurrentDetails => (TDetailsType)ActiveItem;
 
-        private bool _isDetailsInEditMode;
+        private bool _isEditMode;
 
         /// <summary>
-        /// Flag indicating whether the details is in edit mode
+        /// Edit mode
         /// </summary>
-        public bool IsDetailsInEditMode
+        public bool IsEditMode
         {
-            get { return _isDetailsInEditMode; }
-            protected set
+            get { return _isEditMode; }
+            private set
             {
-                _isDetailsInEditMode = value;
-                NotifyOfPropertyChange();
+                _isEditMode = value;
+                NotifyOfPropertyChange(nameof(IsEditMode));
             }
         }
 
-        private bool _isMasterBusy;
+        private bool _isBusy;
 
         /// <summary>
         /// Should be set to true if the master will load some  information
         /// </summary>
-        public bool IsMasterBusy
+        public bool IsBusy
         {
-            get { return _isMasterBusy; }
+            get { return _isBusy; }
             protected set
             {
-                _isMasterBusy = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
-        private bool _isDetailsInBusyMode;
-
-        /// <summary>
-        /// Indicating if details view model is in busy mode
-        /// </summary>
-        public bool IsDetailsInBusyMode
-        {
-            get { return _isDetailsInBusyMode; }
-            set
-            {
-                _isDetailsInBusyMode = value;
+                _isBusy = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -97,13 +105,23 @@ namespace Marvin.AbstractionLayer.UI
 
         #endregion
 
+        /// <summary>
+        /// Default constructor to initialize commands and so on
+        /// </summary>
+        protected MasterDetailsWorkspace()
+        {
+            EnterEditCmd = new RelayCommand(o => EnterEdit(), o => CanEnterEdit());
+            CancelEditCmd = new RelayCommand(o => CancelEdit(), o => CanCancelEdit());
+            SaveCmd = new AsyncCommand(Save, CanSave, true);
+        }
+
         ///
         protected override void OnInitialize()
         {
             base.OnInitialize();
 
             // Show busy indicator on master because we are not sure if the master is currently loaded
-            IsMasterBusy = true;
+            IsBusy = true;
 
             Logger = Logger.GetChild(typeof(TDetailsType).Name, GetType());
 
@@ -112,14 +130,20 @@ namespace Marvin.AbstractionLayer.UI
             ShowEmpty();
         }
 
+        /// <summary>
+        /// Gets called when the master item has been changed
+        /// </summary>
         public virtual Task OnMasterItemChanged(object sender, RoutedPropertyChangedEventArgs<object> args)
         {
             return Task.FromResult(true);
         }
 
-        public async Task LoadDetails(Func<Task> loaderAction)
+        /// <summary>
+        /// Loads the details view
+        /// </summary>
+        protected async Task LoadDetails(Func<Task> loaderAction)
         {
-            IsDetailsInBusyMode = true;
+            IsBusy = true;
 
             try
             {
@@ -136,8 +160,87 @@ namespace Marvin.AbstractionLayer.UI
             }
             finally
             {
-                IsDetailsInBusyMode = false;
+                IsBusy = false;
             }
+        }
+
+        protected bool CanEnterEdit() =>
+            !IsEditMode && CurrentDetails.CanBeginEdit();
+
+        protected void EnterEdit()
+        {
+            IsEditMode = true;
+            CurrentDetails.BeginEdit();
+        }
+
+        protected bool CanCancelEdit() =>
+            IsEditMode && CurrentDetails.CanCancelEdit();
+
+        protected void CancelEdit()
+        {
+            CurrentDetails.CancelEdit();
+            OnCanceled();
+            IsEditMode = false;
+        }
+
+        protected virtual void OnCanceled()
+        {
+
+        }
+
+        private bool CanSave(object parameters) =>
+            IsEditMode && CurrentDetails.CanEndEdit();
+
+        private async Task Save(object parameters)
+        {
+            IsBusy = true;
+
+            try
+            {
+                var validationErrors = new List<ValidationResult>();
+                CurrentDetails.Validate(validationErrors);
+
+                if (validationErrors.Any())
+                {
+                    var message = string.Join(Environment.NewLine, validationErrors.Select(v => v.ErrorMessage));
+                    await DialogManager.ShowMessageBoxAsync(message, "Error");
+                    return;
+                }
+
+                CurrentDetails.EndEdit();
+
+                await CurrentDetails.Save();
+                await OnSaved();
+
+                IsEditMode = false;
+            }
+            catch (Exception e)
+            {
+                // TODO: Maybe reset
+                OnSaveError(e);
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// Will be called if saving raises an exception
+        /// </summary>
+        protected virtual void OnSaveError(Exception exception)
+        {
+            DialogManager.ShowMessageBox("Saving failed with the following error: " + exception, "Error",
+                MessageBoxOptions.Ok, MessageBoxImage.Error);
+        }
+
+        /// <summary>
+        /// Will be called if the save procedure with the details was successful
+        /// </summary>
+        protected virtual Task OnSaved()
+        {
+            return Task.FromResult(true);
         }
 
         /// <inheritdoc />
@@ -148,45 +251,14 @@ namespace Marvin.AbstractionLayer.UI
 
             if (ActiveItem != null)
             {
+                // TODO: ActiveItem is null after Deactivate
+                base.DeactivateItem(ActiveItem, true);
                 var detailItem = (TDetailsType)ActiveItem;
-                detailItem.EditModeChanged -= OnDetailsEditModeChanged;
-                detailItem.BusyChanged -= OnDetailsBusyModeChanged;
-                detailItem.Saved -= OnDetailsSaved;
-
                 DetailsFactory.Destroy(detailItem);
             }
 
-            var newItem = (TDetailsType) item;
-            newItem.EditModeChanged += OnDetailsEditModeChanged;
-            newItem.BusyChanged += OnDetailsBusyModeChanged;
-            newItem.Saved += OnDetailsSaved;
-
             base.ActivateItem(item);
             NotifyOfPropertyChange(() => CurrentDetails);
-        }
-
-        /// <summary>
-        /// Called if the specialized details view model was saved
-        /// </summary>
-        protected virtual void OnDetailsSaved(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Called if the specialized details view model changes the edit mode
-        /// </summary>
-        protected virtual void OnDetailsEditModeChanged(object sender, EditModeChange changeMode)
-        {
-            IsDetailsInEditMode = changeMode == EditModeChange.Enabled;
-        }
-
-        /// <summary>
-        /// Called if the specialized details view model changes the busy mode
-        /// </summary>
-        private void OnDetailsBusyModeChanged(object sender, bool busy)
-        {
-            IsDetailsInBusyMode = busy;
         }
 
         /// <summary>

@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using Caliburn.Micro;
 using Marvin.AbstractionLayer.UI;
 using Marvin.ClientFramework;
 using Marvin.ClientFramework.Commands;
 using Marvin.Container;
+using Marvin.Resources.UI.ResourceService;
 using Marvin.Serialization;
 using Marvin.Tools;
 using MessageBoxImage = Marvin.ClientFramework.Dialog.MessageBoxImage;
@@ -20,19 +24,19 @@ namespace Marvin.Resources.UI.Interaction
 
         #region Dependencies
 
-        public IResourceController ResourceController { get; set; }
-
-        public IResourceDialogFactory TypeSelectorFactory { get; set; }
+        public IResourceServiceModel ResourceServiceModel { get; set; }
 
         #endregion
 
         #region Fields and Properties
 
-        public AsyncCommand AddResourceCmd { get; private set; }
+        public ICommand AddResourceCmd { get; }
 
-        public AsyncCommand RemoveResourceCmd { get; private set; }
+        public ICommand RemoveResourceCmd { get; }
 
-        public ResourceTreeItemViewModel[] ResourceTree { get; private set; }
+        public ICommand RefreshCmd { get; }
+
+        public ObservableCollection<TreeItemViewModel> Tree { get; } = new ObservableCollection<TreeItemViewModel>();
 
         private ResourceTreeItemViewModel _selectedResource;
         public ResourceTreeItemViewModel SelectedResource
@@ -40,69 +44,44 @@ namespace Marvin.Resources.UI.Interaction
             get { return _selectedResource; }
             set
             {
-                if (Equals(value, _selectedResource))
-                    return;
                 _selectedResource = value;
                 NotifyOfPropertyChange();
-                RemoveResourceCmd.RaiseCanExecuteChanged();
-                AddResourceCmd.RaiseCanExecuteChanged();
             }
         }
 
         #endregion
 
-        ///
+        public InteractionWorkspaceViewModel()
+        {
+            AddResourceCmd = new AsyncCommand(AddResource, CanAddResource, true);
+            RemoveResourceCmd = new AsyncCommand(RemoveResource, CanRemoveResource, true);
+            RefreshCmd = new AsyncCommand(Refresh, CanRefresh, true);
+        }
+
         protected override void OnInitialize()
         {
             base.OnInitialize();
 
-            AddResourceCmd = new AsyncCommand(AddResource, CanAddResource);
-            RemoveResourceCmd = new AsyncCommand(RemoveResource, CanRemoveResource);
+            ResourceServiceModel.AvailabilityChanged += OnAvailabilityChanged;
 
-            // register at controller events
-            ResourceController.ResourceTreeUpdated += OnResourceTreeUpdated;
-
-            //refresh resource tree
-            RefreshResourceTree();
+            if (ResourceServiceModel.IsAvailable)
+                UpdateTree();
         }
 
-        /// <summary>
-        /// Called when the resource tree was updated updated
-        /// </summary>
-        private void OnResourceTreeUpdated(object sender, EventArgs eventArgs)
+        protected override void OnDeactivate(bool close)
         {
-            RefreshResourceTree();
+            base.OnDeactivate(close);
+
+            if (close)
+                ResourceServiceModel.AvailabilityChanged -= OnAvailabilityChanged;
         }
 
-        /// <summary>
-        /// Refreshes the resource tree and loads all data from the controller.
-        /// </summary>
-        private void RefreshResourceTree()
+        private void OnAvailabilityChanged(object sender, EventArgs e)
         {
-            var oldTree = ResourceTree;
-
-            IsMasterBusy = false;
-            var refreshedTree = ResourceController.ResourceTree.Select(r => new ResourceTreeItemViewModel(r)).ToArray();
-
-            //Merge old tree to the new loaded tree
-            if (oldTree != null)
-            {
-                var oldFlatTree = oldTree.Flatten(t => t.Children).ToList();
-                var newFlatTree = refreshedTree.Flatten(t => t.Children).ToList();
-
-                foreach (var newTreeItem in newFlatTree)
-                {
-                    var oldTreeItem = oldFlatTree.FirstOrDefault(t => t.Id == newTreeItem.Id);
-                    if (oldTreeItem == null)
-                        continue;
-
-                    newTreeItem.IsExpanded = oldTreeItem.IsExpanded;
-                    newTreeItem.IsSelected = oldTreeItem.IsSelected;
-                }
-            }
-
-            ResourceTree = refreshedTree;
-            NotifyOfPropertyChange(() => ResourceTree);
+            if (ResourceServiceModel.IsAvailable)
+                UpdateTree();
+            else
+                Execute.BeginOnUIThread(() => Tree.Clear());
         }
 
         /// <summary>
@@ -114,76 +93,60 @@ namespace Marvin.Resources.UI.Interaction
         }
 
         /// <summary>
-        /// Select <see cref="ResourceTreeItemViewModel"/> and load the details with <see cref="LoadDetails"/>
+        /// Select <see cref="ResourceTreeItemViewModel"/> and load the details
         /// </summary>
-        private async Task SelectResource(ResourceTreeItemViewModel resource)
+        private async Task SelectResource(ResourceTreeItemViewModel treeItem)
         {
-            if (resource == null)
+            SelectedResource = treeItem;
+
+            if (treeItem == null)
             {
-                SelectedResource = null;
                 ShowEmpty();
                 return;
             }
 
-            SelectedResource = resource;
-
             //Select view model for the right resource type
-            var detailsVm = DetailsFactory.Create(resource.Type);
-            await LoadDetails(() => detailsVm.Load(resource.Id));
+            var detailsVm = DetailsFactory.Create(treeItem.Resource.TypeName);
+            await LoadDetails(() => detailsVm.Load(treeItem.Resource.Id));
 
             ActivateItem(detailsVm);
         }
 
         /// <summary>
-        /// Determines whethera new resource can be created as child of the selected resource
+        /// Determines whether a new resource can be created as child of the selected resource
         /// </summary>
-        private bool CanAddResource(object parameters)
-        {
-            return IsDetailsInEditMode == false;
-        }
+        private bool CanAddResource(object parameters) =>
+            IsEditMode == false && ResourceServiceModel.IsAvailable;
 
         /// <summary>
-        /// Will add a resource by type wich will be selected via a dialog
+        /// Will add a resource by type which will be selected via a dialog
         /// </summary>
         private async Task AddResource(object parameters)
         {
-            var typeDialog = TypeSelectorFactory.CreateTypeSelector();
-
-            typeDialog.TypeTree = SelectedResource == null 
-                ? ResourceController.TypeTree.Select(type => new ResourceTypeViewModel(type)) 
-                : SelectedResource.PossibleChildren;
-
+            var typeDialog = new TypeSelectorViewModel(ResourceServiceModel, SelectedResource);
             await DialogManager.ShowDialogAsync(typeDialog);
-
-            if (typeDialog.Result == false || string.IsNullOrEmpty(typeDialog.SelectedTypeName))
+            if (!typeDialog.Result)
                 return;
 
-            var resourceTypeName = typeDialog.SelectedTypeName;
-            var constructor = typeDialog.Constructor as ConstructorViewModel;
-            TypeSelectorFactory.Destroy(typeDialog);
+            IsBusy = true;
 
-            await CreateResource(resourceTypeName, constructor?.Constructor);
-        }
-
-        /// <summary>
-        /// Will create a resource by the given type name and will show the details view
-        /// </summary>
-        private async Task CreateResource(string resourceTypeName, MethodEntry constructorModel)
-        {
-            long parentId = 0;
-
-            if (_selectedResource != null)
-                parentId = _selectedResource.Id;
-
-            var detailsVm = DetailsFactory.Create(resourceTypeName);
-
+            var detailsVm = DetailsFactory.Create(typeDialog.SelectedType.Name);
             await LoadDetails(async delegate
             {
-                await detailsVm.Create(resourceTypeName, parentId, constructorModel);
+                await detailsVm.Load(typeDialog.ResourcePrototype);
             });
-            detailsVm.EnterEditMode();
+
+            // Add selected resource as parent reference
+            if (SelectedResource != null)
+            {
+                var parentReference = detailsVm.EditableObject.References.First(r => r.Model.Name == "Parent");
+                parentReference.Targets.Add(SelectedResource.Resource);
+            }
 
             ActivateItem(detailsVm);
+            EnterEdit();
+
+            IsBusy = false;
         }
 
         /// <summary>
@@ -191,7 +154,7 @@ namespace Marvin.Resources.UI.Interaction
         /// </summary>
         private bool CanRemoveResource(object parameters)
         {
-            return IsDetailsInEditMode == false && SelectedResource != null;
+            return IsEditMode == false && SelectedResource != null;
         }
 
         /// <summary>
@@ -199,47 +162,96 @@ namespace Marvin.Resources.UI.Interaction
         /// </summary>
         private async Task RemoveResource(object parameters)
         {
-            var dialogResult = await DialogManager.ShowMessageBoxAsync($"Do you really want to remove the resource '{SelectedResource.Name}'?", 
-                "Remove Resource", MessageBoxOptions.YesNo, MessageBoxImage.Question);
-
-            if (dialogResult != MessageBoxOptions.Yes)
+            var dialog = new RemoveResourceViewModel(ResourceServiceModel, CurrentDetails.EditableObject);
+            await DialogManager.ShowDialogAsync(dialog);
+            if (!dialog.Result)
                 return;
 
-            var removalResult = await ResourceController.RemoveResource(SelectedResource.Id);
-            if (removalResult == false)
-            {
-                DialogManager.ShowMessageBox("There was an error occured on the server, while removing the resource.",
-                    "Error while removing resource", MessageBoxOptions.Ok, MessageBoxImage.Error);
-            }
-            ResourceController.UpdateTree();
+            IsBusy = true;
+
+            await UpdateTreeAsync();
+
+            IsBusy = false;
         }
 
-        /// 
-        protected override void OnDetailsEditModeChanged(object sender, EditModeChange changeMode)
+        private bool CanRefresh(object parameters) =>
+            !IsEditMode && ResourceServiceModel.IsAvailable;
+
+        private async Task Refresh(object parameters)
         {
-            base.OnDetailsEditModeChanged(sender, changeMode);
+            IsBusy = true;
 
-            RemoveResourceCmd.RaiseCanExecuteChanged();
-            AddResourceCmd.RaiseCanExecuteChanged();
+            await UpdateTreeAsync();
 
-            if (changeMode != EditModeChange.Chanceled)
-                return;
+            IsBusy = false;
+        }
 
-            if (CurrentDetails.CurrentResourceId == 0)
+        protected override void OnCanceled()
+        {
+            base.OnCanceled();
+
+            if (CurrentDetails.EditableObject.Id == 0)
                 Task.Run(() => SelectResource(_selectedResource));
         }
 
-        /// 
-        protected override void OnDetailsSaved(object sender, EventArgs eventArgs)
+        protected override Task OnSaved()
         {
-            ResourceController.UpdateTree();
+            return UpdateTreeAsync();
         }
 
-        /// 
         protected override void ShowEmpty()
         {
             EmptyDetails.Display(MessageSeverity.Info, "Please select a resource from the tree on the left side.");
             base.ShowEmpty();
+        }
+
+        private void UpdateTree()
+        {
+            Execute.BeginOnUIThread(async delegate
+            {
+                IsBusy = true;
+
+                await UpdateTreeAsync();
+
+                IsBusy = false;
+            });
+        }
+
+        /// <summary>
+        /// Refreshes the resource tree and loads all data from the controller.
+        /// </summary>
+        private async Task UpdateTreeAsync()
+        {
+            try
+            {
+                IsBusy = true;
+
+                var refreshedTree = await ResourceServiceModel.GetResourceTree();
+                Tree.MergeTree(refreshedTree, new ResourceTreeMergeStrategy());
+            }
+            catch (Exception e)
+            {
+                Tree?.Clear();
+                ShowEmpty();
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        public class ResourceTreeMergeStrategy : IMergeStrategy<ResourceModel, TreeItemViewModel>
+        {
+            public TreeItemViewModel FromModel(ResourceModel model)
+            {
+                return new ResourceTreeItemViewModel(model);
+            }
+
+            public void UpdateModel(TreeItemViewModel viewModel, ResourceModel model)
+            {
+                var resourceItem = (ResourceTreeItemViewModel)viewModel;
+                resourceItem.UpdateModel(model);
+            }
         }
     }
 }

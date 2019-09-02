@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Marvin.AbstractionLayer.UI;
-using Marvin.Products.UI.Recipes;
 
 namespace Marvin.Products.UI.Interaction
 {
@@ -11,12 +10,19 @@ namespace Marvin.Products.UI.Interaction
     [RecipeDetailsRegistration(DetailsConstants.EmptyType)]
     public class EmptyRecipeDetailsViewModel : EmptyDetailsViewModelBase, IRecipeDetails
     {
-        /// <summary>
-        /// Load dummy
-        /// </summary>
+        /// <inheritdoc />
         public Task Load(long productId, IReadOnlyCollection<WorkplanViewModel> workplans)
         {
             return SuccessTask;
         }
+
+        /// <inheritdoc />
+        public Task Load(RecipeViewModel recipeVm, IReadOnlyCollection<WorkplanViewModel> workplans)
+        {
+            return SuccessTask;
+        }
+
+        /// <inheritdoc />
+        public RecipeViewModel EditableObject => null;
     }
 }

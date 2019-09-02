@@ -5,7 +5,7 @@ namespace Marvin.AbstractionLayer.UI
     /// <summary>
     /// Interface for detail view models
     /// </summary>
-    public interface IDetailsFactory<out T> where T : class 
+    public interface IDetailsFactory<out T> where T : class
     {
         /// <summary>
         /// Creates a default products detail view model

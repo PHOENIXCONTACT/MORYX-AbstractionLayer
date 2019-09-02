@@ -3,41 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:c4I="clr-namespace:C4I;assembly=Controls4Industry"
              xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:CreateRevisionViewModel}"
-             d:DesignHeight="150" d:DesignWidth="400">
-    <StackPanel Orientation="Vertical">
+             d:DesignHeight="216" d:DesignWidth="615" MinHeight="200" MinWidth="550">
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+    <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
+        <DialogPanel.Buttons>
+            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateCmd}" Content="Create" />
+            <EddieButton DockPanel.Dock="Bottom" Content="Cancel" Icon="Cross" EddieStyle="Gray"
+                         HorizontalAlignment="Right" Command="{Binding CancelCmd}" Margin="5,0,0,0"/>
+        </DialogPanel.Buttons>
 
-        <StackPanel Orientation="Vertical">
-            <StackPanel.Resources>
+        <DockPanel>
+            <DockPanel.Resources>
                 <Style TargetType="LabeledControlHost" BasedOn="{StaticResource {x:Type LabeledControlHost}}">
-                    <Setter Property="Width" Value="140" />
+                    <Setter Property="LabelMinWidth" Value="140" />
                     <Setter Property="Eddie.TextFormat" Value="Bold" />
                 </Style>
-            </StackPanel.Resources>
+            </DockPanel.Resources>
 
-            <LabeledControlHost LabelA="Product:">
-                <TextBlock Text="{Binding ProductName}" Margin="0,5,0,5"/>
+            <LabeledControlHost DockPanel.Dock="Top"
+                                LabelA="Product:">
+                <TextBlock Margin="0,0,0,5">
+                    <Run Text="{Binding Product.FullIdentifier, Mode=OneWay}"/>
+                    <Run Text="{Binding Product.Name, Mode=OneWay}"/>
+                </TextBlock>
             </LabeledControlHost>
 
-            <LabeledControlHost LabelA="Revision number:">
+            <LabeledControlHost DockPanel.Dock="Top" LabelA="Revision:">
                 <StackPanel Orientation="Horizontal">
-                    <c4I:EddieTextBox Width="100" Margin="0,0,0,5" Text="{Binding RevisionNumber, UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding NumberErrorMessage}" Foreground="Red" Margin="4" />
-                    <TextBlock VerticalAlignment="Center" Text="{Binding GeneralErrorMessage}" Foreground="Red" Margin="4" />
+                    <EddieTextBox Width="100" Text="{Binding NewRevision, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding NumberErrorMessage}" Foreground="Red" Margin="4,0" HorizontalAlignment="Center" />
                 </StackPanel>
             </LabeledControlHost>
 
-            <LabeledControlHost LabelA="Comment:">
-                <c4I:EddieTextBox Text="{Binding Comment}" HorizontalAlignment="Stretch" />
-            </LabeledControlHost>
-        </StackPanel>
-        
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,25,0,0" HorizontalAlignment="Right">
-            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateRevisionCmd}" Content="Create" />
-            <EddieButton DockPanel.Dock="Bottom" Content="Cancel" Icon="Cross" EddieStyle="Gray"
-                         HorizontalAlignment="Right" Command="{Binding CloseCmd}" Margin="5,0,0,0"/>
-        </StackPanel>
-    </StackPanel>
+            <TextBlock DockPanel.Dock="Top"
+                       Margin="0,10,0,0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding ErrorMessage}"
+                       FontWeight="Bold" Foreground="Red"/>
+        </DockPanel>
+    </DialogPanel>
 </UserControl>

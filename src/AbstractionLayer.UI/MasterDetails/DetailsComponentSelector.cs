@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -11,27 +12,19 @@ namespace Marvin.AbstractionLayer.UI
     /// <summary>
     /// Component selector for specialized plugins defined by runtime data
     /// </summary>
-    public abstract class DetailsComponentSelector<TDetailsType, TController> : DefaultTypedFactoryComponentSelector
+    public abstract class DetailsComponentSelector<TDetailsType> : DefaultTypedFactoryComponentSelector
         where TDetailsType : class
-        where TController : IInteractionController
     {
-        /// <summary>
-        /// Controller to access the web server
-        /// </summary>
-        protected TController Controller { get; }
-
         /// <summary>
         /// Registrations of view models for different types
         /// </summary>
         protected Dictionary<string, string> Registrations { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DetailsComponentSelector{TDetailsType,TController}"/> class.
+        /// Initializes a new instance of the <see cref="DetailsComponentSelector{TDetailsType}"/> class.
         /// </summary>
-        protected DetailsComponentSelector(IContainer container, TController controller)
+        protected DetailsComponentSelector(IContainer container)
         {
-            Controller = controller;
-
             Registrations = (from type in container.GetRegisteredImplementations(typeof(TDetailsType))
                 let att = type.GetCustomAttribute<DetailsRegistrationAttribute>()
                 where att != null
@@ -59,8 +52,7 @@ namespace Marvin.AbstractionLayer.UI
                 var component = base.BuildFactoryComponent(method, componentName, componentType, additionalArguments)(@internal, policy);
 
                 var baseViewModel = component as IDetailsViewModel;
-                if (baseViewModel != null)
-                    baseViewModel.Initialize(Controller, componentName);
+                baseViewModel?.Initialize(componentName);
 
                 return component;
             };

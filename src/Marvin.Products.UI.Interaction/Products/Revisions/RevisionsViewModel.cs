@@ -1,82 +1,158 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using C4I;
 using Caliburn.Micro;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
-using Marvin.Container;
+using Marvin.Products.UI.ProductService;
 using Marvin.Tools;
 
 namespace Marvin.Products.UI.Interaction
 {
-    /// <summary>
-    /// Interface for the Show-Revision dialog
-    /// </summary>
-    public interface IRevisionsViewModel : IDialogScreen
+    internal class RevisionsViewModel : DialogScreen
     {
-        /// <summary>
-        /// Product id of the selected revision
-        /// </summary>
-        long? SelectedRevision { get; }
-    }
-
-    [Plugin(LifeCycle.Transient, typeof(IRevisionsViewModel))]
-    internal class RevisionsViewModel : DialogScreen, IRevisionsViewModel
-    {
-        #region Depedencies
-
-        public IProductServiceModel Controller { get; set; }
-
-        #endregion
-
         #region Fields and Properties
 
-        private readonly string _identifier;
+        private readonly IProductServiceModel _productServiceModel;
+        private TaskNotifier _taskNotifier;
+        private ProductInfoViewModel _selectedRevision;
+        private string _errorMessage;
 
-        public ObservableCollection<ProductRevisionViewModel> Revisions { get; } = new ObservableCollection<ProductRevisionViewModel>();
+        /// <summary>
+        /// Base product for displaying revision
+        /// </summary>
+        public ProductInfoViewModel Product { get; }
 
-        public RelayCommand OpenCmd { get; private set; }
+        /// <summary>
+        /// Current revisions of this product
+        /// </summary>
+        public ObservableCollection<ProductInfoViewModel> Revisions { get; } = new ObservableCollection<ProductInfoViewModel>();
 
-        public RelayCommand CloseCmd { get; private set; }
+        /// <summary>
+        /// Command to open the selected revision
+        /// </summary>
+        public ICommand OpenCmd { get; }
 
-        public TaskNotifier CurrentTask { get; set; }
+        /// <summary>
+        /// Create command to open the creation dialog
+        /// </summary>
+        public ICommand CreateCmd { get; }
 
-        public ProductRevisionViewModel SelectedRevision { get; set; }
+        /// <summary>
+        /// Close command to close the dialog
+        /// </summary>
+        public ICommand CloseCmd { get; }
 
-        long? IRevisionsViewModel.SelectedRevision => SelectedRevision?.Model.ProductId;
+        /// <summary>
+        /// Task notifier to display a busy indicator
+        /// </summary>
+        public TaskNotifier TaskNotifier
+        {
+            get { return _taskNotifier; }
+            private set
+            {
+                _taskNotifier = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        /// <summary>
+        /// Error message while display revisions
+        /// </summary>
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        /// <summary>
+        /// Currently selected revision
+        /// </summary>
+        public ProductInfoViewModel SelectedRevision
+        {
+            get { return _selectedRevision; }
+            set
+            {
+                _selectedRevision = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public bool NewRevisionRequested { get; private set; }
 
         #endregion
 
-        public RevisionsViewModel(string identifier)
+        public RevisionsViewModel(IProductServiceModel productServiceModel, ProductInfoViewModel product)
         {
-            _identifier = identifier;
+            _productServiceModel = productServiceModel;
+            Product = product;
+
+            OpenCmd = new RelayCommand(Open, CanOpen);
+            CreateCmd = new RelayCommand(Create, CanCreate);
+            CloseCmd = new RelayCommand(Close, CanClose);
         }
 
         protected override void OnInitialize()
         {
             base.OnInitialize();
-
-            OpenCmd = new RelayCommand(o => TryClose(true), o => SelectedRevision != null);
-            CloseCmd = new RelayCommand(o => TryClose(false));
-
             DisplayName = "Revisions";
-        }
-
-        protected override void OnActivate()
-        {
-            base.OnActivate();
 
             var loadingTask = Task.Run(async delegate
             {
-                var revisions = await Controller.GetProductRevisions(_identifier)
-                    .ConfigureAwait(false);
+                try
+                {
+                    var revisions = await _productServiceModel.GetProducts(new ProductQuery
+                    {
+                        Identifier = Product.Identifier,
+                        RevisionFilter = RevisionFilter.All
+                    }).ConfigureAwait(false);
 
-                var vms = revisions.Select(r => new ProductRevisionViewModel(r)).ToArray();
-                await Execute.OnUIThreadAsync(() => Revisions.AddRange(vms));
+                    var vms = revisions.Select(r => new ProductInfoViewModel(r)).ToArray();
+                    await Execute.OnUIThreadAsync(() => Revisions.AddRange(vms));
+                }
+                catch (Exception e)
+                {
+                    await Execute.OnUIThreadAsync(() => ErrorMessage = e.Message);
+                }
+
+                finally
+                {
+                    await Execute.OnUIThreadAsync(CommandManager.InvalidateRequerySuggested);
+                }
             });
 
-            CurrentTask = new TaskNotifier(loadingTask);
+            TaskNotifier = new TaskNotifier(loadingTask);
+        }
+
+        private bool IsNotBusy() =>
+            TaskNotifier == null || TaskNotifier.IsCompleted;
+
+        private bool CanOpen(object parameters) =>
+            IsNotBusy() && SelectedRevision != null;
+
+        private void Open(object parameters) =>
+            TryClose(true);
+
+        private bool CanClose(object parameters) =>
+            IsNotBusy();
+
+        private void Close(object parameters) =>
+            TryClose(false);
+
+        private bool CanCreate(object parameters) =>
+            IsNotBusy();
+
+        private void Create(object parameters)
+        {
+            NewRevisionRequested = true;
+            TryClose(true);
         }
     }
 }

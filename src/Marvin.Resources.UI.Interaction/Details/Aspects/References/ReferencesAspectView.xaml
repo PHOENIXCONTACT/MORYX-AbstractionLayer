@@ -1,0 +1,201 @@
+﻿<UserControl x:Class="Marvin.Resources.UI.Interaction.Aspects.ReferencesAspectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:aspects="clr-namespace:Marvin.Resources.UI.Interaction.Aspects"
+             xmlns:ui="clr-namespace:Marvin.Resources.UI;assembly=Marvin.Resources.UI"
+             xmlns:c4I ="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:al="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance aspects:ReferencesAspectViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800" x:Name="UserControl">
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Marvin.AbstractionLayer.UI;component/styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <c4I:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+            <al:SortedCollectionViewSourceConverter x:Key="DisplayNameSourceConverter" Property="DisplayName" />
+            <al:SortedCollectionViewSourceConverter x:Key="NameViewSourceConverter" Property="Name" />
+
+            <ControlTemplate x:Key="SingleReference">
+                <ControlTemplate.Resources>
+                    <ControlTemplate x:Key="TargetNotNull">
+                        <Grid>
+                            <EddieButton EddieStyle="Gray" HorizontalAlignment="Center" HorizontalContentAlignment="Stretch"
+                                         Height="90" Width="600" VerticalAlignment="Center">
+
+                                <DockPanel VerticalAlignment="Center">
+                                    <Path Fill="Black" Stretch="Uniform" Margin="20" Eddie.Icon="Cells">
+                                        <Path.Effect>
+                                            <DropShadowEffect BlurRadius="0" Color="Black" Direction="-225" Opacity="0.35" ShadowDepth="1" />
+                                        </Path.Effect>
+                                    </Path>
+                                    <StackPanel DockPanel.Dock="Right">
+                                        <TextBlock HorizontalAlignment="Left" Eddie.TextFormat="Header2"
+                                                   DockPanel.Dock="Top"
+                                                   Text="{Binding SelectedTarget.Name}"/>
+
+                                        <LabeledControlHost LabelMinWidth="116" LabelA="Type: ">
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding SelectedTarget.TypeName}" />
+                                        </LabeledControlHost>
+                                    </StackPanel>
+                                </DockPanel>
+                            </EddieButton>
+                        </Grid>
+                    </ControlTemplate>
+
+                    <ControlTemplate x:Key="TargetNull">
+                        <DockPanel LastChildFill="True">
+                            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Center">
+                                <Path Data="{StaticResource UnlinkIcon}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
+                                <TextBlock HorizontalAlignment="Center"
+                                           c4I:Eddie.TextFormat="Bold"
+                                           Text="This reference currently has not target." />
+                            </StackPanel>
+                        </DockPanel>
+                    </ControlTemplate>
+                </ControlTemplate.Resources>
+                <DockPanel VerticalAlignment="Stretch" LastChildFill="True">
+                    <StackPanel DockPanel.Dock="Bottom"
+                                Margin="0,5,0,0"
+                                Orientation="Horizontal">
+                        <EddieButton IconPath="{StaticResource LinkIcon}"
+                                     Command="{Binding Path=SetTargetCmd}"
+                                     Content="Link Target" Margin="0,0,5,0">
+                        </EddieButton>
+                        <EddieButton IconPath="{StaticResource UnlinkIcon}"
+                                     Command="{Binding Path=RemoveTargetCmd}"
+                                     Content="Unlink Target">
+                        </EddieButton>
+                    </StackPanel>
+
+                    <ContentControl>
+                        <ContentControl.Style>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="Template" Value="{StaticResource TargetNotNull}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedTarget}" Value="{x:Null}">
+                                        <Setter Property="Template" Value="{StaticResource TargetNull}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
+                </DockPanel>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="MultipleReferences">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Bottom"
+                                Margin="0,5,0,0"
+                                Orientation="Horizontal">
+                        <EddieButton IconPath="{StaticResource LinkIcon}"
+                                     Command="{Binding Path=AddTargetCmd}"
+                                     Content="Link Target" Margin="0,0,5,0">
+                        </EddieButton>
+                        <EddieButton IconPath="{StaticResource UnlinkIcon}"
+                                     Command="{Binding Path=RemoveTargetCmd}"
+                                     Content="Unlink Target">
+                        </EddieButton>
+                    </StackPanel>
+
+                    <EddieListView Margin="0,10,0,0" SelectionMode="Single"
+                              ItemsSource="{Binding SelectedReference.Targets, Converter={StaticResource NameViewSourceConverter}}"
+                              SelectedItem="{Binding SelectedTarget}">
+                        <EddieListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="70" />
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="260" />
+                                <GridViewColumn Header="Type" Width="280" DisplayMemberBinding="{Binding TypeName}" />
+                            </GridView>
+                        </EddieListView.View>
+                    </EddieListView>
+                </DockPanel>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <EddieListBox Grid.Column="0"
+                      MinWidth="150" MaxWidth="350"
+                      ItemsSource="{Binding Resource.References, Converter={StaticResource DisplayNameSourceConverter}}"
+                      SelectedItem="{Binding SelectedReference, Mode=TwoWay}">
+            <EddieListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type ui:ResourceReferenceViewModel}">
+                    <StackPanel Orientation="Horizontal">
+                        <Path x:Name="Path"
+                              Stretch="Uniform" Margin="0,0,5,0" Width="16" Height="16">
+                            <Path.Style>
+                                <Style TargetType="Path">
+                                    <Setter Property="Data" Value="{StaticResource LinkIcon}"/>
+                                    <Setter Property="Fill" Value="Black"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding AnyReference}" Value="false">
+                                            <Setter Property="Data" Value="{StaticResource UnlinkIcon}"/>
+                                            <Setter Property="Fill" Value="#FF838383"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Path.Style>
+                        </Path>
+                        <TextBlock x:Name="TextBlock" Text="{Binding DisplayName}" VerticalAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding AnyReference}" Value="false">
+                                            <Setter Property="Foreground" Value="#FF838383"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </EddieListBox.ItemTemplate>
+        </EddieListBox>
+
+        <DockPanel Margin="5,0,0,0" Grid.Column="1" LastChildFill="True">
+            <TextBlock DockPanel.Dock="Top" Eddie.TextFormat="Header2" Margin="0,0,0,10">
+                <Run Text="Reference:"/>
+                <Run Text="{Binding SelectedReference.DisplayName, Mode=OneWay}"/>
+            </TextBlock>
+
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0,0,0,10"
+                       Visibility="{Binding SelectedReference.Type.IsRequired, Converter={StaticResource BooleanToVisibilityConverter}}"
+                       Text="This reference is required and must be set!" FontStyle="Italic" />
+
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap">
+                <Run Text="Description:"/>
+                <Run Text="{Binding SelectedReference.Description, Mode=OneWay}"/>
+            </TextBlock>
+
+            <ContentControl Margin="0,5,0,0">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Template" Value="{StaticResource SingleReference}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedReference.IsCollection}" Value="true">
+                                <Setter Property="Template" Value="{StaticResource MultipleReferences}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Marvin.AbstractionLayer.UI;
 using Marvin.Products.UI.ProductService;
 using Marvin.Serialization;
@@ -11,37 +9,42 @@ namespace Marvin.Products.UI
     /// <summary>
     /// Model interface for product interaction
     /// </summary>
-    public interface IProductServiceModel : IInteractionController, IHttpServiceConnector
+    public interface IProductServiceModel : IHttpServiceConnector
     {
         /// <summary>
-        /// Represents the product structure tree
+        /// Customization of the application, e.g. RecipeCreation, Importers, ....
         /// </summary>
-        ObservableCollection<ProductStructureEntry> Structure { get; }
+        Task<ProductCustomization> GetCustomization();
 
         /// <summary>
-        /// Customization of this application
+        /// Returns the customization but forces reload
         /// </summary>
-        ProductCustomization Customization { get; }
+        Task<ProductCustomization> GetCustomization(bool force);
 
         /// <summary>
-        /// Will updated the product structure tree
+        /// Get producible root products
         /// </summary>
-        void UpdateStructure();
+        Task<ProductModel[]> GetProducts(ProductQuery query);
 
         /// <summary>
-        /// Returns all products
+        /// Create a new instance of the given type
         /// </summary>
-        Task<ProductModel[]> GetAll();
+        Task<ProductModel> CreateProduct(string type);
 
         /// <summary>
         /// Will return a full product
         /// </summary>
-        Task<ProductModel> GetDetails(long id);
+        Task<ProductModel> GetProductDetails(long id);
 
         /// <summary>
         /// Will save the product
         /// </summary>
-        Task<ProductModel> Save(ProductModel product);
+        Task<ProductModel> SaveProduct(ProductModel product);
+
+        /// <summary>
+        /// Create a new revision or copy of the product
+        /// </summary>
+        Task<DuplicateProductResponse> DuplicateProduct(long sourceId, string identifier, short revisionNo);
 
         /// <summary>
         /// Update importer parameters
@@ -49,7 +52,7 @@ namespace Marvin.Products.UI
         /// <param name="importer">Name of the importer</param>
         /// <param name="currentParameters">List of parameters</param>
         /// <returns>List of importer parameters</returns>
-        Task<Entry> UpdateParameters(string importer, Entry currentParameters);
+        Task<Entry> UpdateImportParameters(string importer, Entry currentParameters);
 
         /// <summary>
         /// Import product
@@ -62,46 +65,7 @@ namespace Marvin.Products.UI
         /// <summary>
         /// Remove a product from the database
         /// </summary>
-        Task<ProductModel[]> RemoveProduct(long id);
-
-        /// <summary>
-        /// Create product revision
-        /// </summary>
-        /// <param name="productId">Product Id</param>
-        /// <param name="revisionNo">New revision number</param>
-        /// <param name="comment">Comment for new revision</param>
-        /// <returns>Created product revision</returns>
-        Task<ProductModel> CreateRevision(long productId, short revisionNo, string comment);
-
-        /// <summary>
-        /// Gets product revisions
-        /// </summary>
-        /// <param name="identifier">Product identifier</param>
-        /// <returns>Array of ProductRevisionEntry</returns>
-        Task<ProductRevisionEntry[]> GetProductRevisions(string identifier);
-
-        /// <summary>
-        /// Gets all recipes for the given product
-        /// </summary>
-        /// <param name="productId">Product identifier</param>
-        /// <returns>Array of RecipeModel</returns>
-        Task<RecipeModel[]> GetProductionRecipes(long productId);
-
-        /// <summary>
-        /// Creates a new production recipe
-        /// </summary>
-        /// <param name="productId">Product identifier</param>
-        /// <param name="workplanId">Workplan identifier</param>
-        /// <param name="name">Name of new recipe</param>
-        /// <returns>Created RecipeModel</returns>
-        Task<RecipeModel> CreateProductionRecipe(long productId, long workplanId, string name);
-
-        /// <summary>
-        /// Saves a production recipe instance
-        /// </summary>
-        /// <param name="recipe">Recipe instance to be saved</param>
-        /// <returns>True if recipe was saved otherwise false</returns>
-        Task<bool> SaveProductionRecipe(RecipeModel recipe);
+        Task<bool> DeleteProduct(long productId);
 
         /// <summary>
         /// Gets the recipe by the give id
@@ -111,19 +75,26 @@ namespace Marvin.Products.UI
         Task<RecipeModel> GetRecipe(long recipeId);
 
         /// <summary>
+        /// Get all recipes for the given product
+        /// </summary>
+        Task<RecipeModel[]> GetRecipes(long productId);
+
+        /// <summary>
+        /// Create a new recipe
+        /// </summary>
+        Task<RecipeModel> CreateRecipe(string recipeType);
+
+        /// <summary>
+        /// Saves a production recipe instance
+        /// </summary>
+        /// <param name="recipe">Recipe instance to be saved</param>
+        /// <returns>True if recipe was saved otherwise false</returns>
+        Task<RecipeModel> SaveRecipe(RecipeModel recipe);
+
+        /// <summary>
         /// Gets all workplans
         /// </summary>
         /// <returns>Array of WorkplanModel</returns>
         Task<WorkplanModel[]> GetWorkplans();
-
-        /// <summary>
-        /// Retrieves a <see cref="WorkplanModel"/> by id
-        /// </summary>
-        WorkplanModel GetWorkplanById(long workplanId);
-
-        /// <summary>
-        /// Event which will be raised if the product structure will be updated
-        /// </summary>
-        event EventHandler StructureUpdated;
     }
 }

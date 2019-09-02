@@ -16,7 +16,7 @@ namespace Marvin.Products.UI
         /// <returns>A service model instance</returns>
         public static IProductServiceModel CreateServiceModel(IWcfClientFactory clientFactory, IModuleLogger logger)
         {
-            return new ProductServiceModel(clientFactory, logger);
+            return new ProductServiceModel(clientFactory);
         }
     }
 }
