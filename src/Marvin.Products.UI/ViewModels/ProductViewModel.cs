@@ -19,6 +19,7 @@ namespace Marvin.Products.UI
         private string _name;
         private EntryViewModel _properties;
         private readonly RecipeMergeStrategy _recipeMergeStrategy;
+        private ProductTypeState _state;
 
         /// <summary>
         /// Underlying model of this view model
@@ -39,6 +40,7 @@ namespace Marvin.Products.UI
         private void CopyFromModel()
         {
             Name = Model.Name;
+            State = Model.State;
             Properties = Model.Properties != null
                 ? new EntryViewModel(Model.Properties.Clone(true))
                 : new EntryViewModel(new List<Entry>());
@@ -57,6 +59,7 @@ namespace Marvin.Products.UI
         private void CopyToModel()
         {
             Model.Name = Name;
+            Model.State = State;
             Model.Properties = Properties.Entry;
             Model.Parts = Parts.Select(p => p.Model).ToArray();
             Model.Recipes = Recipes.Select(r => r.Model).ToArray();
@@ -109,6 +112,20 @@ namespace Marvin.Products.UI
                 NotifyOfPropertyChange();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the state of the product
+        /// </summary>
+        public ProductTypeState State
+        {
+            get { return _state; }
+            set
+            {
+                _state = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
 
         /// <summary>
         /// Entry view model of the product properties

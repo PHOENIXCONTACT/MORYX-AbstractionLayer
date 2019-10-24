@@ -554,6 +554,9 @@ namespace Marvin.Products.UI.ProductService {
         private short RevisionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Marvin.Products.UI.ProductService.ProductTypeState StateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -666,6 +669,19 @@ namespace Marvin.Products.UI.ProductService {
                 if ((this.RevisionField.Equals(value) != true)) {
                     this.RevisionField = value;
                     this.RaisePropertyChanged("Revision");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Marvin.Products.UI.ProductService.ProductTypeState State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((this.StateField.Equals(value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
                 }
             }
         }
@@ -1050,6 +1066,20 @@ namespace Marvin.Products.UI.ProductService {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductTypeState", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    public enum ProductTypeState : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Created = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Released = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Deprecated = 2,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
