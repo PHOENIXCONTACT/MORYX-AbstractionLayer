@@ -68,4 +68,12 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="RecipeState" nillable="true" type="tns:RecipeState" />
+  <xs:simpleType name="ProductTypeState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Created" />
+      <xs:enumeration value="Released" />
+      <xs:enumeration value="Deprecated" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProductTypeState" nillable="true" type="tns:ProductTypeState" />
 </xs:schema>

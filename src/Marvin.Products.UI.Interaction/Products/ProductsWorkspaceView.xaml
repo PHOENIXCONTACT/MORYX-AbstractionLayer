@@ -74,6 +74,14 @@
                     <x:Type TypeName="productService1:Selector" />
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
+
+            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                x:Key="ProductStateValues">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="productService1:ProductTypeState" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -254,7 +262,7 @@
                             </StackPanel>
                         </Border>
 
-                        <StackPanel DockPanel.Dock="Left" Margin="10" HorizontalAlignment="Left" Width="400">
+                        <StackPanel DockPanel.Dock="Left" Margin="10" HorizontalAlignment="Left" Width="500">
                             <StackPanel.Resources>
                                 <Style TargetType="LabeledControlHost" BasedOn="{StaticResource {x:Type LabeledControlHost}}">
                                     <Setter Property="LabelMinWidth" Value="70" />
@@ -265,9 +273,16 @@
 
                             <TextBlock Text="General" Eddie.TextFormat="Header2" />
 
-                            <LabeledControlHost LabelA="Name:" >
-                                <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Name}" IsEnabled="{Binding IsEditMode}" />
-                            </LabeledControlHost>
+                            <DockPanel LastChildFill="True">
+                                <EddieComboBox DockPanel.Dock="Right" Width="150" VerticalAlignment="Bottom" Margin="5,0,0,0"
+                                               IsEnabled="{Binding IsEditMode}"
+                                               ItemsSource="{Binding Source={StaticResource ProductStateValues}}"
+                                               SelectedItem="{Binding CurrentDetails.EditableObject.State}" />
+
+                                <LabeledControlHost LabelA="Name:" >
+                                    <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Name}" IsEnabled="{Binding IsEditMode}" />
+                                </LabeledControlHost>
+                            </DockPanel>
 
                             <LabeledControlHost LabelA="Identifier" Height="20">
                                 <TextBlock Text="{Binding CurrentDetails.EditableObject.FullIdentifier, FallbackValue=%}"

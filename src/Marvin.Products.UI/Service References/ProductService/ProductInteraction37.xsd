@@ -69,6 +69,7 @@
       <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q3:Entry" />
       <xs:element minOccurs="0" name="Recipes" nillable="true" type="tns:ArrayOfRecipeModel" />
       <xs:element minOccurs="0" name="Revision" type="xs:short" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer" minOccurs="0" name="State" type="q4:ProductTypeState" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
@@ -87,7 +88,7 @@
       <xs:element minOccurs="0" name="IsCollection" type="xs:boolean" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Parts" nillable="true" type="tns:ArrayOfPartModel" />
-      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="PropertyTemplates" nillable="true" type="q4:Entry" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="PropertyTemplates" nillable="true" type="q5:Entry" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
@@ -104,7 +105,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element minOccurs="0" name="Product" nillable="true" type="tns:ProductModel" />
-      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q5:Entry" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q6:Entry" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -121,9 +122,9 @@
       <xs:element minOccurs="0" name="Classification" type="tns:RecipeClassificationModel" />
       <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q6:Entry" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q7:Entry" />
       <xs:element minOccurs="0" name="Revision" type="xs:int" />
-      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer" minOccurs="0" name="State" type="q7:RecipeState" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer" minOccurs="0" name="State" type="q8:RecipeState" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WorkplanId" type="xs:long" />
     </xs:sequence>
@@ -159,7 +160,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Marvin.Workflows" minOccurs="0" name="State" type="q8:WorkplanState" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Marvin.Workflows" minOccurs="0" name="State" type="q9:WorkplanState" />
       <xs:element minOccurs="0" name="Version" type="xs:int" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
