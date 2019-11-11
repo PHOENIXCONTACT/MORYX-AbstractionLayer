@@ -118,7 +118,6 @@
     <Compile Include="TreeItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Marvin.AbstractionLayer.UI.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
