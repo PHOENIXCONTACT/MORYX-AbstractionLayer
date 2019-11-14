@@ -77,31 +77,24 @@ namespace Marvin.AbstractionLayer.UI
             where TViewModel : IIdentifiableObject
             where TModel : IIdentifiableObject
         {
-            var removed = collection.Where(r => r.Id == 0);
+            // Remove those without id or not existing in the updated collection
+            var removed = collection.Where(r => r.Id == 0 || updated.All(u => u.Id != r.Id)).ToList();
             foreach (var obj in removed)
                 collection.Remove(obj);
 
-            var modified = new List<TViewModel>();
-
             foreach (var updatedModel in updated)
             {
-                var existent = collection.FirstOrDefault(r => r.Id == updatedModel.Id);
-                if (existent != null)
+                var match = collection.FirstOrDefault(r => r.Id == updatedModel.Id);
+                if (match != null)
                 {
-                    strategy.UpdateModel(existent, updatedModel);
-                    modified.Add(existent);
+                    strategy.UpdateModel(match, updatedModel);
                 }
                 else
                 {
                     var vm = strategy.FromModel(updatedModel);
                     collection.Add(vm);
-                    modified.Add(vm);
                 }
             }
-
-            removed = collection.Where(item => !modified.Select(touched => touched.Id).Contains(item.Id));
-            foreach (var removedItem in removed)
-                collection.Remove(removedItem);
         }
     }
 }
