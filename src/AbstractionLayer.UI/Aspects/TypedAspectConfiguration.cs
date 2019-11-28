@@ -6,6 +6,11 @@ namespace Marvin.AbstractionLayer.UI.Aspects
     [DataContract]
     public class TypedAspectConfiguration
     {
+        public TypedAspectConfiguration()
+        {
+            Aspects = new List<AspectConfiguration>();
+        }
+
         [DataMember]
         public string TypeName { get; set; }
 

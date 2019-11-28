@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 using C4I;
 using Caliburn.Micro;
 using Marvin.AbstractionLayer.UI;
+using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.ClientFramework;
 using Marvin.ClientFramework.Commands;
 using Marvin.Container;
@@ -26,6 +25,16 @@ namespace Marvin.Products.UI.Interaction
         #region Dependencies
 
         public IProductServiceModel ProductServiceModel { get; set; }
+
+        /// <summary>
+        /// Module config to read aspect configuration
+        /// </summary>
+        public ModuleConfig Config { get; set; }
+
+        /// <summary>
+        /// Factory for the aspect configuration
+        /// </summary>
+        public IAspectConfiguratorFactory AspectConfiguratorFactory { get; set; }
 
         #endregion
 
@@ -46,6 +55,8 @@ namespace Marvin.Products.UI.Interaction
         public ICommand ShowRevisionsCmd { get; }
 
         public ICommand FilterCmd { get; }
+
+        public ICommand AspectConfiguratorCmd { get; }
 
         private TreeItemViewModel _selectedItem;
         public TreeItemViewModel SelectedItem
@@ -90,6 +101,7 @@ namespace Marvin.Products.UI.Interaction
             RemoveCmd = new AsyncCommand(RemoveProduct, CanRemoveProduct, true);
             ShowRevisionsCmd = new AsyncCommand(ShowRevisions, CanShowRevisions, true);
             FilterCmd = new RelayCommand(ShowFilter);
+            AspectConfiguratorCmd = new AsyncCommand(ShowAspectConfigurator, CanShowAspectConfigurator, true);
 
             // Set initial query
             ResetQuery();
@@ -239,6 +251,20 @@ namespace Marvin.Products.UI.Interaction
             await UpdateTreeAsync();
 
             IsBusy = false;
+        }
+
+        private bool CanShowAspectConfigurator(object obj) =>
+            ProductGroups.Count > 0 && !IsEditMode;
+
+        private async Task ShowAspectConfigurator(object obj)
+        {
+            var dialog = AspectConfiguratorFactory.Create(Config.AspectConfigurations,
+                ProductGroups.Select(p => p.TypeName).ToArray());
+            dialog.DisplayName = "Configuration";
+
+            await DialogManager.ShowDialogAsync(dialog);
+
+            AspectConfiguratorFactory.Destroy(dialog);
         }
 
         private bool CanRemoveProduct(object obj) =>

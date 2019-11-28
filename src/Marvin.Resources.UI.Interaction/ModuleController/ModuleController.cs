@@ -25,12 +25,14 @@ namespace Marvin.Resources.UI.Interaction
             // Register aspect factory
             Container.Register<IAspectFactory>();
 
+            // Load resource aspects to this container
+            Container.Register<IAspectConfigurator, AspectConfiguratorViewModel>();
+            Container.Register<IAspectConfiguratorFactory>();
+            Container.LoadComponents<IResourceAspect>();
+
             // Load ResourceDetails to this container
             Container.LoadComponents<IResourceDetails>();
 
-            // Load resource aspects to this container
-            Container.LoadComponents<IResourceAspect>();
-            
             // Register and start service model
             var clientFactory = Container.Resolve<IWcfClientFactory>();
             var logger = Container.Resolve<IModuleLogger>();

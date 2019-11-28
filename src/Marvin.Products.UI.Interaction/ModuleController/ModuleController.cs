@@ -33,6 +33,8 @@ namespace Marvin.Products.UI.Interaction
             Container.Register<IAspectFactory>();
 
             // Load ResourceDetails and RecipeDetails to the current module container
+            Container.Register<IAspectConfigurator, AspectConfiguratorViewModel>();
+            Container.Register<IAspectConfiguratorFactory>();
             Container.LoadComponents<IProductDetails>();
             Container.LoadComponents<IRecipeDetails>();
             Container.LoadComponents<IProductAspect>();
