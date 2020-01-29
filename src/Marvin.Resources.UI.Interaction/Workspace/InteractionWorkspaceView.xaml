@@ -144,26 +144,34 @@
             </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Column="0" MinWidth="350" Width="Auto" Margin="0,0,5,0">
-                <UniformGrid DockPanel.Dock="Top" Rows="1" Margin="0,0,0,5">
-                    <Button Style="{StaticResource ToolBarButtonStyle}"
-                            Command="{Binding RefreshCmd}"
-                            Padding="0" Height="30" HorizontalContentAlignment="Left"
-                            Margin="0,0,2.5,0">
-                        <DockPanel>
-                            <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Refresh"/>
-                            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Refresh"/>
-                        </DockPanel>
+                <DockPanel DockPanel.Dock="Top" LastChildFill="True" Margin="0,0,0,5">
+                    <Button Style="{StaticResource ToolBarButtonStyle}" Margin="2.5,0,0,0"
+                            Padding="0" Height="30" Width="40"
+                            DockPanel.Dock="Right"
+                            Command="{Binding AspectConfiguratorCmd}">
+                        <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Gear" />
                     </Button>
-                    <Button Style="{StaticResource ToolBarButtonStyle}"
-                            Command="{Binding AddResourceCmd}"
-                            Padding="0" Height="30" HorizontalContentAlignment="Left"
-                            Margin="2.5,0,0,0">
-                        <DockPanel>
-                            <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Plus"/>
-                            <TextBlock Style="{StaticResource TextBlockStyle}" Text="Add"/>
-                        </DockPanel>
-                    </Button>
-                </UniformGrid>
+                    <UniformGrid DockPanel.Dock="Left" Rows="1" >
+                        <Button Style="{StaticResource ToolBarButtonStyle}"
+                                Command="{Binding RefreshCmd}"
+                                Padding="0" Height="30" HorizontalContentAlignment="Left"
+                                Margin="0,0,2.5,0">
+                            <DockPanel>
+                                <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Refresh"/>
+                                <TextBlock Style="{StaticResource TextBlockStyle}" Text="Refresh"/>
+                            </DockPanel>
+                        </Button>
+                        <Button Style="{StaticResource ToolBarButtonStyle}"
+                                Command="{Binding AddResourceCmd}"
+                                Padding="0" Height="30" HorizontalContentAlignment="Left">
+                            <DockPanel>
+                                <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Plus"/>
+                                <TextBlock Style="{StaticResource TextBlockStyle}" Text="Add"/>
+                            </DockPanel>
+                        </Button>
+                    </UniformGrid>
+                </DockPanel>
+
                 <EddieTreeView x:Name="ResourceTreeView"
                                ItemsSource="{Binding Tree, Converter={StaticResource SortedCollectionViewSourceConverter}}"
                                VerticalAlignment="Stretch"

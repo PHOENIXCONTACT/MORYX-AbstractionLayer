@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Marvin.AbstractionLayer.UI;
+using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.ClientFramework;
 using Marvin.ClientFramework.Commands;
 using Marvin.Container;
@@ -24,7 +25,20 @@ namespace Marvin.Resources.UI.Interaction
 
         #region Dependencies
 
+        /// <summary>
+        /// Service model to interact with server
+        /// </summary>
         public IResourceServiceModel ResourceServiceModel { get; set; }
+
+        /// <summary>
+        /// Factory for the aspect configuration
+        /// </summary>
+        public IAspectConfiguratorFactory AspectConfiguratorFactory { get; set; }
+
+        /// <summary>
+        /// Configuration for the aspects
+        /// </summary>
+        public ModuleConfig Config { get; set; }
 
         #endregion
 
@@ -35,6 +49,8 @@ namespace Marvin.Resources.UI.Interaction
         public ICommand RemoveResourceCmd { get; }
 
         public ICommand RefreshCmd { get; }
+
+        public ICommand AspectConfiguratorCmd { get; }
 
         public ObservableCollection<TreeItemViewModel> Tree { get; } = new ObservableCollection<TreeItemViewModel>();
 
@@ -56,6 +72,7 @@ namespace Marvin.Resources.UI.Interaction
             AddResourceCmd = new AsyncCommand(AddResource, CanAddResource, true);
             RemoveResourceCmd = new AsyncCommand(RemoveResource, CanRemoveResource, true);
             RefreshCmd = new AsyncCommand(Refresh, CanRefresh, true);
+            AspectConfiguratorCmd = new AsyncCommand(ShowAspectConfigurator, CanShowAspectConfigurator, true);
         }
 
         protected override void OnInitialize()
@@ -172,6 +189,22 @@ namespace Marvin.Resources.UI.Interaction
             await UpdateTreeAsync();
 
             IsBusy = false;
+        }
+
+        private bool CanShowAspectConfigurator(object obj) =>
+            Tree.Count > 0 && !IsEditMode;
+
+        private async Task ShowAspectConfigurator(object obj)
+        {
+            var typeTree = await ResourceServiceModel.GetTypeTree();
+            var allTypes = typeTree.DerivedTypes.Flatten(t => t.DerivedTypes);
+            var dialog = AspectConfiguratorFactory.Create(Config.AspectConfigurations,
+                allTypes.Select(p => p.Name).ToArray());
+            dialog.DisplayName = "Configuration";
+
+            await DialogManager.ShowDialogAsync(dialog);
+
+            AspectConfiguratorFactory.Destroy(dialog);
         }
 
         private bool CanRefresh(object parameters) =>

@@ -93,6 +93,12 @@
       <DependentUpon>AspectConductorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Aspects\AspectConductorViewModel.cs" />
+    <Compile Include="Aspects\AspectConfiguratorView.xaml.cs">
+      <DependentUpon>AspectConfiguratorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Aspects\AspectConfiguratorViewModel.cs" />
+    <Compile Include="Aspects\IAspectConfigurator.cs" />
+    <Compile Include="Aspects\IAspectConfiguratorFactory.cs" />
     <Compile Include="Aspects\AspectConfiguration.cs" />
     <Compile Include="Aspects\IAspect.cs" />
     <Compile Include="Aspects\IAspectFactory.cs" />
@@ -126,6 +132,10 @@
     <Page Include="Aspects\AspectConductorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Aspects\AspectConfiguratorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\EditModeButtonControl.xaml">
       <Generator>MSBuild:Compile</Generator>
