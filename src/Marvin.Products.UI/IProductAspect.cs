@@ -1,5 +1,4 @@
-﻿using Marvin.AbstractionLayer.UI;
-using Marvin.AbstractionLayer.UI.Aspects;
+﻿using Marvin.AbstractionLayer.UI.Aspects;
 
 namespace Marvin.Products.UI
 {

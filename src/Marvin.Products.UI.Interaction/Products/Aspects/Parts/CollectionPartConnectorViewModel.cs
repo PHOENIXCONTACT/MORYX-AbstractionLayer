@@ -71,7 +71,6 @@ namespace Marvin.Products.UI.Interaction.Aspects
         {
             base.BeginEdit();
 
-            PartConnector.BeginEdit();
             PartLinks.ForEach(p => p.BeginEdit());
         }
 
@@ -89,8 +88,6 @@ namespace Marvin.Products.UI.Interaction.Aspects
             PartConnector.PartLinks.RemoveRange(_removedLinks.Select(l => l.PartLink));
             _removedLinks.Clear();
 
-            PartConnector.EndEdit();
-
             base.EndEdit();
         }
 
@@ -106,9 +103,6 @@ namespace Marvin.Products.UI.Interaction.Aspects
 
             // Cancel on existent
             PartLinks.ForEach(p => p.CancelEdit());
-
-            // Cancel on complete connector
-            PartConnector.CancelEdit();
 
             base.CancelEdit();
         }

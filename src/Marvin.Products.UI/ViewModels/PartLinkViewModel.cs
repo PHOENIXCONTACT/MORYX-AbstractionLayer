@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Caliburn.Micro;
+using Marvin.AbstractionLayer.UI;
 using Marvin.Controls;
 using Marvin.Products.UI.ProductService;
 
@@ -8,14 +9,37 @@ namespace Marvin.Products.UI
     /// <summary>
     /// View model that represents a single part connector
     /// </summary>
-    public class PartLinkViewModel : PropertyChangedBase
+    public class PartLinkViewModel : PropertyChangedBase, IIdentifiableObject
     {
         private EntryViewModel _properties;
 
         /// <summary>
         /// Underlying DTO
         /// </summary>
-        public PartModel Model { get; }
+        public PartModel Model { get; private set; }
+
+        /// <summary>
+        /// Identifier of the PartLink
+        /// </summary>
+        public long Id => Model.Id;
+
+        /// <summary>
+        /// Product referenced by the part
+        /// </summary>
+        public ProductInfoViewModel Product { get; private set; }
+
+        /// <summary>
+        /// Properties of the link
+        /// </summary>
+        public EntryViewModel Properties
+        {
+            get { return _properties; }
+            private set
+            {
+                _properties = value;
+                NotifyOfPropertyChange();
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PartLinkViewModel"/> class.
@@ -34,21 +58,13 @@ namespace Marvin.Products.UI
         }
 
         /// <summary>
-        /// Product referenced by the part
+        /// Updates to model
         /// </summary>
-        public ProductInfoViewModel Product { get; }
-
-        /// <summary>
-        /// Properties of the link
-        /// </summary>
-        public EntryViewModel Properties
+        public void UpdateModel(PartModel model)
         {
-            get { return _properties; }
-            private set
-            {
-                _properties = value;
-                NotifyOfPropertyChange();
-            }
+            Model = model;
+            Product = new ProductInfoViewModel(model.Product);
+            CopyFromModel();
         }
 
         /// <summary>
