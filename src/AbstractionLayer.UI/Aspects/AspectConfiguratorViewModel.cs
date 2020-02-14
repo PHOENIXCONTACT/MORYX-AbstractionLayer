@@ -133,6 +133,10 @@ namespace Marvin.AbstractionLayer.UI.Aspects
             foreach (var newType in newTypes)
                 Configurations.Add(new TypedAspectConfiguration {TypeName = newType});
 
+            var unknownTypes = Configurations.Where(pluginName => !_types.Contains(pluginName.TypeName)).ToArray();
+            foreach (var unknownType in unknownTypes)
+                Configurations.Remove(unknownType);
+
             var plugins = Container.GetRegisteredImplementations(typeof(IAspect)).Select(t => t.Name);
             PossibleAspects = plugins.ToArray();
         }
