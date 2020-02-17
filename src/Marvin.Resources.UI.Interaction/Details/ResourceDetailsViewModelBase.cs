@@ -118,7 +118,11 @@ namespace Marvin.Resources.UI.Interaction
                 if (AspectUsage)
                 {
                     var typedAspects = Config.AspectConfigurations.FirstOrDefault(ac => ac.TypeName == resource.Type);
-                    var aspectConfigurations = typedAspects == null ? Config.DefaultAspects : typedAspects.Aspects;
+                    List<AspectConfiguration> aspectConfigurations;
+                    if (typedAspects == null || typedAspects.Aspects.Count == 0)
+                        aspectConfigurations = Config.DefaultAspects;
+                    else
+                        aspectConfigurations = typedAspects.Aspects;
 
                     var aspects = aspectConfigurations.Select(ca => (IResourceAspect)AspectFactory.Create(ca.PluginName))
                         .Where(a => a.IsRelevant(EditableObject)).ToArray();

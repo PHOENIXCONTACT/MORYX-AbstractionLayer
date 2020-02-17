@@ -65,22 +65,8 @@ namespace Marvin.Products.UI.Interaction.Aspects
             PartLink = partLink;
         }
 
-        public override void BeginEdit()
-        {
-            base.BeginEdit();
-            PartConnector.BeginEdit();
-        }
-
-        public override void EndEdit()
-        {
-            PartConnector.EndEdit();
-            base.EndEdit();
-        }
-
         public override void CancelEdit()
         {
-            PartConnector.CancelEdit();
-
             // If single used, reset part link
             if (!PartConnector.IsCollection)
                 PartLink = PartConnector.PartLinks.FirstOrDefault();

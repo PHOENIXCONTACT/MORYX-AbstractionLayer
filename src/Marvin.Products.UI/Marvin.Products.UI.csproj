@@ -91,6 +91,8 @@
     <Compile Include="IRecipeDetails.cs" />
     <Compile Include="IRecipeWorkspace.cs" />
     <Compile Include="IRecipeWorkspaceProvider.cs" />
+    <Compile Include="PartConnector.cs" />
+    <Compile Include="PartModel.cs" />
     <Compile Include="ProductAspectRegistrationAttribute.cs" />
     <Compile Include="ProductModel.cs" />
     <Compile Include="Products.cs" />

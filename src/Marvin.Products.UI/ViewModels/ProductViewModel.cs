@@ -19,6 +19,7 @@ namespace Marvin.Products.UI
         private string _name;
         private EntryViewModel _properties;
         private readonly RecipeMergeStrategy _recipeMergeStrategy;
+        private readonly PartMergeStrategy _partMergeStrategy;
         private ProductTypeState _state;
 
         /// <summary>
@@ -33,6 +34,7 @@ namespace Marvin.Products.UI
         {
             Model = model;
             _recipeMergeStrategy = new RecipeMergeStrategy();
+            _partMergeStrategy = new PartMergeStrategy();
 
             CopyFromModel();
         }
@@ -46,11 +48,7 @@ namespace Marvin.Products.UI
                 : new EntryViewModel(new List<Entry>());
 
             if (Model.Parts != null)
-            {
-                Parts.Clear();
-                foreach (var partConnector in Model.Parts)
-                    Parts.Add(new PartConnectorViewModel(partConnector));
-            }
+                Parts.MergeCollection(Model.Parts, _partMergeStrategy);
 
             if (Model.Recipes != null)
                 Recipes.MergeCollection(Model.Recipes, _recipeMergeStrategy);
@@ -179,6 +177,13 @@ namespace Marvin.Products.UI
             public RecipeViewModel FromModel(RecipeModel model) => new RecipeViewModel(model);
 
             public void UpdateModel(RecipeViewModel viewModel, RecipeModel model) => viewModel.UpdateModel(model);
+        }
+
+        private class PartMergeStrategy : IMergeStrategy<PartConnector, PartConnectorViewModel>
+        {
+            public PartConnectorViewModel FromModel(PartConnector model) => new PartConnectorViewModel(model);
+
+            public void UpdateModel(PartConnectorViewModel viewModel, PartConnector model) => viewModel.UpdateModel(model);
         }
     }
 }
