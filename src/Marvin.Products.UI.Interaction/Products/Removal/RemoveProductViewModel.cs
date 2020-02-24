@@ -88,7 +88,7 @@ namespace Marvin.Products.UI.Interaction
                 {
                     Identifier = ProductToRemove.Identifier,
                     Revision = ProductToRemove.Revision,
-                    RevisionFilter = RevisionFilter.All,
+                    RevisionFilter = RevisionFilter.Specific,
                     Selector = Selector.Parent
                 }).ConfigureAwait(false);
 
