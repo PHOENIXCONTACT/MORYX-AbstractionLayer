@@ -257,7 +257,10 @@ namespace Marvin.Resources.UI.Interaction
             {
                 IsBusy = true;
 
-                var refreshedTree = await ResourceServiceModel.GetResourceTree();
+                var treeTask = ResourceServiceModel.GetResourceTree();
+                var typeTask = ResourceServiceModel.GetTypeTree();
+                var refreshedTree = await treeTask;
+                await typeTask;
                 Tree.MergeTree(refreshedTree, new ResourceTreeMergeStrategy());
             }
             catch (Exception e)
