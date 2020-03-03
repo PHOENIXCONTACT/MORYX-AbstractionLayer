@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Marvin.ClientFramework.Commands;
 using Marvin.Controls;
+using Marvin.Resources.UI.Interaction.Properties;
 using Marvin.Serialization;
 
 namespace Marvin.Resources.UI.Interaction.Aspects.Methods
@@ -11,7 +12,7 @@ namespace Marvin.Resources.UI.Interaction.Aspects.Methods
     [ResourceAspectRegistration(nameof(ResourceMethodsAspectViewModel))]
     internal class ResourceMethodsAspectViewModel : ResourceAspectViewModelBase
     {
-        public override string DisplayName => "Methods";
+        public override string DisplayName => Strings.ResourceMethodsAspectViewModel_DisplayName;
 
         #region Dependencies
 

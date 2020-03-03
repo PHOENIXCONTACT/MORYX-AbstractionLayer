@@ -5,6 +5,7 @@ using C4I;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
+using Marvin.Resources.UI.Interaction.Properties;
 
 namespace Marvin.Resources.UI.Interaction
 {
@@ -55,7 +56,7 @@ namespace Marvin.Resources.UI.Interaction
         protected override void OnInitialize()
         {
             base.OnInitialize();
-            DisplayName = "Remove Resource";
+            DisplayName = Strings.RemoveResourceViewModel_DisplayName;
         }
 
         private bool CanRemove(object arg) =>
@@ -71,7 +72,7 @@ namespace Marvin.Resources.UI.Interaction
                 var result = await removeTask;
                 if (result == false)
                 {
-                    ErrorMessage = "The resource was not removed!";
+                    ErrorMessage = Strings.RemoveResourceViewModel_ErrorWhileRemove;
                 }
                 else
                 {

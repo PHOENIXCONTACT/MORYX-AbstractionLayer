@@ -7,6 +7,7 @@
              xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
              xmlns:methods="clr-namespace:Marvin.Resources.UI.Interaction.Aspects.Methods"
              xmlns:al="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
+             xmlns:properties="clr-namespace:Marvin.Resources.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance methods:ResourceMethodsAspectViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <d:DesignerProperties.DesignStyle>
@@ -27,7 +28,7 @@
                 <StackPanel VerticalAlignment="Center" Orientation="Vertical">
                     <Path Eddie.Icon="ArrowRight" Style="{StaticResource CentralPathIconStyle}" Margin="0,0,0,14"/>
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Eddie.TextFormat="Bold"
-                               Text="Please select a method to invoke it"/>
+                               Text="{x:Static properties:Strings.ResourceMethodsAspectView_SelectMethod}"/>
                 </StackPanel>
             </ControlTemplate>
 
@@ -35,26 +36,26 @@
                 <StackPanel VerticalAlignment="Center" Orientation="Vertical">
                     <Path Eddie.Icon="Gear" Style="{StaticResource CentralPathIconStyle}" Margin="0,0,0,14"/>
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Eddie.TextFormat="Bold"
-                               Text="There are no parameters necessary for this method call"/>
+                               Text="{x:Static properties:Strings.ResourceMethodsAspectView_NoParametersNeeded}"/>
                 </StackPanel>
             </ControlTemplate>
 
             <ControlTemplate x:Key="ParametersTemplate">
                 <controls:EntryEditor BreadcrumbVisibility="Collapsed"
-                                       IsEditMode="True"
-                                       DockPanel.Dock="Top"
-                                       RootEntry="{Binding SelectedMethod.Parameters}"/>
+                                      IsEditMode="True"
+                                      DockPanel.Dock="Top"
+                                      RootEntry="{Binding SelectedMethod.Parameters}"/>
             </ControlTemplate>
 
             <ControlTemplate x:Key="ResultTemplate">
                 <controls:EntryEditor BreadcrumbVisibility="Collapsed"
-                                       IsEditMode="True"
-                                       DockPanel.Dock="Bottom"
-                                       RootEntry="{Binding MethodInvocationResult}"/>
+                                      IsEditMode="True"
+                                      DockPanel.Dock="Bottom"
+                                      RootEntry="{Binding MethodInvocationResult}"/>
             </ControlTemplate>
 
             <ControlTemplate x:Key="EmptyResultTemplate">
-                <TextBlock Text="Method was invoked"/>
+                <TextBlock Text="{x:Static properties:Strings.ResourceMethodsAspectView_Invoked}"/>
             </ControlTemplate>
 
             <ControlTemplate x:Key="SelectedMethodTemplate">
@@ -62,13 +63,13 @@
                     <TextBlock DockPanel.Dock="Top"
                                Eddie.TextFormat="Header2"
                                Margin="0,0,0,10">
-                        <Run Text="Method:"/>
+                        <Run Text="{x:Static properties:Strings.ResourceMethodsAspectView_Method}"/>
                         <Run Text="{Binding SelectedMethod.DisplayName, Mode=OneWay}"/>
                     </TextBlock>
 
                     <TextBlock DockPanel.Dock="Top"
                                TextWrapping="Wrap">
-                        <Run Text="Description:"/>
+                        <Run Text="{x:Static properties:Strings.ResourceMethodsAspectView_Description}"/>
                         <Run Text="{Binding SelectedMethod.Description, Mode=OneWay}"/>
                     </TextBlock>
 
@@ -105,7 +106,7 @@
                             </DockPanel.Style>
 
                             <TextBlock DockPanel.Dock="Top" Eddie.TextFormat="Header2"
-                                       Text="Result" />
+                                       Text="{x:Static properties:Strings.ResourceMethodsAspectView_Result}" />
 
                             <ContentControl Grid.Row="0">
                                 <ContentControl.Style>
@@ -124,7 +125,7 @@
                         <EddieButton Grid.Row="2" DockPanel.Dock="Bottom"
                                      HorizontalAlignment="Left"
                                      Command="{Binding MethodInvokeCmd}" CommandParameter="{Binding SelectedMethod}"
-                                     Content="Invoke" Icon="CheckMark" />
+                                     Content="{x:Static properties:Strings.ResourceMethodsAspectView_Invoke}" Icon="CheckMark" />
                     </Grid>
                 </DockPanel>
             </ControlTemplate>

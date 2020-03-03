@@ -205,7 +205,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Strings.de.resx" />
     <EmbeddedResource Include="Properties\Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Strings.pl.resx" />

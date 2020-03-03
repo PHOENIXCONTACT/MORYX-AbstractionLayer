@@ -118,9 +118,6 @@
   <data name="InteractionWorkspaceView_Save" xml:space="preserve">
     <value>Zapisz</value>
   </data>
-  <data name="EmptyDetailsView_SelectResource" xml:space="preserve">
-    <value>Wybierz zasób z drzewa po lewej stronie.</value>
-  </data>
   <data name="TypeSelectorViewModel_DisplayName" xml:space="preserve">
     <value>Wybór typu zasobu:</value>
   </data>
@@ -151,23 +148,11 @@
   <data name="ReferencesAspectView_Name" xml:space="preserve">
     <value>Nazwa</value>
   </data>
-  <data name="ReferencesAspectView_LocalIdentifier" xml:space="preserve">
-    <value>Lokalny identyfikator</value>
-  </data>
-  <data name="ReferencesAspectView_GlobalIdentifier" xml:space="preserve">
-    <value>Globalny identyfikator</value>
-  </data>
   <data name="ReferencesAspectView_Type" xml:space="preserve">
     <value>Typ</value>
   </data>
   <data name="InteractionWorkspaceView_Name" xml:space="preserve">
     <value>Nazwa:</value>
-  </data>
-  <data name="InteractionWorkspaceView_GlobalIdentifier" xml:space="preserve">
-    <value>Globalny identyfikator:</value>
-  </data>
-  <data name="InteractionWorkspaceView_LocalIdentifier" xml:space="preserve">
-    <value>Lokalny identyfikator:</value>
   </data>
   <data name="InteractionWorkspaceView_Description" xml:space="preserve">
     <value>Opis:</value>
@@ -186,5 +171,14 @@
   </data>
   <data name="RemoveResourceView_Cancel" xml:space="preserve">
     <value>Anuluj</value>
+  </data>
+  <data name="ReferencesAspectView_TypeName" xml:space="preserve">
+    <value>Typ: </value>
+  </data>
+  <data name="SelectTargetDialogView_Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="SelectTargetDialogView_Name" xml:space="preserve">
+    <value>Nazwa</value>
   </data>
 </root>

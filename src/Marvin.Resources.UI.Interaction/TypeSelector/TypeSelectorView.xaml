@@ -7,6 +7,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
              xmlns:ui="clr-namespace:Marvin.Resources.UI;assembly=Marvin.Resources.UI"
+             xmlns:properties="clr-namespace:Marvin.Resources.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:TypeSelectorViewModel }"
              d:DesignHeight="441" d:DesignWidth="728" Height="450" Width="760">
 
@@ -25,11 +26,11 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <DialogPanel.Header>
-            <TextBlock Margin="0,5,0,5" Text="Please select the resource type to create a resource instance." />
+            <TextBlock Margin="0,5,0,5" Text="{x:Static properties:Strings.TypeSelectorView_SelectResourceType}" />
         </DialogPanel.Header>
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateCmd}" Content="Create" />
-            <EddieButton Content="Cancel" Icon="Cross" EddieStyle="Gray"
+            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.TypeSelectorView_Create}" />
+            <EddieButton Content="{x:Static properties:Strings.TypeSelectorView_Cancel}" Icon="Cross" EddieStyle="Gray"
                          Command="{Binding CancelCmd}" Margin="10,0,0,0"/>
         </DialogPanel.Buttons>
 
@@ -58,15 +59,15 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <LabeledControlHost LabelA="Name:">
+                    <LabeledControlHost LabelA="{x:Static properties:Strings.TypeSelectorView_Name}">
                         <TextBlock Text="{Binding SelectedType.DisplayName}" />
                     </LabeledControlHost>
 
-                    <LabeledControlHost LabelA="Internal:">
+                    <LabeledControlHost LabelA="{x:Static properties:Strings.TypeSelectorView_Internal}">
                         <TextBlock Text="{Binding SelectedType.Name}" />
                     </LabeledControlHost>
 
-                    <LabeledControlHost LabelA="Description:">
+                    <LabeledControlHost LabelA="{x:Static properties:Strings.TypeSelectorView_Description}">
                         <TextBlock Text="{Binding SelectedType.Description}" />
                     </LabeledControlHost>
                 </StackPanel>

@@ -10,11 +10,9 @@ using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.ClientFramework;
 using Marvin.ClientFramework.Commands;
 using Marvin.Container;
+using Marvin.Resources.UI.Interaction.Properties;
 using Marvin.Resources.UI.ResourceService;
-using Marvin.Serialization;
 using Marvin.Tools;
-using MessageBoxImage = Marvin.ClientFramework.Dialog.MessageBoxImage;
-using MessageBoxOptions = Marvin.ClientFramework.Dialog.MessageBoxOptions;
 
 namespace Marvin.Resources.UI.Interaction
 {
@@ -234,7 +232,7 @@ namespace Marvin.Resources.UI.Interaction
 
         protected override void ShowEmpty()
         {
-            EmptyDetails.Display(MessageSeverity.Info, "Please select a resource from the tree on the left side.");
+            EmptyDetails.Display(MessageSeverity.Info, Strings.InteractionWorkspaceViewModel_SelectResourceFromTree);
             base.ShowEmpty();
         }
 

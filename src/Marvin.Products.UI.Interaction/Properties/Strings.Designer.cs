@@ -22,7 +22,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Strings {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Marvin.Products.UI.Interaction.Properties.Strings", typeof(Strings).Assembly);
@@ -51,7 +51,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string AddRecipeDialogView_Cancel {
+        public static string AddRecipeDialogView_Cancel {
             get {
                 return ResourceManager.GetString("AddRecipeDialogView_Cancel", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
-        internal static string AddRecipeDialogView_Create {
+        public static string AddRecipeDialogView_Create {
             get {
                 return ResourceManager.GetString("AddRecipeDialogView_Create", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string AddRecipeDialogView_RecipeName {
+        public static string AddRecipeDialogView_RecipeName {
             get {
                 return ResourceManager.GetString("AddRecipeDialogView_RecipeName", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
-        internal static string AddRecipeDialogView_Type {
+        public static string AddRecipeDialogView_Type {
             get {
                 return ResourceManager.GetString("AddRecipeDialogView_Type", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Workplan.
         /// </summary>
-        internal static string AddRecipeDialogView_Workplan {
+        public static string AddRecipeDialogView_Workplan {
             get {
                 return ResourceManager.GetString("AddRecipeDialogView_Workplan", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Add a new recipe.
         /// </summary>
-        internal static string AddRecipeDialogViewModel_DisplayName {
+        public static string AddRecipeDialogViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("AddRecipeDialogViewModel_DisplayName", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There are no relevant aspects for the selected product..
         /// </summary>
-        internal static string AspectConductorView_Info {
+        public static string AspectConductorView_Info {
             get {
                 return ResourceManager.GetString("AspectConductorView_Info", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuration.
         /// </summary>
-        internal static string AspectConfiguratorView_DisplayName {
+        public static string AspectConfiguratorView_DisplayName {
             get {
                 return ResourceManager.GetString("AspectConfiguratorView_DisplayName", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
-        internal static string CollectionPartConnectorViewModel_Add {
+        public static string CollectionPartConnectorViewModel_Add {
             get {
                 return ResourceManager.GetString("CollectionPartConnectorViewModel_Add", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string CollectionPartConnectorViewModel_Remove {
+        public static string CollectionPartConnectorViewModel_Remove {
             get {
                 return ResourceManager.GetString("CollectionPartConnectorViewModel_Remove", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string CreateRevisionView_Cancel {
+        public static string CreateRevisionView_Cancel {
             get {
                 return ResourceManager.GetString("CreateRevisionView_Cancel", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
-        internal static string CreateRevisionView_Create {
+        public static string CreateRevisionView_Create {
             get {
                 return ResourceManager.GetString("CreateRevisionView_Create", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to New Revision.
         /// </summary>
-        internal static string CreateRevisionView_DisplayName {
+        public static string CreateRevisionView_DisplayName {
             get {
                 return ResourceManager.GetString("CreateRevisionView_DisplayName", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product:.
         /// </summary>
-        internal static string CreateRevisionView_Product {
+        public static string CreateRevisionView_Product {
             get {
                 return ResourceManager.GetString("CreateRevisionView_Product", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Revision:.
         /// </summary>
-        internal static string CreateRevisionView_RevisionNumber {
+        public static string CreateRevisionView_RevisionNumber {
             get {
                 return ResourceManager.GetString("CreateRevisionView_RevisionNumber", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The given identity and revision is conflicted with an existing..
         /// </summary>
-        internal static string CreateRevisionViewModel_ConflictedIdentity {
+        public static string CreateRevisionViewModel_ConflictedIdentity {
             get {
                 return ResourceManager.GetString("CreateRevisionViewModel_ConflictedIdentity", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Revision not available.
         /// </summary>
-        internal static string CreateRevisionViewModel_RevisionNotAvailable {
+        public static string CreateRevisionViewModel_RevisionNotAvailable {
             get {
                 return ResourceManager.GetString("CreateRevisionViewModel_RevisionNotAvailable", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Classification.
         /// </summary>
-        internal static string DefaultRecipeDetailsView_General_Classification {
+        public static string DefaultRecipeDetailsView_General_Classification {
             get {
                 return ResourceManager.GetString("DefaultRecipeDetailsView_General_Classification", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string DefaultRecipeDetailsView_General_Name {
+        public static string DefaultRecipeDetailsView_General_Name {
             get {
                 return ResourceManager.GetString("DefaultRecipeDetailsView_General_Name", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
-        internal static string DefaultRecipeDetailsView_General_Title {
+        public static string DefaultRecipeDetailsView_General_Title {
             get {
                 return ResourceManager.GetString("DefaultRecipeDetailsView_General_Title", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Workplan.
         /// </summary>
-        internal static string DefaultRecipeDetailsView_General_Workplan {
+        public static string DefaultRecipeDetailsView_General_Workplan {
             get {
                 return ResourceManager.GetString("DefaultRecipeDetailsView_General_Workplan", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The recipe does not have any configurable properties..
         /// </summary>
-        internal static string DefaultRecipeDetailsView_NoProperties {
+        public static string DefaultRecipeDetailsView_NoProperties {
             get {
                 return ResourceManager.GetString("DefaultRecipeDetailsView_NoProperties", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Properties.
         /// </summary>
-        internal static string DefaultRecipeDetailsView_Properties {
+        public static string DefaultRecipeDetailsView_Properties {
             get {
                 return ResourceManager.GetString("DefaultRecipeDetailsView_Properties", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string DuplicateProductDialogView_Cancel {
+        public static string DuplicateProductDialogView_Cancel {
             get {
                 return ResourceManager.GetString("DuplicateProductDialogView_Cancel", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Clone.
         /// </summary>
-        internal static string DuplicateProductDialogView_Clone {
+        public static string DuplicateProductDialogView_Clone {
             get {
                 return ResourceManager.GetString("DuplicateProductDialogView_Clone", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Duplicate product &apos;{0}&apos;.
         /// </summary>
-        internal static string DuplicateProductDialogView_DisplayName {
+        public static string DuplicateProductDialogView_DisplayName {
             get {
                 return ResourceManager.GetString("DuplicateProductDialogView_DisplayName", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Identifier.
         /// </summary>
-        internal static string DuplicateProductDialogView_Identifier {
+        public static string DuplicateProductDialogView_Identifier {
             get {
                 return ResourceManager.GetString("DuplicateProductDialogView_Identifier", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Revision.
         /// </summary>
-        internal static string DuplicateProductDialogView_Revision {
+        public static string DuplicateProductDialogView_Revision {
             get {
                 return ResourceManager.GetString("DuplicateProductDialogView_Revision", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The given identity and revision is conflicted with an existing..
         /// </summary>
-        internal static string DuplicateProductDialogViewModel_ConflictedIdentity {
+        public static string DuplicateProductDialogViewModel_ConflictedIdentity {
             get {
                 return ResourceManager.GetString("DuplicateProductDialogViewModel_ConflictedIdentity", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please select a product from the tree on the left side..
         /// </summary>
-        internal static string EmptyDetailsView_SelectProduct {
+        public static string EmptyDetailsView_SelectProduct {
             get {
                 return ResourceManager.GetString("EmptyDetailsView_SelectProduct", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string ImportView_Cancel {
+        public static string ImportView_Cancel {
             get {
                 return ResourceManager.GetString("ImportView_Cancel", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Importing product using importers..
         /// </summary>
-        internal static string ImportView_Hint {
+        public static string ImportView_Hint {
             get {
                 return ResourceManager.GetString("ImportView_Hint", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
-        internal static string ImportView_ImportProduct {
+        public static string ImportView_ImportProduct {
             get {
                 return ResourceManager.GetString("ImportView_ImportProduct", resourceCulture);
             }
@@ -360,7 +360,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
-        internal static string ModuleController_DisplayName {
+        public static string ModuleController_DisplayName {
             get {
                 return ResourceManager.GetString("ModuleController_DisplayName", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select a part from the list.
         /// </summary>
-        internal static string PartNonSelectedView_SelectPart {
+        public static string PartNonSelectedView_SelectPart {
             get {
                 return ResourceManager.GetString("PartNonSelectedView_SelectPart", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select a part from the list.
         /// </summary>
-        internal static string PartsAspectView_SelectPart {
+        public static string PartsAspectView_SelectPart {
             get {
                 return ResourceManager.GetString("PartsAspectView_SelectPart", resourceCulture);
             }
@@ -387,7 +387,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Parts.
         /// </summary>
-        internal static string PartsAspectViewModel_DisplayName {
+        public static string PartsAspectViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("PartsAspectViewModel_DisplayName", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string ProductsWorkspaceView_Cancel {
+        public static string ProductsWorkspaceView_Cancel {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Cancel", resourceCulture);
             }
@@ -405,7 +405,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
-        internal static string ProductsWorkspaceView_Duplicate {
+        public static string ProductsWorkspaceView_Duplicate {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Duplicate", resourceCulture);
             }
@@ -414,7 +414,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static string ProductsWorkspaceView_Edit {
+        public static string ProductsWorkspaceView_Edit {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Edit", resourceCulture);
             }
@@ -423,7 +423,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
-        internal static string ProductsWorkspaceView_Filter {
+        public static string ProductsWorkspaceView_Filter {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Filter", resourceCulture);
             }
@@ -432,7 +432,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Identifier.
         /// </summary>
-        internal static string ProductsWorkspaceView_Filter_Identifier {
+        public static string ProductsWorkspaceView_Filter_Identifier {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Filter_Identifier", resourceCulture);
             }
@@ -441,7 +441,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string ProductsWorkspaceView_Filter_Name {
+        public static string ProductsWorkspaceView_Filter_Name {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Filter_Name", resourceCulture);
             }
@@ -450,7 +450,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Identifier:.
         /// </summary>
-        internal static string ProductsWorkspaceView_General_Identifier {
+        public static string ProductsWorkspaceView_General_Identifier {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_General_Identifier", resourceCulture);
             }
@@ -459,7 +459,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
-        internal static string ProductsWorkspaceView_General_Name {
+        public static string ProductsWorkspaceView_General_Name {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_General_Name", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
-        internal static string ProductsWorkspaceView_General_Title {
+        public static string ProductsWorkspaceView_General_Title {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_General_Title", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
-        internal static string ProductsWorkspaceView_Import {
+        public static string ProductsWorkspaceView_Import {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Import", resourceCulture);
             }
@@ -486,7 +486,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string ProductsWorkspaceView_Remove {
+        public static string ProductsWorkspaceView_Remove {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Remove", resourceCulture);
             }
@@ -495,7 +495,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
-        internal static string ProductsWorkspaceView_ResetFilter {
+        public static string ProductsWorkspaceView_ResetFilter {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_ResetFilter", resourceCulture);
             }
@@ -504,7 +504,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Revisions.
         /// </summary>
-        internal static string ProductsWorkspaceView_Revisions {
+        public static string ProductsWorkspaceView_Revisions {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Revisions", resourceCulture);
             }
@@ -513,7 +513,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static string ProductsWorkspaceView_Save {
+        public static string ProductsWorkspaceView_Save {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Save", resourceCulture);
             }
@@ -522,7 +522,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
-        internal static string ProductsWorkspaceView_Title {
+        public static string ProductsWorkspaceView_Title {
             get {
                 return ResourceManager.GetString("ProductsWorkspaceView_Title", resourceCulture);
             }
@@ -531,7 +531,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Properties.
         /// </summary>
-        internal static string PropertiesAspectViewModel_DisplayName {
+        public static string PropertiesAspectViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("PropertiesAspectViewModel_DisplayName", resourceCulture);
             }
@@ -540,7 +540,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select a recipe from the list.
         /// </summary>
-        internal static string RecipeAspectView_NonRecipeSelected {
+        public static string RecipeAspectView_NonRecipeSelected {
             get {
                 return ResourceManager.GetString("RecipeAspectView_NonRecipeSelected", resourceCulture);
             }
@@ -549,7 +549,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Workplan:.
         /// </summary>
-        internal static string RecipeAspectView_Workplan {
+        public static string RecipeAspectView_Workplan {
             get {
                 return ResourceManager.GetString("RecipeAspectView_Workplan", resourceCulture);
             }
@@ -558,7 +558,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
-        internal static string RecipesAspectView_AddRecipe {
+        public static string RecipesAspectView_AddRecipe {
             get {
                 return ResourceManager.GetString("RecipesAspectView_AddRecipe", resourceCulture);
             }
@@ -567,7 +567,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string RecipesAspectView_RemoveRecipe {
+        public static string RecipesAspectView_RemoveRecipe {
             get {
                 return ResourceManager.GetString("RecipesAspectView_RemoveRecipe", resourceCulture);
             }
@@ -576,7 +576,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Recipes.
         /// </summary>
-        internal static string RecipesAspectViewModel_DisplayName {
+        public static string RecipesAspectViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("RecipesAspectViewModel_DisplayName", resourceCulture);
             }
@@ -585,7 +585,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string RecipeWorkspaceView_Cancel {
+        public static string RecipeWorkspaceView_Cancel {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_Cancel", resourceCulture);
             }
@@ -594,7 +594,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static string RecipeWorkspaceView_Edit {
+        public static string RecipeWorkspaceView_Edit {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_Edit", resourceCulture);
             }
@@ -603,7 +603,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
-        internal static string RecipeWorkspaceView_Error {
+        public static string RecipeWorkspaceView_Error {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_Error", resourceCulture);
             }
@@ -612,7 +612,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Error while receiving recipes..
         /// </summary>
-        internal static string RecipeWorkspaceView_ErrorLoadingRecipes {
+        public static string RecipeWorkspaceView_ErrorLoadingRecipes {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_ErrorLoadingRecipes", resourceCulture);
             }
@@ -621,7 +621,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Error while receiving workplans..
         /// </summary>
-        internal static string RecipeWorkspaceView_ErrorLoadingWorkplans {
+        public static string RecipeWorkspaceView_ErrorLoadingWorkplans {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_ErrorLoadingWorkplans", resourceCulture);
             }
@@ -630,7 +630,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cannot save recipe:.
         /// </summary>
-        internal static string RecipeWorkspaceView_ErrorSavingRecipe {
+        public static string RecipeWorkspaceView_ErrorSavingRecipe {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_ErrorSavingRecipe", resourceCulture);
             }
@@ -639,7 +639,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Recipes:.
         /// </summary>
-        internal static string RecipeWorkspaceView_Recipes {
+        public static string RecipeWorkspaceView_Recipes {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_Recipes", resourceCulture);
             }
@@ -648,7 +648,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static string RecipeWorkspaceView_Save {
+        public static string RecipeWorkspaceView_Save {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_Save", resourceCulture);
             }
@@ -657,7 +657,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please select a recipe from the list.
         /// </summary>
-        internal static string RecipeWorkspaceView_SelectRecipe {
+        public static string RecipeWorkspaceView_SelectRecipe {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_SelectRecipe", resourceCulture);
             }
@@ -666,7 +666,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Workplan:.
         /// </summary>
-        internal static string RecipeWorkspaceView_Workplan {
+        public static string RecipeWorkspaceView_Workplan {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_Workplan", resourceCulture);
             }
@@ -675,7 +675,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to This product is used in the following products:.
         /// </summary>
-        internal static string RelationsAspectView_Description {
+        public static string RelationsAspectView_Description {
             get {
                 return ResourceManager.GetString("RelationsAspectView_Description", resourceCulture);
             }
@@ -684,7 +684,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Relations:.
         /// </summary>
-        internal static string RelationsAspectView_ListTitle {
+        public static string RelationsAspectView_ListTitle {
             get {
                 return ResourceManager.GetString("RelationsAspectView_ListTitle", resourceCulture);
             }
@@ -693,7 +693,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Identifier.
         /// </summary>
-        internal static string RelationsAspectView_ListView_Identifier {
+        public static string RelationsAspectView_ListView_Identifier {
             get {
                 return ResourceManager.GetString("RelationsAspectView_ListView_Identifier", resourceCulture);
             }
@@ -702,7 +702,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string RelationsAspectView_ListView_Name {
+        public static string RelationsAspectView_ListView_Name {
             get {
                 return ResourceManager.GetString("RelationsAspectView_ListView_Name", resourceCulture);
             }
@@ -711,7 +711,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Revision.
         /// </summary>
-        internal static string RelationsAspectView_ListView_Revision {
+        public static string RelationsAspectView_ListView_Revision {
             get {
                 return ResourceManager.GetString("RelationsAspectView_ListView_Revision", resourceCulture);
             }
@@ -720,7 +720,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Relations.
         /// </summary>
-        internal static string RelationsAspectViewModel_DisplayName {
+        public static string RelationsAspectViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("RelationsAspectViewModel_DisplayName", resourceCulture);
             }
@@ -729,7 +729,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string RemoveProductView_Cancel {
+        public static string RemoveProductView_Cancel {
             get {
                 return ResourceManager.GetString("RemoveProductView_Cancel", resourceCulture);
             }
@@ -738,7 +738,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The following product will be irreversible removed:.
         /// </summary>
-        internal static string RemoveProductView_Description {
+        public static string RemoveProductView_Description {
             get {
                 return ResourceManager.GetString("RemoveProductView_Description", resourceCulture);
             }
@@ -747,7 +747,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The product was not removed!.
         /// </summary>
-        internal static string RemoveProductView_ErrorWhileRemove {
+        public static string RemoveProductView_ErrorWhileRemove {
             get {
                 return ResourceManager.GetString("RemoveProductView_ErrorWhileRemove", resourceCulture);
             }
@@ -756,7 +756,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to In use by:.
         /// </summary>
-        internal static string RemoveProductView_InUseBy {
+        public static string RemoveProductView_InUseBy {
             get {
                 return ResourceManager.GetString("RemoveProductView_InUseBy", resourceCulture);
             }
@@ -765,7 +765,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The product cannot be removed because it is still used in other products.
         /// </summary>
-        internal static string RemoveProductView_NonDeletableHint {
+        public static string RemoveProductView_NonDeletableHint {
             get {
                 return ResourceManager.GetString("RemoveProductView_NonDeletableHint", resourceCulture);
             }
@@ -774,7 +774,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string RemoveProductView_RemoveProduct {
+        public static string RemoveProductView_RemoveProduct {
             get {
                 return ResourceManager.GetString("RemoveProductView_RemoveProduct", resourceCulture);
             }
@@ -783,7 +783,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove Product.
         /// </summary>
-        internal static string RemoveProductViewModel_DisplayName {
+        public static string RemoveProductViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("RemoveProductViewModel_DisplayName", resourceCulture);
             }
@@ -792,7 +792,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
-        internal static string RevisionsView_Close {
+        public static string RevisionsView_Close {
             get {
                 return ResourceManager.GetString("RevisionsView_Close", resourceCulture);
             }
@@ -801,7 +801,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
-        internal static string RevisionsView_Open {
+        public static string RevisionsView_Open {
             get {
                 return ResourceManager.GetString("RevisionsView_Open", resourceCulture);
             }
@@ -810,7 +810,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Revisions.
         /// </summary>
-        internal static string RevisionsViewModel_DisplayName {
+        public static string RevisionsViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("RevisionsViewModel_DisplayName", resourceCulture);
             }
@@ -819,7 +819,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select.
         /// </summary>
-        internal static string SelectPartLinkDialogView_Apply {
+        public static string SelectPartLinkDialogView_Apply {
             get {
                 return ResourceManager.GetString("SelectPartLinkDialogView_Apply", resourceCulture);
             }
@@ -828,7 +828,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string SelectPartLinkDialogView_Cancel {
+        public static string SelectPartLinkDialogView_Cancel {
             get {
                 return ResourceManager.GetString("SelectPartLinkDialogView_Cancel", resourceCulture);
             }
@@ -837,7 +837,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please select a product from the list.
         /// </summary>
-        internal static string SelectPartLinkDialogView_SelectProduct {
+        public static string SelectPartLinkDialogView_SelectProduct {
             get {
                 return ResourceManager.GetString("SelectPartLinkDialogView_SelectProduct", resourceCulture);
             }
@@ -846,7 +846,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select Part.
         /// </summary>
-        internal static string SelectPartLinkDialogViewModel_DisplayName {
+        public static string SelectPartLinkDialogViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("SelectPartLinkDialogViewModel_DisplayName", resourceCulture);
             }
@@ -855,7 +855,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Change.
         /// </summary>
-        internal static string SinglePartConnectorPartView_Change {
+        public static string SinglePartConnectorPartView_Change {
             get {
                 return ResourceManager.GetString("SinglePartConnectorPartView_Change", resourceCulture);
             }
@@ -864,7 +864,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
-        internal static string SinglePartConnectorPartView_Clear {
+        public static string SinglePartConnectorPartView_Clear {
             get {
                 return ResourceManager.GetString("SinglePartConnectorPartView_Clear", resourceCulture);
             }
@@ -873,7 +873,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Empty.
         /// </summary>
-        internal static string SinglePartConnectorPartView_DefaultPartConnectorName {
+        public static string SinglePartConnectorPartView_DefaultPartConnectorName {
             get {
                 return ResourceManager.GetString("SinglePartConnectorPartView_DefaultPartConnectorName", resourceCulture);
             }
@@ -882,7 +882,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The following configuration edits the properties of the link to the product..
         /// </summary>
-        internal static string SinglePartConnectorPartView_Description {
+        public static string SinglePartConnectorPartView_Description {
             get {
                 return ResourceManager.GetString("SinglePartConnectorPartView_Description", resourceCulture);
             }
@@ -891,7 +891,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The link does not provide any configuration..
         /// </summary>
-        internal static string SinglePartConnectorPartView_EmptyProperties {
+        public static string SinglePartConnectorPartView_EmptyProperties {
             get {
                 return ResourceManager.GetString("SinglePartConnectorPartView_EmptyProperties", resourceCulture);
             }
@@ -900,7 +900,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There is no product for this link selected..
         /// </summary>
-        internal static string SinglePartConnectorPartView_NullLink {
+        public static string SinglePartConnectorPartView_NullLink {
             get {
                 return ResourceManager.GetString("SinglePartConnectorPartView_NullLink", resourceCulture);
             }

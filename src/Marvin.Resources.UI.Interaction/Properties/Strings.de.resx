@@ -138,9 +138,6 @@
   <data name="InteractionWorkspaceView_Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
-  <data name="EmptyDetailsView_SelectResource" xml:space="preserve">
-    <value>Bitte eine Resource aus dem Baum links auswählen.</value>
-  </data>
   <data name="TypeSelectorViewModel_DisplayName" xml:space="preserve">
     <value>Resourcentypauswahl:</value>
   </data>
@@ -171,23 +168,11 @@
   <data name="ReferencesAspectView_Name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="ReferencesAspectView_LocalIdentifier" xml:space="preserve">
-    <value>Lokale Kennung</value>
-  </data>
-  <data name="ReferencesAspectView_GlobalIdentifier" xml:space="preserve">
-    <value>Globale Kennung</value>
-  </data>
   <data name="ReferencesAspectView_Type" xml:space="preserve">
     <value>Typ</value>
   </data>
   <data name="InteractionWorkspaceView_Name" xml:space="preserve">
     <value>Name:</value>
-  </data>
-  <data name="InteractionWorkspaceView_GlobalIdentifier" xml:space="preserve">
-    <value>Globale Kennung:</value>
-  </data>
-  <data name="InteractionWorkspaceView_LocalIdentifier" xml:space="preserve">
-    <value>Lokale Kennung:</value>
   </data>
   <data name="InteractionWorkspaceView_Description" xml:space="preserve">
     <value>Beschreibung:</value>
@@ -261,7 +246,25 @@
   <data name="ReferencesAspectView_SingleReference_TargetNull" xml:space="preserve">
     <value>Diese Referenz hat momentan kein Ziel.</value>
   </data>
-  <data name="AspectConfiguratorView_DisplayName" xml:space="preserve">
-    <value>Konfiguration</value>
+  <data name="ReferencesAspectView_TypeName" xml:space="preserve">
+    <value>Typ: </value>
+  </data>
+  <data name="SelectTargetDialogView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="SelectTargetDialogView_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SelectTargetDialogView_Select" xml:space="preserve">
+    <value>Auswählen</value>
+  </data>
+  <data name="SelectTargetDialogView_Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="InteractionWorkspaceViewModel_SelectResourceFromTree" xml:space="preserve">
+    <value>Wählen Sie eine Resource aus dem Baum auf der linken Seite.</value>
+  </data>
+  <data name="InteractionWorkspaceView_Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
   </data>
 </root>

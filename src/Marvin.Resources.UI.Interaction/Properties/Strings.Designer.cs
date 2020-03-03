@@ -22,7 +22,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Strings {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Marvin.Resources.UI.Interaction.Properties.Strings", typeof(Strings).Assembly);
@@ -51,7 +51,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,27 +61,9 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configuration.
-        /// </summary>
-        internal static string AspectConfiguratorView_DisplayName {
-            get {
-                return ResourceManager.GetString("AspectConfiguratorView_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please select a resource from the tree on the left side..
-        /// </summary>
-        internal static string EmptyDetailsView_SelectResource {
-            get {
-                return ResourceManager.GetString("EmptyDetailsView_SelectResource", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
-        internal static string InteractionWorkspaceView_Add {
+        public static string InteractionWorkspaceView_Add {
             get {
                 return ResourceManager.GetString("InteractionWorkspaceView_Add", resourceCulture);
             }
@@ -90,7 +72,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string InteractionWorkspaceView_Cancel {
+        public static string InteractionWorkspaceView_Cancel {
             get {
                 return ResourceManager.GetString("InteractionWorkspaceView_Cancel", resourceCulture);
             }
@@ -99,7 +81,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Description:.
         /// </summary>
-        internal static string InteractionWorkspaceView_Description {
+        public static string InteractionWorkspaceView_Description {
             get {
                 return ResourceManager.GetString("InteractionWorkspaceView_Description", resourceCulture);
             }
@@ -108,43 +90,34 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static string InteractionWorkspaceView_Edit {
+        public static string InteractionWorkspaceView_Edit {
             get {
                 return ResourceManager.GetString("InteractionWorkspaceView_Edit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Global Identifier:.
-        /// </summary>
-        internal static string InteractionWorkspaceView_GlobalIdentifier {
-            get {
-                return ResourceManager.GetString("InteractionWorkspaceView_GlobalIdentifier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Local Identifier:.
-        /// </summary>
-        internal static string InteractionWorkspaceView_LocalIdentifier {
-            get {
-                return ResourceManager.GetString("InteractionWorkspaceView_LocalIdentifier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
-        internal static string InteractionWorkspaceView_Name {
+        public static string InteractionWorkspaceView_Name {
             get {
                 return ResourceManager.GetString("InteractionWorkspaceView_Name", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string InteractionWorkspaceView_Refresh {
+            get {
+                return ResourceManager.GetString("InteractionWorkspaceView_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string InteractionWorkspaceView_Remove {
+        public static string InteractionWorkspaceView_Remove {
             get {
                 return ResourceManager.GetString("InteractionWorkspaceView_Remove", resourceCulture);
             }
@@ -153,7 +126,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Resources.
         /// </summary>
-        internal static string InteractionWorkspaceView_Resources {
+        public static string InteractionWorkspaceView_Resources {
             get {
                 return ResourceManager.GetString("InteractionWorkspaceView_Resources", resourceCulture);
             }
@@ -162,16 +135,25 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static string InteractionWorkspaceView_Save {
+        public static string InteractionWorkspaceView_Save {
             get {
                 return ResourceManager.GetString("InteractionWorkspaceView_Save", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select a resource from the tree on the left side..
+        /// </summary>
+        public static string InteractionWorkspaceViewModel_SelectResourceFromTree {
+            get {
+                return ResourceManager.GetString("InteractionWorkspaceViewModel_SelectResourceFromTree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resources.
         /// </summary>
-        internal static string ModuleController_DisplayName {
+        public static string ModuleController_DisplayName {
             get {
                 return ResourceManager.GetString("ModuleController_DisplayName", resourceCulture);
             }
@@ -180,7 +162,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Properties.
         /// </summary>
-        internal static string PropertiesAspectViewModel_DisplayName {
+        public static string PropertiesAspectViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("PropertiesAspectViewModel_DisplayName", resourceCulture);
             }
@@ -189,7 +171,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Add Target.
         /// </summary>
-        internal static string ReferencesAspectView_AddTarget {
+        public static string ReferencesAspectView_AddTarget {
             get {
                 return ResourceManager.GetString("ReferencesAspectView_AddTarget", resourceCulture);
             }
@@ -198,43 +180,25 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Description:.
         /// </summary>
-        internal static string ReferencesAspectView_Description {
+        public static string ReferencesAspectView_Description {
             get {
                 return ResourceManager.GetString("ReferencesAspectView_Description", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Global Identifier.
-        /// </summary>
-        internal static string ReferencesAspectView_GlobalIdentifier {
-            get {
-                return ResourceManager.GetString("ReferencesAspectView_GlobalIdentifier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Link Target.
         /// </summary>
-        internal static string ReferencesAspectView_LinkTarget {
+        public static string ReferencesAspectView_LinkTarget {
             get {
                 return ResourceManager.GetString("ReferencesAspectView_LinkTarget", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Local Identifier.
-        /// </summary>
-        internal static string ReferencesAspectView_LocalIdentifier {
-            get {
-                return ResourceManager.GetString("ReferencesAspectView_LocalIdentifier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string ReferencesAspectView_Name {
+        public static string ReferencesAspectView_Name {
             get {
                 return ResourceManager.GetString("ReferencesAspectView_Name", resourceCulture);
             }
@@ -243,7 +207,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Reference:.
         /// </summary>
-        internal static string ReferencesAspectView_Reference {
+        public static string ReferencesAspectView_Reference {
             get {
                 return ResourceManager.GetString("ReferencesAspectView_Reference", resourceCulture);
             }
@@ -252,7 +216,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to This reference is required and must be set!.
         /// </summary>
-        internal static string ReferencesAspectView_RequiredReference {
+        public static string ReferencesAspectView_RequiredReference {
             get {
                 return ResourceManager.GetString("ReferencesAspectView_RequiredReference", resourceCulture);
             }
@@ -261,7 +225,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to This reference currently has not target..
         /// </summary>
-        internal static string ReferencesAspectView_SingleReference_TargetNull {
+        public static string ReferencesAspectView_SingleReference_TargetNull {
             get {
                 return ResourceManager.GetString("ReferencesAspectView_SingleReference_TargetNull", resourceCulture);
             }
@@ -270,16 +234,25 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
-        internal static string ReferencesAspectView_Type {
+        public static string ReferencesAspectView_Type {
             get {
                 return ResourceManager.GetString("ReferencesAspectView_Type", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type: .
+        /// </summary>
+        public static string ReferencesAspectView_TypeName {
+            get {
+                return ResourceManager.GetString("ReferencesAspectView_TypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unlink Target.
         /// </summary>
-        internal static string ReferencesAspectView_UnlinkTarget {
+        public static string ReferencesAspectView_UnlinkTarget {
             get {
                 return ResourceManager.GetString("ReferencesAspectView_UnlinkTarget", resourceCulture);
             }
@@ -288,7 +261,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to References.
         /// </summary>
-        internal static string ReferencesAspectViewModel_DisplayName {
+        public static string ReferencesAspectViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("ReferencesAspectViewModel_DisplayName", resourceCulture);
             }
@@ -297,7 +270,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The reference must have at least one target!.
         /// </summary>
-        internal static string ReferencesAspectViewModel_Validation_CollectionTargetMustBeSet {
+        public static string ReferencesAspectViewModel_Validation_CollectionTargetMustBeSet {
             get {
                 return ResourceManager.GetString("ReferencesAspectViewModel_Validation_CollectionTargetMustBeSet", resourceCulture);
             }
@@ -306,7 +279,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Single references must have any target!.
         /// </summary>
-        internal static string ReferencesAspectViewModel_Validation_SingleTargetMustBeSet {
+        public static string ReferencesAspectViewModel_Validation_SingleTargetMustBeSet {
             get {
                 return ResourceManager.GetString("ReferencesAspectViewModel_Validation_SingleTargetMustBeSet", resourceCulture);
             }
@@ -315,7 +288,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string RemoveResourceView_Cancel {
+        public static string RemoveResourceView_Cancel {
             get {
                 return ResourceManager.GetString("RemoveResourceView_Cancel", resourceCulture);
             }
@@ -324,7 +297,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The following resource will be irreversible removed:.
         /// </summary>
-        internal static string RemoveResourceView_Description {
+        public static string RemoveResourceView_Description {
             get {
                 return ResourceManager.GetString("RemoveResourceView_Description", resourceCulture);
             }
@@ -333,7 +306,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        internal static string RemoveResourceView_Remove {
+        public static string RemoveResourceView_Remove {
             get {
                 return ResourceManager.GetString("RemoveResourceView_Remove", resourceCulture);
             }
@@ -342,7 +315,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove Resource.
         /// </summary>
-        internal static string RemoveResourceViewModel_DisplayName {
+        public static string RemoveResourceViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("RemoveResourceViewModel_DisplayName", resourceCulture);
             }
@@ -351,7 +324,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The resource was not removed!.
         /// </summary>
-        internal static string RemoveResourceViewModel_ErrorWhileRemove {
+        public static string RemoveResourceViewModel_ErrorWhileRemove {
             get {
                 return ResourceManager.GetString("RemoveResourceViewModel_ErrorWhileRemove", resourceCulture);
             }
@@ -360,7 +333,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Description:.
         /// </summary>
-        internal static string ResourceMethodsAspectView_Description {
+        public static string ResourceMethodsAspectView_Description {
             get {
                 return ResourceManager.GetString("ResourceMethodsAspectView_Description", resourceCulture);
             }
@@ -369,7 +342,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Invoke.
         /// </summary>
-        internal static string ResourceMethodsAspectView_Invoke {
+        public static string ResourceMethodsAspectView_Invoke {
             get {
                 return ResourceManager.GetString("ResourceMethodsAspectView_Invoke", resourceCulture);
             }
@@ -378,7 +351,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Method was invoked.
         /// </summary>
-        internal static string ResourceMethodsAspectView_Invoked {
+        public static string ResourceMethodsAspectView_Invoked {
             get {
                 return ResourceManager.GetString("ResourceMethodsAspectView_Invoked", resourceCulture);
             }
@@ -387,7 +360,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Method:.
         /// </summary>
-        internal static string ResourceMethodsAspectView_Method {
+        public static string ResourceMethodsAspectView_Method {
             get {
                 return ResourceManager.GetString("ResourceMethodsAspectView_Method", resourceCulture);
             }
@@ -396,7 +369,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There are no parameters necessary for this method call.
         /// </summary>
-        internal static string ResourceMethodsAspectView_NoParametersNeeded {
+        public static string ResourceMethodsAspectView_NoParametersNeeded {
             get {
                 return ResourceManager.GetString("ResourceMethodsAspectView_NoParametersNeeded", resourceCulture);
             }
@@ -405,7 +378,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Result.
         /// </summary>
-        internal static string ResourceMethodsAspectView_Result {
+        public static string ResourceMethodsAspectView_Result {
             get {
                 return ResourceManager.GetString("ResourceMethodsAspectView_Result", resourceCulture);
             }
@@ -414,7 +387,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please select a method to invoke it.
         /// </summary>
-        internal static string ResourceMethodsAspectView_SelectMethod {
+        public static string ResourceMethodsAspectView_SelectMethod {
             get {
                 return ResourceManager.GetString("ResourceMethodsAspectView_SelectMethod", resourceCulture);
             }
@@ -423,16 +396,52 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Methods.
         /// </summary>
-        internal static string ResourceMethodsAspectViewModel_DisplayName {
+        public static string ResourceMethodsAspectViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("ResourceMethodsAspectViewModel_DisplayName", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SelectTargetDialogView_Cancel {
+            get {
+                return ResourceManager.GetString("SelectTargetDialogView_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string SelectTargetDialogView_Name {
+            get {
+                return ResourceManager.GetString("SelectTargetDialogView_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string SelectTargetDialogView_Select {
+            get {
+                return ResourceManager.GetString("SelectTargetDialogView_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string SelectTargetDialogView_Type {
+            get {
+                return ResourceManager.GetString("SelectTargetDialogView_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select new target.
         /// </summary>
-        internal static string SelectTargetDialogViewModel_DisplayName {
+        public static string SelectTargetDialogViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("SelectTargetDialogViewModel_DisplayName", resourceCulture);
             }
@@ -441,7 +450,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string TypeSelectorView_Cancel {
+        public static string TypeSelectorView_Cancel {
             get {
                 return ResourceManager.GetString("TypeSelectorView_Cancel", resourceCulture);
             }
@@ -450,7 +459,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
-        internal static string TypeSelectorView_Create {
+        public static string TypeSelectorView_Create {
             get {
                 return ResourceManager.GetString("TypeSelectorView_Create", resourceCulture);
             }
@@ -459,7 +468,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Description:.
         /// </summary>
-        internal static string TypeSelectorView_Description {
+        public static string TypeSelectorView_Description {
             get {
                 return ResourceManager.GetString("TypeSelectorView_Description", resourceCulture);
             }
@@ -468,7 +477,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Internal:.
         /// </summary>
-        internal static string TypeSelectorView_Internal {
+        public static string TypeSelectorView_Internal {
             get {
                 return ResourceManager.GetString("TypeSelectorView_Internal", resourceCulture);
             }
@@ -477,7 +486,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
-        internal static string TypeSelectorView_Name {
+        public static string TypeSelectorView_Name {
             get {
                 return ResourceManager.GetString("TypeSelectorView_Name", resourceCulture);
             }
@@ -486,7 +495,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please select the resource type to create a resource instance..
         /// </summary>
-        internal static string TypeSelectorView_SelectResourceType {
+        public static string TypeSelectorView_SelectResourceType {
             get {
                 return ResourceManager.GetString("TypeSelectorView_SelectResourceType", resourceCulture);
             }
@@ -495,7 +504,7 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Resource type selection:.
         /// </summary>
-        internal static string TypeSelectorViewModel_DisplayName {
+        public static string TypeSelectorViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("TypeSelectorViewModel_DisplayName", resourceCulture);
             }
