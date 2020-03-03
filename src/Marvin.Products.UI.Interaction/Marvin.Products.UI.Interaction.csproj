@@ -144,6 +144,11 @@
       <DependentUpon>ProductsWorkspaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Products\ProductsWorkspaceViewModel.cs" />
+    <Compile Include="Properties\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Recipes\Details\Default\DefaultRecipeDetailsView.xaml.cs">
       <DependentUpon>DefaultRecipeDetailsView.xaml</DependentUpon>
     </Compile>
@@ -282,6 +287,14 @@
       <Project>{e04d4a2d-70fc-48cf-a412-853ce51d5d40}</Project>
       <Name>Marvin.Products.UI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Strings.de.resx" />
+    <EmbeddedResource Include="Properties\Strings.pl.resx" />
+    <EmbeddedResource Include="Properties\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

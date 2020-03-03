@@ -127,9 +127,13 @@
     <Compile Include="Details\ResourceDetailsComponentSelector.cs" />
     <Compile Include="Details\ResourceDetailsViewModelBase.cs" />
     <Compile Include="Details\IResourceDetailsFactory.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ModuleController\ModuleConfig.cs" />
     <Compile Include="ModuleController\ModuleController.cs" />
+    <Compile Include="Properties\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="TypeSelector\TypeSelectorView.xaml.cs">
       <DependentUpon>TypeSelectorView.xaml</DependentUpon>
     </Compile>
@@ -197,6 +201,14 @@
       <Project>{afe31117-c539-48f9-8ea5-4044aaa22c69}</Project>
       <Name>Marvin.Resources.UI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Strings.de.resx" />
+    <EmbeddedResource Include="Properties\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Strings.pl.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
