@@ -106,7 +106,7 @@
   <data name="ProductsWorkspaceView_Remove" xml:space="preserve">
     <value>Usuń</value>
   </data>
-  <data name="ProductsWorkspaceView_Revisions" xml:space="preserve">
+  <data name="ProductsWorkspaceView_Filter_Revisions" xml:space="preserve">
     <value>Wersje</value>
   </data>
   <data name="ProductsWorkspaceView_Cancel" xml:space="preserve">
@@ -121,7 +121,7 @@
   <data name="CreateRevisionView_Product" xml:space="preserve">
     <value>Produkt:</value>
   </data>
-  <data name="CreateRevisionView_RevisionNumber" xml:space="preserve">
+  <data name="CreateRevisionView_Revision" xml:space="preserve">
     <value>Wersji:</value>
   </data>
   <data name="CreateRevisionView_Create" xml:space="preserve">
@@ -139,14 +139,11 @@
   <data name="RemoveProductView_RemoveProduct" xml:space="preserve">
     <value>Usuń</value>
   </data>
-  <data name="RemoveProductView_NonDeletableHint" xml:space="preserve">
+  <data name="RemoveProductViewModel_NonDeletableHint" xml:space="preserve">
     <value>Ten produkt nie może być usunięty, ponieważ jest nadal używany przez inne produkty</value>
   </data>
   <data name="RemoveProductView_Cancel" xml:space="preserve">
     <value>Anuluj</value>
-  </data>
-  <data name="ImportView_Hint" xml:space="preserve">
-    <value>Importowanie produktu używając importerów.</value>
   </data>
   <data name="ImportView_Cancel" xml:space="preserve">
     <value>Anuluj</value>
@@ -154,7 +151,7 @@
   <data name="ImportView_ImportProduct" xml:space="preserve">
     <value>Importuj</value>
   </data>
-  <data name="EmptyDetailsView_SelectProduct" xml:space="preserve">
+  <data name="ProductsWorkspaceViewModel_SelectProduct" xml:space="preserve">
     <value>Wybierz produkt z drzewa po lewej stronie.</value>
   </data>
   <data name="ProductsWorkspaceView_General_Title" xml:space="preserve">
@@ -163,7 +160,7 @@
   <data name="ProductsWorkspaceView_General_Name" xml:space="preserve">
     <value>Nazwa:</value>
   </data>
-  <data name="CreateRevisionView_DisplayName" xml:space="preserve">
+  <data name="CreateRevisionViewModel_DisplayName" xml:space="preserve">
     <value>Nowa wersja</value>
   </data>
   <data name="RecipeWorkspaceView_Recipes" xml:space="preserve">
@@ -178,16 +175,13 @@
   <data name="RecipeWorkspaceView_Save" xml:space="preserve">
     <value>Zapisz</value>
   </data>
-  <data name="RecipeWorkspaceView_SelectRecipe" xml:space="preserve">
+  <data name="RecipeWorkspaceViewModel_SelectRecipe" xml:space="preserve">
     <value>Wybierz przepis z listy</value>
   </data>
-  <data name="RecipeWorkspaceView_ErrorLoadingRecipes" xml:space="preserve">
+  <data name="RecipeWorkspaceViewModel_ErrorLoadingRecipes_Message" xml:space="preserve">
     <value>Błąd podczas ładowania przepisów.</value>
   </data>
-  <data name="RecipeWorkspaceView_Error" xml:space="preserve">
-    <value>Błąd</value>
-  </data>
-  <data name="RecipeWorkspaceView_ErrorSavingRecipe" xml:space="preserve">
+  <data name="RecipeDetailsViewModelBase_ErrorSavingRecipe_Message" xml:space="preserve">
     <value>Nie można zapisać przepisu:</value>
   </data>
   <data name="RecipeWorkspaceView_Workplan" xml:space="preserve">
@@ -205,14 +199,11 @@
   <data name="AddRecipeDialogView_Cancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
-  <data name="CollectionPartConnectorViewModel_Remove" xml:space="preserve">
+  <data name="CollectionPartConnectorView_Remove" xml:space="preserve">
     <value>Usuń</value>
   </data>
   <data name="RecipesAspectView_AddRecipe" xml:space="preserve">
     <value>Dodaj przepis</value>
-  </data>
-  <data name="RecipeAspectView_Workplan" xml:space="preserve">
-    <value>Plan pracy:</value>
   </data>
   <data name="RecipesAspectViewModel_DisplayName" xml:space="preserve">
     <value>Recepty</value>
@@ -220,7 +211,7 @@
   <data name="AddRecipeDialogViewModel_DisplayName" xml:space="preserve">
     <value>Dodaj nowy przepis</value>
   </data>
-  <data name="DuplicateProductDialogView_DisplayName" xml:space="preserve">
+  <data name="DuplicateProductDialogViewModel_DisplayName" xml:space="preserve">
     <value>Klonuj produkt '{0}'</value>
   </data>
   <data name="DuplicateProductDialogView_Identifier" xml:space="preserve">
@@ -243,5 +234,14 @@
   </data>
   <data name="DefaultRecipeDetailsView_General_Name" xml:space="preserve">
     <value>Nazwa</value>
+  </data>
+  <data name="ProductsWorkspaceView_Revisions" xml:space="preserve">
+    <value>Wersje</value>
+  </data>
+  <data name="RecipeWorkspaceViewModel_ErrorLoadingRecipes_Title" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
+  <data name="RecipeDetailsViewModelBase_ErrorSavingRecipe_Title" xml:space="preserve">
+    <value>Błąd</value>
   </data>
 </root>

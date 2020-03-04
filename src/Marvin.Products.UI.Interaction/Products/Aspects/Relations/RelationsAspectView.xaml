@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:aspects="clr-namespace:Marvin.Products.UI.Interaction.Aspects"
              xmlns:ui="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance aspects:RelationsAspectViewModel}">
     <UserControl.Resources>
@@ -19,17 +20,17 @@
     <Grid>
         <DockPanel LastChildFill="True">
             <TextBlock DockPanel.Dock="Top" Margin="0,0,0,5"
-                       Text="This product is used in the following products:" />
+                       Text="{x:Static properties:Strings.RelationsAspectView_Description}" />
 
             <TextBlock DockPanel.Dock="Top" Eddie.TextFormat="Header2"
-                       Text="Relations:" />
+                       Text="{x:Static properties:Strings.RelationsAspectView_ListTitle}" />
 
             <EddieListView DockPanel.Dock="Bottom" ItemsSource="{Binding Parents, Converter={StaticResource SortedCollectionViewSourceConverter}}">
                 <EddieListView.View>
                     <GridView>
-                        <GridViewColumn Header="Identifier" DisplayMemberBinding="{Binding Identifier}" />
-                        <GridViewColumn Header="Revision" DisplayMemberBinding="{Binding Revision}" />
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="{x:Static properties:Strings.RelationsAspectView_ListView_Identifier}" DisplayMemberBinding="{Binding Identifier}" />
+                        <GridViewColumn Header="{x:Static properties:Strings.RelationsAspectView_ListView_Revision}" DisplayMemberBinding="{Binding Revision}" />
+                        <GridViewColumn Header="{x:Static properties:Strings.RelationsAspectView_ListView_Name}" DisplayMemberBinding="{Binding Name}" />
                     </GridView>
                 </EddieListView.View>
             </EddieListView>

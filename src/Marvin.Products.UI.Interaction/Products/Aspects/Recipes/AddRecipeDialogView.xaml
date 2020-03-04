@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:c4I="clr-namespace:C4I;assembly=Controls4Industry"
              xmlns:aspects="clr-namespace:Marvin.Products.UI.Interaction.Aspects"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d" MinHeight="200" MinWidth="550"
              d:DataContext="{d:DesignInstance aspects:AddRecipeDialogViewModel}" d:DesignWidth="409.667" d:DesignHeight="84">
     <d:DesignerProperties.DesignStyle>
@@ -24,8 +25,8 @@
 
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateCmd}" Content="Create" />
-            <EddieButton Content="Cancel" Icon="Cross" EddieStyle="Gray"
+            <EddieButton Content="{x:Static properties:Strings.AddRecipeDialogView_Create}" Icon="Ok" IsDefault="True" Command="{Binding CreateCmd}" />
+            <EddieButton Content="{x:Static properties:Strings.AddRecipeDialogView_Cancel}" Icon="Cross" EddieStyle="Gray"
                          Command="{Binding CloseCmd}" />
         </DialogPanel.Buttons>
 
@@ -38,7 +39,7 @@
             </DockPanel.Resources>
 
             <LabeledControlHost DockPanel.Dock="Top" Margin="0,0,0,5"
-                                LabelA="Type">
+                                LabelA="{x:Static properties:Strings.AddRecipeDialogView_Type}">
                 <EddieComboBox ItemsSource="{Binding PossibleRecipeTypes}"
                                SelectedItem="{Binding SelectedRecipeType}"
                                ItemTemplate="{StaticResource RecipeTypeComboBoxTemplate}"
@@ -46,12 +47,12 @@
             </LabeledControlHost>
 
             <LabeledControlHost DockPanel.Dock="Top" Margin="0,0,0,5"
-                                LabelA="Name">
+                                LabelA="{x:Static properties:Strings.AddRecipeDialogView_RecipeName}">
                 <EddieTextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" />
             </LabeledControlHost>
 
             <LabeledControlHost DockPanel.Dock="Top" Margin="0,0,0,5" VerticalAlignment="Top"
-                                LabelA="Workplan"
+                                LabelA="{x:Static properties:Strings.AddRecipeDialogView_Workplan}"
                                 Visibility="{Binding SelectedRecipeType.HasWorkplans, Converter={StaticResource VisibilityConverter}}">
                 <EddieComboBox ItemsSource="{Binding Workplans}"
                                SelectedItem="{Binding SelectedWorkplan, Mode=TwoWay}"

@@ -8,6 +8,7 @@ using Caliburn.Micro;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 using Marvin.Tools;
 
@@ -80,7 +81,7 @@ namespace Marvin.Products.UI.Interaction
         /// <inheritdoc />
         protected override void OnInitialize()
         {
-            DisplayName = "Remove Product";
+            DisplayName = Strings.RemoveProductViewModel_DisplayName;
 
             var loadingTask = Task.Run(async delegate
             {
@@ -96,7 +97,7 @@ namespace Marvin.Products.UI.Interaction
                 await Execute.OnUIThreadAsync(delegate
                 {
                     AffectedProducts.AddRange(vms);
-                    ErrorMessage = "The product cannot be removed because it is still used in other products";
+                    ErrorMessage = Strings.RemoveProductViewModel_NonDeletableHint;
                 });
             });
 
@@ -116,7 +117,7 @@ namespace Marvin.Products.UI.Interaction
                 var result = await removalTask;
                 if (result == false)
                 {
-                    ErrorMessage = "The product was not removed!";
+                    ErrorMessage = Strings.RemoveProductViewModel_ErrorWhileRemove;
                 }
                 else
                 {

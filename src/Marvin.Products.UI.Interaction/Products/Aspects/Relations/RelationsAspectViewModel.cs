@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Marvin.ClientFramework.Tasks;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction.Aspects
@@ -15,7 +16,7 @@ namespace Marvin.Products.UI.Interaction.Aspects
 
         #endregion
 
-        public override string DisplayName => "Relations";
+        public override string DisplayName => Strings.RelationsAspectViewModel_DisplayName;
 
         /// <summary>
         /// Loaded parent relations of this product

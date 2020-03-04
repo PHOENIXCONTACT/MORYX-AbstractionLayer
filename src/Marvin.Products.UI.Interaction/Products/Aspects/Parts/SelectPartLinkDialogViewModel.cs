@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
 using Marvin.Container;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction.Aspects
@@ -20,7 +21,7 @@ namespace Marvin.Products.UI.Interaction.Aspects
 
         #endregion
 
-        public override string DisplayName => "Select Part";
+        public override string DisplayName => Strings.SelectPartLinkDialogViewModel_DisplayName;
 
         private readonly PartConnectorViewModel _partConnector;
 

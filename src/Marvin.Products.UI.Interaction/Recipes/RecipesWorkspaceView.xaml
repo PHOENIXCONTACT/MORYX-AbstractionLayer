@@ -8,6 +8,7 @@
              xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
              xmlns:ui="clr-namespace:Marvin.Products.UI;assembly=Marvin.Products.UI"
              xmlns:controls="clr-namespace:Marvin.AbstractionLayer.UI.Controls;assembly=Marvin.AbstractionLayer.UI"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:RecipesWorkspaceViewModel}" d:DesignWidth="802" d:DesignHeight="278">
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
@@ -29,7 +30,7 @@
 
     <DockPanel Margin="5,5,5,5" LastChildFill="True">
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-            <TextBlock Text="Recipes" Eddie.TextFormat="Header1"  VerticalAlignment="Center" Margin="0,0,5,0" />
+            <TextBlock Text="{x:Static properties:Strings.RecipeWorkspaceView_Recipes}" Eddie.TextFormat="Header1"  VerticalAlignment="Center" Margin="0,0,5,0" />
             <TextBlock Text="{Binding Title, StringFormat={} {0}}" Eddie.TextFormat="Header1" VerticalAlignment="Center" />
         </StackPanel>
 
@@ -49,7 +50,7 @@
                                 <TextBlock Text="{Binding Classification, StringFormat={}({0})}" Margin="3,0,0,0" FontWeight="Bold" />
                             </StackPanel>
                             <TextBlock FontStyle="Italic" Margin="0,3,0,0">
-                                <Run Text="Workplan:" />
+                                <Run Text="{x:Static properties:Strings.RecipeWorkspaceView_Workplan}" />
                                 <Run Text="{Binding Workplan.Name, Mode=OneWay}" />
                             </TextBlock>
                         </StackPanel>
@@ -63,11 +64,11 @@
                                                 Margin="0,5,0,0"
                                                 HorizontalAlignment="Right"
                                                 EnterEditCmd="{Binding EnterEditCmd}"
-                                                EnterEditContent="Edit"
+                                                EnterEditContent="{x:Static properties:Strings.RecipeWorkspaceView_Edit}"
                                                 CancelEditCmd="{Binding CancelEditCmd}"
-                                                CancelEditContent="Cancel"
+                                                CancelEditContent="{x:Static properties:Strings.RecipeWorkspaceView_Cancel}"
                                                 SaveCmd="{Binding SaveCmd}"
-                                                SaveContent="Save" />
+                                                SaveContent="{x:Static properties:Strings.RecipeWorkspaceView_Save}" />
 
                 <ContentControl DockPanel.Dock="Top" Margin="5,0"
                                 cal:View.Model="{Binding ActiveItem}" />

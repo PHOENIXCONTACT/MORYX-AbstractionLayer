@@ -8,6 +8,7 @@ using Caliburn.Micro;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
+using Marvin.Products.UI.Interaction.Properties;
 
 namespace Marvin.Products.UI.Interaction.Aspects
 {
@@ -15,7 +16,7 @@ namespace Marvin.Products.UI.Interaction.Aspects
     {
         #region Fields and Properties
 
-        public override string DisplayName => "Add a new recipe";
+        public override string DisplayName => Strings.AddRecipeDialogViewModel_DisplayName;
 
         private readonly IProductServiceModel _productServiceModel;
         private TaskNotifier _taskNotifier;

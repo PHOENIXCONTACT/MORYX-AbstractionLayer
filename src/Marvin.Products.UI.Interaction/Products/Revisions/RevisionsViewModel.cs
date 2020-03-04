@@ -7,6 +7,7 @@ using C4I;
 using Caliburn.Micro;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 using Marvin.Tools;
 
@@ -102,7 +103,7 @@ namespace Marvin.Products.UI.Interaction
         protected override void OnInitialize()
         {
             base.OnInitialize();
-            DisplayName = "Revisions";
+            DisplayName = Strings.RevisionsViewModel_DisplayName;
 
             var loadingTask = Task.Run(async delegate
             {

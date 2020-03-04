@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:aspects="clr-namespace:Marvin.Products.UI.Interaction.Aspects"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance aspects:CollectionPartConnectorViewModel}">
     <d:DesignerProperties.DesignStyle>
@@ -22,10 +23,10 @@
             <StackPanel Orientation="Horizontal"
                         DockPanel.Dock="Bottom"
                         Margin="0,5,0,0">
-                <EddieButton Content="Add"
+                <EddieButton Content="{x:Static properties:Strings.CollectionPartConnectorView_Add}"
                              Icon="Plus"
                              Command="{Binding AddCmd}" />
-                <EddieButton Content="Remove"
+                <EddieButton Content="{x:Static properties:Strings.CollectionPartConnectorView_Remove}"
                              Icon="Minus"
                              Command="{Binding RemoveCmd}" Margin="5,0,0,0" />
             </StackPanel>

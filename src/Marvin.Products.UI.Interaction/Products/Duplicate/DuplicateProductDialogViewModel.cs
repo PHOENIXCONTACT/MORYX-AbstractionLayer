@@ -4,6 +4,7 @@ using C4I;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction
@@ -88,7 +89,7 @@ namespace Marvin.Products.UI.Interaction
         protected override void OnInitialize()
         {
             base.OnInitialize();
-            DisplayName = $"Duplicate product '{Product.Name}'";
+            DisplayName = string.Format(Strings.DuplicateProductDialogViewModel_DisplayName, Product.Name);
         }
 
         private bool CanDuplicate(object parameters) =>
@@ -106,7 +107,7 @@ namespace Marvin.Products.UI.Interaction
                 var response = await duplicateTask;
                 if (response.IdentityConflict || response.InvalidSource)
                 {
-                    ErrorMessage = "The given identity and revision conflicts with an existing one.";
+                    ErrorMessage = Strings.DuplicateProductDialogViewModel_ConflictedIdentity;
                 }
                 else
                 {

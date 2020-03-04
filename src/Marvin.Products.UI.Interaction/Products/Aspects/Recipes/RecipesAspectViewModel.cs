@@ -6,6 +6,7 @@ using System.Windows.Input;
 using C4I;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
+using Marvin.Products.UI.Interaction.Properties;
 
 namespace Marvin.Products.UI.Interaction.Aspects
 {
@@ -28,7 +29,7 @@ namespace Marvin.Products.UI.Interaction.Aspects
 
         private readonly List<WorkplanViewModel> _workplans = new List<WorkplanViewModel>();
 
-        public override string DisplayName => "Recipes";
+        public override string DisplayName => Strings.RecipesAspectViewModel_DisplayName;
 
         public ICommand AddRecipeCmd { get; }
 

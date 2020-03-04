@@ -2,6 +2,7 @@
 using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.ClientFramework;
 using Marvin.Logging;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Tools.Wcf;
 
 namespace Marvin.Products.UI.Interaction
@@ -29,6 +30,8 @@ namespace Marvin.Products.UI.Interaction
         /// </summary>
         protected override void OnInitialize()
         {
+            DisplayName = Strings.ModuleController_DisplayName;
+
             // Register aspect factory
             Container.Register<IAspectFactory>();
 

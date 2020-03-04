@@ -115,38 +115,20 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no relevant aspects for the selected product..
-        /// </summary>
-        public static string AspectConductorView_Info {
-            get {
-                return ResourceManager.GetString("AspectConductorView_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Configuration.
-        /// </summary>
-        public static string AspectConfiguratorView_DisplayName {
-            get {
-                return ResourceManager.GetString("AspectConfiguratorView_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
-        public static string CollectionPartConnectorViewModel_Add {
+        public static string CollectionPartConnectorView_Add {
             get {
-                return ResourceManager.GetString("CollectionPartConnectorViewModel_Add", resourceCulture);
+                return ResourceManager.GetString("CollectionPartConnectorView_Add", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        public static string CollectionPartConnectorViewModel_Remove {
+        public static string CollectionPartConnectorView_Remove {
             get {
-                return ResourceManager.GetString("CollectionPartConnectorViewModel_Remove", resourceCulture);
+                return ResourceManager.GetString("CollectionPartConnectorView_Remove", resourceCulture);
             }
         }
         
@@ -169,15 +151,6 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Revision.
-        /// </summary>
-        public static string CreateRevisionView_DisplayName {
-            get {
-                return ResourceManager.GetString("CreateRevisionView_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Product:.
         /// </summary>
         public static string CreateRevisionView_Product {
@@ -189,9 +162,9 @@ namespace Marvin.Products.UI.Interaction.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Revision:.
         /// </summary>
-        public static string CreateRevisionView_RevisionNumber {
+        public static string CreateRevisionView_Revision {
             get {
-                return ResourceManager.GetString("CreateRevisionView_RevisionNumber", resourceCulture);
+                return ResourceManager.GetString("CreateRevisionView_Revision", resourceCulture);
             }
         }
         
@@ -201,6 +174,15 @@ namespace Marvin.Products.UI.Interaction.Properties {
         public static string CreateRevisionViewModel_ConflictedIdentity {
             get {
                 return ResourceManager.GetString("CreateRevisionViewModel_ConflictedIdentity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Revision.
+        /// </summary>
+        public static string CreateRevisionViewModel_DisplayName {
+            get {
+                return ResourceManager.GetString("CreateRevisionViewModel_DisplayName", resourceCulture);
             }
         }
         
@@ -286,15 +268,6 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duplicate product &apos;{0}&apos;.
-        /// </summary>
-        public static string DuplicateProductDialogView_DisplayName {
-            get {
-                return ResourceManager.GetString("DuplicateProductDialogView_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Identifier.
         /// </summary>
         public static string DuplicateProductDialogView_Identifier {
@@ -322,11 +295,11 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select a product from the tree on the left side..
+        ///   Looks up a localized string similar to Duplicate product &apos;{0}&apos;.
         /// </summary>
-        public static string EmptyDetailsView_SelectProduct {
+        public static string DuplicateProductDialogViewModel_DisplayName {
             get {
-                return ResourceManager.GetString("EmptyDetailsView_SelectProduct", resourceCulture);
+                return ResourceManager.GetString("DuplicateProductDialogViewModel_DisplayName", resourceCulture);
             }
         }
         
@@ -340,11 +313,11 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Importing product using importers..
+        ///   Looks up a localized string similar to Import product using importers..
         /// </summary>
-        public static string ImportView_Hint {
+        public static string ImportView_Description {
             get {
-                return ResourceManager.GetString("ImportView_Hint", resourceCulture);
+                return ResourceManager.GetString("ImportView_Description", resourceCulture);
             }
         }
         
@@ -358,20 +331,20 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Importer.
+        /// </summary>
+        public static string ImportViewModel_DisplayName {
+            get {
+                return ResourceManager.GetString("ImportViewModel_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string ModuleController_DisplayName {
             get {
                 return ResourceManager.GetString("ModuleController_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a part from the list.
-        /// </summary>
-        public static string PartNonSelectedView_SelectPart {
-            get {
-                return ResourceManager.GetString("PartNonSelectedView_SelectPart", resourceCulture);
             }
         }
         
@@ -448,6 +421,33 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string ProductsWorkspaceView_Filter_Reset {
+            get {
+                return ResourceManager.GetString("ProductsWorkspaceView_Filter_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revisions.
+        /// </summary>
+        public static string ProductsWorkspaceView_Filter_Revisions {
+            get {
+                return ResourceManager.GetString("ProductsWorkspaceView_Filter_Revisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selector.
+        /// </summary>
+        public static string ProductsWorkspaceView_Filter_Selector {
+            get {
+                return ResourceManager.GetString("ProductsWorkspaceView_Filter_Selector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Identifier:.
         /// </summary>
         public static string ProductsWorkspaceView_General_Identifier {
@@ -493,15 +493,6 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset.
-        /// </summary>
-        public static string ProductsWorkspaceView_ResetFilter {
-            get {
-                return ResourceManager.GetString("ProductsWorkspaceView_ResetFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Revisions.
         /// </summary>
         public static string ProductsWorkspaceView_Revisions {
@@ -529,6 +520,15 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select a product from the tree on the left side..
+        /// </summary>
+        public static string ProductsWorkspaceViewModel_SelectProduct {
+            get {
+                return ResourceManager.GetString("ProductsWorkspaceViewModel_SelectProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Properties.
         /// </summary>
         public static string PropertiesAspectViewModel_DisplayName {
@@ -547,11 +547,20 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Workplan:.
+        ///   Looks up a localized string similar to Cannot save recipe:.
         /// </summary>
-        public static string RecipeAspectView_Workplan {
+        public static string RecipeDetailsViewModelBase_ErrorSavingRecipe_Message {
             get {
-                return ResourceManager.GetString("RecipeAspectView_Workplan", resourceCulture);
+                return ResourceManager.GetString("RecipeDetailsViewModelBase_ErrorSavingRecipe_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string RecipeDetailsViewModelBase_ErrorSavingRecipe_Title {
+            get {
+                return ResourceManager.GetString("RecipeDetailsViewModelBase_ErrorSavingRecipe_Title", resourceCulture);
             }
         }
         
@@ -601,42 +610,6 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error.
-        /// </summary>
-        public static string RecipeWorkspaceView_Error {
-            get {
-                return ResourceManager.GetString("RecipeWorkspaceView_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error while receiving recipes..
-        /// </summary>
-        public static string RecipeWorkspaceView_ErrorLoadingRecipes {
-            get {
-                return ResourceManager.GetString("RecipeWorkspaceView_ErrorLoadingRecipes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error while receiving workplans..
-        /// </summary>
-        public static string RecipeWorkspaceView_ErrorLoadingWorkplans {
-            get {
-                return ResourceManager.GetString("RecipeWorkspaceView_ErrorLoadingWorkplans", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot save recipe:.
-        /// </summary>
-        public static string RecipeWorkspaceView_ErrorSavingRecipe {
-            get {
-                return ResourceManager.GetString("RecipeWorkspaceView_ErrorSavingRecipe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Recipes:.
         /// </summary>
         public static string RecipeWorkspaceView_Recipes {
@@ -655,20 +628,47 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select a recipe from the list.
-        /// </summary>
-        public static string RecipeWorkspaceView_SelectRecipe {
-            get {
-                return ResourceManager.GetString("RecipeWorkspaceView_SelectRecipe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Workplan:.
         /// </summary>
         public static string RecipeWorkspaceView_Workplan {
             get {
                 return ResourceManager.GetString("RecipeWorkspaceView_Workplan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while receiving recipes..
+        /// </summary>
+        public static string RecipeWorkspaceViewModel_ErrorLoadingRecipes_Message {
+            get {
+                return ResourceManager.GetString("RecipeWorkspaceViewModel_ErrorLoadingRecipes_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string RecipeWorkspaceViewModel_ErrorLoadingRecipes_Title {
+            get {
+                return ResourceManager.GetString("RecipeWorkspaceViewModel_ErrorLoadingRecipes_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while receiving workplans..
+        /// </summary>
+        public static string RecipeWorkspaceViewModel_ErrorLoadingWorkplans {
+            get {
+                return ResourceManager.GetString("RecipeWorkspaceViewModel_ErrorLoadingWorkplans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a recipe from the list.
+        /// </summary>
+        public static string RecipeWorkspaceViewModel_SelectRecipe {
+            get {
+                return ResourceManager.GetString("RecipeWorkspaceViewModel_SelectRecipe", resourceCulture);
             }
         }
         
@@ -745,29 +745,11 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The product was not removed!.
-        /// </summary>
-        public static string RemoveProductView_ErrorWhileRemove {
-            get {
-                return ResourceManager.GetString("RemoveProductView_ErrorWhileRemove", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to In use by:.
         /// </summary>
         public static string RemoveProductView_InUseBy {
             get {
                 return ResourceManager.GetString("RemoveProductView_InUseBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The product cannot be removed because it is still used in other products.
-        /// </summary>
-        public static string RemoveProductView_NonDeletableHint {
-            get {
-                return ResourceManager.GetString("RemoveProductView_NonDeletableHint", resourceCulture);
             }
         }
         
@@ -790,11 +772,38 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The product was not removed!.
+        /// </summary>
+        public static string RemoveProductViewModel_ErrorWhileRemove {
+            get {
+                return ResourceManager.GetString("RemoveProductViewModel_ErrorWhileRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product cannot be removed because it is still used in other products.
+        /// </summary>
+        public static string RemoveProductViewModel_NonDeletableHint {
+            get {
+                return ResourceManager.GetString("RemoveProductViewModel_NonDeletableHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string RevisionsView_Close {
             get {
                 return ResourceManager.GetString("RevisionsView_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string RevisionsView_Create {
+            get {
+                return ResourceManager.GetString("RevisionsView_Create", resourceCulture);
             }
         }
         
@@ -898,7 +907,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no product for this link selected..
+        ///   Looks up a localized string similar to There is no product selected for this link..
         /// </summary>
         public static string SinglePartConnectorPartView_NullLink {
             get {

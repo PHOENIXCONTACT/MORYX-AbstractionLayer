@@ -6,8 +6,9 @@
              xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
              xmlns:aspects="clr-namespace:Marvin.Products.UI.Interaction.Aspects"
              xmlns:c4I="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance aspects:SinglePartConnectorPartViewModel}">
+             d:DataContext="{d:DesignInstance aspects:SinglePartConnectorPartViewModel}" d:DesignWidth="900" d:DesignHeight="183">
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White"/>
@@ -35,7 +36,7 @@
                     </TextBlock>
 
                     <TextBlock DockPanel.Dock="Top" Margin="0,0,0,15"
-                           Text="The following configuration edits the properties of the link to the product.">
+                           Text="{x:Static properties:Strings.SinglePartConnectorPartView_Description}">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Visibility" Value="Visible" />
@@ -54,13 +55,13 @@
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <EddieButton Icon="Refresh"
                                  Command="{Binding ChangeLinkCmd}"
-                                 Content="Change"
+                                 Content="{x:Static properties:Strings.SinglePartConnectorPartView_Change}"
                                  Visibility="{Binding PartConnector.IsCollection, Converter={StaticResource ReBooleanToVisibilityConverter}}"
                                  HorizontalAlignment="Left"
                                  IsEnabled="{Binding IsEditMode}" />
                         <EddieButton Icon="Undo" Margin="5,0,0,0"
                                  Command="{Binding ClearLinkCmd}"
-                                 Content="Clear"
+                                 Content="{x:Static properties:Strings.SinglePartConnectorPartView_Clear}"
                                  Visibility="{Binding PartConnector.IsCollection, Converter={StaticResource ReBooleanToVisibilityConverter}}"
                                  HorizontalAlignment="Left"
                                  IsEnabled="{Binding IsEditMode}" />
@@ -76,7 +77,7 @@
                                 <StackPanel VerticalAlignment="Center" Orientation="Vertical">
                                     <Path c4I:Eddie.Icon="Gear" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" c4I:Eddie.TextFormat="Bold"
-                                           Text="The link does not require any configuration."/>
+                                           Text="{x:Static properties:Strings.SinglePartConnectorPartView_EmptyProperties}"/>
                                 </StackPanel>
                             </ControlTemplate>
                         </ContentControl.Resources>
@@ -102,12 +103,12 @@
                     <TextBlock DockPanel.Dock="Top" Margin="0,0,0,10" c4I:Eddie.TextFormat="Header2">
                         <Run Text="{Binding PartConnector.Name, Mode=OneWay}" />
                         <Run Text=": " />
-                        <Run Text="Empty" />
+                        <Run Text="{x:Static properties:Strings.SinglePartConnectorPartView_DefaultPartConnectorName}" />
                     </TextBlock>
 
                     <EddieButton Icon="Refresh"
                              Command="{Binding ChangeLinkCmd}"
-                             Content="Change"
+                             Content="{x:Static properties:Strings.SinglePartConnectorPartView_Change}"
                              Visibility="{Binding PartConnector.IsCollection, Converter={StaticResource ReBooleanToVisibilityConverter}}"
                              DockPanel.Dock="Bottom"
                              HorizontalAlignment="Left"
@@ -118,7 +119,7 @@
                         <Path Data="{StaticResource UnlinkIcon}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
                         <TextBlock HorizontalAlignment="Center"
                                c4I:Eddie.TextFormat="Bold"
-                               Text="There is no product selected for this link." />
+                               Text="{x:Static properties:Strings.SinglePartConnectorPartView_NullLink}" />
                     </StackPanel>
                 </DockPanel>
             </ControlTemplate>

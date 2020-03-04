@@ -106,7 +106,7 @@
   <data name="ProductsWorkspaceView_Remove" xml:space="preserve">
     <value>Entfernen</value>
   </data>
-  <data name="ProductsWorkspaceView_Revisions" xml:space="preserve">
+  <data name="ProductsWorkspaceView_Filter_Revisions" xml:space="preserve">
     <value>Revisionen</value>
   </data>
   <data name="ProductsWorkspaceView_Cancel" xml:space="preserve">
@@ -121,7 +121,7 @@
   <data name="CreateRevisionView_Product" xml:space="preserve">
     <value>Produkt:</value>
   </data>
-  <data name="CreateRevisionView_RevisionNumber" xml:space="preserve">
+  <data name="CreateRevisionView_Revision" xml:space="preserve">
     <value>Revision:</value>
   </data>
   <data name="CreateRevisionView_Create" xml:space="preserve">
@@ -139,14 +139,11 @@
   <data name="RemoveProductView_RemoveProduct" xml:space="preserve">
     <value>Entfernen</value>
   </data>
-  <data name="RemoveProductView_NonDeletableHint" xml:space="preserve">
+  <data name="RemoveProductViewModel_NonDeletableHint" xml:space="preserve">
     <value>Dieses Produkt kann nicht entfernt werden, da es noch in anderen Produkten verwendet wird</value>
   </data>
   <data name="RemoveProductView_Cancel" xml:space="preserve">
     <value>Abbrechen</value>
-  </data>
-  <data name="ImportView_Hint" xml:space="preserve">
-    <value>Produkte mit Importern importieren</value>
   </data>
   <data name="ImportView_Cancel" xml:space="preserve">
     <value>Abbrechen</value>
@@ -154,7 +151,7 @@
   <data name="ImportView_ImportProduct" xml:space="preserve">
     <value>Importieren</value>
   </data>
-  <data name="EmptyDetailsView_SelectProduct" xml:space="preserve">
+  <data name="ProductsWorkspaceViewModel_SelectProduct" xml:space="preserve">
     <value>Bitte ein Produkt aus dem Baum links auswählen.</value>
   </data>
   <data name="ProductsWorkspaceView_General_Title" xml:space="preserve">
@@ -166,7 +163,7 @@
   <data name="ProductsWorkspaceView_General_Identifier" xml:space="preserve">
     <value>Kennung:</value>
   </data>
-  <data name="CreateRevisionView_DisplayName" xml:space="preserve">
+  <data name="CreateRevisionViewModel_DisplayName" xml:space="preserve">
     <value>Neue Revision</value>
   </data>
   <data name="RecipeWorkspaceView_Recipes" xml:space="preserve">
@@ -181,16 +178,13 @@
   <data name="RecipeWorkspaceView_Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
-  <data name="RecipeWorkspaceView_SelectRecipe" xml:space="preserve">
+  <data name="RecipeWorkspaceViewModel_SelectRecipe" xml:space="preserve">
     <value>Bitte ein Rezept aus der Liste auswählen</value>
   </data>
-  <data name="RecipeWorkspaceView_ErrorLoadingRecipes" xml:space="preserve">
+  <data name="RecipeWorkspaceViewModel_ErrorLoadingRecipes_Message" xml:space="preserve">
     <value>Fehler beim Laden der Rezepte.</value>
   </data>
-  <data name="RecipeWorkspaceView_Error" xml:space="preserve">
-    <value>Fehler</value>
-  </data>
-  <data name="RecipeWorkspaceView_ErrorSavingRecipe" xml:space="preserve">
+  <data name="RecipeDetailsViewModelBase_ErrorSavingRecipe_Message" xml:space="preserve">
     <value>Rezept konnte nicht gespeichert werden:</value>
   </data>
   <data name="RecipeWorkspaceView_Workplan" xml:space="preserve">
@@ -208,7 +202,7 @@
   <data name="AddRecipeDialogView_Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
-  <data name="RecipeWorkspaceView_ErrorLoadingWorkplans" xml:space="preserve">
+  <data name="RecipeWorkspaceViewModel_ErrorLoadingWorkplans" xml:space="preserve">
     <value>Fehler beim Laden der Arbeistpläne.</value>
   </data>
   <data name="PartsAspectViewModel_DisplayName" xml:space="preserve">
@@ -217,14 +211,11 @@
   <data name="PropertiesAspectViewModel_DisplayName" xml:space="preserve">
     <value>Eigenschaften</value>
   </data>
-  <data name="CollectionPartConnectorViewModel_Add" xml:space="preserve">
+  <data name="CollectionPartConnectorView_Add" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
-  <data name="CollectionPartConnectorViewModel_Remove" xml:space="preserve">
+  <data name="CollectionPartConnectorView_Remove" xml:space="preserve">
     <value>Entfernen</value>
-  </data>
-  <data name="PartNonSelectedView_SelectPart" xml:space="preserve">
-    <value>Wählen Sie ein Teil aus der Liste</value>
   </data>
   <data name="SelectPartLinkDialogViewModel_DisplayName" xml:space="preserve">
     <value>Teil auswählen</value>
@@ -247,9 +238,6 @@
   <data name="RecipesAspectView_AddRecipe" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
-  <data name="RecipeAspectView_Workplan" xml:space="preserve">
-    <value>Arbeitsplan:</value>
-  </data>
   <data name="RecipesAspectViewModel_DisplayName" xml:space="preserve">
     <value>Rezepte</value>
   </data>
@@ -268,7 +256,7 @@
   <data name="AddRecipeDialogViewModel_DisplayName" xml:space="preserve">
     <value>Rezept hinzufügen</value>
   </data>
-  <data name="DuplicateProductDialogView_DisplayName" xml:space="preserve">
+  <data name="DuplicateProductDialogViewModel_DisplayName" xml:space="preserve">
     <value>Produkt '{0}' duplizieren</value>
   </data>
   <data name="DuplicateProductDialogView_Identifier" xml:space="preserve">
@@ -307,7 +295,7 @@
   <data name="RemoveProductView_InUseBy" xml:space="preserve">
     <value>In Benutzung von:</value>
   </data>
-  <data name="RemoveProductView_ErrorWhileRemove" xml:space="preserve">
+  <data name="RemoveProductViewModel_ErrorWhileRemove" xml:space="preserve">
     <value>Das Produkt wurde nicht entfernt!</value>
   </data>
   <data name="RevisionsViewModel_DisplayName" xml:space="preserve">
@@ -334,9 +322,6 @@
   <data name="RelationsAspectView_ListView_Name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="AspectConductorView_Info" xml:space="preserve">
-    <value>Für dieses Product existieren keine relevanten Aspekte.</value>
-  </data>
   <data name="SinglePartConnectorPartView_DefaultPartConnectorName" xml:space="preserve">
     <value>Leer</value>
   </data>
@@ -346,7 +331,7 @@
   <data name="ProductsWorkspaceView_Filter" xml:space="preserve">
     <value>Filtern</value>
   </data>
-  <data name="ProductsWorkspaceView_ResetFilter" xml:space="preserve">
+  <data name="ProductsWorkspaceView_Filter_Reset" xml:space="preserve">
     <value>Zurücksetzen</value>
   </data>
   <data name="ProductsWorkspaceView_Filter_Name" xml:space="preserve">
@@ -376,7 +361,25 @@
   <data name="DefaultRecipeDetailsView_NoProperties" xml:space="preserve">
     <value>Das Rezept besitzt keine konfigurierbaren Eigenschaften.</value>
   </data>
-  <data name="AspectConfiguratorView_DisplayName" xml:space="preserve">
-    <value>Konfiguration</value>
+  <data name="ProductsWorkspaceView_Filter_Selector" xml:space="preserve">
+    <value>Selektor</value>
+  </data>
+  <data name="ProductsWorkspaceView_Revisions" xml:space="preserve">
+    <value>Revisionen</value>
+  </data>
+  <data name="RecipeWorkspaceViewModel_ErrorLoadingRecipes_Title" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="RecipeDetailsViewModelBase_ErrorSavingRecipe_Title" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="RevisionsView_Create" xml:space="preserve">
+    <value>Erstellen</value>
+  </data>
+  <data name="ImportView_Description" xml:space="preserve">
+    <value>Importiert Produkte mit importer.</value>
+  </data>
+  <data name="ImportViewModel_DisplayName" xml:space="preserve">
+    <value>Produkt Importer</value>
   </data>
 </root>

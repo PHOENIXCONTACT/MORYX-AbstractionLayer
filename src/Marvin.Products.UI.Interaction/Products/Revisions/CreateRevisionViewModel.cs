@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction
@@ -106,7 +107,7 @@ namespace Marvin.Products.UI.Interaction
         protected override void OnInitialize()
         {
             base.OnInitialize();
-            DisplayName = "New Revision";
+            DisplayName = Strings.CreateRevisionViewModel_DisplayName;
 
             var loadingTask = Task.Run(async delegate
             {
@@ -139,7 +140,7 @@ namespace Marvin.Products.UI.Interaction
             var isRevisionNumberFree = _currentRevisions.All(pr => pr.Revision != NewRevision);
             if (!isRevisionNumberFree)
             {
-                NumberErrorMessage = "Revision not available";
+                NumberErrorMessage = Strings.CreateRevisionViewModel_RevisionNotAvailable;
                 return false;
             }
 
@@ -158,7 +159,7 @@ namespace Marvin.Products.UI.Interaction
                 var response =  await duplicateTask;
                 if (response.IdentityConflict || response.InvalidSource)
                 {
-                    ErrorMessage = "The given identity and revision conflicts with an existing.";
+                    ErrorMessage = Strings.CreateRevisionViewModel_ConflictedIdentity;
                 }
                 else
                 {

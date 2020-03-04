@@ -8,6 +8,7 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:ui="clr-namespace:Marvin.Products.UI;assembly=Marvin.Products.UI"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d" x:Name="UserControl"
              d:DataContext="{d:DesignInstance recipes:RecipesAspectViewModel}">
     <UserControl.Resources>
@@ -29,9 +30,9 @@
 
             <DockPanel Grid.Column="0">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom"  Margin="0,5,0,0">
-                    <EddieButton Content="Add" Icon="Plus"
+                    <EddieButton Content="{x:Static properties:Strings.RecipesAspectView_AddRecipe}" Icon="Plus"
                                  Command="{Binding AddRecipeCmd}" HorizontalAlignment="Left" />
-                    <EddieButton Content="Remove" Icon="Minus" Margin="5,0,0,0"
+                    <EddieButton Content="{x:Static properties:Strings.RecipesAspectView_RemoveRecipe}" Icon="Minus" Margin="5,0,0,0"
                                  Command="{Binding RemoveRecipeCmd}" HorizontalAlignment="Left" />
                 </StackPanel>
 
@@ -55,7 +56,7 @@
                     <ControlTemplate x:Key="NoRecipeSelectedContent">
                         <StackPanel VerticalAlignment="Center" Orientation="Vertical">
                             <Path Eddie.Icon="Document" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
-                            <TextBlock Text="Select a recipe from the list"
+                            <TextBlock Text="{x:Static properties:Strings.RecipeAspectView_NonRecipeSelected}"
                                        Eddie.TextFormat="Bold"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center" >

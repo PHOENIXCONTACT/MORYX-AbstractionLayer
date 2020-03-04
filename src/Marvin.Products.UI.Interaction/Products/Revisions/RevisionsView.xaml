@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
              xmlns:ui="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:RevisionsViewModel}" d:DesignWidth="325.354" d:DesignHeight="88.955"
              MinHeight="300" MinWidth="550">
     <UserControl.Resources>
@@ -24,11 +25,11 @@
 
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}" MinWidth="480">
         <DialogPanel.Buttons>
-            <EddieButton Icon="Ok" Command="{Binding CreateCmd}" Content="Create" Margin="0,0,10,0"/>
+            <EddieButton Icon="Ok" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.RevisionsView_Create}" Margin="0,0,10,0"/>
             <EddieButton Icon="Open" Command="{Binding OpenCmd}" CommandParameter="{Binding ElementName=RevisionsList, Path=SelectedItem}"
-                         Content="Open" />
+                         Content="{x:Static properties:Strings.RevisionsView_Open}" />
 
-            <EddieButton Icon="Cross" Command="{Binding CloseCmd}" Content="Close" EddieStyle="Gray"/>
+            <EddieButton Icon="Cross" Command="{Binding CloseCmd}" Content="{x:Static properties:Strings.RevisionsView_Close}" EddieStyle="Gray"/>
         </DialogPanel.Buttons>
 
         <DockPanel LastChildFill="True">

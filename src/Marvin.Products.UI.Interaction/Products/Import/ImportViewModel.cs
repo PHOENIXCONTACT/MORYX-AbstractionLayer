@@ -8,6 +8,7 @@ using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
 using Marvin.Logging;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction
@@ -92,7 +93,7 @@ namespace Marvin.Products.UI.Interaction
 
         protected override void OnInitialize()
         {
-            DisplayName = "Product Importer";
+            DisplayName = Strings.ImportViewModel_DisplayName;
 
             OkCmd = new AsyncCommand(Ok);
             CancelCmd = new RelayCommand(Cancel);
