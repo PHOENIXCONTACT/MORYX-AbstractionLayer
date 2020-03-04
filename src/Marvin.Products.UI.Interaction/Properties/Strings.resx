@@ -382,4 +382,16 @@
   <data name="ImportViewModel_DisplayName" xml:space="preserve">
     <value>Product Importer</value>
   </data>
+  <data name="ProductDetailsViewModelBase_No_relevant_aspects" xml:space="preserve">
+    <value>There are no relevant aspects for the selected product.</value>
+  </data>
+  <data name="ImportViewModel_Fill_required_fields" xml:space="preserve">
+    <value>Please fill all required fields!</value>
+  </data>
+  <data name="ImportViewModel_Import_error" xml:space="preserve">
+    <value>An error occured while creating the product.</value>
+  </data>
+  <data name="ImportViewModel_Import_error_info" xml:space="preserve">
+    <value>Please check the current input.</value>
+  </data>
 </root>

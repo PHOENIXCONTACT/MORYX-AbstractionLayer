@@ -247,4 +247,7 @@
   <data name="InteractionWorkspaceView_Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="ResourceDetailsViewModelBase_No_relevant_aspects" xml:space="preserve">
+    <value>There are no relevant aspects for the selected resource.</value>
+  </data>
 </root>

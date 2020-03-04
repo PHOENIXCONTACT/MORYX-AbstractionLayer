@@ -331,6 +331,15 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no relevant aspects for the selected resource..
+        /// </summary>
+        public static string ResourceDetailsViewModelBase_No_relevant_aspects {
+            get {
+                return ResourceManager.GetString("ResourceDetailsViewModelBase_No_relevant_aspects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description:.
         /// </summary>
         public static string ResourceMethodsAspectView_Description {

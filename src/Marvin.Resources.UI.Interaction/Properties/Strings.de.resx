@@ -232,7 +232,7 @@
     <value>Ziel hinzufügen</value>
   </data>
   <data name="ReferencesAspectView_RequiredReference" xml:space="preserve">
-    <value>Diese Referenz wird benötigt und muss gesetzt werden.</value>
+    <value>Diese Referenz wird benötigt und muss gesetzt werden!</value>
   </data>
   <data name="ReferencesAspectViewModel_Validation_CollectionTargetMustBeSet" xml:space="preserve">
     <value>Diese Liste aus Referenzen benötigt mindestens ein Ziel!</value>
@@ -266,5 +266,8 @@
   </data>
   <data name="InteractionWorkspaceView_Refresh" xml:space="preserve">
     <value>Aktualisieren</value>
+  </data>
+  <data name="ResourceDetailsViewModelBase_No_relevant_aspects" xml:space="preserve">
+    <value>Für die ausgewählte Resource sind keine relevanten Aspekte vorhanden.</value>
   </data>
 </root>

@@ -340,6 +340,33 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please fill all required fields!.
+        /// </summary>
+        public static string ImportViewModel_Fill_required_fields {
+            get {
+                return ResourceManager.GetString("ImportViewModel_Fill_required_fields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured while creating the product..
+        /// </summary>
+        public static string ImportViewModel_Import_error {
+            get {
+                return ResourceManager.GetString("ImportViewModel_Import_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please check the current input..
+        /// </summary>
+        public static string ImportViewModel_Import_error_info {
+            get {
+                return ResourceManager.GetString("ImportViewModel_Import_error_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string ModuleController_DisplayName {
@@ -363,6 +390,15 @@ namespace Marvin.Products.UI.Interaction.Properties {
         public static string PartsAspectViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("PartsAspectViewModel_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no relevant aspects for the selected product..
+        /// </summary>
+        public static string ProductDetailsViewModelBase_No_relevant_aspects {
+            get {
+                return ResourceManager.GetString("ProductDetailsViewModelBase_No_relevant_aspects", resourceCulture);
             }
         }
         

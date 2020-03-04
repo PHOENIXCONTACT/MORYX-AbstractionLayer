@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using C4I;
 using Caliburn.Micro;
+using Marvin.AbstractionLayer.UI.Properties;
 using Marvin.ClientFramework;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
@@ -151,7 +152,7 @@ namespace Marvin.AbstractionLayer.UI
             }
             catch (Exception e)
             {
-                const string errorMessage = "Cannot load details because an error occured!";
+                var errorMessage = Strings.MasterDetailsWorkspace_Load_error;
                 Logger.LogException(LogLevel.Error, e, errorMessage);
 
                 EmptyDetails.Display(MessageSeverity.Error, errorMessage);

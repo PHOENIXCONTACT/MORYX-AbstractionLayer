@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Marvin.AbstractionLayer.UI;
 using Marvin.AbstractionLayer.UI.Aspects;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Tools;
 
 namespace Marvin.Products.UI.Interaction
@@ -38,7 +39,7 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// View models of aspects from this product
         /// </summary>
-        public AspectConductorViewModel Aspects { get; } = new AspectConductorViewModel("There are no relevant aspects for the selected product.");
+        public AspectConductorViewModel Aspects { get; } = new AspectConductorViewModel(Strings.ProductDetailsViewModelBase_No_relevant_aspects);
 
         /// <summary>
         /// Property defining if aspects should be loaded or not

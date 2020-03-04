@@ -244,4 +244,19 @@
   <data name="RecipeDetailsViewModelBase_ErrorSavingRecipe_Title" xml:space="preserve">
     <value>Błąd</value>
   </data>
+  <data name="CollectionPartConnectorView_Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="ProductsWorkspaceView_Filter_Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="RecipesAspectView_RemoveRecipe" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="RelationsAspectView_ListView_Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="SelectPartLinkDialogView_Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
 </root>
