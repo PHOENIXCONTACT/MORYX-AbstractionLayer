@@ -7,6 +7,7 @@ using System.Windows;
 using Caliburn.Micro;
 using Marvin.AbstractionLayer.UI;
 using Marvin.Container;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction
@@ -96,7 +97,7 @@ namespace Marvin.Products.UI.Interaction
 
         protected override void ShowEmpty()
         {
-            EmptyDetails.Display(MessageSeverity.Info, "Please select a recipe from the list");
+            EmptyDetails.Display(MessageSeverity.Info, Strings.RecipeWorkspaceViewModel_SelectRecipe);
 
             base.ShowEmpty();
         }
@@ -126,8 +127,8 @@ namespace Marvin.Products.UI.Interaction
             }
             catch (Exception e)
             {
-                DialogManager.ShowMessageBox($"Error while receiving workplans. {e}",
-                    "Error while receiving workplans.");
+                DialogManager.ShowMessageBox($"{Strings.RecipeWorkspaceViewModel_ErrorLoadingWorkplans} {e}",
+                    Strings.RecipeWorkspaceViewModel_ErrorLoadingWorkplans);
                 throw;
             }
         }
@@ -145,8 +146,8 @@ namespace Marvin.Products.UI.Interaction
             }
             catch (Exception e)
             {
-                DialogManager.ShowMessageBox($"Error while receiving recipes. {e}",
-                    "Error");
+                DialogManager.ShowMessageBox($"{Strings.RecipeWorkspaceViewModel_ErrorLoadingRecipes_Message} {e}",
+                    Strings.RecipeWorkspaceViewModel_ErrorLoadingRecipes_Title);
                 throw;
             }
 

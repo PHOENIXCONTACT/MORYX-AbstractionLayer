@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using Marvin.AbstractionLayer.UI;
 using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.Logging;
+using Marvin.Resources.UI.Interaction.Properties;
 using Marvin.Resources.UI.ResourceService;
 using Marvin.Tools;
 
@@ -61,7 +62,7 @@ namespace Marvin.Resources.UI.Interaction
         /// <summary>
         /// View models of aspects from this resource
         /// </summary>
-        public AspectConductorViewModel Aspects { get; } = new AspectConductorViewModel("No Aspects");
+        public AspectConductorViewModel Aspects { get; } = new AspectConductorViewModel(Strings.ResourceDetailsViewModelBase_No_relevant_aspects);
 
         #endregion
 

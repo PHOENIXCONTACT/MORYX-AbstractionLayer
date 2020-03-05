@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance interaction:DuplicateProductDialogViewModel}">
     <d:DesignerProperties.DesignStyle>
@@ -13,8 +14,8 @@
     </d:DesignerProperties.DesignStyle>
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding DuplicateCmd}" Content="Clone" />
-            <EddieButton Content="Cancel" Icon="Cross" EddieStyle="Gray"
+            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding DuplicateCmd}" Content="{x:Static properties:Strings.DuplicateProductDialogView_Clone}" />
+            <EddieButton Content="{x:Static properties:Strings.DuplicateProductDialogView_Cancel}" Icon="Cross" EddieStyle="Gray"
                          Command="{Binding CloseCmd}" Margin="10,0,0,0"/>
         </DialogPanel.Buttons>
 
@@ -27,13 +28,13 @@
             </DockPanel.Resources>
 
             <LabeledControlHost DockPanel.Dock="Top"
-                                LabelA="Identifier">
+                                LabelA="{x:Static properties:Strings.DuplicateProductDialogView_Identifier}">
                 <EddieTextBox Text="{Binding Identifier, UpdateSourceTrigger=PropertyChanged}"
                               Watermark="2988773"  HorizontalAlignment="Stretch" MinWidth="300" />
             </LabeledControlHost>
 
             <LabeledControlHost DockPanel.Dock="Top"
-                                LabelA="Revision"
+                                LabelA="{x:Static properties:Strings.DuplicateProductDialogView_Revision}"
                                 Margin="0,5,0,5">
                 <EddieTextBox Text="{Binding Revision, UpdateSourceTrigger=PropertyChanged}"
                               Watermark="0" Width="80" HorizontalAlignment="Left" />

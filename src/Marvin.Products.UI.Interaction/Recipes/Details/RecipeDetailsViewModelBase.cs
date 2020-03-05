@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Marvin.AbstractionLayer.UI;
 using Marvin.ClientFramework.Dialog;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction
@@ -107,7 +108,8 @@ namespace Marvin.Products.UI.Interaction
             }
             catch (Exception e)
             {
-                DialogManager.ShowMessageBox($"Cannot save recipe: {e}", "Error");
+                DialogManager.ShowMessageBox($"{Strings.RecipeDetailsViewModelBase_ErrorSavingRecipe_Message} {e}",
+                    Strings.RecipeDetailsViewModelBase_ErrorSavingRecipe_Title);
             }
         }
     }

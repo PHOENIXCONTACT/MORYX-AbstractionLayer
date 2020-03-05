@@ -12,6 +12,7 @@ using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.ClientFramework;
 using Marvin.ClientFramework.Commands;
 using Marvin.Container;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 using Marvin.Tools;
 
@@ -211,7 +212,7 @@ namespace Marvin.Products.UI.Interaction
 
         protected override void ShowEmpty()
         {
-            EmptyDetails.Display(MessageSeverity.Info, "Please select a product from the tree on the left side.");
+            EmptyDetails.Display(MessageSeverity.Info, Strings.ProductsWorkspaceViewModel_SelectProduct);
             base.ShowEmpty();
         }
 

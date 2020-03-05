@@ -2,13 +2,14 @@
 using System.Linq;
 using Caliburn.Micro;
 using Marvin.ClientFramework.Dialog;
+using Marvin.Products.UI.Interaction.Properties;
 
 namespace Marvin.Products.UI.Interaction.Aspects
 {
     [ProductAspectRegistration(nameof(PartsAspectViewModel))]
     internal class PartsAspectViewModel : ProductAspectViewModelBase
     {
-        public override string DisplayName => "Parts";
+        public override string DisplayName => Strings.PartsAspectViewModel_DisplayName;
 
         #region Dependencies
 

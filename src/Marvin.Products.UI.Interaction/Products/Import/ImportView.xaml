@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
              xmlns:controls="clr-namespace:Marvin.Controls;assembly=Marvin.Controls"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:ImportViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <d:DesignerProperties.DesignStyle>
@@ -14,14 +15,14 @@
     </d:DesignerProperties.DesignStyle>
     <DialogPanel Background="White" BusyVisibility="{Binding OkCmd.Execution.BusyVisibility}">
         <DialogPanel.Header>
-            <TextBlock Margin="0,5,0,5" Text="Import product using importers." />
+            <TextBlock Margin="0,5,0,5" Text="{x:Static properties:Strings.ImportView_Description}" />
         </DialogPanel.Header>
         <DialogPanel.Buttons>
             <EddieButton IsDefault="True" Icon="Ok"
                          Command="{Binding OkCmd}" IsEnabled="{Binding OkCmd.Execution.TaskCompleted}"
-                         Content="Import" />
+                         Content="{x:Static properties:Strings.ImportView_ImportProduct}" />
 
-            <EddieButton Content="Cancel" Icon="Cross" EddieStyle="Gray"
+            <EddieButton Content="{x:Static properties:Strings.ImportView_Cancel}" Icon="Cross" EddieStyle="Gray"
                          HorizontalAlignment="Right"
                          Margin="5" Command="{Binding CancelCmd}" />
         </DialogPanel.Buttons>

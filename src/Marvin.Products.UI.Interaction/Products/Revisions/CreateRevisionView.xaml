@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Marvin.Products.UI.Interaction"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:CreateRevisionViewModel}"
              d:DesignHeight="216" d:DesignWidth="615" MinHeight="200" MinWidth="550">
     <d:DesignerProperties.DesignStyle>
@@ -13,8 +14,8 @@
     </d:DesignerProperties.DesignStyle>
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateCmd}" Content="Create" />
-            <EddieButton DockPanel.Dock="Bottom" Content="Cancel" Icon="Cross" EddieStyle="Gray"
+            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.CreateRevisionView_Create}" />
+            <EddieButton DockPanel.Dock="Bottom" Content="{x:Static properties:Strings.CreateRevisionView_Cancel}" Icon="Cross" EddieStyle="Gray"
                          HorizontalAlignment="Right" Command="{Binding CancelCmd}" Margin="5,0,0,0"/>
         </DialogPanel.Buttons>
 
@@ -27,14 +28,14 @@
             </DockPanel.Resources>
 
             <LabeledControlHost DockPanel.Dock="Top"
-                                LabelA="Product:">
+                                LabelA="{x:Static properties:Strings.CreateRevisionView_Product}">
                 <TextBlock Margin="0,0,0,5">
                     <Run Text="{Binding Product.FullIdentifier, Mode=OneWay}"/>
                     <Run Text="{Binding Product.Name, Mode=OneWay}"/>
                 </TextBlock>
             </LabeledControlHost>
 
-            <LabeledControlHost DockPanel.Dock="Top" LabelA="Revision:">
+            <LabeledControlHost DockPanel.Dock="Top" LabelA="{x:Static properties:Strings.CreateRevisionView_Revision}">
                 <StackPanel Orientation="Horizontal">
                     <EddieTextBox Width="100" Text="{Binding NewRevision, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock VerticalAlignment="Center" Text="{Binding NumberErrorMessage}" Foreground="Red" Margin="4,0" HorizontalAlignment="Center" />

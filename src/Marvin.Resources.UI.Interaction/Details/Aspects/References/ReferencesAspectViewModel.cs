@@ -6,6 +6,7 @@ using System.Windows.Input;
 using C4I;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
+using Marvin.Resources.UI.Interaction.Properties;
 
 namespace Marvin.Resources.UI.Interaction.Aspects
 {
@@ -22,7 +23,7 @@ namespace Marvin.Resources.UI.Interaction.Aspects
 
         #region Fields and Properties
 
-        public override string DisplayName => "References";
+        public override string DisplayName => Strings.ReferencesAspectViewModel_DisplayName;
 
         private ResourceReferenceViewModel _selectedReference;
         private IResourceViewModel _selectedTarget;
@@ -92,8 +93,8 @@ namespace Marvin.Resources.UI.Interaction.Aspects
                     continue;
 
                 validationErrors.Add(referenceType.IsCollection
-                    ? new ValidationResult($"{reference.DisplayName}: The reference must have at least one target!")
-                    : new ValidationResult($"{reference.DisplayName}: Single references must have a target!"));
+                    ? new ValidationResult($"{reference.DisplayName}: {Strings.ReferencesAspectViewModel_Validation_CollectionTargetMustBeSet}")
+                    : new ValidationResult($"{reference.DisplayName}: {Strings.ReferencesAspectViewModel_Validation_SingleTargetMustBeSet}"));
             }
         }
 

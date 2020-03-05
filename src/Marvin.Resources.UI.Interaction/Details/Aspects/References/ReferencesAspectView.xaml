@@ -7,6 +7,7 @@
              xmlns:ui="clr-namespace:Marvin.Resources.UI;assembly=Marvin.Resources.UI"
              xmlns:c4I ="clr-namespace:C4I;assembly=Controls4Industry"
              xmlns:al="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
+             xmlns:properties="clr-namespace:Marvin.Resources.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance aspects:ReferencesAspectViewModel}"
              d:DesignHeight="450" d:DesignWidth="800" x:Name="UserControl">
     <d:DesignerProperties.DesignStyle>
@@ -44,7 +45,7 @@
                                                    DockPanel.Dock="Top"
                                                    Text="{Binding SelectedTarget.Name}"/>
 
-                                        <LabeledControlHost LabelMinWidth="116" LabelA="Type: ">
+                                        <LabeledControlHost LabelMinWidth="116" LabelA="{x:Static properties:Strings.ReferencesAspectView_TypeName}">
                                             <TextBlock TextWrapping="Wrap" Text="{Binding SelectedTarget.TypeName}" />
                                         </LabeledControlHost>
                                     </StackPanel>
@@ -59,7 +60,7 @@
                                 <Path Data="{StaticResource UnlinkIcon}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
                                 <TextBlock HorizontalAlignment="Center"
                                            c4I:Eddie.TextFormat="Bold"
-                                           Text="This reference currently has not target." />
+                                           Text="{x:Static properties:Strings.ReferencesAspectView_SingleReference_TargetNull}" />
                             </StackPanel>
                         </DockPanel>
                     </ControlTemplate>
@@ -70,11 +71,11 @@
                                 Orientation="Horizontal">
                         <EddieButton IconPath="{StaticResource LinkIcon}"
                                      Command="{Binding Path=SetTargetCmd}"
-                                     Content="Link Target" Margin="0,0,5,0">
+                                     Content="{x:Static properties:Strings.ReferencesAspectView_LinkTarget}" Margin="0,0,5,0">
                         </EddieButton>
                         <EddieButton IconPath="{StaticResource UnlinkIcon}"
                                      Command="{Binding Path=RemoveTargetCmd}"
-                                     Content="Unlink Target">
+                                     Content="{x:Static properties:Strings.ReferencesAspectView_UnlinkTarget}">
                         </EddieButton>
                     </StackPanel>
 
@@ -100,11 +101,11 @@
                                 Orientation="Horizontal">
                         <EddieButton IconPath="{StaticResource LinkIcon}"
                                      Command="{Binding Path=AddTargetCmd}"
-                                     Content="Link Target" Margin="0,0,5,0">
+                                     Content="{x:Static properties:Strings.ReferencesAspectView_AddTarget}" Margin="0,0,5,0">
                         </EddieButton>
                         <EddieButton IconPath="{StaticResource UnlinkIcon}"
                                      Command="{Binding Path=RemoveTargetCmd}"
-                                     Content="Unlink Target">
+                                     Content="{x:Static properties:Strings.ReferencesAspectView_UnlinkTarget}">
                         </EddieButton>
                     </StackPanel>
 
@@ -114,8 +115,8 @@
                         <EddieListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="70" />
-                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="260" />
-                                <GridViewColumn Header="Type" Width="280" DisplayMemberBinding="{Binding TypeName}" />
+                                <GridViewColumn Header="{x:Static properties:Strings.ReferencesAspectView_Name}" DisplayMemberBinding="{Binding Name}" Width="260" />
+                                <GridViewColumn Header="{x:Static properties:Strings.ReferencesAspectView_Type}" Width="280" DisplayMemberBinding="{Binding TypeName}" />
                             </GridView>
                         </EddieListView.View>
                     </EddieListView>
@@ -171,16 +172,16 @@
 
         <DockPanel Margin="5,0,0,0" Grid.Column="1" LastChildFill="True">
             <TextBlock DockPanel.Dock="Top" Eddie.TextFormat="Header2" Margin="0,0,0,10">
-                <Run Text="Reference:"/>
+                <Run Text="{x:Static properties:Strings.ReferencesAspectView_Reference}"/>
                 <Run Text="{Binding SelectedReference.DisplayName, Mode=OneWay}"/>
             </TextBlock>
 
             <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0,0,0,10"
                        Visibility="{Binding SelectedReference.Type.IsRequired, Converter={StaticResource BooleanToVisibilityConverter}}"
-                       Text="This reference is required and must be set!" FontStyle="Italic" />
+                       Text="{x:Static properties:Strings.ReferencesAspectView_RequiredReference}" FontStyle="Italic" />
 
             <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap">
-                <Run Text="Description:"/>
+                <Run Text="{x:Static properties:Strings.ReferencesAspectView_Description}"/>
                 <Run Text="{Binding SelectedReference.Description, Mode=OneWay}"/>
             </TextBlock>
 

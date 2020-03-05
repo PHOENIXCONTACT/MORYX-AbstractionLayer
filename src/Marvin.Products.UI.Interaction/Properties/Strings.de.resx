@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ModuleController_DisplayName" xml:space="preserve">
+    <value>Produkte</value>
+  </data>
+  <data name="ProductsWorkspaceView_Title" xml:space="preserve">
+    <value>Produkte</value>
+  </data>
+  <data name="ProductsWorkspaceView_Remove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="ProductsWorkspaceView_Filter_Revisions" xml:space="preserve">
+    <value>Revisionen</value>
+  </data>
+  <data name="ProductsWorkspaceView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="ProductsWorkspaceView_Edit" xml:space="preserve">
+    <value>Editieren</value>
+  </data>
+  <data name="ProductsWorkspaceView_Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="CreateRevisionView_Product" xml:space="preserve">
+    <value>Produkt:</value>
+  </data>
+  <data name="CreateRevisionView_Revision" xml:space="preserve">
+    <value>Revision:</value>
+  </data>
+  <data name="CreateRevisionView_Create" xml:space="preserve">
+    <value>Anlegen</value>
+  </data>
+  <data name="CreateRevisionView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="RevisionsView_Open" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
+  <data name="RevisionsView_Close" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="RemoveProductView_RemoveProduct" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="RemoveProductViewModel_NonDeletableHint" xml:space="preserve">
+    <value>Dieses Produkt kann nicht entfernt werden, da es noch in anderen Produkten verwendet wird</value>
+  </data>
+  <data name="RemoveProductView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="ImportView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="ImportView_ImportProduct" xml:space="preserve">
+    <value>Importieren</value>
+  </data>
+  <data name="ProductsWorkspaceViewModel_SelectProduct" xml:space="preserve">
+    <value>Bitte ein Produkt aus dem Baum links auswählen.</value>
+  </data>
+  <data name="ProductsWorkspaceView_General_Title" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="ProductsWorkspaceView_General_Name" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="ProductsWorkspaceView_General_Identifier" xml:space="preserve">
+    <value>Kennung:</value>
+  </data>
+  <data name="CreateRevisionViewModel_DisplayName" xml:space="preserve">
+    <value>Neue Revision</value>
+  </data>
+  <data name="RecipeWorkspaceView_Recipes" xml:space="preserve">
+    <value>Rezepte:</value>
+  </data>
+  <data name="RecipeWorkspaceView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="RecipeWorkspaceView_Edit" xml:space="preserve">
+    <value>Editieren</value>
+  </data>
+  <data name="RecipeWorkspaceView_Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="RecipeWorkspaceViewModel_SelectRecipe" xml:space="preserve">
+    <value>Bitte ein Rezept aus der Liste auswählen</value>
+  </data>
+  <data name="RecipeWorkspaceViewModel_ErrorLoadingRecipes_Message" xml:space="preserve">
+    <value>Fehler beim Laden der Rezepte.</value>
+  </data>
+  <data name="RecipeDetailsViewModelBase_ErrorSavingRecipe_Message" xml:space="preserve">
+    <value>Rezept konnte nicht gespeichert werden:</value>
+  </data>
+  <data name="RecipeWorkspaceView_Workplan" xml:space="preserve">
+    <value>Arbeitsplan:</value>
+  </data>
+  <data name="AddRecipeDialogView_RecipeName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AddRecipeDialogView_Workplan" xml:space="preserve">
+    <value>Arbeitsplan</value>
+  </data>
+  <data name="AddRecipeDialogView_Create" xml:space="preserve">
+    <value>Anlegen</value>
+  </data>
+  <data name="AddRecipeDialogView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="RecipeWorkspaceViewModel_ErrorLoadingWorkplans" xml:space="preserve">
+    <value>Fehler beim Laden der Arbeistpläne.</value>
+  </data>
+  <data name="PartsAspectViewModel_DisplayName" xml:space="preserve">
+    <value>Einzelteile</value>
+  </data>
+  <data name="PropertiesAspectViewModel_DisplayName" xml:space="preserve">
+    <value>Eigenschaften</value>
+  </data>
+  <data name="CollectionPartConnectorView_Add" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="CollectionPartConnectorView_Remove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="SelectPartLinkDialogViewModel_DisplayName" xml:space="preserve">
+    <value>Teil auswählen</value>
+  </data>
+  <data name="SelectPartLinkDialogView_Apply" xml:space="preserve">
+    <value>Auswählen</value>
+  </data>
+  <data name="SelectPartLinkDialogView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="SinglePartConnectorPartView_Description" xml:space="preserve">
+    <value>Mit der folgenden Konfiguration können die Verknüpfungseigenschaften geändert werden.</value>
+  </data>
+  <data name="SinglePartConnectorPartView_EmptyProperties" xml:space="preserve">
+    <value>Es ist keine Konfiguration vorhanden.</value>
+  </data>
+  <data name="SinglePartConnectorPartView_NullLink" xml:space="preserve">
+    <value>Es ist kein Produkt für eine Verknüpfung ausgewählt.</value>
+  </data>
+  <data name="RecipesAspectView_AddRecipe" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="RecipesAspectViewModel_DisplayName" xml:space="preserve">
+    <value>Rezepte</value>
+  </data>
+  <data name="RecipesAspectView_RemoveRecipe" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="RecipeAspectView_NonRecipeSelected" xml:space="preserve">
+    <value>Wählen Sie ein Rezept aus der Liste</value>
+  </data>
+  <data name="SinglePartConnectorPartView_Change" xml:space="preserve">
+    <value>Ändern</value>
+  </data>
+  <data name="SinglePartConnectorPartView_Clear" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="AddRecipeDialogViewModel_DisplayName" xml:space="preserve">
+    <value>Rezept hinzufügen</value>
+  </data>
+  <data name="DuplicateProductDialogViewModel_DisplayName" xml:space="preserve">
+    <value>Produkt '{0}' duplizieren</value>
+  </data>
+  <data name="DuplicateProductDialogView_Identifier" xml:space="preserve">
+    <value>Kennung</value>
+  </data>
+  <data name="DuplicateProductDialogView_Revision" xml:space="preserve">
+    <value>Revision</value>
+  </data>
+  <data name="DuplicateProductDialogView_Clone" xml:space="preserve">
+    <value>Duplizieren</value>
+  </data>
+  <data name="DuplicateProductDialogView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="SelectPartLinkDialogView_SelectProduct" xml:space="preserve">
+    <value>Bitte ein Produkt aus der Liste auswählen</value>
+  </data>
+  <data name="RemoveProductView_Description" xml:space="preserve">
+    <value>Das folgende Produkt wird unwiderruflich gelöscht:</value>
+  </data>
+  <data name="RemoveProductViewModel_DisplayName" xml:space="preserve">
+    <value>Produkt entfernen</value>
+  </data>
+  <data name="ProductsWorkspaceView_Duplicate" xml:space="preserve">
+    <value>Duplizieren</value>
+  </data>
+  <data name="DuplicateProductDialogViewModel_ConflictedIdentity" xml:space="preserve">
+    <value>Die angegebene Kombination aus Identität und Revision steht im Konflikt mit einer existierenden.</value>
+  </data>
+  <data name="CreateRevisionViewModel_ConflictedIdentity" xml:space="preserve">
+    <value>Die angegebene Kombination aus Identität und Revision steht im Konflikt mit einer existierenden.</value>
+  </data>
+  <data name="CreateRevisionViewModel_RevisionNotAvailable" xml:space="preserve">
+    <value>Revision nicht verfügbar</value>
+  </data>
+  <data name="RemoveProductView_InUseBy" xml:space="preserve">
+    <value>In Benutzung von:</value>
+  </data>
+  <data name="RemoveProductViewModel_ErrorWhileRemove" xml:space="preserve">
+    <value>Das Produkt wurde nicht entfernt!</value>
+  </data>
+  <data name="RevisionsViewModel_DisplayName" xml:space="preserve">
+    <value>Revisionen</value>
+  </data>
+  <data name="AddRecipeDialogView_Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="RelationsAspectViewModel_DisplayName" xml:space="preserve">
+    <value>Beziehungen</value>
+  </data>
+  <data name="RelationsAspectView_Description" xml:space="preserve">
+    <value>Dieses Produkt wird in den folgenden Produkten verwendet:</value>
+  </data>
+  <data name="RelationsAspectView_ListTitle" xml:space="preserve">
+    <value>Beziehungen:</value>
+  </data>
+  <data name="RelationsAspectView_ListView_Identifier" xml:space="preserve">
+    <value>Kennung</value>
+  </data>
+  <data name="RelationsAspectView_ListView_Revision" xml:space="preserve">
+    <value>Revision</value>
+  </data>
+  <data name="RelationsAspectView_ListView_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SinglePartConnectorPartView_DefaultPartConnectorName" xml:space="preserve">
+    <value>Leer</value>
+  </data>
+  <data name="ProductsWorkspaceView_Import" xml:space="preserve">
+    <value>Importieren</value>
+  </data>
+  <data name="ProductsWorkspaceView_Filter" xml:space="preserve">
+    <value>Filtern</value>
+  </data>
+  <data name="ProductsWorkspaceView_Filter_Reset" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <data name="ProductsWorkspaceView_Filter_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ProductsWorkspaceView_Filter_Identifier" xml:space="preserve">
+    <value>Kennung</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_Properties" xml:space="preserve">
+    <value>Eigenschaften</value>
+  </data>
+  <data name="PartsAspectView_SelectPart" xml:space="preserve">
+    <value>Wählen Sie ein Teil aus der Liste</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_General_Title" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_General_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_General_Workplan" xml:space="preserve">
+    <value>Arbeitsplan</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_General_Classification" xml:space="preserve">
+    <value>Klassifizierung</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_NoProperties" xml:space="preserve">
+    <value>Das Rezept besitzt keine konfigurierbaren Eigenschaften.</value>
+  </data>
+  <data name="ProductsWorkspaceView_Filter_Selector" xml:space="preserve">
+    <value>Selektor</value>
+  </data>
+  <data name="ProductsWorkspaceView_Revisions" xml:space="preserve">
+    <value>Revisionen</value>
+  </data>
+  <data name="RecipeWorkspaceViewModel_ErrorLoadingRecipes_Title" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="RecipeDetailsViewModelBase_ErrorSavingRecipe_Title" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="RevisionsView_Create" xml:space="preserve">
+    <value>Erstellen</value>
+  </data>
+  <data name="ImportView_Description" xml:space="preserve">
+    <value>Importiert Produkte mit importer.</value>
+  </data>
+  <data name="ImportViewModel_DisplayName" xml:space="preserve">
+    <value>Produkt Importer</value>
+  </data>
+  <data name="ProductDetailsViewModelBase_No_relevant_aspects" xml:space="preserve">
+    <value>Für das ausgewählte Produkt sind keine relevanten Aspekte vorhanden.</value>
+  </data>
+  <data name="ImportViewModel_Fill_required_fields" xml:space="preserve">
+    <value>Bitte alle Felder ausfüllen!</value>
+  </data>
+  <data name="ImportViewModel_Import_error" xml:space="preserve">
+    <value>Beim Anlegen des Produktes ist ein Fehler aufgetreten.</value>
+  </data>
+  <data name="ImportViewModel_Import_error_info" xml:space="preserve">
+    <value>Bitte überprüfen Sie die aktuelle Eingabe.</value>
+  </data>
+</root>

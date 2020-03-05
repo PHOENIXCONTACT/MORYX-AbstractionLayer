@@ -6,6 +6,7 @@ using C4I;
 using Caliburn.Micro;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
+using Marvin.Resources.UI.Interaction.Properties;
 using Marvin.Resources.UI.ResourceService;
 
 namespace Marvin.Resources.UI.Interaction.Aspects
@@ -16,7 +17,7 @@ namespace Marvin.Resources.UI.Interaction.Aspects
 
         public ResourceReferenceViewModel Reference { get; }
 
-        public override string DisplayName => "Select new target";
+        public override string DisplayName => Strings.SelectTargetDialogViewModel_DisplayName;
 
         public ICommand SelectCmd { get; set; }
 

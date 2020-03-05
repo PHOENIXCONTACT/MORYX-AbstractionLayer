@@ -10,6 +10,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:ui="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
              xmlns:productService1="clr-namespace:Marvin.Products.UI.ProductService;assembly=Marvin.Products.UI"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:ProductsWorkspaceViewModel}"
              d:DesignHeight="616" d:DesignWidth="1077"
              x:Name="UserControl">
@@ -87,7 +88,7 @@
 
     <DockPanel Margin="5" LastChildFill="True">
         <TextBlock Eddie.TextFormat="Header1" DockPanel.Dock="Top"
-                   Text="Products" />
+                   Text="{x:Static properties:Strings.ProductsWorkspaceView_Title}" />
 
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
@@ -128,7 +129,7 @@
                                 Command="{Binding FilterCmd}">
                             <DockPanel LastChildFill="True">
                                 <Path Style="{StaticResource IconPathStyle}" DockPanel.Dock="Left" Data="{StaticResource FilterIcon}" />
-                                <TextBlock Style="{StaticResource TextBlockStyle}" DockPanel.Dock="Right" Text="Filter"/>
+                                <TextBlock Style="{StaticResource TextBlockStyle}" DockPanel.Dock="Right" Text="{x:Static properties:Strings.ProductsWorkspaceView_Filter}"/>
                             </DockPanel>
                         </Button>
                         <Button Style="{StaticResource ToolBarButtonStyle}"
@@ -136,7 +137,7 @@
                                 Command="{Binding ImportCmd}">
                             <DockPanel LastChildFill="True">
                                 <Path Style="{StaticResource IconPathStyle}" DockPanel.Dock="Left" Data="{StaticResource ImportIcon}" />
-                                <TextBlock Style="{StaticResource TextBlockStyle}" DockPanel.Dock="Right" Text="Import"/>
+                                <TextBlock Style="{StaticResource TextBlockStyle}" DockPanel.Dock="Right" Text="{x:Static properties:Strings.ProductsWorkspaceView_Import}"/>
                             </DockPanel>
                         </Button>
                     </UniformGrid>
@@ -145,10 +146,12 @@
                 <DockPanel DockPanel.Dock="Top" Style="{StaticResource AnimatedProductQuery}">
                     <Border DockPanel.Dock="Top" Margin="0,0,0,5" BorderThickness="1" BorderBrush="LightGray" >
                         <StackPanel Grid.IsSharedSizeScope="True" Margin="5">
-                            <LabeledControlHost LabelA="Name" Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
+                            <LabeledControlHost LabelA="{x:Static properties:Strings.ProductsWorkspaceView_Filter_Name}"
+                                                Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
                                 <EddieTextBox Text="{Binding Query.Name}" />
                             </LabeledControlHost>
-                            <LabeledControlHost LabelA="Identifier" Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
+                            <LabeledControlHost LabelA="{x:Static properties:Strings.ProductsWorkspaceView_Filter_Identifier}"
+                                                Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
                                 <EddieTextBox Text="{Binding Query.Identifier}" />
                             </LabeledControlHost>
                             <DockPanel LastChildFill="True">
@@ -168,21 +171,21 @@
                                     </EddieTextBox.Style>
                                 </EddieTextBox>
 
-                                <LabeledControlHost DockPanel.Dock="Left" LabelA="Revision" Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
+                                <LabeledControlHost DockPanel.Dock="Left" LabelA="{x:Static properties:Strings.ProductsWorkspaceView_Filter_Revisions}" Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
                                     <EddieComboBox ItemsSource="{Binding Source={StaticResource RevisionFilterValues}}" SelectedItem="{Binding Query.RevisionFilter}"
                                                HorizontalAlignment="Stretch" />
                                 </LabeledControlHost>
                             </DockPanel>
 
-                            <LabeledControlHost LabelA="Selector"  SharedSizeGroupName="ProductQuery">
+                            <LabeledControlHost LabelA="{x:Static properties:Strings.ProductsWorkspaceView_Filter_Selector}"  SharedSizeGroupName="ProductQuery">
                                 <EddieComboBox ItemsSource="{Binding Source={StaticResource SelectorValues}}" SelectedItem="{Binding Query.Selector}" />
                             </LabeledControlHost>
 
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <EddieButton Content="Filter" Margin="0,5,0,0" Icon="Binocular"
+                                <EddieButton Content="{x:Static properties:Strings.ProductsWorkspaceView_Filter}" Margin="0,5,0,0" Icon="Binocular"
                                          EddieStyle="Gray"
                                          Command="{Binding RefreshCmd}" />
-                                <EddieButton Content="Reset" Margin="5,5,0,0" Icon="BinocularCrossed"
+                                <EddieButton Content="{x:Static properties:Strings.ProductsWorkspaceView_Filter_Reset}" Margin="5,5,0,0" Icon="BinocularCrossed"
                                          EddieStyle="Gray"
                                          Command="{Binding RefreshCmd}"
                                          CommandParameter="{StaticResource True}"/>
@@ -217,11 +220,11 @@
                                                 Margin="0,5,0,0"
                                                 HorizontalAlignment="Right"
                                                 EnterEditCmd="{Binding EnterEditCmd}"
-                                                EnterEditContent="Edit"
+                                                EnterEditContent="{x:Static properties:Strings.ProductsWorkspaceView_Edit}"
                                                 CancelEditCmd="{Binding CancelEditCmd}"
-                                                CancelEditContent="Cancel"
+                                                CancelEditContent="{x:Static properties:Strings.ProductsWorkspaceView_Cancel}"
                                                 SaveCmd="{Binding SaveCmd}"
-                                                SaveContent="Save" />
+                                                SaveContent="{x:Static properties:Strings.ProductsWorkspaceView_Save}" />
 
                 <Border DockPanel.Dock="Top"
                         Style="{StaticResource EditableObjectVisibilityStyle}"
@@ -246,7 +249,7 @@
                                 <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding DuplicateCmd}">
                                     <DockPanel>
                                         <Path Style="{StaticResource IconPathStyle}" Data="{StaticResource DuplicateIcon}"/>
-                                        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Duplicate"/>
+                                        <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.ProductsWorkspaceView_Duplicate}"/>
                                     </DockPanel>
                                 </Button>
 
@@ -255,7 +258,7 @@
                                 <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding ShowRevisionsCmd}">
                                     <DockPanel>
                                         <Path Style="{StaticResource IconPathStyle}" c4I:Eddie.Icon="ClockWithCheckmark"/>
-                                        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Revisions"/>
+                                        <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.ProductsWorkspaceView_Revisions}"/>
                                     </DockPanel>
                                 </Button>
 
@@ -264,7 +267,7 @@
                                 <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding RemoveCmd}">
                                     <DockPanel>
                                         <Path Style="{StaticResource IconPathStyle}" c4I:Eddie.Icon="Minus"/>
-                                        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Remove"/>
+                                        <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.ProductsWorkspaceView_Remove}"/>
                                     </DockPanel>
                                 </Button>
                             </StackPanel>
@@ -279,7 +282,7 @@
                                 </Style>
                             </StackPanel.Resources>
 
-                            <TextBlock Text="General" Eddie.TextFormat="Header2" />
+                            <TextBlock Text="{x:Static properties:Strings.ProductsWorkspaceView_General_Title}" Eddie.TextFormat="Header2" />
 
                             <DockPanel LastChildFill="True">
                                 <EddieComboBox DockPanel.Dock="Right" Width="150" VerticalAlignment="Bottom" Margin="5,0,0,0"
@@ -287,12 +290,12 @@
                                                ItemsSource="{Binding Source={StaticResource ProductStateValues}}"
                                                SelectedItem="{Binding CurrentDetails.EditableObject.State}" />
 
-                                <LabeledControlHost LabelA="Name:" >
+                                <LabeledControlHost LabelA="{x:Static properties:Strings.ProductsWorkspaceView_General_Name}" >
                                     <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Name}" IsEnabled="{Binding IsEditMode}" />
                                 </LabeledControlHost>
                             </DockPanel>
 
-                            <LabeledControlHost LabelA="Identifier" Height="20">
+                            <LabeledControlHost LabelA="{x:Static properties:Strings.ProductsWorkspaceView_General_Identifier}" Height="20">
                                 <TextBlock Text="{Binding CurrentDetails.EditableObject.FullIdentifier, FallbackValue=%}"
                                            Eddie.TextFormat="Bold" VerticalAlignment="Center"/>
                             </LabeledControlHost>

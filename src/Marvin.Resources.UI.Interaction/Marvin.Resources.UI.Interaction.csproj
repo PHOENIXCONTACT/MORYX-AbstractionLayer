@@ -51,41 +51,38 @@
     <Reference Include="Castle.Windsor, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Windsor.5.0.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Controls4Industry, Version=3.0.0.5296, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Controls4Industry.3.0.0-dev005296\lib\net461\Controls4Industry.dll</HintPath>
+    <Reference Include="Controls4Industry, Version=3.0.0.8504, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Controls4Industry.3.0.0-dev008504\lib\net461\Controls4Industry.dll</HintPath>
     </Reference>
-    <Reference Include="Marvin, Version=3.0.0.7513, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Marvin.3.0.0-dev007513\lib\netstandard2.0\Marvin.dll</HintPath>
+    <Reference Include="Marvin, Version=3.0.0.8618, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Marvin.3.0.0-dev008618\lib\netstandard2.0\Marvin.dll</HintPath>
     </Reference>
-    <Reference Include="Marvin.ClientFramework, Version=3.0.0.5296, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Marvin.ClientFramework.3.0.0-dev005296\lib\net461\Marvin.ClientFramework.dll</HintPath>
+    <Reference Include="Marvin.ClientFramework, Version=3.0.0.8504, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Marvin.ClientFramework.3.0.0-dev008504\lib\net461\Marvin.ClientFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Marvin.Controls, Version=3.0.0.5296, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Marvin.Controls.3.0.0-dev005296\lib\net461\Marvin.Controls.dll</HintPath>
+    <Reference Include="Marvin.Controls, Version=3.0.0.8504, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Marvin.Controls.3.0.0-dev008504\lib\net461\Marvin.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Marvin.Tools.Wcf, Version=3.0.0.7513, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Marvin.Tools.Wcf.3.0.0-dev007513\lib\net461\Marvin.Tools.Wcf.dll</HintPath>
+    <Reference Include="Marvin.Tools.Wcf, Version=3.0.0.8618, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Marvin.Tools.Wcf.3.0.0-dev008618\lib\net461\Marvin.Tools.Wcf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+      <HintPath>..\..\packages\System.ComponentModel.Annotations.4.6.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -130,9 +127,13 @@
     <Compile Include="Details\ResourceDetailsComponentSelector.cs" />
     <Compile Include="Details\ResourceDetailsViewModelBase.cs" />
     <Compile Include="Details\IResourceDetailsFactory.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ModuleController\ModuleConfig.cs" />
     <Compile Include="ModuleController\ModuleController.cs" />
+    <Compile Include="Properties\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="TypeSelector\TypeSelectorView.xaml.cs">
       <DependentUpon>TypeSelectorView.xaml</DependentUpon>
     </Compile>
@@ -200,6 +201,14 @@
       <Project>{afe31117-c539-48f9-8ea5-4044aaa22c69}</Project>
       <Name>Marvin.Resources.UI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Strings.de.resx" />
+    <EmbeddedResource Include="Properties\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Strings.pl.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -8,6 +8,7 @@ using C4I;
 using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
+using Marvin.Resources.UI.Interaction.Properties;
 using Marvin.Resources.UI.ResourceService;
 using Marvin.Tools;
 
@@ -106,7 +107,7 @@ namespace Marvin.Resources.UI.Interaction
         protected override void OnInitialize()
         {
             base.OnInitialize();
-            DisplayName = "Resource type selection:";
+            DisplayName = Strings.TypeSelectorViewModel_DisplayName;
         }
 
         /// <summary>

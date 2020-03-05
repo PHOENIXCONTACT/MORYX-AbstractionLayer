@@ -4,10 +4,14 @@
     <id>$id$</id>
     <version>$version$</version>
     <title>$title$</title>
-    <authors>MaRVIN Team</authors>
+    <authors>MARVIN Team</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://www.phoenixcontact.com/favicon.ico</iconUrl>
     <description>$description$</description>
   </metadata>
+  <files>
+    <file src="bin\$configuration$\de\$id$.resources.dll" target="lib\net461\de\$id$.resources.dll" />
+    <file src="bin\$configuration$\pl\$id$.resources.dll" target="lib\net461\pl\$id$.resources.dll" />
+  </files>
 </package>

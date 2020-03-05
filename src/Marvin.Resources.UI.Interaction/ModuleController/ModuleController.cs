@@ -1,8 +1,10 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 using C4I;
 using Marvin.AbstractionLayer.UI.Aspects;
 using Marvin.ClientFramework;
 using Marvin.Logging;
+using Marvin.Resources.UI.Interaction.Properties;
 using Marvin.Tools.Wcf;
 
 namespace Marvin.Resources.UI.Interaction
@@ -21,6 +23,7 @@ namespace Marvin.Resources.UI.Interaction
         ///
         protected override void OnInitialize()
         {
+            DisplayName = Strings.ModuleController_DisplayName;
 
             // Register aspect factory
             Container.Register<IAspectFactory>();

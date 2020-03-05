@@ -8,6 +8,7 @@ using Marvin.ClientFramework.Commands;
 using Marvin.ClientFramework.Dialog;
 using Marvin.ClientFramework.Tasks;
 using Marvin.Logging;
+using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction
@@ -92,7 +93,7 @@ namespace Marvin.Products.UI.Interaction
 
         protected override void OnInitialize()
         {
-            DisplayName = "Product Importer";
+            DisplayName = Strings.ImportViewModel_DisplayName;
 
             OkCmd = new AsyncCommand(Ok);
             CancelCmd = new RelayCommand(Cancel);
@@ -121,7 +122,7 @@ namespace Marvin.Products.UI.Interaction
         {
             if (!SelectedImporter.ValidateInput())
             {
-                ErrorText = "Please fill all required fields!";
+                ErrorText = Strings.ImportViewModel_Fill_required_fields;
                 return;
             }
             try
@@ -130,7 +131,7 @@ namespace Marvin.Products.UI.Interaction
             }
             catch (Exception ex)
             {
-                ErrorText = (string.IsNullOrEmpty(ex.Message) ? "An error occured while creating the product." : ex.Message) + "\nPlease check the current input.";
+                ErrorText = (string.IsNullOrEmpty(ex.Message) ? Strings.ImportViewModel_Import_error : ex.Message) + "\n" + Strings.ImportViewModel_Import_error_info;
                 _logger.LogException(LogLevel.Error, ex, ex.Message);
                 return;
             }

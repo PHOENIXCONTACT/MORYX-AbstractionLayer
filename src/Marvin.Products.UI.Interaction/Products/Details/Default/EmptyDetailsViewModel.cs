@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Media;
 using Marvin.AbstractionLayer.UI;
+
 namespace Marvin.Products.UI.Interaction
 {
     [ProductDetailsRegistration(DetailsConstants.EmptyType)]

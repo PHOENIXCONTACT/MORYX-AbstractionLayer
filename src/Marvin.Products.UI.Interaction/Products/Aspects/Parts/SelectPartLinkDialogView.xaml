@@ -7,6 +7,7 @@
              xmlns:aspects="clr-namespace:Marvin.Products.UI.Interaction.Aspects"
              xmlns:ui="clr-namespace:Marvin.Products.UI;assembly=Marvin.Products.UI"
              xmlns:ui1="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance aspects:SelectPartLinkDialogViewModel}">
     <d:DesignerProperties.DesignStyle>
@@ -19,11 +20,11 @@
     </UserControl.Resources>
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}" MinWidth="500" MinHeight="400">
         <DialogPanel.Buttons>
-            <EddieButton Content="Select" Icon="Ok" Command="{Binding SelectCmd}" />
-            <EddieButton Content="Cancel" Icon="Cross" EddieStyle="Gray" Command="{Binding CancelCmd}" />
+            <EddieButton Content="{x:Static properties:Strings.SelectPartLinkDialogView_Apply}" Icon="Ok" Command="{Binding SelectCmd}" />
+            <EddieButton Content="{x:Static properties:Strings.SelectPartLinkDialogView_Cancel}" Icon="Cross" EddieStyle="Gray" Command="{Binding CancelCmd}" />
         </DialogPanel.Buttons>
         <DialogPanel.Header>
-            <TextBlock Text="Please select a product from the list"/>
+            <TextBlock Text="{x:Static properties:Strings.SelectPartLinkDialogView_SelectProduct}"/>
         </DialogPanel.Header>
 
         <DockPanel LastChildFill="True">

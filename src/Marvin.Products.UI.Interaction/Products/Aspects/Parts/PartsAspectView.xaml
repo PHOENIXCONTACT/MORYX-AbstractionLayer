@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:aspects="clr-namespace:Marvin.Products.UI.Interaction.Aspects"
+             xmlns:properties="clr-namespace:Marvin.Products.UI.Interaction.Properties"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance aspects:PartsAspectViewModel}">
     <d:DesignerProperties.DesignStyle>
@@ -19,7 +20,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <ControlTemplate x:Key="NoPartSelectedContent">
-                <TextBlock Text="Select a part from the list"
+                <TextBlock Text="{x:Static properties:Strings.PartsAspectView_SelectPart}"
                            FontWeight="Bold"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center" />
