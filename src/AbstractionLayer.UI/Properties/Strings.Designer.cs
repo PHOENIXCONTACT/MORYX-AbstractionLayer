@@ -95,5 +95,23 @@ namespace Marvin.AbstractionLayer.UI.Properties {
                 return ResourceManager.GetString("MasterDetailsWorkspace_Load_error", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving failed with the following error:.
+        /// </summary>
+        public static string MasterDetailsWorkspace_SaveError_Message {
+            get {
+                return ResourceManager.GetString("MasterDetailsWorkspace_SaveError_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string MasterDetailsWorkspace_SaveError_Title {
+            get {
+                return ResourceManager.GetString("MasterDetailsWorkspace_SaveError_Title", resourceCulture);
+            }
+        }
     }
 }

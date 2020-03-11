@@ -15,6 +15,8 @@ using Marvin.Container;
 using Marvin.Products.UI.Interaction.Properties;
 using Marvin.Products.UI.ProductService;
 using Marvin.Tools;
+using MessageBoxImage = Marvin.ClientFramework.Dialog.MessageBoxImage;
+using MessageBoxOptions = Marvin.ClientFramework.Dialog.MessageBoxOptions;
 
 namespace Marvin.Products.UI.Interaction
 {
@@ -178,6 +180,17 @@ namespace Marvin.Products.UI.Interaction
         protected override Task OnSaved()
         {
             return UpdateTreeAsync();
+        }
+
+        protected override Task OnSaveError(Exception exception)
+        {
+            if (exception is TimeoutException)
+            {
+                return DialogManager.ShowMessageBoxAsync(Strings.ProductsWorkspaceViewModel_SaveTimeOut_Message,
+                    Strings.ProductsWorkspaceViewModel_SaveTimeOut_Title, MessageBoxOptions.Ok, MessageBoxImage.Exclamation);
+            }
+
+            return base.OnSaveError(exception);
         }
 
         private void UpdateTree()

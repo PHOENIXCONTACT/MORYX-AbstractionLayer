@@ -270,4 +270,10 @@
   <data name="ResourceDetailsViewModelBase_No_relevant_aspects" xml:space="preserve">
     <value>Für die ausgewählte Resource sind keine relevanten Aspekte vorhanden.</value>
   </data>
+  <data name="InteractionWorkspaceViewModel_SaveTimeOut_Message" xml:space="preserve">
+    <value>Das Speichern dauert länger als erwartet.</value>
+  </data>
+  <data name="InteractionWorkspaceViewModel_SaveTimeOut_Title" xml:space="preserve">
+    <value>Zeitüberschreitung</value>
+  </data>
 </root>

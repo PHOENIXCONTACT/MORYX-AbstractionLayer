@@ -109,4 +109,10 @@
   <data name="AspectConfiguratorView_Add" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
+  <data name="MasterDetailsWorkspace_SaveError_Title" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="MasterDetailsWorkspace_SaveError_Message" xml:space="preserve">
+    <value>Speichern ist mit folgendem Fehler gescheitert: </value>
+  </data>
 </root>

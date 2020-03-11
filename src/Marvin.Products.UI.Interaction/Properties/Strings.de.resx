@@ -394,4 +394,10 @@
   <data name="ImportViewModel_Import_error_info" xml:space="preserve">
     <value>Bitte überprüfen Sie die aktuelle Eingabe.</value>
   </data>
+  <data name="ProductsWorkspaceViewModel_SaveTimeOut_Title" xml:space="preserve">
+    <value>Zeitüberschreitung</value>
+  </data>
+  <data name="ProductsWorkspaceViewModel_SaveTimeOut_Message" xml:space="preserve">
+    <value>Das Speichern dauert länger als erwartet.</value>
+  </data>
 </root>
