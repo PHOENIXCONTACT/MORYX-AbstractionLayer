@@ -13,6 +13,8 @@ using Marvin.Container;
 using Marvin.Resources.UI.Interaction.Properties;
 using Marvin.Resources.UI.ResourceService;
 using Marvin.Tools;
+using MessageBoxImage = Marvin.ClientFramework.Dialog.MessageBoxImage;
+using MessageBoxOptions = Marvin.ClientFramework.Dialog.MessageBoxOptions;
 
 namespace Marvin.Resources.UI.Interaction
 {
@@ -230,6 +232,17 @@ namespace Marvin.Resources.UI.Interaction
             return UpdateTreeAsync();
         }
 
+        protected override Task OnSaveError(Exception exception)
+        {
+            if (exception is TimeoutException)
+            {
+                return DialogManager.ShowMessageBoxAsync(Strings.InteractionWorkspaceViewModel_SaveTimeOut_Message,
+                    Strings.InteractionWorkspaceViewModel_SaveTimeOut_Title, MessageBoxOptions.Ok, MessageBoxImage.Exclamation);
+            }
+
+            return base.OnSaveError(exception);
+        }
+
         protected override void ShowEmpty()
         {
             EmptyDetails.Display(MessageSeverity.Info, Strings.InteractionWorkspaceViewModel_SelectResourceFromTree);
@@ -257,7 +270,10 @@ namespace Marvin.Resources.UI.Interaction
             {
                 IsBusy = true;
 
-                var refreshedTree = await ResourceServiceModel.GetResourceTree();
+                var treeTask = ResourceServiceModel.GetResourceTree();
+                var typeTask = ResourceServiceModel.GetTypeTree();
+                var refreshedTree = await treeTask;
+                await typeTask;
                 Tree.MergeTree(refreshedTree, new ResourceTreeMergeStrategy());
             }
             catch (Exception e)

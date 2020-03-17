@@ -44,7 +44,7 @@ namespace Marvin.AbstractionLayer.UI.Controls
             get { return GetValue(EnterEditContentProperty); }
             set { SetValue(EnterEditContentProperty, value); }
         }
-        
+
         /// <summary>
         /// Dependency property for the <see cref="CancelEditCmd"/>
         /// </summary>
@@ -74,7 +74,7 @@ namespace Marvin.AbstractionLayer.UI.Controls
             get { return GetValue(CancelEditContentProperty); }
             set { SetValue(CancelEditContentProperty, value); }
         }
-        
+
         /// <summary>
         /// Dependency property for the <see cref="SaveCmd"/>
         /// </summary>

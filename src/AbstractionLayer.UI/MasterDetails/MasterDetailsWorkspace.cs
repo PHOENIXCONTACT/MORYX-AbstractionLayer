@@ -214,25 +214,29 @@ namespace Marvin.AbstractionLayer.UI
                 await OnSaved();
 
                 IsEditMode = false;
+                IsBusy = false;
+
+            }
+            catch (TimeoutException toe)
+            {
+                IsBusy = false;
+                await OnSaveError(toe);
             }
             catch (Exception e)
             {
-                // TODO: Maybe reset
-                OnSaveError(e);
-                throw;
-            }
-            finally
-            {
                 IsBusy = false;
+                IsEditMode = false;
+                await OnSaveError(e);
             }
         }
 
         /// <summary>
         /// Will be called if saving raises an exception
         /// </summary>
-        protected virtual void OnSaveError(Exception exception)
+        protected virtual Task OnSaveError(Exception exception)
         {
-            DialogManager.ShowMessageBox("Saving failed with the following error: " + exception, "Error",
+            return DialogManager.ShowMessageBoxAsync(Strings.MasterDetailsWorkspace_SaveError_Message + exception, 
+                Strings.MasterDetailsWorkspace_SaveError_Title,
                 MessageBoxOptions.Ok, MessageBoxImage.Error);
         }
 

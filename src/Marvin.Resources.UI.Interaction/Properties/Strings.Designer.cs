@@ -142,6 +142,24 @@ namespace Marvin.Resources.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saving takes longer than expected. Refresh again later..
+        /// </summary>
+        public static string InteractionWorkspaceViewModel_SaveTimeOut_Message {
+            get {
+                return ResourceManager.GetString("InteractionWorkspaceViewModel_SaveTimeOut_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Timeout.
+        /// </summary>
+        public static string InteractionWorkspaceViewModel_SaveTimeOut_Title {
+            get {
+                return ResourceManager.GetString("InteractionWorkspaceViewModel_SaveTimeOut_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select a resource from the tree on the left side..
         /// </summary>
         public static string InteractionWorkspaceViewModel_SelectResourceFromTree {

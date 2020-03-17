@@ -556,6 +556,24 @@ namespace Marvin.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saving takes longer than expected. Refresh again later..
+        /// </summary>
+        public static string ProductsWorkspaceViewModel_SaveTimeOut_Message {
+            get {
+                return ResourceManager.GetString("ProductsWorkspaceViewModel_SaveTimeOut_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Timeout.
+        /// </summary>
+        public static string ProductsWorkspaceViewModel_SaveTimeOut_Title {
+            get {
+                return ResourceManager.GetString("ProductsWorkspaceViewModel_SaveTimeOut_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select a product from the tree on the left side..
         /// </summary>
         public static string ProductsWorkspaceViewModel_SelectProduct {
