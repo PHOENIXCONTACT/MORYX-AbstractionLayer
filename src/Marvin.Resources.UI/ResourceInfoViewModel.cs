@@ -1,4 +1,7 @@
-﻿using Caliburn.Micro;
+// Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
+// Licensed under the Apache License, Version 2.0
+
+using Caliburn.Micro;
 using Marvin.Resources.UI.ResourceService;
 
 namespace Marvin.Resources.UI

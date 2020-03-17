@@ -1,4 +1,7 @@
-﻿using Marvin.Resources.UI.Interaction.Properties;
+// Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
+// Licensed under the Apache License, Version 2.0
+
+using Marvin.Resources.UI.Interaction.Properties;
 
 namespace Marvin.Resources.UI.Interaction.Aspects
 {

@@ -1,4 +1,7 @@
-﻿namespace Marvin.Products.UI
+// Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
+// Licensed under the Apache License, Version 2.0
+
+namespace Marvin.Products.UI
 {
     /// <summary>
     /// Recipe editor facade
