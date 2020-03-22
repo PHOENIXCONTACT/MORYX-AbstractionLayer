@@ -25,11 +25,11 @@
 
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}" MinWidth="480">
         <DialogPanel.Buttons>
-            <EddieButton Icon="Ok" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.RevisionsView_Create}" Margin="0,0,10,0"/>
-            <EddieButton Icon="Open" Command="{Binding OpenCmd}" CommandParameter="{Binding ElementName=RevisionsList, Path=SelectedItem}"
+            <EddieButton Icon="{CommonShape CheckMark}" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.RevisionsView_Create}" Margin="0,0,10,0"/>
+            <EddieButton Icon="{MdiShape Folder_Open}" Command="{Binding OpenCmd}" CommandParameter="{Binding ElementName=RevisionsList, Path=SelectedItem}"
                          Content="{x:Static properties:Strings.RevisionsView_Open}" />
 
-            <EddieButton Icon="Cross" Command="{Binding CloseCmd}" Content="{x:Static properties:Strings.RevisionsView_Close}" EddieStyle="Gray"/>
+            <EddieButton Icon="{CommonShape Cross}" Command="{Binding CloseCmd}" Content="{x:Static properties:Strings.RevisionsView_Close}" EddieStyle="Gray"/>
         </DialogPanel.Buttons>
 
         <DockPanel LastChildFill="True">

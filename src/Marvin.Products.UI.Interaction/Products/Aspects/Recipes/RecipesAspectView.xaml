@@ -30,9 +30,9 @@
 
             <DockPanel Grid.Column="0">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom"  Margin="0,5,0,0">
-                    <EddieButton Content="{x:Static properties:Strings.RecipesAspectView_AddRecipe}" Icon="Plus"
+                    <EddieButton Content="{x:Static properties:Strings.RecipesAspectView_AddRecipe}" Icon="{CommonShape Plus}"
                                  Command="{Binding AddRecipeCmd}" HorizontalAlignment="Left" />
-                    <EddieButton Content="{x:Static properties:Strings.RecipesAspectView_RemoveRecipe}" Icon="Minus" Margin="5,0,0,0"
+                    <EddieButton Content="{x:Static properties:Strings.RecipesAspectView_RemoveRecipe}" Icon="{CommonShape Minus}" Margin="5,0,0,0"
                                  Command="{Binding RemoveRecipeCmd}" HorizontalAlignment="Left" />
                 </StackPanel>
 
@@ -42,7 +42,7 @@
                     <EddieListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type ui:IRecipeDetails}">
                             <StackPanel Orientation="Horizontal">
-                                <Path x:Name="Path" Eddie.Icon="Document"
+                                <Path x:Name="Path" Data="{MdiShape File_Document}"
                                       Stretch="Uniform" Margin="0,0,5,0" Width="16" Height="16" Fill="Black" />
                                 <TextBlock x:Name="TextBlock" Text="{Binding EditableObject.Name}" VerticalAlignment="Center" />
                             </StackPanel>
@@ -55,7 +55,7 @@
                 <DockPanel.Resources>
                     <ControlTemplate x:Key="NoRecipeSelectedContent">
                         <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                            <Path Eddie.Icon="Document" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
+                            <Path Data="{MdiShape File_Document}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
                             <TextBlock Text="{x:Static properties:Strings.RecipeAspectView_NonRecipeSelected}"
                                        Eddie.TextFormat="Bold"
                                        HorizontalAlignment="Center"

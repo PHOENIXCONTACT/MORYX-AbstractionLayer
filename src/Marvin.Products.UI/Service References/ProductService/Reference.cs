@@ -719,13 +719,16 @@ namespace Marvin.Products.UI.ProductService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] FileField;
+        private string FileHashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FilePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MimeTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.FileType TypeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -738,14 +741,40 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] File {
+        public string FileHash {
             get {
-                return this.FileField;
+                return this.FileHashField;
             }
             set {
-                if ((object.ReferenceEquals(this.FileField, value) != true)) {
-                    this.FileField = value;
-                    this.RaisePropertyChanged("File");
+                if ((object.ReferenceEquals(this.FileHashField, value) != true)) {
+                    this.FileHashField = value;
+                    this.RaisePropertyChanged("FileHash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FilePath {
+            get {
+                return this.FilePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilePathField, value) != true)) {
+                    this.FilePathField = value;
+                    this.RaisePropertyChanged("FilePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MimeType {
+            get {
+                return this.MimeTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MimeTypeField, value) != true)) {
+                    this.MimeTypeField = value;
+                    this.RaisePropertyChanged("MimeType");
                 }
             }
         }
@@ -759,19 +788,6 @@ namespace Marvin.Products.UI.ProductService {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.FileType Type {
-            get {
-                return this.TypeField;
-            }
-            set {
-                if ((this.TypeField.Equals(value) != true)) {
-                    this.TypeField = value;
-                    this.RaisePropertyChanged("Type");
                 }
             }
         }
@@ -1080,20 +1096,6 @@ namespace Marvin.Products.UI.ProductService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Deprecated = 2,
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FileType", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
-    public enum FileType : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Image = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Text = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Binary = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

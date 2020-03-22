@@ -14,8 +14,8 @@
     </d:DesignerProperties.DesignStyle>
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding DuplicateCmd}" Content="{x:Static properties:Strings.DuplicateProductDialogView_Clone}" />
-            <EddieButton Content="{x:Static properties:Strings.DuplicateProductDialogView_Cancel}" Icon="Cross" EddieStyle="Gray"
+            <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}" Command="{Binding DuplicateCmd}" Content="{x:Static properties:Strings.DuplicateProductDialogView_Clone}" />
+            <EddieButton Content="{x:Static properties:Strings.DuplicateProductDialogView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          Command="{Binding CloseCmd}" Margin="10,0,0,0"/>
         </DialogPanel.Buttons>
 

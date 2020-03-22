@@ -16,7 +16,7 @@
 
     <DialogPanel MinWidth="800">
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="Ok" Content="{x:Static properties:Strings.AspectConfiguratorView_Save_configuration}" Command="{Binding OkCmd}" />
+            <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}" Content="{x:Static properties:Strings.AspectConfiguratorView_Save_configuration}" Command="{Binding OkCmd}" />
         </DialogPanel.Buttons>
 
         <DockPanel Height="400" LastChildFill="True">
@@ -32,9 +32,9 @@
 
             <DockPanel DockPanel.Dock="Right" LastChildFill="True" Margin="5,0,0,0">
                 <DockPanel DockPanel.Dock="Bottom" Margin="0,5,0,0" LastChildFill="True">
-                    <EddieButton DockPanel.Dock="Right" Content="{x:Static properties:Strings.AspectConfiguratorView_Remove}" Icon="Minus"
+                    <EddieButton DockPanel.Dock="Right" Content="{x:Static properties:Strings.AspectConfiguratorView_Remove}" Icon="{CommonShape Minus}"
                                  Command="{Binding RemoveAspectCmd}"/>
-                    <EddieButton DockPanel.Dock="Right" Content="{x:Static properties:Strings.AspectConfiguratorView_Add}" Margin="0,0,5,0" Icon="Plus"
+                    <EddieButton DockPanel.Dock="Right" Content="{x:Static properties:Strings.AspectConfiguratorView_Add}" Margin="0,0,5,0" Icon="{CommonShape Plus}"
                                  Command="{Binding AddNewAspectCmd}"/>
 
                     <EddieComboBox DockPanel.Dock="Left"

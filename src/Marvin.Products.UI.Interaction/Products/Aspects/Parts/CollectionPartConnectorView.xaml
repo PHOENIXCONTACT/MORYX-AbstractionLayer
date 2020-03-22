@@ -24,10 +24,10 @@
                         DockPanel.Dock="Bottom"
                         Margin="0,5,0,0">
                 <EddieButton Content="{x:Static properties:Strings.CollectionPartConnectorView_Add}"
-                             Icon="Plus"
+                             Icon="{CommonShape Plus}"
                              Command="{Binding AddCmd}" />
                 <EddieButton Content="{x:Static properties:Strings.CollectionPartConnectorView_Remove}"
-                             Icon="Minus"
+                             Icon="{CommonShape Minus}"
                              Command="{Binding RemoveCmd}" Margin="5,0,0,0" />
             </StackPanel>
             <EddieListBox x:Name="PartList" DockPanel.Dock="Top"

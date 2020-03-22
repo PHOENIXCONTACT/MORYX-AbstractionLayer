@@ -14,8 +14,8 @@
     </d:DesignerProperties.DesignStyle>
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="Ok" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.CreateRevisionView_Create}" />
-            <EddieButton DockPanel.Dock="Bottom" Content="{x:Static properties:Strings.CreateRevisionView_Cancel}" Icon="Cross" EddieStyle="Gray"
+            <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.CreateRevisionView_Create}" />
+            <EddieButton DockPanel.Dock="Bottom" Content="{x:Static properties:Strings.CreateRevisionView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          HorizontalAlignment="Right" Command="{Binding CancelCmd}" Margin="5,0,0,0"/>
         </DialogPanel.Buttons>
 
