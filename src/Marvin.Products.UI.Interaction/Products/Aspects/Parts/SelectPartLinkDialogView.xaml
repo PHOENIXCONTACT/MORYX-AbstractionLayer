@@ -20,8 +20,8 @@
     </UserControl.Resources>
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}" MinWidth="500" MinHeight="400">
         <DialogPanel.Buttons>
-            <EddieButton Content="{x:Static properties:Strings.SelectPartLinkDialogView_Apply}" Icon="Ok" Command="{Binding SelectCmd}" />
-            <EddieButton Content="{x:Static properties:Strings.SelectPartLinkDialogView_Cancel}" Icon="Cross" EddieStyle="Gray" Command="{Binding CancelCmd}" />
+            <EddieButton Content="{x:Static properties:Strings.SelectPartLinkDialogView_Apply}" Icon="{CommonShape CheckMark}" Command="{Binding SelectCmd}" />
+            <EddieButton Content="{x:Static properties:Strings.SelectPartLinkDialogView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray" Command="{Binding CancelCmd}" />
         </DialogPanel.Buttons>
         <DialogPanel.Header>
             <TextBlock Text="{x:Static properties:Strings.SelectPartLinkDialogView_SelectProduct}"/>

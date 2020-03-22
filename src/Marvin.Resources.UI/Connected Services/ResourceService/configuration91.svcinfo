@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="dFxgmYq8sAbFW8zpmBT6azSM9N0=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="dqm6pRTleC6mhajNYYtWoVkyeRE=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IResourceInteraction">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IResourceInteraction" contract="ResourceService.IResourceInteraction" bindingType="basicHttpBinding" address="http://pxc-n2228/ResourceInteraction" bindingConfiguration="BasicHttpBinding_IResourceInteraction">
+    <endpoint name="BasicHttpBinding_IResourceInteraction" contract="ResourceService.IResourceInteraction" bindingType="basicHttpBinding" address="http://localhost/ResourceInteraction" bindingConfiguration="BasicHttpBinding_IResourceInteraction">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://pxc-n2228/ResourceInteraction</serializedValue>
+          <serializedValue>http://localhost/ResourceInteraction</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

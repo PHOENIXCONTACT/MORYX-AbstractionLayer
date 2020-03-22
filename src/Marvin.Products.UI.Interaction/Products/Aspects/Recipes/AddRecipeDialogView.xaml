@@ -25,8 +25,8 @@
 
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
-            <EddieButton Content="{x:Static properties:Strings.AddRecipeDialogView_Create}" Icon="Ok" IsDefault="True" Command="{Binding CreateCmd}" />
-            <EddieButton Content="{x:Static properties:Strings.AddRecipeDialogView_Cancel}" Icon="Cross" EddieStyle="Gray"
+            <EddieButton Content="{x:Static properties:Strings.AddRecipeDialogView_Create}" Icon="{CommonShape CheckMark}" IsDefault="True" Command="{Binding CreateCmd}" />
+            <EddieButton Content="{x:Static properties:Strings.AddRecipeDialogView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          Command="{Binding CloseCmd}" />
         </DialogPanel.Buttons>
 

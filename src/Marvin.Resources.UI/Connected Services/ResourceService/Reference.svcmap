@@ -22,13 +22,13 @@
     <MetadataSource Address="http://localhost/Metadata/ResourceInteraction" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ResourceInteraction.xsd" MetadataType="Schema" ID="de00bea2-3871-4afc-bee8-4cb1705cc1bd" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd5" />
-    <MetadataFile FileName="ResourceInteraction1.xsd" MetadataType="Schema" ID="b34ab391-44fc-473f-9c60-0719a469f46a" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd4" />
-    <MetadataFile FileName="ResourceInteraction2.xsd" MetadataType="Schema" ID="14f7413b-1fc1-4a72-9501-9a25aff89a16" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd3" />
+    <MetadataFile FileName="ResourceInteraction.xsd" MetadataType="Schema" ID="dcd2f252-0a27-4982-ba4a-3b19ed603cbb" SourceId="1" SourceUrl="http://localhost/Metadata/ResourceInteraction?xsd=xsd1" />
+    <MetadataFile FileName="ResourceInteraction1.xsd" MetadataType="Schema" ID="aff47057-d572-4f7b-a065-5fa7fd0fc683" SourceId="1" SourceUrl="http://localhost/Metadata/ResourceInteraction?xsd=xsd0" />
+    <MetadataFile FileName="ResourceInteraction2.xsd" MetadataType="Schema" ID="116e0142-a80d-4bad-ace0-070fc82ca392" SourceId="1" SourceUrl="http://localhost/Metadata/ResourceInteraction?xsd=xsd3" />
+    <MetadataFile FileName="ResourceInteraction3.xsd" MetadataType="Schema" ID="1aa3b55b-f203-4abe-aa7e-e1b556cee405" SourceId="1" SourceUrl="http://localhost/Metadata/ResourceInteraction?xsd=xsd2" />
     <MetadataFile FileName="ResourceInteraction.wsdl" MetadataType="Wsdl" ID="eca925ac-bbc0-496b-aa38-1c9ff68dd73c" SourceId="1" SourceUrl="http://localhost/Metadata/ResourceInteraction" />
-    <MetadataFile FileName="ResourceInteraction3.xsd" MetadataType="Schema" ID="00d2642a-7c2b-48e0-909c-f52a242482d9" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd1" />
-    <MetadataFile FileName="ResourceInteraction4.xsd" MetadataType="Schema" ID="deec2968-1672-4336-9da8-a452e279941f" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd0" />
-    <MetadataFile FileName="ResourceInteraction5.xsd" MetadataType="Schema" ID="bf9136bd-ddd7-4b74-91f8-087c4e7b57f5" SourceId="1" SourceUrl="http://pxc-n2228/Metadata/ResourceInteraction?xsd=xsd2" />
+    <MetadataFile FileName="ResourceInteraction4.xsd" MetadataType="Schema" ID="458dd25a-87de-44f7-be92-350f38cf06be" SourceId="1" SourceUrl="http://localhost/Metadata/ResourceInteraction?xsd=xsd5" />
+    <MetadataFile FileName="ResourceInteraction5.xsd" MetadataType="Schema" ID="be29c5e5-64e3-4589-9a0f-d49bf40f4d0b" SourceId="1" SourceUrl="http://localhost/Metadata/ResourceInteraction?xsd=xsd4" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

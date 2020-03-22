@@ -125,7 +125,7 @@
                         <EddieButton Grid.Row="2" DockPanel.Dock="Bottom"
                                      HorizontalAlignment="Left"
                                      Command="{Binding MethodInvokeCmd}" CommandParameter="{Binding SelectedMethod}"
-                                     Content="{x:Static properties:Strings.ResourceMethodsAspectView_Invoke}" Icon="CheckMark" />
+                                     Content="{x:Static properties:Strings.ResourceMethodsAspectView_Invoke}" Icon="{CommonShape CheckMark}" />
                     </Grid>
                 </DockPanel>
             </ControlTemplate>

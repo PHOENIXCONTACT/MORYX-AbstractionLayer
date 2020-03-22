@@ -18,7 +18,7 @@ namespace Marvin.Resources.UI.Interaction
         internal const string ModuleName = "Resources";
 
         /// <inheritdoc />
-        public override Geometry Icon => ShapeFactory.GetShapeGeometry(CommonShapeType.Cells);
+        public override Geometry Icon => CommonShapeFactory.GetShapeGeometry(CommonShapeType.Cells);
 
         ///
         protected override void OnInitialize()

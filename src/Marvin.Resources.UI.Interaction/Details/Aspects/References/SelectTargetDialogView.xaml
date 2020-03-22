@@ -21,8 +21,8 @@
 
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}" MinWidth="300" MinHeight="300">
         <DialogPanel.Buttons>
-            <EddieButton Content="{x:Static properties:Strings.SelectTargetDialogView_Select}" Icon="Ok" IsDefault="True" Command="{Binding SelectCmd}" />
-            <EddieButton Content="{x:Static properties:Strings.SelectTargetDialogView_Cancel}" Icon="Cross" EddieStyle="Gray" Command="{Binding CancelCmd}" />
+            <EddieButton Content="{x:Static properties:Strings.SelectTargetDialogView_Select}" Icon="{CommonShape CheckMark}" IsDefault="True" Command="{Binding SelectCmd}" />
+            <EddieButton Content="{x:Static properties:Strings.SelectTargetDialogView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray" Command="{Binding CancelCmd}" />
         </DialogPanel.Buttons>
 
         <DockPanel LastChildFill="True">

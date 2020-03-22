@@ -24,11 +24,11 @@
             </TextBlock>
         </DialogPanel.Header>
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="Ok"
+            <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}"
                          Command="{Binding RemoveCmd}"
                          Content="{x:Static properties:Strings.RemoveProductView_RemoveProduct}" />
 
-            <EddieButton DockPanel.Dock="Bottom" Content="{x:Static properties:Strings.RemoveProductView_Cancel}" Icon="Cross" EddieStyle="Gray"
+            <EddieButton DockPanel.Dock="Bottom" Content="{x:Static properties:Strings.RemoveProductView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          HorizontalAlignment="Right"
                          Command="{Binding CancelCmd}" />
         </DialogPanel.Buttons>

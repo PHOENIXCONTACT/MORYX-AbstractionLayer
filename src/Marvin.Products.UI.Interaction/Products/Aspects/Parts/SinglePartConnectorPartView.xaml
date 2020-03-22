@@ -53,13 +53,13 @@
                     </TextBlock>
 
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                        <EddieButton Icon="Refresh"
+                        <EddieButton Icon="{MdiShape Refresh}"
                                  Command="{Binding ChangeLinkCmd}"
                                  Content="{x:Static properties:Strings.SinglePartConnectorPartView_Change}"
                                  Visibility="{Binding PartConnector.IsCollection, Converter={StaticResource ReBooleanToVisibilityConverter}}"
                                  HorizontalAlignment="Left"
                                  IsEnabled="{Binding IsEditMode}" />
-                        <EddieButton Icon="Undo" Margin="5,0,0,0"
+                        <EddieButton Icon="{MdiShape Undo}" Margin="5,0,0,0"
                                  Command="{Binding ClearLinkCmd}"
                                  Content="{x:Static properties:Strings.SinglePartConnectorPartView_Clear}"
                                  Visibility="{Binding PartConnector.IsCollection, Converter={StaticResource ReBooleanToVisibilityConverter}}"
@@ -106,7 +106,7 @@
                         <Run Text="{x:Static properties:Strings.SinglePartConnectorPartView_DefaultPartConnectorName}" />
                     </TextBlock>
 
-                    <EddieButton Icon="Refresh"
+                    <EddieButton Icon="{MdiShape Refresh}"
                              Command="{Binding ChangeLinkCmd}"
                              Content="{x:Static properties:Strings.SinglePartConnectorPartView_Change}"
                              Visibility="{Binding PartConnector.IsCollection, Converter={StaticResource ReBooleanToVisibilityConverter}}"

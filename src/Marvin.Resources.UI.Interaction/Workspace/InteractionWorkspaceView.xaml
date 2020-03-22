@@ -158,7 +158,7 @@
                                 Padding="0" Height="30" HorizontalContentAlignment="Left"
                                 Margin="0,0,2.5,0">
                             <DockPanel>
-                                <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Refresh"/>
+                                <Path Style="{StaticResource IconPathStyle}" Data="{MdiShape Refresh}"/>
                                 <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.InteractionWorkspaceView_Refresh}"/>
                             </DockPanel>
                         </Button>
@@ -166,7 +166,7 @@
                                 Command="{Binding AddResourceCmd}"
                                 Padding="0" Height="30" HorizontalContentAlignment="Left">
                             <DockPanel>
-                                <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Plus"/>
+                                <Path Style="{StaticResource IconPathStyle}" Data="{CommonShape Plus}"/>
                                 <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.InteractionWorkspaceView_Add}"/>
                             </DockPanel>
                         </Button>

@@ -36,18 +36,18 @@
         </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
-        <EddieButton Icon="Pencil"
+        <EddieButton Icon="{CommonShape Pencil}"
                      EddieStyle="Gray"
                      Content="{Binding ElementName=UserControl, Path=EnterEditContent}"
                      Command="{Binding ElementName=UserControl, Path=EnterEditCmd}"
                      Style="{StaticResource AnimatedButton}"/>
-        <EddieButton Icon="Cross"
+        <EddieButton Icon="{CommonShape Cross}"
                      Margin="5,0,0,0"
                      EddieStyle="Gray"
                      Content="{Binding ElementName=UserControl, Path=CancelEditContent}"
                      Command="{Binding ElementName=UserControl, Path=CancelEditCmd}"
                      Style="{StaticResource AnimatedButton}"/>
-        <EddieButton Icon="CheckMark"
+        <EddieButton Icon="{CommonShape CheckMark}"
                      Margin="5,0,0,0"
                      EddieStyle="Gray"
                      Content="{Binding ElementName=UserControl, Path=SaveContent}"
