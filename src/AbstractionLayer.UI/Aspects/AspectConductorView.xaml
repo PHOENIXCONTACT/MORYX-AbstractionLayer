@@ -23,7 +23,7 @@
 
             <ControlTemplate x:Key="NoAspects">
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Center">
-                    <Path Data="{StaticResource Binocular}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
+                    <Path Data="{CommonShape Binocular}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
                     <TextBlock HorizontalAlignment="Center" Eddie.TextFormat="Bold" Text="{Binding EmptyText, Mode= OneWay}" />
                 </StackPanel>
             </ControlTemplate>

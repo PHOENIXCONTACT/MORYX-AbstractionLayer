@@ -57,7 +57,7 @@
                     <ControlTemplate x:Key="TargetNull">
                         <DockPanel LastChildFill="True">
                             <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Center">
-                                <Path Data="{StaticResource UnlinkIcon}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
+                                <Path Data="{MdiShape Link_Variant_Remove}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
                                 <TextBlock HorizontalAlignment="Center"
                                            c4I:Eddie.TextFormat="Bold"
                                            Text="{x:Static properties:Strings.ReferencesAspectView_SingleReference_TargetNull}" />
@@ -69,11 +69,11 @@
                     <StackPanel DockPanel.Dock="Bottom"
                                 Margin="0,5,0,0"
                                 Orientation="Horizontal">
-                        <EddieButton Icon="{StaticResource LinkIcon}"
+                        <EddieButton Icon="{MdiShape Link_Variant}"
                                      Command="{Binding Path=SetTargetCmd}"
                                      Content="{x:Static properties:Strings.ReferencesAspectView_LinkTarget}" Margin="0,0,5,0">
                         </EddieButton>
-                        <EddieButton Icon="{StaticResource UnlinkIcon}"
+                        <EddieButton Icon="{MdiShape Link_Variant_Remove}"
                                      Command="{Binding Path=RemoveTargetCmd}"
                                      Content="{x:Static properties:Strings.ReferencesAspectView_UnlinkTarget}">
                         </EddieButton>
@@ -99,11 +99,11 @@
                     <StackPanel DockPanel.Dock="Bottom"
                                 Margin="0,5,0,0"
                                 Orientation="Horizontal">
-                        <EddieButton Icon="{StaticResource LinkIcon}"
+                        <EddieButton Icon="{MdiShape Link_Variant}"
                                      Command="{Binding Path=AddTargetCmd}"
                                      Content="{x:Static properties:Strings.ReferencesAspectView_AddTarget}" Margin="0,0,5,0">
                         </EddieButton>
-                        <EddieButton Icon="{StaticResource UnlinkIcon}"
+                        <EddieButton Icon="{MdiShape Link_Variant_Remove}"
                                      Command="{Binding Path=RemoveTargetCmd}"
                                      Content="{x:Static properties:Strings.ReferencesAspectView_UnlinkTarget}">
                         </EddieButton>
@@ -142,11 +142,11 @@
                               Stretch="Uniform" Margin="0,0,5,0" Width="16" Height="16">
                             <Path.Style>
                                 <Style TargetType="Path">
-                                    <Setter Property="Data" Value="{StaticResource LinkIcon}"/>
+                                    <Setter Property="Data" Value="{MdiShape Link_Variant}"/>
                                     <Setter Property="Fill" Value="Black"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding AnyReference}" Value="false">
-                                            <Setter Property="Data" Value="{StaticResource UnlinkIcon}"/>
+                                            <Setter Property="Data" Value="{MdiShape Link_Variant_Remove}"/>
                                             <Setter Property="Fill" Value="#FF838383"/>
                                         </DataTrigger>
                                     </Style.Triggers>
