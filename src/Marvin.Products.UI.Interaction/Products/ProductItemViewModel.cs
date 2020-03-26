@@ -1,4 +1,7 @@
-﻿using Marvin.AbstractionLayer.UI;
+// Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
+// Licensed under the Apache License, Version 2.0
+
+using Marvin.AbstractionLayer.UI;
 using Marvin.Products.UI.ProductService;
 
 namespace Marvin.Products.UI.Interaction

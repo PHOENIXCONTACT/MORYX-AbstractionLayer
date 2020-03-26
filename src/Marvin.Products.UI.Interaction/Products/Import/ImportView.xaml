@@ -1,4 +1,8 @@
-﻿<UserControl x:Class="Marvin.Products.UI.Interaction.ImportView"
+<!--
+ Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
+ Licensed under the Apache License, Version 2.0
+-->
+<UserControl x:Class="Marvin.Products.UI.Interaction.ImportView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
