@@ -76,7 +76,7 @@
 
             <Border Grid.Column="0" Grid.ColumnSpan="2" Background="#33D3D3D3"
                     Visibility="{Binding IsBusy, Converter={StaticResource VisibilityConverter}}">
-                <EddieBusyIndicator Width="60" Height="60" Visibility="{Binding IsBusy, Converter={StaticResource VisibilityConverter}}" />
+                <EddieBusyIndicator IndicatorWidth="60" IndicatorHeight="60" Visibility="{Binding IsBusy, Converter={StaticResource VisibilityConverter}}" />
             </Border>
         </Grid>
     </DockPanel>

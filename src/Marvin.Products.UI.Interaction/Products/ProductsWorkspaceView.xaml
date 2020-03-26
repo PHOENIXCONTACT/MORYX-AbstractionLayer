@@ -128,7 +128,7 @@
                                 Padding="0" Height="30" HorizontalContentAlignment="Left"
                                 Command="{Binding FilterCmd}">
                             <DockPanel LastChildFill="True">
-                                <Path Style="{StaticResource IconPathStyle}" DockPanel.Dock="Left" Data="{StaticResource FilterIcon}" />
+                                <Path Style="{StaticResource IconPathStyle}" DockPanel.Dock="Left" Data="{MdiShape Filter}" />
                                 <TextBlock Style="{StaticResource TextBlockStyle}" DockPanel.Dock="Right" Text="{x:Static properties:Strings.ProductsWorkspaceView_Filter}"/>
                             </DockPanel>
                         </Button>
@@ -136,7 +136,7 @@
                                 Padding="0" Height="30" HorizontalContentAlignment="Left"
                                 Command="{Binding ImportCmd}">
                             <DockPanel LastChildFill="True">
-                                <Path Style="{StaticResource IconPathStyle}" DockPanel.Dock="Left" Data="{StaticResource ImportIcon}" />
+                                <Path Style="{StaticResource IconPathStyle}" DockPanel.Dock="Left" Data="{MdiShape Import}" />
                                 <TextBlock Style="{StaticResource TextBlockStyle}" DockPanel.Dock="Right" Text="{x:Static properties:Strings.ProductsWorkspaceView_Import}"/>
                             </DockPanel>
                         </Button>
@@ -248,7 +248,7 @@
 
                                 <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding DuplicateCmd}">
                                     <DockPanel>
-                                        <Path Style="{StaticResource IconPathStyle}" Data="{StaticResource DuplicateIcon}"/>
+                                        <Path Style="{StaticResource IconPathStyle}" Data="{MdiShape Content_Duplicate}"/>
                                         <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.ProductsWorkspaceView_Duplicate}"/>
                                     </DockPanel>
                                 </Button>
@@ -309,7 +309,7 @@
 
             <Border Grid.Column="0" Grid.ColumnSpan="2" Background="#33D3D3D3"
                     Visibility="{Binding IsBusy, Converter={StaticResource VisibilityConverter}}">
-                <EddieBusyIndicator Width="60" Height="60" Visibility="{Binding IsBusy, Converter={StaticResource VisibilityConverter}}" />
+                <EddieBusyIndicator IndicatorWidth="60" IndicatorHeight="60" IsIndicatorEnabled="{Binding IsBusy}" />
             </Border>
         </Grid>
     </DockPanel>

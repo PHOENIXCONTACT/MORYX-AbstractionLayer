@@ -116,7 +116,7 @@
                              IsEnabled="{Binding IsEditMode}" />
 
                     <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Center">
-                        <Path Data="{StaticResource UnlinkIcon}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
+                        <Path Data="{MdiShape Link_Variant_Remove}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
                         <TextBlock HorizontalAlignment="Center"
                                c4I:Eddie.TextFormat="Bold"
                                Text="{x:Static properties:Strings.SinglePartConnectorPartView_NullLink}" />

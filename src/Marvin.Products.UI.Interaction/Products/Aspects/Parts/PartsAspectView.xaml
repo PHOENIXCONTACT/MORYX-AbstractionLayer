@@ -52,11 +52,11 @@
                               Stretch="Uniform" Margin="0,0,5,0" Width="16" Height="16">
                             <Path.Style>
                                 <Style TargetType="Path">
-                                    <Setter Property="Data" Value="{StaticResource LinkIcon}"/>
+                                    <Setter Property="Data" Value="{MdiShape Link_Variant}"/>
                                     <Setter Property="Fill" Value="Black"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PartConnector.PartLinks.Count}" Value="0">
-                                            <Setter Property="Data" Value="{StaticResource UnlinkIcon}"/>
+                                            <Setter Property="Data" Value="{MdiShape Link_Variant_Remove}"/>
                                             <Setter Property="Fill" Value="#FF838383"/>
                                         </DataTrigger>
                                     </Style.Triggers>

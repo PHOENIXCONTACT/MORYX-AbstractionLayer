@@ -11,7 +11,7 @@ namespace Marvin.Products.UI.Interaction
 
         public ProductViewModel EditableObject => null;
 
-        public Geometry Icon => Geometry.Parse(ModuleController.IconPath);
+        public Geometry Icon => ModuleController.IconGeometry;
 
         public override bool CanBeginEdit() => false;
     }

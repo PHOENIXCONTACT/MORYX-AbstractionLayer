@@ -38,7 +38,7 @@
 
         <Border Background="#33D3D3D3"
                 Visibility="{Binding TaskNotifier.BusyVisibility}">
-            <EddieBusyIndicator Width="60" Height="60" Visibility="{Binding TaskNotifier.BusyVisibility}" />
+            <EddieBusyIndicator IndicatorWidth="60" IndicatorHeight="60" IsIndicatorEnabled="{Binding TaskNotifier.IsNotCompleted}" />
         </Border>
     </Grid>
 </UserControl>
