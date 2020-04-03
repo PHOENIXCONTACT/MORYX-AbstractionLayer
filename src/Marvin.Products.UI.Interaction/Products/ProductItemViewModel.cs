@@ -8,7 +8,7 @@ namespace Marvin.Products.UI.Interaction
 {
     internal class TypeItemViewModel : TreeItemViewModel
     {
-        public ProductTypeModel Model { get; private set; }
+        public ProductDefinitionModel Model { get; private set; }
 
         public string TypeName => Model.Name;
 
@@ -17,13 +17,13 @@ namespace Marvin.Products.UI.Interaction
         /// <inheritdoc />
         public override string DisplayName => Model.DisplayName;
 
-        public TypeItemViewModel(ProductTypeModel model)
+        public TypeItemViewModel(ProductDefinitionModel model)
         {
             Model = model;
             UpdateModel(model);
         }
 
-        public void UpdateModel(ProductTypeModel model)
+        public void UpdateModel(ProductDefinitionModel model)
         {
             Model = model;
             NotifyOfPropertyChange(DisplayName);

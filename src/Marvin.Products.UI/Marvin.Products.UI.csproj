@@ -110,7 +110,7 @@
     <Compile Include="ViewModels\PartLinkViewModel.cs" />
     <Compile Include="ViewModels\ProductInfoViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
-    <Compile Include="ViewModels\RecipeTypeViewModel.cs" />
+    <Compile Include="ViewModels\RecipeDefinitionViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
     <Compile Include="ViewModels\WorkplanViewModel.cs" />
   </ItemGroup>
@@ -176,6 +176,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ProductService\ProductInteraction37.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductService\ProductInteraction38.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ProductService\Reference.svcmap">

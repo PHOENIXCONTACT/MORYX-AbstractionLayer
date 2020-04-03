@@ -45,7 +45,7 @@
             <LabeledControlHost DockPanel.Dock="Top" Margin="0,0,0,5"
                                 LabelA="{x:Static properties:Strings.AddRecipeDialogView_Type}">
                 <EddieComboBox ItemsSource="{Binding PossibleRecipeTypes}"
-                               SelectedItem="{Binding SelectedRecipeType}"
+                               SelectedItem="{Binding SelectedRecipeDefinition}"
                                ItemTemplate="{StaticResource RecipeTypeComboBoxTemplate}"
                                HorizontalAlignment="Stretch" />
             </LabeledControlHost>
@@ -57,7 +57,7 @@
 
             <LabeledControlHost DockPanel.Dock="Top" Margin="0,0,0,5" VerticalAlignment="Top"
                                 LabelA="{x:Static properties:Strings.AddRecipeDialogView_Workplan}"
-                                Visibility="{Binding SelectedRecipeType.HasWorkplans, Converter={StaticResource VisibilityConverter}}">
+                                Visibility="{Binding SelectedRecipeDefinition.HasWorkplans, Converter={StaticResource VisibilityConverter}}">
                 <EddieComboBox ItemsSource="{Binding Workplans}"
                                SelectedItem="{Binding SelectedWorkplan, Mode=TwoWay}"
                                ItemTemplate="{StaticResource WorkplanComboBoxTemplate}">

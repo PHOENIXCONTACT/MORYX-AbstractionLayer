@@ -411,7 +411,7 @@ namespace Marvin.Products.UI.Interaction
             NotifyOfPropertyChange(nameof(Query));
         }
 
-        private void Merge(IEnumerable<ProductTypeModel> productTypes, ProductModel[] products)
+        private void Merge(IEnumerable<ProductDefinitionModel> productTypes, ProductModel[] products)
         {
             var productItemMergeStrategy = new ProductItemMergeStrategy();
             var updatedGroups = new List<TypeItemViewModel>();

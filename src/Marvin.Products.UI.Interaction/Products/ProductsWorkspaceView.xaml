@@ -83,7 +83,7 @@
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
                                 x:Key="ProductStateValues">
                 <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="productService1:ProductTypeState" />
+                    <x:Type TypeName="productService1:ProductState" />
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
 

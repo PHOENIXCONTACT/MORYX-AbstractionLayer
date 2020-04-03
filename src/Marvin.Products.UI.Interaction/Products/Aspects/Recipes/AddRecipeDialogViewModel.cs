@@ -43,23 +43,23 @@ namespace Marvin.Products.UI.Interaction.Aspects
         /// <summary>
         /// Collection of possible recipe types
         /// </summary>
-        public RecipeTypeViewModel[] PossibleRecipeTypes { get; private set; }
+        public RecipeDefinitionViewModel[] PossibleRecipeTypes { get; private set; }
 
         /// <summary>
         /// Name of the recipe
         /// </summary>
         public string Name { get; set; }
 
-        private RecipeTypeViewModel _selectedRecipeType;
+        private RecipeDefinitionViewModel _selectedRecipeDefinition;
         /// <summary>
         /// Selected type of recipe
         /// </summary>
-        public RecipeTypeViewModel SelectedRecipeType
+        public RecipeDefinitionViewModel SelectedRecipeDefinition
         {
-            get { return _selectedRecipeType; }
+            get { return _selectedRecipeDefinition; }
             set
             {
-                _selectedRecipeType = value;
+                _selectedRecipeDefinition = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -127,8 +127,8 @@ namespace Marvin.Products.UI.Interaction.Aspects
                     var customization = await _productServiceModel.GetCustomization().ConfigureAwait(false);
                     await Execute.OnUIThreadAsync(delegate
                     {
-                        PossibleRecipeTypes = customization.RecipeTypes.Select(r => new RecipeTypeViewModel(r)).ToArray();
-                        SelectedRecipeType = PossibleRecipeTypes.FirstOrDefault();
+                        PossibleRecipeTypes = customization.RecipeTypes.Select(r => new RecipeDefinitionViewModel(r)).ToArray();
+                        SelectedRecipeDefinition = PossibleRecipeTypes.FirstOrDefault();
                     });
                 }
                 catch (Exception e)
@@ -142,10 +142,10 @@ namespace Marvin.Products.UI.Interaction.Aspects
 
         private bool CanCreate(object arg)
         {
-            if (SelectedRecipeType == null)
+            if (SelectedRecipeDefinition == null)
                 return false;
 
-            if (SelectedRecipeType.HasWorkplans && SelectedWorkplan == null)
+            if (SelectedRecipeDefinition.HasWorkplans && SelectedWorkplan == null)
                 return false;
 
             if (string.IsNullOrWhiteSpace(Name))
@@ -160,7 +160,7 @@ namespace Marvin.Products.UI.Interaction.Aspects
 
             try
             {
-                var createTask =  _productServiceModel.CreateRecipe(SelectedRecipeType.Model.Name);
+                var createTask =  _productServiceModel.CreateRecipe(SelectedRecipeDefinition.Model.Name);
                 TaskNotifier = new TaskNotifier(createTask);
 
                 var newRecipe = await createTask;
@@ -170,7 +170,7 @@ namespace Marvin.Products.UI.Interaction.Aspects
                     Name = Name
                 };
 
-                if (SelectedRecipeType.HasWorkplans)
+                if (SelectedRecipeDefinition.HasWorkplans)
                     RecipePrototype.Model.WorkplanId = SelectedWorkplan.Id;
             }
             catch (Exception e)

@@ -54,7 +54,7 @@
 
                 <LabeledControlHost LabelA="{x:Static properties:Strings.DefaultRecipeDetailsView_General_Workplan}"
                                     SharedSizeGroupName="EditRecipe" Margin="0,0,0,5"
-                                    Visibility="{Binding Type.HasWorkplans, Converter={StaticResource VisibilityConverter}}">
+                                    Visibility="{Binding Definition.HasWorkplans, Converter={StaticResource VisibilityConverter}}">
                     <EddieComboBox ItemsSource="{Binding Workplans}"
                                    SelectedItem="{Binding EditableObject.Workplan, Mode=TwoWay}"
                                    ItemTemplate="{StaticResource WorkplanComboBoxTemplate}"
