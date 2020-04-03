@@ -20,7 +20,7 @@
         </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="RecipeTypeComboBoxTemplate" DataType="ui:RecipeTypeViewModel">
+    <DataTemplate x:Key="RecipeTypeComboBoxTemplate" DataType="ui:RecipeDefinitionViewModel">
         <TextBlock Text="{Binding DisplayName}" />
     </DataTemplate>
 </ResourceDictionary>

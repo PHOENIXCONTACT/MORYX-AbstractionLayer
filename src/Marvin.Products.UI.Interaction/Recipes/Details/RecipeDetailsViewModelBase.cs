@@ -46,7 +46,7 @@ namespace Marvin.Products.UI.Interaction
         /// <summary>
         /// Type of this recipe
         /// </summary>
-        public RecipeTypeViewModel Type { get; private set; }
+        public RecipeDefinitionViewModel Definition { get; private set; }
 
         /// <inheritdoc />
         public void Initialize(string typeName)
@@ -98,7 +98,7 @@ namespace Marvin.Products.UI.Interaction
             if (typeModel == null)
                 throw new InvalidOperationException("Recipe type not found");
 
-            Type = new RecipeTypeViewModel(typeModel);
+            Definition = new RecipeDefinitionViewModel(typeModel);
         }
 
         /// <inheritdoc />

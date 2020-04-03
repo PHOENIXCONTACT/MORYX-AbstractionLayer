@@ -9,12 +9,12 @@ namespace Marvin.Products.UI
     /// <summary>
     /// ViewModel representing a recipe type
     /// </summary>
-    public class RecipeTypeViewModel : PropertyChangedBase
+    public class RecipeDefinitionViewModel : PropertyChangedBase
     {
         /// <summary>
         /// Underlying model
         /// </summary>
-        public RecipeTypeModel Model { get; private set; }
+        public RecipeDefinitionModel Model { get; private set; }
 
         /// <summary>
         /// DisplayName of the recipe type
@@ -27,15 +27,15 @@ namespace Marvin.Products.UI
         public bool HasWorkplans => Model.HasWorkplans;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RecipeTypeViewModel"/> class.
+        /// Initializes a new instance of the <see cref="RecipeDefinitionViewModel"/> class.
         /// </summary>
-        public RecipeTypeViewModel(RecipeTypeModel model)
+        public RecipeDefinitionViewModel(RecipeDefinitionModel model)
         {
             Model = model;
             UpdateModel(model);
         }
 
-        public void UpdateModel(RecipeTypeModel model)
+        public void UpdateModel(RecipeDefinitionModel model)
         {
             Model = model;
 

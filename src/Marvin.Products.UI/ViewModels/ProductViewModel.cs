@@ -23,7 +23,7 @@ namespace Marvin.Products.UI
         private EntryViewModel _properties;
         private readonly RecipeMergeStrategy _recipeMergeStrategy;
         private readonly PartMergeStrategy _partMergeStrategy;
-        private ProductTypeState _state;
+        private ProductState _state;
 
         /// <summary>
         /// Underlying model of this view model
@@ -117,7 +117,7 @@ namespace Marvin.Products.UI
         /// <summary>
         /// Gets or sets the state of the product
         /// </summary>
-        public ProductTypeState State
+        public ProductState State
         {
             get { return _state; }
             set

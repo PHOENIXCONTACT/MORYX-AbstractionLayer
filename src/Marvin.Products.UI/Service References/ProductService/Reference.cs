@@ -29,10 +29,10 @@ namespace Marvin.Products.UI.ProductService {
         private Marvin.Products.UI.ProductService.ProductImporter[] ImportersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductTypeModel[] ProductTypesField;
+        private Marvin.Products.UI.ProductService.ProductDefinitionModel[] ProductTypesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.RecipeTypeModel[] RecipeTypesField;
+        private Marvin.Products.UI.ProductService.RecipeDefinitionModel[] RecipeTypesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -58,7 +58,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductTypeModel[] ProductTypes {
+        public Marvin.Products.UI.ProductService.ProductDefinitionModel[] ProductTypes {
             get {
                 return this.ProductTypesField;
             }
@@ -71,7 +71,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.RecipeTypeModel[] RecipeTypes {
+        public Marvin.Products.UI.ProductService.RecipeDefinitionModel[] RecipeTypes {
             get {
                 return this.RecipeTypesField;
             }
@@ -156,15 +156,15 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductDefinitionModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
     [System.SerializableAttribute()]
-    public partial class ProductTypeModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ProductDefinitionModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BaseTypeField;
+        private string BaseDefinitionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DisplayNameField;
@@ -183,14 +183,14 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BaseType {
+        public string BaseDefinition {
             get {
-                return this.BaseTypeField;
+                return this.BaseDefinitionField;
             }
             set {
-                if ((object.ReferenceEquals(this.BaseTypeField, value) != true)) {
-                    this.BaseTypeField = value;
-                    this.RaisePropertyChanged("BaseType");
+                if ((object.ReferenceEquals(this.BaseDefinitionField, value) != true)) {
+                    this.BaseDefinitionField = value;
+                    this.RaisePropertyChanged("BaseDefinition");
                 }
             }
         }
@@ -233,9 +233,9 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeDefinitionModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
     [System.SerializableAttribute()]
-    public partial class RecipeTypeModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class RecipeDefinitionModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -310,7 +310,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductQuery", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductQuery", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
     [System.SerializableAttribute()]
     public partial class ProductQuery : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -482,7 +482,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeFilter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeFilter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
     public enum RecipeFilter : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -496,7 +496,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RevisionFilter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RevisionFilter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
     public enum RevisionFilter : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -510,7 +510,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Selector", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Selector", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
     public enum Selector : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -557,7 +557,7 @@ namespace Marvin.Products.UI.ProductService {
         private short RevisionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductTypeState StateField;
+        private Marvin.Products.UI.ProductService.ProductState StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
@@ -677,7 +677,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductTypeState State {
+        public Marvin.Products.UI.ProductService.ProductState State {
             get {
                 return this.StateField;
             }
@@ -714,7 +714,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductFile", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductFile", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
     [System.SerializableAttribute()]
     public partial class ProductFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1088,8 +1088,8 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductTypeState", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
-    public enum ProductTypeState : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductState", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
+    public enum ProductState : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Created = 0,
@@ -1199,7 +1199,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeState", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeState", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Recipes")]
     public enum RecipeState : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]

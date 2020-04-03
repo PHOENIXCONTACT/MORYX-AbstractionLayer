@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" />
-  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer" />
+  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products" />
   <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Marvin.Serialization" />
   <xs:element name="GetCustomization">
     <xs:complexType>
@@ -18,7 +18,7 @@
   <xs:element name="GetProducts">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer" minOccurs="0" name="query" nillable="true" type="q2:ProductQuery" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products" minOccurs="0" name="query" nillable="true" type="q2:ProductQuery" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
