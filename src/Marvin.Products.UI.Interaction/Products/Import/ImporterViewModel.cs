@@ -1,7 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
@@ -35,7 +34,7 @@ namespace Marvin.Products.UI.Interaction
                 }
             }
 
-            Parameters = new EntryViewModel(new Entry { Key = new EntryKey { Name = "Root" } });
+            Parameters = new EntryViewModel(new Entry { DisplayName = "Root" });
             foreach (var parameter in parameters.SubEntries)
             {
                 var viewModel = new ImportParameterViewModel(parameter.Clone(true));
@@ -45,7 +44,7 @@ namespace Marvin.Products.UI.Interaction
         }
 
         /// <summary>
-        /// Update parameters if a <see cref="ImportParameter.TriggersUpdate"/> was modified
+        /// Update parameters if a <see cref="ImportParameterViewModel.ValueChanged"/> was modified
         /// </summary>
         private async void OnUpdateTriggerChanged(object sender, Entry importParameter)
         {

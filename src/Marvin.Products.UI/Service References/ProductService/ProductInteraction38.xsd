@@ -4,7 +4,8 @@
   <xs:complexType name="Entry">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Key" nillable="true" type="tns:EntryKey" />
+      <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Identifier" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Prototypes" nillable="true" type="tns:ArrayOfEntry" />
       <xs:element minOccurs="0" name="SubEntries" nillable="true" type="tns:ArrayOfEntry" />
       <xs:element minOccurs="0" name="Validation" nillable="true" type="tns:EntryValidation" />
@@ -12,13 +13,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Entry" nillable="true" type="tns:Entry" />
-  <xs:complexType name="EntryKey">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Identifier" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="EntryKey" nillable="true" type="tns:EntryKey" />
   <xs:complexType name="ArrayOfEntry">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Entry" nillable="true" type="tns:Entry" />
