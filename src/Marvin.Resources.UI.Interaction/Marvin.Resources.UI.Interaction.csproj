@@ -51,20 +51,20 @@
     <Reference Include="Castle.Windsor, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Windsor.5.0.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Controls4Industry, Version=3.0.0.9359, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Controls4Industry.3.0.0-dev009359\lib\net461\Controls4Industry.dll</HintPath>
+    <Reference Include="Controls4Industry, Version=3.0.0.9440, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Controls4Industry.3.0.0-dev009440\lib\net461\Controls4Industry.dll</HintPath>
     </Reference>
-    <Reference Include="Marvin, Version=3.0.0.9706, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Marvin.3.0.0-dev009706\lib\netstandard2.0\Marvin.dll</HintPath>
+    <Reference Include="Marvin, Version=3.0.0.9803, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Marvin.3.0.0-dev009803\lib\netstandard2.0\Marvin.dll</HintPath>
     </Reference>
-    <Reference Include="Marvin.ClientFramework, Version=3.0.0.9359, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Marvin.ClientFramework.3.0.0-dev009359\lib\net461\Marvin.ClientFramework.dll</HintPath>
+    <Reference Include="Marvin.ClientFramework, Version=3.0.0.9440, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Marvin.ClientFramework.3.0.0-dev009440\lib\net461\Marvin.ClientFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Marvin.Controls, Version=3.0.0.9359, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Marvin.Controls.3.0.0-dev009359\lib\net461\Marvin.Controls.dll</HintPath>
+    <Reference Include="Marvin.Controls, Version=3.0.0.9440, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Marvin.Controls.3.0.0-dev009440\lib\net461\Marvin.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Marvin.Tools.Wcf, Version=3.0.0.9706, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Marvin.Tools.Wcf.3.0.0-dev009706\lib\net461\Marvin.Tools.Wcf.dll</HintPath>
+    <Reference Include="Marvin.Tools.Wcf, Version=3.0.0.9803, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Marvin.Tools.Wcf.3.0.0-dev009803\lib\net461\Marvin.Tools.Wcf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
