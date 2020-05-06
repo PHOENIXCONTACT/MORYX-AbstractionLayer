@@ -12,7 +12,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Path Eddie.Icon="Document"  Stretch="Uniform" Fill="LightGray"
+        <Path Data="{MdiShape File_Document}" Stretch="Uniform" Fill="LightGray"
               Width="150" Height="150" Margin="0,0,0,20" />
 
         <TextBlock Eddie.TextFormat="Bold" Text="{Binding CurrentMessage}"
