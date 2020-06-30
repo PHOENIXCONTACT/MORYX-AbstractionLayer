@@ -2,12 +2,12 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Threading.Tasks;
-using Marvin.AbstractionLayer.UI;
-using Marvin.Products.UI.ProductService;
-using Marvin.Serialization;
-using Marvin.Tools.Wcf;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Products.UI.ProductService;
+using Moryx.Serialization;
+using Moryx.Tools.Wcf;
 
-namespace Marvin.Products.UI
+namespace Moryx.Products.UI
 {
     /// <summary>
     /// Model interface for product interaction

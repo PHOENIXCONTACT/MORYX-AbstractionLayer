@@ -3,7 +3,7 @@
 
 using System.Windows.Controls;
 
-namespace Marvin.AbstractionLayer.UI.Aspects
+namespace Moryx.AbstractionLayer.UI.Aspects
 {
     /// <summary>
     /// Interaction logic for AspectConductorView.xaml

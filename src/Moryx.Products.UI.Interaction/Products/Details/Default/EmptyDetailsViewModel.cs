@@ -3,9 +3,9 @@
 
 using System.Threading.Tasks;
 using System.Windows.Media;
-using Marvin.AbstractionLayer.UI;
+using Moryx.AbstractionLayer.UI;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     [ProductDetailsRegistration(DetailsConstants.EmptyType)]
     internal class EmptyDetailsViewModel : EmptyDetailsViewModelBase, IProductDetails

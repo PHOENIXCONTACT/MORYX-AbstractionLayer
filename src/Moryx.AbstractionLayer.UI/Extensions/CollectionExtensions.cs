@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Marvin.AbstractionLayer.UI
+namespace Moryx.AbstractionLayer.UI
 {
     /// <summary>
     /// Extensions for collections used within the abstraction layer ui

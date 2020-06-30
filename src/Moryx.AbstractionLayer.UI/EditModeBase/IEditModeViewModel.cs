@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
-namespace Marvin.AbstractionLayer.UI
+namespace Moryx.AbstractionLayer.UI
 {
     /// <summary>
     /// Interface for a viewmodel with an edit mode

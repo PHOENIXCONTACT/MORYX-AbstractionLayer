@@ -4,11 +4,11 @@
 using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
-using Marvin.AbstractionLayer.UI;
-using Marvin.Controls;
-using Marvin.Products.UI.ProductService;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Controls;
+using Moryx.Products.UI.ProductService;
 
-namespace Marvin.Products.UI
+namespace Moryx.Products.UI
 {
     /// <summary>
     /// ViewModel for recipes of a product

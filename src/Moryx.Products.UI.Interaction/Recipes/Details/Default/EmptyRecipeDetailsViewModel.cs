@@ -3,9 +3,9 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Marvin.AbstractionLayer.UI;
+using Moryx.AbstractionLayer.UI;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     /// <summary>
     /// ViewModel for non selected recipe details

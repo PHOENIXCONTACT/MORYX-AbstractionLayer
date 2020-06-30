@@ -3,9 +3,9 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Marvin.AbstractionLayer.UI;
+using Moryx.AbstractionLayer.UI;
 
-namespace Marvin.Products.UI
+namespace Moryx.Products.UI
 {
     /// <summary>
     /// Recipe details interface

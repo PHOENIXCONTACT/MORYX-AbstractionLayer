@@ -2,13 +2,13 @@
  Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
  Licensed under the Apache License, Version 2.0
 -->
-<UserControl x:Class="Marvin.AbstractionLayer.UI.Aspects.AspectConfiguratorView"
+<UserControl x:Class="Moryx.AbstractionLayer.UI.Aspects.AspectConfiguratorView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Marvin.AbstractionLayer.UI.Aspects"
-             xmlns:properties="clr-namespace:Marvin.AbstractionLayer.UI.Properties"
+             xmlns:local="clr-namespace:Moryx.AbstractionLayer.UI.Aspects"
+             xmlns:properties="clr-namespace:Moryx.AbstractionLayer.UI.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AspectConfiguratorViewModel}"
              d:DesignWidth="800">
 

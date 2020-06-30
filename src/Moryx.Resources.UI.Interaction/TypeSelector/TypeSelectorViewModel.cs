@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using C4I;
-using Marvin.ClientFramework.Commands;
-using Marvin.ClientFramework.Dialog;
-using Marvin.ClientFramework.Tasks;
-using Marvin.Resources.UI.Interaction.Properties;
-using Marvin.Resources.UI.ResourceService;
-using Marvin.Tools;
+using Moryx.ClientFramework.Commands;
+using Moryx.ClientFramework.Dialog;
+using Moryx.ClientFramework.Tasks;
+using Moryx.Resources.UI.Interaction.Properties;
+using Moryx.Resources.UI.ResourceService;
+using Moryx.Tools;
 
-namespace Marvin.Resources.UI.Interaction
+namespace Moryx.Resources.UI.Interaction
 {
     internal class TypeSelectorViewModel : DialogScreen
     {

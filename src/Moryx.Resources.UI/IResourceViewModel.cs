@@ -1,9 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Marvin.Resources.UI.ResourceService;
+using Moryx.Resources.UI.ResourceService;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
     public interface IResourceViewModel
     {

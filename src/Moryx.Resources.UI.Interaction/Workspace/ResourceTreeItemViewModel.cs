@@ -1,10 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Marvin.AbstractionLayer.UI;
-using Marvin.Resources.UI.ResourceService;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Resources.UI.ResourceService;
 
-namespace Marvin.Resources.UI.Interaction
+namespace Moryx.Resources.UI.Interaction
 {
     /// <summary>
     /// Tree item view model used for the resources tree

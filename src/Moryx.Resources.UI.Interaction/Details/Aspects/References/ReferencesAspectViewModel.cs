@@ -7,11 +7,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using C4I;
-using Marvin.ClientFramework.Commands;
-using Marvin.ClientFramework.Dialog;
-using Marvin.Resources.UI.Interaction.Properties;
+using Moryx.ClientFramework.Commands;
+using Moryx.ClientFramework.Dialog;
+using Moryx.Resources.UI.Interaction.Properties;
 
-namespace Marvin.Resources.UI.Interaction.Aspects
+namespace Moryx.Resources.UI.Interaction.Aspects
 {
     [ResourceAspectRegistration(nameof(ReferencesAspectViewModel))]
     internal class ReferencesAspectViewModel : ResourceAspectViewModelBase

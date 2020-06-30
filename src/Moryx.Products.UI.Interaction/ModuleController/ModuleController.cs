@@ -3,13 +3,13 @@
 
 using System.Windows.Media;
 using C4I;
-using Marvin.AbstractionLayer.UI.Aspects;
-using Marvin.ClientFramework;
-using Marvin.Logging;
-using Marvin.Products.UI.Interaction.Properties;
-using Marvin.Tools.Wcf;
+using Moryx.AbstractionLayer.UI.Aspects;
+using Moryx.ClientFramework;
+using Moryx.Logging;
+using Moryx.Products.UI.Interaction.Properties;
+using Moryx.Tools.Wcf;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     /// <summary>
     /// Module controller handling the lifecycle of the module

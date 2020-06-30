@@ -6,13 +6,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
-using Marvin.AbstractionLayer.UI;
-using Marvin.Controls;
-using Marvin.Products.UI.ProductService;
-using Marvin.Serialization;
-using Marvin.Tools;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Controls;
+using Moryx.Products.UI.ProductService;
+using Moryx.Serialization;
+using Moryx.Tools;
 
-namespace Marvin.Products.UI
+namespace Moryx.Products.UI
 {
     /// <summary>
     /// ViewModel representing a fully loaded product

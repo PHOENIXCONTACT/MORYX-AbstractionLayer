@@ -7,11 +7,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using C4I;
-using Marvin.ClientFramework.Commands;
-using Marvin.ClientFramework.Dialog;
-using Marvin.Products.UI.Interaction.Properties;
+using Moryx.ClientFramework.Commands;
+using Moryx.ClientFramework.Dialog;
+using Moryx.Products.UI.Interaction.Properties;
 
-namespace Marvin.Products.UI.Interaction.Aspects
+namespace Moryx.Products.UI.Interaction.Aspects
 {
     [ProductAspectRegistration(nameof(RecipesAspectViewModel))]
     internal class RecipesAspectViewModel : ProductAspectViewModelBase

@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55DAA8ED-0729-4FF7-B262-E8C0F99022F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Moryx.Products.UI.Interaction</RootNamespace>
+    <AssemblyName>Moryx.Products.UI.Interaction</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Moryx.Products.UI.Interaction.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Moryx.Products.UI.Interaction.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Windsor.5.0.1\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Controls4Industry, Version=3.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Controls4Industry.3.0.0-dev.15\lib\net461\Controls4Industry.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moryx, Version=3.0.0.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moryx.3.0.0-dev.26\lib\netstandard2.0\Moryx.dll</HintPath>
+    </Reference>
+    <Reference Include="Moryx.ClientFramework, Version=3.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moryx.ClientFramework.3.0.0-dev.15\lib\net461\Moryx.ClientFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Moryx.Controls, Version=3.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moryx.Controls.3.0.0-dev.15\lib\net461\Moryx.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Moryx.Tools.Wcf, Version=3.0.0.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moryx.Tools.Wcf.3.0.0-dev.26\lib\net461\Moryx.Tools.Wcf.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Products\Aspects\Parts\CollectionPartConnectorView.xaml.cs">
+      <DependentUpon>CollectionPartConnectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Parts\CollectionPartConnectorViewModel.cs" />
+    <Compile Include="Products\Aspects\Parts\IPartConnectorViewModel.cs" />
+    <Compile Include="Products\Aspects\Parts\IPartDialogsFactory.cs" />
+    <Compile Include="Products\Aspects\Parts\PartsAspectView.xaml.cs">
+      <DependentUpon>PartsAspectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Parts\PartsAspectViewModel.cs" />
+    <Compile Include="Products\Aspects\Parts\SelectPartLinkDialogView.xaml.cs">
+      <DependentUpon>SelectPartLinkDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Parts\SelectPartLinkDialogViewModel.cs" />
+    <Compile Include="Products\Aspects\Parts\SinglePartConnectorPartView.xaml.cs">
+      <DependentUpon>SinglePartConnectorPartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Parts\SinglePartConnectorPartViewModel.cs" />
+    <Compile Include="Products\Aspects\ProductAspectViewModelBase.cs" />
+    <Compile Include="Products\Aspects\Properties\PropertiesAspectView.xaml.cs">
+      <DependentUpon>PropertiesAspectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Properties\PropertiesAspectViewModel.cs" />
+    <Compile Include="Products\Aspects\Recipes\AddRecipeDialogView.xaml.cs">
+      <DependentUpon>AddRecipeDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Recipes\AddRecipeDialogViewModel.cs" />
+    <Compile Include="Products\Aspects\Recipes\RecipeConductor.cs" />
+    <Compile Include="Products\Aspects\Recipes\RecipesAspectView.xaml.cs">
+      <DependentUpon>RecipesAspectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Recipes\RecipesAspectViewModel.cs" />
+    <Compile Include="Products\Aspects\Relations\RelationsAspectView.xaml.cs">
+      <DependentUpon>RelationsAspectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Aspects\Relations\RelationsAspectViewModel.cs" />
+    <Compile Include="Products\Details\Default\DefaultDetailsView.xaml.cs">
+      <DependentUpon>DefaultDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Details\Default\DefaultDetailsViewModel.cs" />
+    <Compile Include="Products\Duplicate\DuplicateProductDialogView.xaml.cs">
+      <DependentUpon>DuplicateProductDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Duplicate\DuplicateProductDialogViewModel.cs" />
+    <Compile Include="Products\ProductItemViewModel.cs" />
+    <Compile Include="Products\ProductQueryViewModel.cs" />
+    <Compile Include="Products\ProductsWorkspaceView.xaml.cs">
+      <DependentUpon>ProductsWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\ProductsWorkspaceViewModel.cs" />
+    <Compile Include="Properties\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recipes\Details\Default\DefaultRecipeDetailsView.xaml.cs">
+      <DependentUpon>DefaultRecipeDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recipes\Details\Default\DefaultRecipeDetailsViewModel.cs" />
+    <Compile Include="Recipes\Details\Default\EmptyRecipeDetailsView.xaml.cs">
+      <DependentUpon>EmptyRecipeDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Details\Default\EmptyDetailsView.xaml.cs">
+      <DependentUpon>EmptyDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recipes\Details\Default\EmptyRecipeDetailsViewModel.cs" />
+    <Compile Include="Products\Details\Default\EmptyDetailsViewModel.cs" />
+    <Compile Include="Recipes\Details\IRecipeDetailsFactory.cs" />
+    <Compile Include="Recipes\Details\RecipeDetailsComponentSelector.cs" />
+    <Compile Include="Recipes\Details\RecipeDetailsViewModelBase.cs" />
+    <Compile Include="Products\Details\IProductDetailsFactory.cs" />
+    <Compile Include="Products\Details\ProductDetailsComponentSelector.cs" />
+    <Compile Include="Products\Details\ProductDetailsViewModelBase.cs" />
+    <Compile Include="Products\Import\ImporterViewModel.cs" />
+    <Compile Include="Products\Import\ImportParameterViewModel.cs" />
+    <Compile Include="Products\Import\ImportView.xaml.cs">
+      <DependentUpon>ImportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Import\ImportViewModel.cs" />
+    <Compile Include="ModuleController\ModuleConfig.cs" />
+    <Compile Include="ModuleController\ModuleController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Products\Removal\RemoveProductView.xaml.cs">
+      <DependentUpon>RemoveProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Removal\RemoveProductViewModel.cs" />
+    <Compile Include="Products\Revisions\CreateRevisionView.xaml.cs">
+      <DependentUpon>CreateRevisionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Revisions\CreateRevisionViewModel.cs" />
+    <Compile Include="Products\Revisions\RevisionsView.xaml.cs">
+      <DependentUpon>RevisionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Revisions\RevisionsViewModel.cs" />
+    <Compile Include="Recipes\IRecipeWorkspaceFactory.cs" />
+    <Compile Include="Recipes\RecipesWorkspaceView.xaml.cs">
+      <DependentUpon>RecipesWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recipes\RecipesWorkspaceViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Moryx.Products.UI.Interaction.csproj.DotSettings" />
+    <None Include="Moryx.Products.UI.Interaction.nuspec" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Products\Aspects\Parts\CollectionPartConnectorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Parts\PartsAspectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Parts\SelectPartLinkDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Parts\SinglePartConnectorPartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Properties\PropertiesAspectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Recipes\AddRecipeDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Recipes\RecipesAspectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Aspects\Relations\RelationsAspectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Details\Default\DefaultDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Products\Duplicate\DuplicateProductDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\ProductsWorkspaceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Recipes\Details\Default\DefaultRecipeDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recipes\Details\Default\EmptyRecipeDetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Details\Default\EmptyDetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Import\ImportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Products\Removal\RemoveProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Products\Revisions\CreateRevisionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Products\Revisions\RevisionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recipes\RecipesWorkspaceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Moryx.AbstractionLayer.UI\Moryx.AbstractionLayer.UI.csproj">
+      <Project>{b9920541-7e0e-4cde-b195-b18589a2bbb1}</Project>
+      <Name>Moryx.AbstractionLayer.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moryx.Products.UI\Moryx.Products.UI.csproj">
+      <Project>{e04d4a2d-70fc-48cf-a412-853ce51d5d40}</Project>
+      <Name>Moryx.Products.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Strings.de.resx" />
+    <EmbeddedResource Include="Properties\Strings.pl.resx" />
+    <EmbeddedResource Include="Properties\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -2,9 +2,9 @@
 // Licensed under the Apache License, Version 2.0
 
 using System;
-using Marvin.AbstractionLayer.UI;
+using Moryx.AbstractionLayer.UI;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
     /// <summary>
     /// Registration attribute for the resource details view models

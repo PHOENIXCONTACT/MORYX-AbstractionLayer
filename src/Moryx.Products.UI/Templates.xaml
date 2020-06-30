@@ -4,7 +4,7 @@
 -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:ui="clr-namespace:Marvin.Products.UI">
+                    xmlns:ui="clr-namespace:Moryx.Products.UI">
 
     <DataTemplate x:Key="WorkplanComboBoxTemplate" DataType="ui:WorkplanViewModel">
         <StackPanel Orientation="Horizontal">

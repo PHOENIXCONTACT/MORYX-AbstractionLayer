@@ -4,11 +4,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Marvin.ClientFramework.Tasks;
-using Marvin.Products.UI.Interaction.Properties;
-using Marvin.Products.UI.ProductService;
+using Moryx.ClientFramework.Tasks;
+using Moryx.Products.UI.Interaction.Properties;
+using Moryx.Products.UI.ProductService;
 
-namespace Marvin.Products.UI.Interaction.Aspects
+namespace Moryx.Products.UI.Interaction.Aspects
 {
     [ProductAspectRegistration(nameof(RelationsAspectViewModel))]
     internal class RelationsAspectViewModel : ProductAspectViewModelBase

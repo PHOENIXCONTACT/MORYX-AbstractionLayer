@@ -1,9 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Marvin.Products.UI.ProductService;
+using Moryx.Products.UI.ProductService;
 
-namespace Marvin.Products.UI
+namespace Moryx.Products.UI
 {
     /// <summary>
     /// Simplified representation of a Product.

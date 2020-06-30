@@ -1,9 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Marvin.Container;
+using Moryx.Container;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     /// <summary>
     /// Factory to create <see cref="IRecipeWorkspace"/> instances

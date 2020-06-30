@@ -5,11 +5,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
-using Marvin.AbstractionLayer.UI;
-using Marvin.Products.UI.ProductService;
-using Marvin.Tools;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Products.UI.ProductService;
+using Moryx.Tools;
 
-namespace Marvin.Products.UI
+namespace Moryx.Products.UI
 {
     /// <summary>
     /// View model for part connectors

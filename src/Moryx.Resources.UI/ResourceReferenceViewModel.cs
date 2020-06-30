@@ -6,10 +6,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
-using Marvin.Resources.UI.ResourceService;
-using Marvin.Tools;
+using Moryx.Resources.UI.ResourceService;
+using Moryx.Tools;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
 
     /// <summary>

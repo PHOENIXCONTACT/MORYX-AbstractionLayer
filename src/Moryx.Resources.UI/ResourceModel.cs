@@ -3,10 +3,10 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Marvin.AbstractionLayer.UI;
+using Moryx.AbstractionLayer.UI;
 
 // ReSharper disable once CheckNamespace
-namespace Marvin.Resources.UI.ResourceService
+namespace Moryx.Resources.UI.ResourceService
 {
     public partial class ResourceModel : ITreeItemModel<ResourceModel>
     {

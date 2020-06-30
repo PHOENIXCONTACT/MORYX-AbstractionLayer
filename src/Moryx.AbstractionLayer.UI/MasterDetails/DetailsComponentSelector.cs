@@ -8,9 +8,9 @@ using System.Linq;
 using System.Reflection;
 using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel;
-using Marvin.Container;
+using Moryx.Container;
 
-namespace Marvin.AbstractionLayer.UI
+namespace Moryx.AbstractionLayer.UI
 {
     /// <summary>
     /// Component selector for specialized plugins defined by runtime data

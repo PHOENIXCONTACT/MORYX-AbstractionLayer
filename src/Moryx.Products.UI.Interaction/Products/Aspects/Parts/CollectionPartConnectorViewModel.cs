@@ -7,12 +7,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using C4I;
-using Marvin.AbstractionLayer.UI;
-using Marvin.ClientFramework.Commands;
-using Marvin.ClientFramework.Dialog;
-using Marvin.Tools;
+using Moryx.AbstractionLayer.UI;
+using Moryx.ClientFramework.Commands;
+using Moryx.ClientFramework.Dialog;
+using Moryx.Tools;
 
-namespace Marvin.Products.UI.Interaction.Aspects
+namespace Moryx.Products.UI.Interaction.Aspects
 {
     internal class CollectionPartConnectorViewModel : EditModeViewModelBase, IPartConnectorViewModel
     {

@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace Marvin.AbstractionLayer.UI
+namespace Moryx.AbstractionLayer.UI
 {
     /// <summary>
     /// Common API for TreeItem Models and TreeItemViewModels

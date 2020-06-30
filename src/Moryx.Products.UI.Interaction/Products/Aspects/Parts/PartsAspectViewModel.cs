@@ -4,10 +4,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Caliburn.Micro;
-using Marvin.ClientFramework.Dialog;
-using Marvin.Products.UI.Interaction.Properties;
+using Moryx.ClientFramework.Dialog;
+using Moryx.Products.UI.Interaction.Properties;
 
-namespace Marvin.Products.UI.Interaction.Aspects
+namespace Moryx.Products.UI.Interaction.Aspects
 {
     [ProductAspectRegistration(nameof(PartsAspectViewModel))]
     internal class PartsAspectViewModel : ProductAspectViewModelBase

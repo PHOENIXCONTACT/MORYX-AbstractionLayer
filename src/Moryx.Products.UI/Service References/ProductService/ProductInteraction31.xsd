@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" />
-  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products" />
-  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Marvin.Serialization" />
+  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" />
+  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products" />
+  <xs:import schemaLocation="http://localhost/Metadata/ProductInteraction?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Moryx.Serialization" />
   <xs:element name="GetCustomization">
     <xs:complexType>
       <xs:sequence />
@@ -11,21 +11,21 @@
   <xs:element name="GetCustomizationResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="GetCustomizationResult" nillable="true" type="q1:ProductCustomization" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="GetCustomizationResult" nillable="true" type="q1:ProductCustomization" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetProducts">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products" minOccurs="0" name="query" nillable="true" type="q2:ProductQuery" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products" minOccurs="0" name="query" nillable="true" type="q2:ProductQuery" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetProductsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="GetProductsResult" nillable="true" type="q3:ArrayOfProductModel" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="GetProductsResult" nillable="true" type="q3:ArrayOfProductModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -39,7 +39,7 @@
   <xs:element name="CreateProductResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="CreateProductResult" nillable="true" type="q4:ProductModel" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="CreateProductResult" nillable="true" type="q4:ProductModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -53,21 +53,21 @@
   <xs:element name="GetProductDetailsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="GetProductDetailsResult" nillable="true" type="q5:ProductModel" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="GetProductDetailsResult" nillable="true" type="q5:ProductModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveProduct">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="instance" nillable="true" type="q6:ProductModel" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="instance" nillable="true" type="q6:ProductModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveProductResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="SaveProductResult" nillable="true" type="q7:ProductModel" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="SaveProductResult" nillable="true" type="q7:ProductModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -83,7 +83,7 @@
   <xs:element name="DuplicateProductResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="DuplicateProductResult" nillable="true" type="q8:DuplicateProductResponse" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="DuplicateProductResult" nillable="true" type="q8:DuplicateProductResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -105,14 +105,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="importerName" nillable="true" type="xs:string" />
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="parametersModel" nillable="true" type="q9:Entry" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Moryx.Serialization" minOccurs="0" name="parametersModel" nillable="true" type="q9:Entry" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ImportProductResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="ImportProductResult" nillable="true" type="q10:ProductModel" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="ImportProductResult" nillable="true" type="q10:ProductModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -120,14 +120,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="importer" nillable="true" type="xs:string" />
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="currentParameters" nillable="true" type="q11:Entry" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Moryx.Serialization" minOccurs="0" name="currentParameters" nillable="true" type="q11:Entry" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateParametersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="UpdateParametersResult" nillable="true" type="q12:Entry" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Moryx.Serialization" minOccurs="0" name="UpdateParametersResult" nillable="true" type="q12:Entry" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -141,7 +141,7 @@
   <xs:element name="GetRecipeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="GetRecipeResult" nillable="true" type="q13:RecipeModel" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="GetRecipeResult" nillable="true" type="q13:RecipeModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -155,7 +155,7 @@
   <xs:element name="GetRecipesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="GetRecipesResult" nillable="true" type="q14:ArrayOfRecipeModel" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="GetRecipesResult" nillable="true" type="q14:ArrayOfRecipeModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -169,21 +169,21 @@
   <xs:element name="CreateRecipeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="CreateRecipeResult" nillable="true" type="q15:RecipeModel" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="CreateRecipeResult" nillable="true" type="q15:RecipeModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveRecipe">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="recipe" nillable="true" type="q16:RecipeModel" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="recipe" nillable="true" type="q16:RecipeModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveRecipeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="SaveRecipeResult" nillable="true" type="q17:RecipeModel" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="SaveRecipeResult" nillable="true" type="q17:RecipeModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -195,7 +195,7 @@
   <xs:element name="GetWorkplansResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification" minOccurs="0" name="GetWorkplansResult" nillable="true" type="q18:ArrayOfWorkplanModel" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification" minOccurs="0" name="GetWorkplansResult" nillable="true" type="q18:ArrayOfWorkplanModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -2,17 +2,17 @@
  Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
  Licensed under the Apache License, Version 2.0
 -->
-<UserControl x:Class="Marvin.Resources.UI.Interaction.InteractionWorkspaceView"
+<UserControl x:Class="Moryx.Resources.UI.Interaction.InteractionWorkspaceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:interaction="clr-namespace:Marvin.Resources.UI.Interaction"
+             xmlns:interaction="clr-namespace:Moryx.Resources.UI.Interaction"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:c4i="clr-namespace:C4I;assembly=Controls4Industry"
-             xmlns:controls="clr-namespace:Marvin.AbstractionLayer.UI.Controls;assembly=Marvin.AbstractionLayer.UI"
-             xmlns:ui="clr-namespace:Marvin.AbstractionLayer.UI;assembly=Marvin.AbstractionLayer.UI"
-             xmlns:properties="clr-namespace:Marvin.Resources.UI.Interaction.Properties"
+             xmlns:controls="clr-namespace:Moryx.AbstractionLayer.UI.Controls;assembly=Moryx.AbstractionLayer.UI"
+             xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
+             xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:InteractionWorkspaceViewModel }"
              d:DesignHeight="416" d:DesignWidth="956">
 
@@ -25,7 +25,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Marvin.AbstractionLayer.UI;component/ToolbarButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/ToolbarButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <c4i:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
             <c4i:InverseBooleanConverter x:Key="InverseBooleanConverter" />

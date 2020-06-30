@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Marvin.AbstractionLayer.UI.Aspects
+namespace Moryx.AbstractionLayer.UI.Aspects
 {
     /// <summary>
     /// Interaction logic for AspectConfiguratorView.xaml

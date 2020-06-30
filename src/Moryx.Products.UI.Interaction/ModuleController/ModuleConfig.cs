@@ -3,11 +3,11 @@
 
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Marvin.AbstractionLayer.UI.Aspects;
-using Marvin.ClientFramework;
-using Marvin.Products.UI.Interaction.Aspects;
+using Moryx.AbstractionLayer.UI.Aspects;
+using Moryx.ClientFramework;
+using Moryx.Products.UI.Interaction.Aspects;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     /// <summary>
     /// Config file for the products module

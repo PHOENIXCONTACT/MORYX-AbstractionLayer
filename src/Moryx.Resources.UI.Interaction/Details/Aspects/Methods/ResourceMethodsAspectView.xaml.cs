@@ -3,7 +3,7 @@
 
 using System.Windows.Controls;
 
-namespace Marvin.Resources.UI.Interaction.Aspects.Methods
+namespace Moryx.Resources.UI.Interaction.Aspects.Methods
 {
     /// <summary>
     /// Interaction logic for ResourceMethodsAspectView.xaml

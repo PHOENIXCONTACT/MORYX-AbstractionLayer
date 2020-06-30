@@ -10,18 +10,18 @@ using System.Windows;
 using System.Windows.Input;
 using C4I;
 using Caliburn.Micro;
-using Marvin.AbstractionLayer.UI;
-using Marvin.AbstractionLayer.UI.Aspects;
-using Marvin.ClientFramework;
-using Marvin.ClientFramework.Commands;
-using Marvin.Container;
-using Marvin.Products.UI.Interaction.Properties;
-using Marvin.Products.UI.ProductService;
-using Marvin.Tools;
-using MessageBoxImage = Marvin.ClientFramework.Dialog.MessageBoxImage;
-using MessageBoxOptions = Marvin.ClientFramework.Dialog.MessageBoxOptions;
+using Moryx.AbstractionLayer.UI;
+using Moryx.AbstractionLayer.UI.Aspects;
+using Moryx.ClientFramework;
+using Moryx.ClientFramework.Commands;
+using Moryx.Container;
+using Moryx.Products.UI.Interaction.Properties;
+using Moryx.Products.UI.ProductService;
+using Moryx.Tools;
+using MessageBoxImage = Moryx.ClientFramework.Dialog.MessageBoxImage;
+using MessageBoxOptions = Moryx.ClientFramework.Dialog.MessageBoxOptions;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     [Plugin(LifeCycle.Singleton, typeof(IModuleWorkspace), Name = WorkspaceName)]
     internal class ProductsWorkspaceViewModel : MasterDetailsWorkspace<IProductDetails, IProductDetailsFactory, EmptyDetailsViewModel>

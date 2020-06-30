@@ -5,12 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Marvin.AbstractionLayer.UI;
-using Marvin.ClientFramework.Dialog;
-using Marvin.Products.UI.Interaction.Properties;
-using Marvin.Products.UI.ProductService;
+using Moryx.AbstractionLayer.UI;
+using Moryx.ClientFramework.Dialog;
+using Moryx.Products.UI.Interaction.Properties;
+using Moryx.Products.UI.ProductService;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     /// <summary>
     /// Standard ViewModel for recipes

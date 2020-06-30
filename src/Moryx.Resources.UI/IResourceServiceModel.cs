@@ -2,11 +2,11 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Threading.Tasks;
-using Marvin.Resources.UI.ResourceService;
-using Marvin.Serialization;
-using Marvin.Tools.Wcf;
+using Moryx.Resources.UI.ResourceService;
+using Moryx.Serialization;
+using Moryx.Tools.Wcf;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
     /// <summary>
     /// Model interface for resource interaction

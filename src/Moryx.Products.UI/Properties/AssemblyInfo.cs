@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Marvin.Products.UI")]
-[assembly: AssemblyDescription("Marvin.Products.UI")]
+[assembly: AssemblyTitle("Moryx.Products.UI")]
+[assembly: AssemblyDescription("Moryx.Products.UI")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

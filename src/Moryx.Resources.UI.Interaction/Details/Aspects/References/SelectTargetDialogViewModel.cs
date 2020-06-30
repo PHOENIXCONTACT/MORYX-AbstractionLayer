@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using C4I;
 using Caliburn.Micro;
-using Marvin.ClientFramework.Dialog;
-using Marvin.ClientFramework.Tasks;
-using Marvin.Resources.UI.Interaction.Properties;
-using Marvin.Resources.UI.ResourceService;
+using Moryx.ClientFramework.Dialog;
+using Moryx.ClientFramework.Tasks;
+using Moryx.Resources.UI.Interaction.Properties;
+using Moryx.Resources.UI.ResourceService;
 
-namespace Marvin.Resources.UI.Interaction.Aspects
+namespace Moryx.Resources.UI.Interaction.Aspects
 {
     internal class SelectTargetDialogViewModel : DialogScreen
     {

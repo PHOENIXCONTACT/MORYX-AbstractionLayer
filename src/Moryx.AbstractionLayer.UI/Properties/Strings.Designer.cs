@@ -11,7 +11,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Marvin.AbstractionLayer.UI.Properties {
+namespace Moryx.AbstractionLayer.UI.Properties {
     using System;
     
     
@@ -42,7 +42,7 @@ namespace Marvin.AbstractionLayer.UI.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Marvin.AbstractionLayer.UI.Properties.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Moryx.AbstractionLayer.UI.Properties.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

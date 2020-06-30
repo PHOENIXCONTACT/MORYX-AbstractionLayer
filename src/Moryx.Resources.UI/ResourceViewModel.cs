@@ -6,13 +6,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
-using Marvin.AbstractionLayer.UI;
-using Marvin.Controls;
-using Marvin.Resources.UI.ResourceService;
-using Marvin.Serialization;
-using Marvin.Tools;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Controls;
+using Moryx.Resources.UI.ResourceService;
+using Moryx.Serialization;
+using Moryx.Tools;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
     /// <summary>
     /// Resource view model for the <see cref="ResourceModel"/>

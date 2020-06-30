@@ -3,7 +3,7 @@
 
 using System.Windows.Controls;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     /// <summary>
     /// Interaction logic for EmptyDetailsView.xaml

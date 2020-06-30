@@ -8,14 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Marvin.Resources.UI.ResourceService {
+namespace Moryx.Resources.UI.ResourceService {
     using System.Runtime.Serialization;
     using System;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Resources.Interaction", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class ResourceTypeModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -23,16 +23,16 @@ namespace Marvin.Resources.UI.ResourceService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ResourceTypeModel BaseTypeField;
+        private Moryx.Resources.UI.ResourceService.ResourceTypeModel BaseTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Serialization.MethodEntry[] ConstructorsField;
+        private Moryx.Serialization.MethodEntry[] ConstructorsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool CreatableField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ResourceTypeModel[] DerivedTypesField;
+        private Moryx.Resources.UI.ResourceService.ResourceTypeModel[] DerivedTypesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
@@ -44,7 +44,7 @@ namespace Marvin.Resources.UI.ResourceService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ReferenceTypeModel[] ReferencesField;
+        private Moryx.Resources.UI.ResourceService.ReferenceTypeModel[] ReferencesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -57,7 +57,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ResourceTypeModel BaseType {
+        public Moryx.Resources.UI.ResourceService.ResourceTypeModel BaseType {
             get {
                 return this.BaseTypeField;
             }
@@ -70,7 +70,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Serialization.MethodEntry[] Constructors {
+        public Moryx.Serialization.MethodEntry[] Constructors {
             get {
                 return this.ConstructorsField;
             }
@@ -96,7 +96,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ResourceTypeModel[] DerivedTypes {
+        public Moryx.Resources.UI.ResourceService.ResourceTypeModel[] DerivedTypes {
             get {
                 return this.DerivedTypesField;
             }
@@ -148,7 +148,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ReferenceTypeModel[] References {
+        public Moryx.Resources.UI.ResourceService.ReferenceTypeModel[] References {
             get {
                 return this.ReferencesField;
             }
@@ -172,7 +172,7 @@ namespace Marvin.Resources.UI.ResourceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ReferenceTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Resources.Interaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReferenceTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction")]
     [System.SerializableAttribute()]
     public partial class ReferenceTypeModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -195,10 +195,10 @@ namespace Marvin.Resources.UI.ResourceService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ResourceRelationType RelationTypeField;
+        private Moryx.Resources.UI.ResourceService.ResourceRelationType RelationTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ResourceReferenceRole RoleField;
+        private Moryx.Resources.UI.ResourceService.ResourceReferenceRole RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string[] SupportedTypesField;
@@ -279,7 +279,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ResourceRelationType RelationType {
+        public Moryx.Resources.UI.ResourceService.ResourceRelationType RelationType {
             get {
                 return this.RelationTypeField;
             }
@@ -292,7 +292,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ResourceReferenceRole Role {
+        public Moryx.Resources.UI.ResourceService.ResourceReferenceRole Role {
             get {
                 return this.RoleField;
             }
@@ -329,7 +329,7 @@ namespace Marvin.Resources.UI.ResourceService {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.FlagsAttribute()]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceRelationType", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Resources")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceRelationType", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Resources")]
     public enum ResourceRelationType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -373,7 +373,7 @@ namespace Marvin.Resources.UI.ResourceService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceReferenceRole", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Resources")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceReferenceRole", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Resources")]
     public enum ResourceReferenceRole : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -385,7 +385,7 @@ namespace Marvin.Resources.UI.ResourceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceQuery", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Resources.Interaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceQuery", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction")]
     [System.SerializableAttribute()]
     public partial class ResourceQuery : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -393,10 +393,10 @@ namespace Marvin.Resources.UI.ResourceService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ReferenceFilter[] IncludedReferencesField;
+        private Moryx.Resources.UI.ResourceService.ReferenceFilter[] IncludedReferencesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ReferenceFilter ReferenceConditionField;
+        private Moryx.Resources.UI.ResourceService.ReferenceFilter ReferenceConditionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ReferenceRecursionField;
@@ -415,7 +415,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ReferenceFilter[] IncludedReferences {
+        public Moryx.Resources.UI.ResourceService.ReferenceFilter[] IncludedReferences {
             get {
                 return this.IncludedReferencesField;
             }
@@ -428,7 +428,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ReferenceFilter ReferenceCondition {
+        public Moryx.Resources.UI.ResourceService.ReferenceFilter ReferenceCondition {
             get {
                 return this.ReferenceConditionField;
             }
@@ -478,7 +478,7 @@ namespace Marvin.Resources.UI.ResourceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ReferenceFilter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Resources.Interaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReferenceFilter", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction")]
     [System.SerializableAttribute()]
     public partial class ReferenceFilter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -489,13 +489,13 @@ namespace Marvin.Resources.UI.ResourceService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ResourceRelationType RelationTypeField;
+        private Moryx.Resources.UI.ResourceService.ResourceRelationType RelationTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ResourceReferenceRole RoleField;
+        private Moryx.Resources.UI.ResourceService.ResourceReferenceRole RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ReferenceValue ValueConstraintField;
+        private Moryx.Resources.UI.ResourceService.ReferenceValue ValueConstraintField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -521,7 +521,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ResourceRelationType RelationType {
+        public Moryx.Resources.UI.ResourceService.ResourceRelationType RelationType {
             get {
                 return this.RelationTypeField;
             }
@@ -534,7 +534,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ResourceReferenceRole Role {
+        public Moryx.Resources.UI.ResourceService.ResourceReferenceRole Role {
             get {
                 return this.RoleField;
             }
@@ -547,7 +547,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ReferenceValue ValueConstraint {
+        public Moryx.Resources.UI.ResourceService.ReferenceValue ValueConstraint {
             get {
                 return this.ValueConstraintField;
             }
@@ -570,7 +570,7 @@ namespace Marvin.Resources.UI.ResourceService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ReferenceValue", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Resources.Interaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReferenceValue", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction")]
     public enum ReferenceValue : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -585,7 +585,7 @@ namespace Marvin.Resources.UI.ResourceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Resources.Interaction", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class ResourceModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -599,7 +599,7 @@ namespace Marvin.Resources.UI.ResourceService {
         private long IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Serialization.MethodEntry[] MethodsField;
+        private Moryx.Serialization.MethodEntry[] MethodsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -608,10 +608,10 @@ namespace Marvin.Resources.UI.ResourceService {
         private bool PartiallyLoadedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Serialization.Entry PropertiesField;
+        private Moryx.Serialization.Entry PropertiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ResourceReferenceModel[] ReferencesField;
+        private Moryx.Resources.UI.ResourceService.ResourceReferenceModel[] ReferencesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
@@ -653,7 +653,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Serialization.MethodEntry[] Methods {
+        public Moryx.Serialization.MethodEntry[] Methods {
             get {
                 return this.MethodsField;
             }
@@ -692,7 +692,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Serialization.Entry Properties {
+        public Moryx.Serialization.Entry Properties {
             get {
                 return this.PropertiesField;
             }
@@ -705,7 +705,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ResourceReferenceModel[] References {
+        public Moryx.Resources.UI.ResourceService.ResourceReferenceModel[] References {
             get {
                 return this.ReferencesField;
             }
@@ -742,7 +742,7 @@ namespace Marvin.Resources.UI.ResourceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceReferenceModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Resources.Interaction", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceReferenceModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class ResourceReferenceModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -753,7 +753,7 @@ namespace Marvin.Resources.UI.ResourceService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Resources.UI.ResourceService.ResourceModel[] TargetsField;
+        private Moryx.Resources.UI.ResourceService.ResourceModel[] TargetsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -779,7 +779,7 @@ namespace Marvin.Resources.UI.ResourceService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Resources.UI.ResourceService.ResourceModel[] Targets {
+        public Moryx.Resources.UI.ResourceService.ResourceModel[] Targets {
             get {
                 return this.TargetsField;
             }
@@ -806,40 +806,40 @@ namespace Marvin.Resources.UI.ResourceService {
     public interface IResourceInteraction {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/GetTypeTree", ReplyAction="http://tempuri.org/IResourceInteraction/GetTypeTreeResponse")]
-        Marvin.Resources.UI.ResourceService.ResourceTypeModel GetTypeTree();
+        Moryx.Resources.UI.ResourceService.ResourceTypeModel GetTypeTree();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/GetTypeTree", ReplyAction="http://tempuri.org/IResourceInteraction/GetTypeTreeResponse")]
-        System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceTypeModel> GetTypeTreeAsync();
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceTypeModel> GetTypeTreeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/GetResources", ReplyAction="http://tempuri.org/IResourceInteraction/GetResourcesResponse")]
-        Marvin.Resources.UI.ResourceService.ResourceModel[] GetResources(Marvin.Resources.UI.ResourceService.ResourceQuery query);
+        Moryx.Resources.UI.ResourceService.ResourceModel[] GetResources(Moryx.Resources.UI.ResourceService.ResourceQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/GetResources", ReplyAction="http://tempuri.org/IResourceInteraction/GetResourcesResponse")]
-        System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceModel[]> GetResourcesAsync(Marvin.Resources.UI.ResourceService.ResourceQuery query);
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel[]> GetResourcesAsync(Moryx.Resources.UI.ResourceService.ResourceQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/GetDetails", ReplyAction="http://tempuri.org/IResourceInteraction/GetDetailsResponse")]
-        Marvin.Resources.UI.ResourceService.ResourceModel[] GetDetails(long[] ids);
+        Moryx.Resources.UI.ResourceService.ResourceModel[] GetDetails(long[] ids);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/GetDetails", ReplyAction="http://tempuri.org/IResourceInteraction/GetDetailsResponse")]
-        System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceModel[]> GetDetailsAsync(long[] ids);
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel[]> GetDetailsAsync(long[] ids);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/InvokeMethod", ReplyAction="http://tempuri.org/IResourceInteraction/InvokeMethodResponse")]
-        Marvin.Serialization.Entry InvokeMethod(long id, Marvin.Serialization.MethodEntry method);
+        Moryx.Serialization.Entry InvokeMethod(long id, Moryx.Serialization.MethodEntry method);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/InvokeMethod", ReplyAction="http://tempuri.org/IResourceInteraction/InvokeMethodResponse")]
-        System.Threading.Tasks.Task<Marvin.Serialization.Entry> InvokeMethodAsync(long id, Marvin.Serialization.MethodEntry method);
+        System.Threading.Tasks.Task<Moryx.Serialization.Entry> InvokeMethodAsync(long id, Moryx.Serialization.MethodEntry method);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Create", ReplyAction="http://tempuri.org/IResourceInteraction/CreateResponse")]
-        Marvin.Resources.UI.ResourceService.ResourceModel Create(string resourceType, Marvin.Serialization.MethodEntry constructor);
+        Moryx.Resources.UI.ResourceService.ResourceModel Create(string resourceType, Moryx.Serialization.MethodEntry constructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Create", ReplyAction="http://tempuri.org/IResourceInteraction/CreateResponse")]
-        System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceModel> CreateAsync(string resourceType, Marvin.Serialization.MethodEntry constructor);
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> CreateAsync(string resourceType, Moryx.Serialization.MethodEntry constructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Save", ReplyAction="http://tempuri.org/IResourceInteraction/SaveResponse")]
-        Marvin.Resources.UI.ResourceService.ResourceModel Save(Marvin.Resources.UI.ResourceService.ResourceModel resource);
+        Moryx.Resources.UI.ResourceService.ResourceModel Save(Moryx.Resources.UI.ResourceService.ResourceModel resource);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Save", ReplyAction="http://tempuri.org/IResourceInteraction/SaveResponse")]
-        System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceModel> SaveAsync(Marvin.Resources.UI.ResourceService.ResourceModel resource);
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> SaveAsync(Moryx.Resources.UI.ResourceService.ResourceModel resource);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Remove", ReplyAction="http://tempuri.org/IResourceInteraction/RemoveResponse")]
         bool Remove(long id);
@@ -849,12 +849,12 @@ namespace Marvin.Resources.UI.ResourceService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IResourceInteractionChannel : Marvin.Resources.UI.ResourceService.IResourceInteraction, System.ServiceModel.IClientChannel {
+    public interface IResourceInteractionChannel : Moryx.Resources.UI.ResourceService.IResourceInteraction, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ResourceInteractionClient : System.ServiceModel.ClientBase<Marvin.Resources.UI.ResourceService.IResourceInteraction>, Marvin.Resources.UI.ResourceService.IResourceInteraction {
+    public partial class ResourceInteractionClient : System.ServiceModel.ClientBase<Moryx.Resources.UI.ResourceService.IResourceInteraction>, Moryx.Resources.UI.ResourceService.IResourceInteraction {
         
         public ResourceInteractionClient() {
         }
@@ -875,51 +875,51 @@ namespace Marvin.Resources.UI.ResourceService {
                 base(binding, remoteAddress) {
         }
         
-        public Marvin.Resources.UI.ResourceService.ResourceTypeModel GetTypeTree() {
+        public Moryx.Resources.UI.ResourceService.ResourceTypeModel GetTypeTree() {
             return base.Channel.GetTypeTree();
         }
         
-        public System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceTypeModel> GetTypeTreeAsync() {
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceTypeModel> GetTypeTreeAsync() {
             return base.Channel.GetTypeTreeAsync();
         }
         
-        public Marvin.Resources.UI.ResourceService.ResourceModel[] GetResources(Marvin.Resources.UI.ResourceService.ResourceQuery query) {
+        public Moryx.Resources.UI.ResourceService.ResourceModel[] GetResources(Moryx.Resources.UI.ResourceService.ResourceQuery query) {
             return base.Channel.GetResources(query);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceModel[]> GetResourcesAsync(Marvin.Resources.UI.ResourceService.ResourceQuery query) {
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel[]> GetResourcesAsync(Moryx.Resources.UI.ResourceService.ResourceQuery query) {
             return base.Channel.GetResourcesAsync(query);
         }
         
-        public Marvin.Resources.UI.ResourceService.ResourceModel[] GetDetails(long[] ids) {
+        public Moryx.Resources.UI.ResourceService.ResourceModel[] GetDetails(long[] ids) {
             return base.Channel.GetDetails(ids);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceModel[]> GetDetailsAsync(long[] ids) {
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel[]> GetDetailsAsync(long[] ids) {
             return base.Channel.GetDetailsAsync(ids);
         }
         
-        public Marvin.Serialization.Entry InvokeMethod(long id, Marvin.Serialization.MethodEntry method) {
+        public Moryx.Serialization.Entry InvokeMethod(long id, Moryx.Serialization.MethodEntry method) {
             return base.Channel.InvokeMethod(id, method);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Serialization.Entry> InvokeMethodAsync(long id, Marvin.Serialization.MethodEntry method) {
+        public System.Threading.Tasks.Task<Moryx.Serialization.Entry> InvokeMethodAsync(long id, Moryx.Serialization.MethodEntry method) {
             return base.Channel.InvokeMethodAsync(id, method);
         }
         
-        public Marvin.Resources.UI.ResourceService.ResourceModel Create(string resourceType, Marvin.Serialization.MethodEntry constructor) {
+        public Moryx.Resources.UI.ResourceService.ResourceModel Create(string resourceType, Moryx.Serialization.MethodEntry constructor) {
             return base.Channel.Create(resourceType, constructor);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceModel> CreateAsync(string resourceType, Marvin.Serialization.MethodEntry constructor) {
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> CreateAsync(string resourceType, Moryx.Serialization.MethodEntry constructor) {
             return base.Channel.CreateAsync(resourceType, constructor);
         }
         
-        public Marvin.Resources.UI.ResourceService.ResourceModel Save(Marvin.Resources.UI.ResourceService.ResourceModel resource) {
+        public Moryx.Resources.UI.ResourceService.ResourceModel Save(Moryx.Resources.UI.ResourceService.ResourceModel resource) {
             return base.Channel.Save(resource);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Resources.UI.ResourceService.ResourceModel> SaveAsync(Marvin.Resources.UI.ResourceService.ResourceModel resource) {
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> SaveAsync(Moryx.Resources.UI.ResourceService.ResourceModel resource) {
             return base.Channel.SaveAsync(resource);
         }
         

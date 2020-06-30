@@ -3,7 +3,7 @@
 
 using System.Windows.Media;
 
-namespace Marvin.AbstractionLayer.UI
+namespace Moryx.AbstractionLayer.UI
 {
     /// <summary>
     /// Severity for the messages which are displayed in the empty details view

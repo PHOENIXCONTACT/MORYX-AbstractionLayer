@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using C4I;
 
-namespace Marvin.AbstractionLayer.UI.Controls
+namespace Moryx.AbstractionLayer.UI.Controls
 {
     /// <summary>
     /// Interaction logic for EditModeButtonControl.xaml

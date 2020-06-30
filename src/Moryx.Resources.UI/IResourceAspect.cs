@@ -1,9 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Marvin.AbstractionLayer.UI.Aspects;
+using Moryx.AbstractionLayer.UI.Aspects;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
     /// <summary>
     /// Interface for resource aspects

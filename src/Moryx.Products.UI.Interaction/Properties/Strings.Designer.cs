@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Marvin.Products.UI.Interaction.Properties {
+namespace Moryx.Products.UI.Interaction.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Marvin.Products.UI.Interaction.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Marvin.Products.UI.Interaction.Properties.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Moryx.Products.UI.Interaction.Properties.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

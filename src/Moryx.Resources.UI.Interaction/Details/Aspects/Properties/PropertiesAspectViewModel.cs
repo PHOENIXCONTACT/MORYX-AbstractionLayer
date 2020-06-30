@@ -1,9 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Marvin.Resources.UI.Interaction.Properties;
+using Moryx.Resources.UI.Interaction.Properties;
 
-namespace Marvin.Resources.UI.Interaction.Aspects
+namespace Moryx.Resources.UI.Interaction.Aspects
 {
     [ResourceAspectRegistration(nameof(PropertiesAspectViewModel))]
     internal class PropertiesAspectViewModel : ResourceAspectViewModelBase

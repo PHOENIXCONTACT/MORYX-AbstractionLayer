@@ -1,7 +1,7 @@
-﻿using Marvin.Logging;
-using Marvin.Tools.Wcf;
+﻿using Moryx.Logging;
+using Moryx.Tools.Wcf;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
     /// <summary>
     /// Static helper class to create resource interaction

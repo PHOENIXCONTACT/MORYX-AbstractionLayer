@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace Marvin.AbstractionLayer.UI.Aspects
+namespace Moryx.AbstractionLayer.UI.Aspects
 {
     /// <summary>
     /// Factory to create the aspect configurator

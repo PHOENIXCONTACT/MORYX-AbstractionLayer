@@ -2,9 +2,9 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Threading.Tasks;
-using Marvin.AbstractionLayer.UI;
+using Moryx.AbstractionLayer.UI;
 
-namespace Marvin.Products.UI
+namespace Moryx.Products.UI
 {
     /// <summary>
     /// Interface for product detail views

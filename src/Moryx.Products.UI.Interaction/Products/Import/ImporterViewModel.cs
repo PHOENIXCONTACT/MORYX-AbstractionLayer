@@ -4,11 +4,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Marvin.Controls;
-using Marvin.Products.UI.ProductService;
-using Marvin.Serialization;
+using Moryx.Controls;
+using Moryx.Products.UI.ProductService;
+using Moryx.Serialization;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     internal class ImporterViewModel : PropertyChangedBase
     {

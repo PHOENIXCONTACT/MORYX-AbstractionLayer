@@ -2,9 +2,9 @@
 // Licensed under the Apache License, Version 2.0
 
 using Caliburn.Micro;
-using Marvin.Products.UI.ProductService;
+using Moryx.Products.UI.ProductService;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     internal class ProductQueryViewModel : PropertyChangedBase
     {

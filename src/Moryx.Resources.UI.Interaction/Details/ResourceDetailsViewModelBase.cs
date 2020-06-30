@@ -7,14 +7,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Marvin.AbstractionLayer.UI;
-using Marvin.AbstractionLayer.UI.Aspects;
-using Marvin.Logging;
-using Marvin.Resources.UI.Interaction.Properties;
-using Marvin.Resources.UI.ResourceService;
-using Marvin.Tools;
+using Moryx.AbstractionLayer.UI;
+using Moryx.AbstractionLayer.UI.Aspects;
+using Moryx.Logging;
+using Moryx.Resources.UI.Interaction.Properties;
+using Moryx.Resources.UI.ResourceService;
+using Moryx.Tools;
 
-namespace Marvin.Resources.UI.Interaction
+namespace Moryx.Resources.UI.Interaction
 {
     /// <summary>
     /// Base class for resource details view model

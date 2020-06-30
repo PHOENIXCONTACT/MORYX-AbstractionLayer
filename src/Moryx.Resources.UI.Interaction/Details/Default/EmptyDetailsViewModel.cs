@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Threading.Tasks;
-using Marvin.AbstractionLayer.UI;
-using Marvin.Resources.UI.ResourceService;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Resources.UI.ResourceService;
 
-namespace Marvin.Resources.UI.Interaction
+namespace Moryx.Resources.UI.Interaction
 {
     [ResourceDetailsRegistration(DetailsConstants.EmptyType)]
     internal class EmptyDetailsViewModel : EmptyDetailsViewModelBase, IResourceDetails

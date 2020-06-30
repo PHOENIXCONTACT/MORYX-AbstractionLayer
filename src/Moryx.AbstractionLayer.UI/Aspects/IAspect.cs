@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
-namespace Marvin.AbstractionLayer.UI.Aspects
+namespace Moryx.AbstractionLayer.UI.Aspects
 {
     /// <summary>
     /// Interface for aspects

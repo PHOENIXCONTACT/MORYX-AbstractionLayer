@@ -1,9 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Marvin.Products.UI.Interaction.Properties;
+using Moryx.Products.UI.Interaction.Properties;
 
-namespace Marvin.Products.UI.Interaction.Aspects
+namespace Moryx.Products.UI.Interaction.Aspects
 {
     [ProductAspectRegistration(nameof(PropertiesAspectViewModel))]
     internal class PropertiesAspectViewModel : ProductAspectViewModelBase

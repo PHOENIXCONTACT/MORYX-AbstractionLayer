@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
-namespace Marvin.Products.UI.Interaction.Aspects
+namespace Moryx.Products.UI.Interaction.Aspects
 {
     internal class RecipeConductor : Conductor<IScreen>.Collection.OneActive, IEditableObject
     {

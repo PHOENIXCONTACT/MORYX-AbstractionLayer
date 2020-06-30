@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Marvin.AbstractionLayer.UI.Aspects
+namespace Moryx.AbstractionLayer.UI.Aspects
 {
     [DataContract]
     public class TypedAspectConfiguration

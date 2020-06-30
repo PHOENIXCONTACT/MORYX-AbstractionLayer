@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Marvin.AbstractionLayer.UI
+namespace Moryx.AbstractionLayer.UI
 {
     public class SortedCollectionViewSourceConverter : IValueConverter
     {

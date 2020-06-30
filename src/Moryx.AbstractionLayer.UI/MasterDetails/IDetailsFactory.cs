@@ -3,7 +3,7 @@
 
 using Caliburn.Micro;
 
-namespace Marvin.AbstractionLayer.UI
+namespace Moryx.AbstractionLayer.UI
 {
     /// <summary>
     /// Interface for detail view models

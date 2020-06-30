@@ -3,11 +3,11 @@
 
 using System.Linq;
 using System.Reflection;
-using Marvin.AbstractionLayer.UI;
-using Marvin.Container;
-using Marvin.Resources.UI.ResourceService;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Container;
+using Moryx.Resources.UI.ResourceService;
 
-namespace Marvin.Resources.UI.Interaction
+namespace Moryx.Resources.UI.Interaction
 {
     /// <summary>
     /// Component selector for resource view models

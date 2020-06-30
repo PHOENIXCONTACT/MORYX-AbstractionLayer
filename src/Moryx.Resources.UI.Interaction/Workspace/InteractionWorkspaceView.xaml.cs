@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using C4I;
 
-namespace Marvin.Resources.UI.Interaction
+namespace Moryx.Resources.UI.Interaction
 {
     /// <summary>
     /// Interaction logic for InteractionWorkspaceView.xaml

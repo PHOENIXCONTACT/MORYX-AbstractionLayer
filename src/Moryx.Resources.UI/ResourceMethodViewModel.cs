@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0
 
 using Caliburn.Micro;
-using Marvin.Controls;
-using Marvin.Serialization;
+using Moryx.Controls;
+using Moryx.Serialization;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
     /// <summary>
     /// View model that represents an editorVisible of a resource

@@ -4,9 +4,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Caliburn.Micro;
-using Marvin.Resources.UI.ResourceService;
+using Moryx.Resources.UI.ResourceService;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
     /// <summary>
     /// View model for the resource type

@@ -6,12 +6,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Marvin.AbstractionLayer.UI;
-using Marvin.AbstractionLayer.UI.Aspects;
-using Marvin.Products.UI.Interaction.Properties;
-using Marvin.Tools;
+using Moryx.AbstractionLayer.UI;
+using Moryx.AbstractionLayer.UI.Aspects;
+using Moryx.Products.UI.Interaction.Properties;
+using Moryx.Tools;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     /// <summary>
     /// Base class for the product details view model

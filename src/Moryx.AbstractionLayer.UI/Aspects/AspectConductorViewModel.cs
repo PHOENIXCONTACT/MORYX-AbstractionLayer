@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
 
-namespace Marvin.AbstractionLayer.UI.Aspects
+namespace Moryx.AbstractionLayer.UI.Aspects
 {
     /// <summary>
     /// Conductor to display aspects

@@ -3,7 +3,7 @@
 
 using System.Windows.Controls;
 
-namespace Marvin.Resources.UI.Interaction
+namespace Moryx.Resources.UI.Interaction
 {
     /// <summary>
     /// Interaction logic for RemoveResourceView.xaml

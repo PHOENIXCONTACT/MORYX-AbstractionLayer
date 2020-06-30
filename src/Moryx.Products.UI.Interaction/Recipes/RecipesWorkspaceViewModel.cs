@@ -8,12 +8,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
-using Marvin.AbstractionLayer.UI;
-using Marvin.Container;
-using Marvin.Products.UI.Interaction.Properties;
-using Marvin.Products.UI.ProductService;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Container;
+using Moryx.Products.UI.Interaction.Properties;
+using Moryx.Products.UI.ProductService;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     [Plugin(LifeCycle.Transient, typeof(IRecipeWorkspace), Name = WorkspaceName)]
     internal class RecipesWorkspaceViewModel : MasterDetailsWorkspace<IRecipeDetails, IRecipeDetailsFactory, EmptyRecipeDetailsViewModel>, IRecipeWorkspace

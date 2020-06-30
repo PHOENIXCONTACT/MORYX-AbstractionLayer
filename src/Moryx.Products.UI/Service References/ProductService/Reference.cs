@@ -8,14 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Marvin.Products.UI.ProductService {
+namespace Moryx.Products.UI.ProductService {
     using System.Runtime.Serialization;
     using System;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductCustomization", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductCustomization", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     [System.SerializableAttribute()]
     public partial class ProductCustomization : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -23,13 +23,13 @@ namespace Marvin.Products.UI.ProductService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductImporter[] ImportersField;
+        private Moryx.Products.UI.ProductService.ProductImporter[] ImportersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductDefinitionModel[] ProductTypesField;
+        private Moryx.Products.UI.ProductService.ProductDefinitionModel[] ProductTypesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.RecipeDefinitionModel[] RecipeTypesField;
+        private Moryx.Products.UI.ProductService.RecipeDefinitionModel[] RecipeTypesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -42,7 +42,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductImporter[] Importers {
+        public Moryx.Products.UI.ProductService.ProductImporter[] Importers {
             get {
                 return this.ImportersField;
             }
@@ -55,7 +55,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductDefinitionModel[] ProductTypes {
+        public Moryx.Products.UI.ProductService.ProductDefinitionModel[] ProductTypes {
             get {
                 return this.ProductTypesField;
             }
@@ -68,7 +68,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.RecipeDefinitionModel[] RecipeTypes {
+        public Moryx.Products.UI.ProductService.RecipeDefinitionModel[] RecipeTypes {
             get {
                 return this.RecipeTypesField;
             }
@@ -92,7 +92,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductImporter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductImporter", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     [System.SerializableAttribute()]
     public partial class ProductImporter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -103,7 +103,7 @@ namespace Marvin.Products.UI.ProductService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Serialization.Entry ParametersField;
+        private Moryx.Serialization.Entry ParametersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -129,7 +129,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Serialization.Entry Parameters {
+        public Moryx.Serialization.Entry Parameters {
             get {
                 return this.ParametersField;
             }
@@ -153,7 +153,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductDefinitionModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductDefinitionModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     [System.SerializableAttribute()]
     public partial class ProductDefinitionModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -230,7 +230,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeDefinitionModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeDefinitionModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     [System.SerializableAttribute()]
     public partial class RecipeDefinitionModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -307,7 +307,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductQuery", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductQuery", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products")]
     [System.SerializableAttribute()]
     public partial class ProductQuery : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -327,16 +327,16 @@ namespace Marvin.Products.UI.ProductService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.RecipeFilter RecipeFilterField;
+        private Moryx.Products.UI.ProductService.RecipeFilter RecipeFilterField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private short RevisionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.RevisionFilter RevisionFilterField;
+        private Moryx.Products.UI.ProductService.RevisionFilter RevisionFilterField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.Selector SelectorField;
+        private Moryx.Products.UI.ProductService.Selector SelectorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
@@ -404,7 +404,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.RecipeFilter RecipeFilter {
+        public Moryx.Products.UI.ProductService.RecipeFilter RecipeFilter {
             get {
                 return this.RecipeFilterField;
             }
@@ -430,7 +430,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.RevisionFilter RevisionFilter {
+        public Moryx.Products.UI.ProductService.RevisionFilter RevisionFilter {
             get {
                 return this.RevisionFilterField;
             }
@@ -443,7 +443,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.Selector Selector {
+        public Moryx.Products.UI.ProductService.Selector Selector {
             get {
                 return this.SelectorField;
             }
@@ -479,7 +479,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeFilter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeFilter", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products")]
     public enum RecipeFilter : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -493,7 +493,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RevisionFilter", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RevisionFilter", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products")]
     public enum RevisionFilter : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -507,7 +507,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Selector", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Selector", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products")]
     public enum Selector : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -522,7 +522,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class ProductModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -530,7 +530,7 @@ namespace Marvin.Products.UI.ProductService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductFile[] FilesField;
+        private Moryx.Products.UI.ProductService.ProductFile[] FilesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private long IdField;
@@ -542,19 +542,19 @@ namespace Marvin.Products.UI.ProductService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.PartConnector[] PartsField;
+        private Moryx.Products.UI.ProductService.PartConnector[] PartsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Serialization.Entry PropertiesField;
+        private Moryx.Serialization.Entry PropertiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.RecipeModel[] RecipesField;
+        private Moryx.Products.UI.ProductService.RecipeModel[] RecipesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private short RevisionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductState StateField;
+        private Moryx.Products.UI.ProductService.ProductState StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
@@ -570,7 +570,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductFile[] Files {
+        public Moryx.Products.UI.ProductService.ProductFile[] Files {
             get {
                 return this.FilesField;
             }
@@ -622,7 +622,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.PartConnector[] Parts {
+        public Moryx.Products.UI.ProductService.PartConnector[] Parts {
             get {
                 return this.PartsField;
             }
@@ -635,7 +635,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Serialization.Entry Properties {
+        public Moryx.Serialization.Entry Properties {
             get {
                 return this.PropertiesField;
             }
@@ -648,7 +648,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.RecipeModel[] Recipes {
+        public Moryx.Products.UI.ProductService.RecipeModel[] Recipes {
             get {
                 return this.RecipesField;
             }
@@ -674,7 +674,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductState State {
+        public Moryx.Products.UI.ProductService.ProductState State {
             get {
                 return this.StateField;
             }
@@ -711,7 +711,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductFile", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductFile", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products")]
     [System.SerializableAttribute()]
     public partial class ProductFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -804,7 +804,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PartConnector", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PartConnector", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class PartConnector : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -821,10 +821,10 @@ namespace Marvin.Products.UI.ProductService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.PartModel[] PartsField;
+        private Moryx.Products.UI.ProductService.PartModel[] PartsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Serialization.Entry PropertyTemplatesField;
+        private Moryx.Serialization.Entry PropertyTemplatesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
@@ -879,7 +879,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.PartModel[] Parts {
+        public Moryx.Products.UI.ProductService.PartModel[] Parts {
             get {
                 return this.PartsField;
             }
@@ -892,7 +892,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Serialization.Entry PropertyTemplates {
+        public Moryx.Serialization.Entry PropertyTemplates {
             get {
                 return this.PropertyTemplatesField;
             }
@@ -929,7 +929,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class RecipeModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -937,7 +937,7 @@ namespace Marvin.Products.UI.ProductService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.RecipeClassificationModel ClassificationField;
+        private Moryx.Products.UI.ProductService.RecipeClassificationModel ClassificationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private long IdField;
@@ -946,13 +946,13 @@ namespace Marvin.Products.UI.ProductService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Serialization.Entry PropertiesField;
+        private Moryx.Serialization.Entry PropertiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RevisionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.RecipeState StateField;
+        private Moryx.Products.UI.ProductService.RecipeState StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
@@ -971,7 +971,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.RecipeClassificationModel Classification {
+        public Moryx.Products.UI.ProductService.RecipeClassificationModel Classification {
             get {
                 return this.ClassificationField;
             }
@@ -1010,7 +1010,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Serialization.Entry Properties {
+        public Moryx.Serialization.Entry Properties {
             get {
                 return this.PropertiesField;
             }
@@ -1036,7 +1036,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.RecipeState State {
+        public Moryx.Products.UI.ProductService.RecipeState State {
             get {
                 return this.StateField;
             }
@@ -1085,7 +1085,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductState", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Products")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductState", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products")]
     public enum ProductState : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -1100,7 +1100,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PartModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PartModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class PartModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1111,10 +1111,10 @@ namespace Marvin.Products.UI.ProductService {
         private long IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductModel ProductField;
+        private Moryx.Products.UI.ProductService.ProductModel ProductField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Serialization.Entry PropertiesField;
+        private Moryx.Serialization.Entry PropertiesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1140,7 +1140,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductModel Product {
+        public Moryx.Products.UI.ProductService.ProductModel Product {
             get {
                 return this.ProductField;
             }
@@ -1153,7 +1153,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Serialization.Entry Properties {
+        public Moryx.Serialization.Entry Properties {
             get {
                 return this.PropertiesField;
             }
@@ -1176,7 +1176,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeClassificationModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeClassificationModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     public enum RecipeClassificationModel : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -1196,7 +1196,7 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeState", Namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Recipes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeState", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Recipes")]
     public enum RecipeState : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -1211,7 +1211,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DuplicateProductResponse", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DuplicateProductResponse", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     [System.SerializableAttribute()]
     public partial class DuplicateProductResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1219,7 +1219,7 @@ namespace Marvin.Products.UI.ProductService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Products.UI.ProductService.ProductModel DuplicateField;
+        private Moryx.Products.UI.ProductService.ProductModel DuplicateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IdentityConflictField;
@@ -1238,7 +1238,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Products.UI.ProductService.ProductModel Duplicate {
+        public Moryx.Products.UI.ProductService.ProductModel Duplicate {
             get {
                 return this.DuplicateField;
             }
@@ -1288,7 +1288,7 @@ namespace Marvin.Products.UI.ProductService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WorkplanModel", Namespace="http://schemas.datacontract.org/2004/07/Marvin.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WorkplanModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class WorkplanModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1302,7 +1302,7 @@ namespace Marvin.Products.UI.ProductService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Marvin.Workflows.WorkplanState StateField;
+        private Moryx.Workflows.WorkplanState StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int VersionField;
@@ -1344,7 +1344,7 @@ namespace Marvin.Products.UI.ProductService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Marvin.Workflows.WorkplanState State {
+        public Moryx.Workflows.WorkplanState State {
             get {
                 return this.StateField;
             }
@@ -1384,40 +1384,40 @@ namespace Marvin.Products.UI.ProductService {
     public interface IProductInteraction {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetCustomization", ReplyAction="http://tempuri.org/IProductInteraction/GetCustomizationResponse")]
-        Marvin.Products.UI.ProductService.ProductCustomization GetCustomization();
+        Moryx.Products.UI.ProductService.ProductCustomization GetCustomization();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetCustomization", ReplyAction="http://tempuri.org/IProductInteraction/GetCustomizationResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductCustomization> GetCustomizationAsync();
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductCustomization> GetCustomizationAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProducts", ReplyAction="http://tempuri.org/IProductInteraction/GetProductsResponse")]
-        Marvin.Products.UI.ProductService.ProductModel[] GetProducts(Marvin.Products.UI.ProductService.ProductQuery query);
+        Moryx.Products.UI.ProductService.ProductModel[] GetProducts(Moryx.Products.UI.ProductService.ProductQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProducts", ReplyAction="http://tempuri.org/IProductInteraction/GetProductsResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel[]> GetProductsAsync(Marvin.Products.UI.ProductService.ProductQuery query);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel[]> GetProductsAsync(Moryx.Products.UI.ProductService.ProductQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateProduct", ReplyAction="http://tempuri.org/IProductInteraction/CreateProductResponse")]
-        Marvin.Products.UI.ProductService.ProductModel CreateProduct(string type);
+        Moryx.Products.UI.ProductService.ProductModel CreateProduct(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateProduct", ReplyAction="http://tempuri.org/IProductInteraction/CreateProductResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> CreateProductAsync(string type);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> CreateProductAsync(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductDetails", ReplyAction="http://tempuri.org/IProductInteraction/GetProductDetailsResponse")]
-        Marvin.Products.UI.ProductService.ProductModel GetProductDetails(long id);
+        Moryx.Products.UI.ProductService.ProductModel GetProductDetails(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductDetails", ReplyAction="http://tempuri.org/IProductInteraction/GetProductDetailsResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> GetProductDetailsAsync(long id);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> GetProductDetailsAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveProduct", ReplyAction="http://tempuri.org/IProductInteraction/SaveProductResponse")]
-        Marvin.Products.UI.ProductService.ProductModel SaveProduct(Marvin.Products.UI.ProductService.ProductModel instance);
+        Moryx.Products.UI.ProductService.ProductModel SaveProduct(Moryx.Products.UI.ProductService.ProductModel instance);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveProduct", ReplyAction="http://tempuri.org/IProductInteraction/SaveProductResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> SaveProductAsync(Marvin.Products.UI.ProductService.ProductModel instance);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> SaveProductAsync(Moryx.Products.UI.ProductService.ProductModel instance);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DuplicateProduct", ReplyAction="http://tempuri.org/IProductInteraction/DuplicateProductResponse")]
-        Marvin.Products.UI.ProductService.DuplicateProductResponse DuplicateProduct(long sourceId, string identifier, short revisionNo);
+        Moryx.Products.UI.ProductService.DuplicateProductResponse DuplicateProduct(long sourceId, string identifier, short revisionNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DuplicateProduct", ReplyAction="http://tempuri.org/IProductInteraction/DuplicateProductResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(long sourceId, string identifier, short revisionNo);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(long sourceId, string identifier, short revisionNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DeleteProduct", ReplyAction="http://tempuri.org/IProductInteraction/DeleteProductResponse")]
         bool DeleteProduct(long id);
@@ -1426,46 +1426,46 @@ namespace Marvin.Products.UI.ProductService {
         System.Threading.Tasks.Task<bool> DeleteProductAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ImportProduct", ReplyAction="http://tempuri.org/IProductInteraction/ImportProductResponse")]
-        Marvin.Products.UI.ProductService.ProductModel ImportProduct(string importerName, Marvin.Serialization.Entry parametersModel);
+        Moryx.Products.UI.ProductService.ProductModel ImportProduct(string importerName, Moryx.Serialization.Entry parametersModel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ImportProduct", ReplyAction="http://tempuri.org/IProductInteraction/ImportProductResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> ImportProductAsync(string importerName, Marvin.Serialization.Entry parametersModel);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> ImportProductAsync(string importerName, Moryx.Serialization.Entry parametersModel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
-        Marvin.Serialization.Entry UpdateParameters(string importer, Marvin.Serialization.Entry currentParameters);
+        Moryx.Serialization.Entry UpdateParameters(string importer, Moryx.Serialization.Entry currentParameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
-        System.Threading.Tasks.Task<Marvin.Serialization.Entry> UpdateParametersAsync(string importer, Marvin.Serialization.Entry currentParameters);
+        System.Threading.Tasks.Task<Moryx.Serialization.Entry> UpdateParametersAsync(string importer, Moryx.Serialization.Entry currentParameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipe", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipeResponse")]
-        Marvin.Products.UI.ProductService.RecipeModel GetRecipe(long recipeId);
+        Moryx.Products.UI.ProductService.RecipeModel GetRecipe(long recipeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipe", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipeResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> GetRecipeAsync(long recipeId);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> GetRecipeAsync(long recipeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipes", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipesResponse")]
-        Marvin.Products.UI.ProductService.RecipeModel[] GetRecipes(long productId);
+        Moryx.Products.UI.ProductService.RecipeModel[] GetRecipes(long productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipes", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipesResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel[]> GetRecipesAsync(long productId);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel[]> GetRecipesAsync(long productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateRecipe", ReplyAction="http://tempuri.org/IProductInteraction/CreateRecipeResponse")]
-        Marvin.Products.UI.ProductService.RecipeModel CreateRecipe(string recipeType);
+        Moryx.Products.UI.ProductService.RecipeModel CreateRecipe(string recipeType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateRecipe", ReplyAction="http://tempuri.org/IProductInteraction/CreateRecipeResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> CreateRecipeAsync(string recipeType);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> CreateRecipeAsync(string recipeType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveRecipe", ReplyAction="http://tempuri.org/IProductInteraction/SaveRecipeResponse")]
-        Marvin.Products.UI.ProductService.RecipeModel SaveRecipe(Marvin.Products.UI.ProductService.RecipeModel recipe);
+        Moryx.Products.UI.ProductService.RecipeModel SaveRecipe(Moryx.Products.UI.ProductService.RecipeModel recipe);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveRecipe", ReplyAction="http://tempuri.org/IProductInteraction/SaveRecipeResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Marvin.Products.UI.ProductService.RecipeModel recipe);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Moryx.Products.UI.ProductService.RecipeModel recipe);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplans", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplansResponse")]
-        Marvin.Products.UI.ProductService.WorkplanModel[] GetWorkplans();
+        Moryx.Products.UI.ProductService.WorkplanModel[] GetWorkplans();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplans", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplansResponse")]
-        System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.WorkplanModel[]> GetWorkplansAsync();
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.WorkplanModel[]> GetWorkplansAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipeProviderName", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipeProviderNameResponse")]
         string GetRecipeProviderName();
@@ -1475,12 +1475,12 @@ namespace Marvin.Products.UI.ProductService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IProductInteractionChannel : Marvin.Products.UI.ProductService.IProductInteraction, System.ServiceModel.IClientChannel {
+    public interface IProductInteractionChannel : Moryx.Products.UI.ProductService.IProductInteraction, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ProductInteractionClient : System.ServiceModel.ClientBase<Marvin.Products.UI.ProductService.IProductInteraction>, Marvin.Products.UI.ProductService.IProductInteraction {
+    public partial class ProductInteractionClient : System.ServiceModel.ClientBase<Moryx.Products.UI.ProductService.IProductInteraction>, Moryx.Products.UI.ProductService.IProductInteraction {
         
         public ProductInteractionClient() {
         }
@@ -1501,51 +1501,51 @@ namespace Marvin.Products.UI.ProductService {
                 base(binding, remoteAddress) {
         }
         
-        public Marvin.Products.UI.ProductService.ProductCustomization GetCustomization() {
+        public Moryx.Products.UI.ProductService.ProductCustomization GetCustomization() {
             return base.Channel.GetCustomization();
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductCustomization> GetCustomizationAsync() {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductCustomization> GetCustomizationAsync() {
             return base.Channel.GetCustomizationAsync();
         }
         
-        public Marvin.Products.UI.ProductService.ProductModel[] GetProducts(Marvin.Products.UI.ProductService.ProductQuery query) {
+        public Moryx.Products.UI.ProductService.ProductModel[] GetProducts(Moryx.Products.UI.ProductService.ProductQuery query) {
             return base.Channel.GetProducts(query);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel[]> GetProductsAsync(Marvin.Products.UI.ProductService.ProductQuery query) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel[]> GetProductsAsync(Moryx.Products.UI.ProductService.ProductQuery query) {
             return base.Channel.GetProductsAsync(query);
         }
         
-        public Marvin.Products.UI.ProductService.ProductModel CreateProduct(string type) {
+        public Moryx.Products.UI.ProductService.ProductModel CreateProduct(string type) {
             return base.Channel.CreateProduct(type);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> CreateProductAsync(string type) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> CreateProductAsync(string type) {
             return base.Channel.CreateProductAsync(type);
         }
         
-        public Marvin.Products.UI.ProductService.ProductModel GetProductDetails(long id) {
+        public Moryx.Products.UI.ProductService.ProductModel GetProductDetails(long id) {
             return base.Channel.GetProductDetails(id);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> GetProductDetailsAsync(long id) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> GetProductDetailsAsync(long id) {
             return base.Channel.GetProductDetailsAsync(id);
         }
         
-        public Marvin.Products.UI.ProductService.ProductModel SaveProduct(Marvin.Products.UI.ProductService.ProductModel instance) {
+        public Moryx.Products.UI.ProductService.ProductModel SaveProduct(Moryx.Products.UI.ProductService.ProductModel instance) {
             return base.Channel.SaveProduct(instance);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> SaveProductAsync(Marvin.Products.UI.ProductService.ProductModel instance) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> SaveProductAsync(Moryx.Products.UI.ProductService.ProductModel instance) {
             return base.Channel.SaveProductAsync(instance);
         }
         
-        public Marvin.Products.UI.ProductService.DuplicateProductResponse DuplicateProduct(long sourceId, string identifier, short revisionNo) {
+        public Moryx.Products.UI.ProductService.DuplicateProductResponse DuplicateProduct(long sourceId, string identifier, short revisionNo) {
             return base.Channel.DuplicateProduct(sourceId, identifier, revisionNo);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(long sourceId, string identifier, short revisionNo) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(long sourceId, string identifier, short revisionNo) {
             return base.Channel.DuplicateProductAsync(sourceId, identifier, revisionNo);
         }
         
@@ -1557,59 +1557,59 @@ namespace Marvin.Products.UI.ProductService {
             return base.Channel.DeleteProductAsync(id);
         }
         
-        public Marvin.Products.UI.ProductService.ProductModel ImportProduct(string importerName, Marvin.Serialization.Entry parametersModel) {
+        public Moryx.Products.UI.ProductService.ProductModel ImportProduct(string importerName, Moryx.Serialization.Entry parametersModel) {
             return base.Channel.ImportProduct(importerName, parametersModel);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.ProductModel> ImportProductAsync(string importerName, Marvin.Serialization.Entry parametersModel) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> ImportProductAsync(string importerName, Moryx.Serialization.Entry parametersModel) {
             return base.Channel.ImportProductAsync(importerName, parametersModel);
         }
         
-        public Marvin.Serialization.Entry UpdateParameters(string importer, Marvin.Serialization.Entry currentParameters) {
+        public Moryx.Serialization.Entry UpdateParameters(string importer, Moryx.Serialization.Entry currentParameters) {
             return base.Channel.UpdateParameters(importer, currentParameters);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Serialization.Entry> UpdateParametersAsync(string importer, Marvin.Serialization.Entry currentParameters) {
+        public System.Threading.Tasks.Task<Moryx.Serialization.Entry> UpdateParametersAsync(string importer, Moryx.Serialization.Entry currentParameters) {
             return base.Channel.UpdateParametersAsync(importer, currentParameters);
         }
         
-        public Marvin.Products.UI.ProductService.RecipeModel GetRecipe(long recipeId) {
+        public Moryx.Products.UI.ProductService.RecipeModel GetRecipe(long recipeId) {
             return base.Channel.GetRecipe(recipeId);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> GetRecipeAsync(long recipeId) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> GetRecipeAsync(long recipeId) {
             return base.Channel.GetRecipeAsync(recipeId);
         }
         
-        public Marvin.Products.UI.ProductService.RecipeModel[] GetRecipes(long productId) {
+        public Moryx.Products.UI.ProductService.RecipeModel[] GetRecipes(long productId) {
             return base.Channel.GetRecipes(productId);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel[]> GetRecipesAsync(long productId) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel[]> GetRecipesAsync(long productId) {
             return base.Channel.GetRecipesAsync(productId);
         }
         
-        public Marvin.Products.UI.ProductService.RecipeModel CreateRecipe(string recipeType) {
+        public Moryx.Products.UI.ProductService.RecipeModel CreateRecipe(string recipeType) {
             return base.Channel.CreateRecipe(recipeType);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> CreateRecipeAsync(string recipeType) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> CreateRecipeAsync(string recipeType) {
             return base.Channel.CreateRecipeAsync(recipeType);
         }
         
-        public Marvin.Products.UI.ProductService.RecipeModel SaveRecipe(Marvin.Products.UI.ProductService.RecipeModel recipe) {
+        public Moryx.Products.UI.ProductService.RecipeModel SaveRecipe(Moryx.Products.UI.ProductService.RecipeModel recipe) {
             return base.Channel.SaveRecipe(recipe);
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Marvin.Products.UI.ProductService.RecipeModel recipe) {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Moryx.Products.UI.ProductService.RecipeModel recipe) {
             return base.Channel.SaveRecipeAsync(recipe);
         }
         
-        public Marvin.Products.UI.ProductService.WorkplanModel[] GetWorkplans() {
+        public Moryx.Products.UI.ProductService.WorkplanModel[] GetWorkplans() {
             return base.Channel.GetWorkplans();
         }
         
-        public System.Threading.Tasks.Task<Marvin.Products.UI.ProductService.WorkplanModel[]> GetWorkplansAsync() {
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.WorkplanModel[]> GetWorkplansAsync() {
             return base.Channel.GetWorkplansAsync();
         }
         

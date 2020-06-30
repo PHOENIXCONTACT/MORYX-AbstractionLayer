@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Marvin.ClientFramework.Commands;
-using Marvin.Controls;
-using Marvin.Resources.UI.Interaction.Properties;
-using Marvin.Serialization;
+using Moryx.ClientFramework.Commands;
+using Moryx.Controls;
+using Moryx.Resources.UI.Interaction.Properties;
+using Moryx.Serialization;
 
-namespace Marvin.Resources.UI.Interaction.Aspects.Methods
+namespace Moryx.Resources.UI.Interaction.Aspects.Methods
 {
     [ResourceAspectRegistration(nameof(ResourceMethodsAspectViewModel))]
     internal class ResourceMethodsAspectViewModel : ResourceAspectViewModelBase

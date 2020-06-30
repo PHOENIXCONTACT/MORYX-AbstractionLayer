@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0
 
 using Caliburn.Micro;
-using Marvin.Products.UI.ProductService;
-using Marvin.Workflows;
+using Moryx.Products.UI.ProductService;
+using Moryx.Workflows;
 
-namespace Marvin.Products.UI
+namespace Moryx.Products.UI
 {
     /// <summary>
     /// ViewModel for workplan of a recipe

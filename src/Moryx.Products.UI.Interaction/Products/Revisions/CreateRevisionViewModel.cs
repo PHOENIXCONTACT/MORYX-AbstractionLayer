@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using C4I;
 using Caliburn.Micro;
-using Marvin.ClientFramework.Commands;
-using Marvin.ClientFramework.Dialog;
-using Marvin.ClientFramework.Tasks;
-using Marvin.Products.UI.Interaction.Properties;
-using Marvin.Products.UI.ProductService;
+using Moryx.ClientFramework.Commands;
+using Moryx.ClientFramework.Dialog;
+using Moryx.ClientFramework.Tasks;
+using Moryx.Products.UI.Interaction.Properties;
+using Moryx.Products.UI.ProductService;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     internal class CreateRevisionViewModel : DialogScreen
     {

@@ -1,10 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Marvin.AbstractionLayer.UI;
-using Marvin.Products.UI.ProductService;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Products.UI.ProductService;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     internal class TypeItemViewModel : TreeItemViewModel
     {

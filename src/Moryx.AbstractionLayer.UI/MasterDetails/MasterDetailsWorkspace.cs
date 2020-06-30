@@ -10,15 +10,15 @@ using System.Windows;
 using System.Windows.Input;
 using C4I;
 using Caliburn.Micro;
-using Marvin.AbstractionLayer.UI.Properties;
-using Marvin.ClientFramework;
-using Marvin.ClientFramework.Commands;
-using Marvin.ClientFramework.Dialog;
-using Marvin.Logging;
-using MessageBoxImage = Marvin.ClientFramework.Dialog.MessageBoxImage;
-using MessageBoxOptions = Marvin.ClientFramework.Dialog.MessageBoxOptions;
+using Moryx.AbstractionLayer.UI.Properties;
+using Moryx.ClientFramework;
+using Moryx.ClientFramework.Commands;
+using Moryx.ClientFramework.Dialog;
+using Moryx.Logging;
+using MessageBoxImage = Moryx.ClientFramework.Dialog.MessageBoxImage;
+using MessageBoxOptions = Moryx.ClientFramework.Dialog.MessageBoxOptions;
 
-namespace Marvin.AbstractionLayer.UI
+namespace Moryx.AbstractionLayer.UI
 {
     /// <summary>
     /// Base workspace for master details view with edit mode

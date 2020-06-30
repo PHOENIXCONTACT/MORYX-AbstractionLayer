@@ -3,11 +3,11 @@
 
 using System;
 using System.ComponentModel;
-using Marvin.Controls;
-using Marvin.Products.UI.ProductService;
-using Marvin.Serialization;
+using Moryx.Controls;
+using Moryx.Products.UI.ProductService;
+using Moryx.Serialization;
 
-namespace Marvin.Products.UI.Interaction
+namespace Moryx.Products.UI.Interaction
 {
     /// <summary>
     ///     Class holding importer parameter

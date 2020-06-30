@@ -6,10 +6,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using C4I;
-using Marvin.ClientFramework.Dialog;
-using Marvin.Container;
+using Moryx.ClientFramework.Dialog;
+using Moryx.Container;
 
-namespace Marvin.AbstractionLayer.UI.Aspects
+namespace Moryx.AbstractionLayer.UI.Aspects
 {
     /// <summary>
     /// Aspect configurator view model. Created by the <see cref="IAspectConfiguratorFactory"/>

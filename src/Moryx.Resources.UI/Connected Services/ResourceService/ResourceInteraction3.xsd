@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Marvin.Resources.Interaction" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Marvin.Resources.Interaction" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/Metadata/ResourceInteraction?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Marvin.Serialization" />
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/Metadata/ResourceInteraction?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Moryx.Serialization" />
   <xs:import schemaLocation="http://localhost/Metadata/ResourceInteraction?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:import schemaLocation="http://localhost/Metadata/ResourceInteraction?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Resources" />
+  <xs:import schemaLocation="http://localhost/Metadata/ResourceInteraction?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Resources" />
   <xs:import schemaLocation="http://localhost/Metadata/ResourceInteraction?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="ResourceTypeModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="BaseType" nillable="true" type="tns:ResourceTypeModel" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Constructors" nillable="true" type="q1:ArrayOfMethodEntry" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Moryx.Serialization" minOccurs="0" name="Constructors" nillable="true" type="q1:ArrayOfMethodEntry" />
       <xs:element minOccurs="0" name="Creatable" type="xs:boolean" />
       <xs:element minOccurs="0" name="DerivedTypes" nillable="true" type="tns:ArrayOfResourceTypeModel" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
@@ -38,8 +38,8 @@
       <xs:element minOccurs="0" name="IsCollection" type="xs:boolean" />
       <xs:element minOccurs="0" name="IsRequired" type="xs:boolean" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Resources" minOccurs="0" name="RelationType" type="q2:ResourceRelationType" />
-      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Resources" minOccurs="0" name="Role" type="q3:ResourceReferenceRole" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Resources" minOccurs="0" name="RelationType" type="q2:ResourceRelationType" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Resources" minOccurs="0" name="Role" type="q3:ResourceReferenceRole" />
       <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SupportedTypes" nillable="true" type="q4:ArrayOfstring" />
     </xs:sequence>
   </xs:complexType>
@@ -62,8 +62,8 @@
   <xs:complexType name="ReferenceFilter">
     <xs:sequence>
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Resources" minOccurs="0" name="RelationType" type="q6:ResourceRelationType" />
-      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Marvin.AbstractionLayer.Resources" minOccurs="0" name="Role" type="q7:ResourceReferenceRole" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Resources" minOccurs="0" name="RelationType" type="q6:ResourceRelationType" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Resources" minOccurs="0" name="Role" type="q7:ResourceReferenceRole" />
       <xs:element minOccurs="0" name="ValueConstraint" type="tns:ReferenceValue" />
     </xs:sequence>
   </xs:complexType>
@@ -86,10 +86,10 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:long" />
-      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Methods" nillable="true" type="q8:ArrayOfMethodEntry" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Moryx.Serialization" minOccurs="0" name="Methods" nillable="true" type="q8:ArrayOfMethodEntry" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PartiallyLoaded" type="xs:boolean" />
-      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Marvin.Serialization" minOccurs="0" name="Properties" nillable="true" type="q9:Entry" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Moryx.Serialization" minOccurs="0" name="Properties" nillable="true" type="q9:Entry" />
       <xs:element minOccurs="0" name="References" nillable="true" type="tns:ArrayOfResourceReferenceModel" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
     </xs:sequence>

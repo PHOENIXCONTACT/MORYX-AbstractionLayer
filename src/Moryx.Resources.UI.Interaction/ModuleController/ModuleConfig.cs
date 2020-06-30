@@ -3,12 +3,12 @@
 
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Marvin.AbstractionLayer.UI.Aspects;
-using Marvin.ClientFramework;
-using Marvin.Resources.UI.Interaction.Aspects;
-using Marvin.Resources.UI.Interaction.Aspects.Methods;
+using Moryx.AbstractionLayer.UI.Aspects;
+using Moryx.ClientFramework;
+using Moryx.Resources.UI.Interaction.Aspects;
+using Moryx.Resources.UI.Interaction.Aspects.Methods;
 
-namespace Marvin.Resources.UI.Interaction
+namespace Moryx.Resources.UI.Interaction
 {
     /// <summary>
     /// Module configuration for the <see cref="ModuleController"/>

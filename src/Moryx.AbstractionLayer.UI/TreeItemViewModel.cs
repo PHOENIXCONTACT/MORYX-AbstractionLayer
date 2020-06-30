@@ -4,7 +4,7 @@
 using System.Collections.ObjectModel;
 using Caliburn.Micro;
 
-namespace Marvin.AbstractionLayer.UI
+namespace Moryx.AbstractionLayer.UI
 {
     /// <summary>
     /// Generic tree item implementation

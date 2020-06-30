@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Threading.Tasks;
-using Marvin.AbstractionLayer.UI;
-using Marvin.Resources.UI.ResourceService;
+using Moryx.AbstractionLayer.UI;
+using Moryx.Resources.UI.ResourceService;
 
-namespace Marvin.Resources.UI
+namespace Moryx.Resources.UI
 {
     /// <summary>
     /// Public api for new resource detail view models.
