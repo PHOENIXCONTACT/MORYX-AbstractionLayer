@@ -3,7 +3,7 @@ uid: Capabilities
 ---
 # Capabilities
 
-[Capabilities](xref:Moryx.AbstractionLayer.Capabilities.ICapabilities) are basically a self description of a *Resource*. In every `Activity` is defined which capabilities are required and these information will be used to find a matching resource to handle the activity. It is also possible that a resource can have multiple capabilities and to be able to handle multiple activities.
+[Capabilities](../../../src/Moryx.AbstractionLayer/Capabilities/ICapabilities.cs) are basically a self description of a *Resource*. Every [Activity](Activities.md) defines which capabilities it needs and the provided information will be used to find a matching [Resource](../Resources/Overview.md) to handle the activity. It is also possible that a resource has multiple capabilities and is able to handle various activities.
 
 ## Single Capabilities
 
@@ -26,7 +26,7 @@ public class MyCapabilities : ICapabilities
 }
 ````
 
-It is also possible to use the base class `ConcreteCapabilities` which reduces the code to the following lines:
+It is also possible to use the base class [ConcreteCapabilities](../../../src/Moryx.AbstractionLayer/Capabilities/ConcreteCapabilities.cs), which reduces the code to the following lines:
 
 ```` cs
 [DataContract]
@@ -36,7 +36,7 @@ public class MyCapabilities : ConcreteCapabilities
 }
 ````
 
-If the resource is an AssembleResource then the AssembleCapabilities class should be derived to define the application specific capabilities like in the following example:
+If the resource is an [AssembleResource](../../../src/Moryx.Resources.Samples/AssembleResource.cs) then the [AssembleCapabilities]() class should be derived to define the application specific capabilities like in the following example:
 
 ```` cs
 [DataContract]
@@ -46,7 +46,7 @@ public class MyCapabilities : AssembleCapabilities
 }
 ````
 
-This looks similar to the derived ConcreteCapabilities but this one can be used for AssembleResources. In All examples you can extend your capabilities with more properties to give the realize are more meaningfull `self description`. For example ScrewingCapabilities. May be there are more than one station which has ScrewingCapabilities but they can handle different screw heads. This could be look like the following example:
+This looks similar to the derivation of ConcreteCapabilities but it can be used for AssembleResources. In all examples you can extend your capabilities with more properties to give the resource are more meaningfull self description. Let's take the ScrewingCapabilities as an example. Maybe there is more than one station which has ScrewingCapabilities but each can handle a different screw head. Our Capability implementation could then look like:
 
 ```` cs
 public enum ScrewHead
@@ -84,11 +84,11 @@ public class ScrewingCapabilities : AssembleCapabilities
 }
 ````
 
-So it is possible to extend the capabilities with different information to distinct between resources with the same capabilities.
+So it is possible to extend a Capability with different information to distinguish between resources with the same capabilities.
 
 ## Multiple Capabilities
 
-A resource can also have multiple capabilities. Therefore the class `CombinedCapabilities` should be used to combine multiple capabilities for a resource. The class CombinedCapabilities implementes also the ICapabilities interface so it is possible to just set the resource capabilities to a list of capabilities like in the following example:
+A resource can also have multiple capabilities. For that the [CombinedCapabilities](../../../src/Moryx.AbstractionLayer/Capabilities/CombinedCapabilities.cs) class should be used, which implementes the ICapabilities interface as well. Thus, it is possible to set the resource capabilities to a list of capabilities like in the following example:
 
 ```` cs
 // some resource code
@@ -110,7 +110,7 @@ public override void Initialize()
 // some more resource code
 ````
 
-It is also possible to use multiple capabilities for AssembleResources but in the little different way like in the following example. But remember this works only for AssembleCapabilities:
+It is also possible to use multiple capabilities for an AssembleResource but in a slightly different way, as the following example shows:
 
 ```` cs
 var myStation = EntityCreation.CreateResource(openContext, new AssembleCell
