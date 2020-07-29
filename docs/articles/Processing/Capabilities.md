@@ -3,7 +3,7 @@ uid: Capabilities
 ---
 # Capabilities
 
-[Capabilities](../../../src/Moryx.AbstractionLayer/Capabilities/ICapabilities.cs) are basically a self description of a *Resource*. Every [Activity](Activities.md) defines which capabilities it needs and the provided information will be used to find a matching [Resource](../Resources/Overview.md) to handle the activity. It is also possible that a resource has multiple capabilities and is able to handle various activities.
+[Capabilities](xref:Moryx.AbstractionLayer.Capabilities.ICapabilities) are basically a self description of a [Resource](../Resources/Overview.md). Every [Activity](Activities.md) defines which capabilities it needs and the provided information will be used to find a matching Resource to handle the activity. It is also possible that a resource has multiple capabilities and is able to handle various activities.
 
 ## Single Capabilities
 
@@ -26,7 +26,7 @@ public class MyCapabilities : ICapabilities
 }
 ````
 
-It is also possible to use the base class [ConcreteCapabilities](../../../src/Moryx.AbstractionLayer/Capabilities/ConcreteCapabilities.cs), which reduces the code to the following lines:
+It is also possible to use the base class [ConcreteCapabilities](xref:Moryx.AbstractionLayer.Capabilities.ConcreteCapabilities), which reduces the code to the following lines:
 
 ```` cs
 [DataContract]
@@ -36,17 +36,7 @@ public class MyCapabilities : ConcreteCapabilities
 }
 ````
 
-If the resource is an [AssembleResource](../../../src/Moryx.Resources.Samples/AssembleResource.cs) then the [AssembleCapabilities]() class should be derived to define the application specific capabilities like in the following example:
-
-```` cs
-[DataContract]
-public class MyCapabilities : AssembleCapabilities
-{
-    protected override bool ProvidedBy(ICapabilities provided) => provided is MyCapabilities;
-}
-````
-
-This looks similar to the derivation of ConcreteCapabilities but it can be used for AssembleResources. In all examples you can extend your capabilities with more properties to give the resource are more meaningfull self description. Let's take the ScrewingCapabilities as an example. Maybe there is more than one station which has ScrewingCapabilities but each can handle a different screw head. Our Capability implementation could then look like:
+In any case you can extend your capabilities with more properties to give the resource are more meaningfull self description. Let's take the ScrewingCapabilities as an example. Maybe there is more than one station which has ScrewingCapabilities but each can handle a different screw head. Our Capability implementation could then look like:
 
 ```` cs
 public enum ScrewHead
@@ -88,7 +78,7 @@ So it is possible to extend a Capability with different information to distingui
 
 ## Multiple Capabilities
 
-A resource can also have multiple capabilities. For that the [CombinedCapabilities](../../../src/Moryx.AbstractionLayer/Capabilities/CombinedCapabilities.cs) class should be used, which implementes the ICapabilities interface as well. Thus, it is possible to set the resource capabilities to a list of capabilities like in the following example:
+A resource can also have multiple capabilities. For that the [CombinedCapabilities](xref:Moryx.AbstractionLayer.Capabilities.CombinedCapabilities) class should be used, which implementes the ICapabilities interface as well. Thus, it is possible to set the resource capabilities to a list of capabilities like in the following example:
 
 ```` cs
 // some resource code
@@ -108,22 +98,4 @@ public override void Initialize()
 }
 
 // some more resource code
-````
-
-It is also possible to use multiple capabilities for an AssembleResource but in a slightly different way, as the following example shows:
-
-```` cs
-var myStation = EntityCreation.CreateResource(openContext, new AssembleCell
-{
-    Name = "My Station",
-    LocalIdentifier = "Foo Bang Bang",
-    AssembleCapabilities = new AssembleCapabilities[]
-    {
-        new MyCapabilities(),
-        new ScrewingCapabilities(ScrewHead.Phillips),
-        new CoolCapabilities(),
-        new HotCapabilities(),
-        new LitCapabilities()
-    }
-}, parentResource);
 ````
