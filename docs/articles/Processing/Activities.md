@@ -3,11 +3,11 @@ uid: Activities
 ---
 # Activities
 
-An [Activity](xref:Moryx.AbstractionLayer.IActivity) is the smallest separately executable step of a [Process](Processes.md). Activities are defined as classes derived from [Activity](xref:Moryx.AbstractionLayer.Activity) and are always specific to a certain task or application. Activities are instantiated by dedicated modules in their respective domains and then executed by resources. Each activity has a set of required [Capabilities](Capabilities.md) while the [production Resources](../Resources/Overview.md) each have a set of provided capabilities. For each activity the ProcessController searches for a resource with matching capabilities. If there is more than one matching then the first one found will be used. If the selected resource is [ReadyToWork](xref:Moryx.AbstractionLayer.Resources.ReadyToWork), the ProcessController sends the activity with a [StartActivity](xref:Moryx.AbstractionLayer.Resources.StartActivity) message to the resource to be executed there. All activities are stored permanently with the process for tracing purposes.
+An [Activity](xref:Moryx.AbstractionLayer.IActivity) is the smallest separately executable step of a [Process](Processes.md). Activities are defined as classes derived from [Activity](xref:Moryx.AbstractionLayer.Activity) and are always specific to a certain task or application. Activities are instantiated by dedicated modules in their respective domains and then executed by resources. Each activity has a set of required [Capabilities](Capabilities.md) while the [production Resources](../Resources/Overview.md) each have a set of provided capabilities. All activities are stored permanently with the process for tracing purposes.
 
 ## Activity Structure
 
-To create an activity it is necessary to derive at least the abstract class [Activity<TParam, TTracing>](xref:Moryx.AbstractionLayer.Activity%602>). An implementation could look like the following:
+To create an activity it is necessary to derive at least the abstract class [Activity](xref:Moryx.AbstractionLayer.Activity). An implementation could look like the following:
 
 ```` cs
 [ActivityResults(typeof(DefaultActivityResult))]
