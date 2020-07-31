@@ -21,7 +21,7 @@ all = Facade.GetResources<IMyResource>(r => r . Id > 42);
 
 The API and interaction is decoupled from the resource graph. The user code resolves a single instance or list of instances to work with, but never the whole graph. 
 This seems like a limitation at ﬁrst, but it ensures structure independent user code limited to the interface of each resource and the capabilities to distinguish instances of the same interface. 
-For example, the underlying system's structure can be as simple as a single, manually operated resource or a completely automatic working system of resources composed of different divices, utility providers, etc.
+For example, the underlying system's structure can be as simple as a single, manually operated resource or a completely automatic working system of resources composed of different devices, utility providers, etc.
 There could even be an underlying redundant architecture.
 In all cases, the module responsible for mapping `Activities` to `Resources` always sees an enumeration of [IPublicResource](xref:Moryx.AbstractionLayer.Resources.IPublicResource).
 
