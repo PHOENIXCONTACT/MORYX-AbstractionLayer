@@ -3,9 +3,12 @@ uid: ResourceConcept
 ---
 # Resource concept
 
-A resource is everything needed to produce a product. 
+Everything that is needed to produce a product is a `Resource`. 
 It can be a physical device like a Station or a Cell or it can be something non physical like a SerialNumberProvider that calculates a new serial number.
-The main advantage of this concept is that the resource interface and implementation structure is as same as for all resources. So accessing is done in an abstract and general way. Processing, configuring and visualization of a resource is done in the same way with the same classes. Specialities of a resource can be added in a standard way and extents the default UI.
+The main advantage of this concept is that the resource interface and implementation structure is the same for all resources. 
+So [accessing a resource](ResourceManagement.md) is done in an abstract and general way. 
+Processing, configuring and visualization of a resource is done in the same way with the same classes. 
+Specialities of a resource can be added in a standard way and extend the [default UI](ResourceManagementUI.md).
 
 ## Resource type tree
 
