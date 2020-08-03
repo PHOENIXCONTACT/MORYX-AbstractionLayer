@@ -28,3 +28,6 @@ During module startup all types are loaded and the bidirectional [type tree](xre
 For each node in the tree it is possible to traverse the tree in both directions. 
 Especially the ability to directly access all derived types is an advantage over the standard .NET reﬂection API. 
 Besides the base and derived types, each node also exports the system type, its name and information how to construct instances of the type.
+
+## Resource types
+The abstraction layer allows for grouping similar resources types in branches. Look [here](Types/Overview.md) for more information on that.
