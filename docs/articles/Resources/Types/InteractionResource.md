@@ -4,7 +4,7 @@ uid: InteractionResource
 # InteractionResource
 
 [InteractionResources](xref:Moryx.Resources.Interaction.InteractionResource%601>) are another type of [Resource](xref:Moryx.AbstractionLayer.Resources.Resource). 
-They host web services in addition to the one hosted by the root resource. 
+They host web services in addition to the one hosted by the `ResourceInteractionHost`, that hosts the endpoint for the standard resource UI.
 One specialty of interaction resources is their different registration shown in the code snippet below. 
 The second parameter in the attribute deﬁnes an additional service this resource is registered for besides IResource. 
 It also uses the life cycle `Singleton` instead of the standard `Transient` life cycle.
