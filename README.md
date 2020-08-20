@@ -3,27 +3,7 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/PHOENIXCONTACT/MORYX-AbstractionLayer/workflows">
-        <img src="https://github.com/PHOENIXCONTACT/MORYX-AbstractionLayer/workflows/CI/badge.svg" alt="CI">
-    </a>
-    <a href="https://www.myget.org/feed/Packages/moryx">
-        <img src="https://img.shields.io/myget/moryx/v/Moryx.AbstractionLayer" alt="MyGet">
-    </a>
-    <a href="https://github.com/PHOENIXCONTACT/MORYX-AbstractionLayer/blob/dev/LICENSE">
-        <img src="https://img.shields.io/github/license/PHOENIXCONTACT/MORYX-AbstractionLayer" alt="License">
-    </a>
-    <a href="https://gitter.im/MORYX-Industry/Framework?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
-        <img src="https://badges.gitter.im/MORYX-Industry/Framework.svg" alt="Gitter">
-    </a>
-    <a href="https://github.com/PHOENIXCONTACT/MORYX-AbstractionLayer/pulls">
-        <img src="https://img.shields.io/github/issues-pr/PHOENIXCONTACT/MORYX-AbstractionLayer" alt="GitHub pull requests">
-    </a>
-    <a href="https://github.com/PHOENIXCONTACT/MORYX-AbstractionLayer/issues">
-        <img src="https://img.shields.io/github/issues/PHOENIXCONTACT/MORYX-AbstractionLayer" alt="GitHub issues">
-    </a>
-    <a href="https://github.com/PHOENIXCONTACT/MORYX-AbstractionLayer/graphs/contributors">
-        <img src="https://img.shields.io/github/contributors-anon/PHOENIXCONTACT/MORYX-AbstractionLayer" alt="GitHub contributors">
-    </a>
+    
 </p>
 
 # MORYX AbstractionLayer
