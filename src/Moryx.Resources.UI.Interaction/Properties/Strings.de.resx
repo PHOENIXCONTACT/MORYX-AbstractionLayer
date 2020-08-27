@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ModuleController_DisplayName" xml:space="preserve">
-    <value>Resourcen</value>
+    <value>Ressourcen</value>
   </data>
   <data name="InteractionWorkspaceView_Resources" xml:space="preserve">
-    <value>Resourcen</value>
+    <value>Ressourcen</value>
   </data>
   <data name="InteractionWorkspaceView_Add" xml:space="preserve">
     <value>Hinzufügen</value>
@@ -139,10 +139,10 @@
     <value>Speichern</value>
   </data>
   <data name="TypeSelectorViewModel_DisplayName" xml:space="preserve">
-    <value>Resourcentypauswahl:</value>
+    <value>Ressourcentypauswahl:</value>
   </data>
   <data name="TypeSelectorView_SelectResourceType" xml:space="preserve">
-    <value>Bitte einen Resourcentyp zum Anlegen auswählen.</value>
+    <value>Bitte einen Ressourcentyp zum Anlegen auswählen.</value>
   </data>
   <data name="TypeSelectorView_Cancel" xml:space="preserve">
     <value>Abbrechen</value>
@@ -214,10 +214,10 @@
     <value>Beschreibung:</value>
   </data>
   <data name="RemoveResourceViewModel_ErrorWhileRemove" xml:space="preserve">
-    <value>Die Resource wurde nicht entfernt!</value>
+    <value>Die Ressource wurde nicht entfernt!</value>
   </data>
   <data name="RemoveResourceView_Description" xml:space="preserve">
-    <value>Die folgende Resource wird unwiderruflich gelöscht:</value>
+    <value>Die folgende Ressource wird unwiderruflich gelöscht:</value>
   </data>
   <data name="RemoveResourceView_Remove" xml:space="preserve">
     <value>Entfernen</value>
@@ -226,7 +226,7 @@
     <value>Abbrechen</value>
   </data>
   <data name="RemoveResourceViewModel_DisplayName" xml:space="preserve">
-    <value>Resource entfernen</value>
+    <value>Ressource entfernen</value>
   </data>
   <data name="ReferencesAspectView_AddTarget" xml:space="preserve">
     <value>Ziel hinzufügen</value>
@@ -262,13 +262,13 @@
     <value>Typ</value>
   </data>
   <data name="InteractionWorkspaceViewModel_SelectResourceFromTree" xml:space="preserve">
-    <value>Wählen Sie eine Resource aus dem Baum auf der linken Seite.</value>
+    <value>Wählen Sie eine Ressource aus dem Baum auf der linken Seite.</value>
   </data>
   <data name="InteractionWorkspaceView_Refresh" xml:space="preserve">
     <value>Aktualisieren</value>
   </data>
   <data name="ResourceDetailsViewModelBase_No_relevant_aspects" xml:space="preserve">
-    <value>Für die ausgewählte Resource sind keine relevanten Aspekte vorhanden.</value>
+    <value>Für die ausgewählte Ressource sind keine relevanten Aspekte vorhanden.</value>
   </data>
   <data name="InteractionWorkspaceViewModel_SaveTimeOut_Message" xml:space="preserve">
     <value>Das Speichern dauert länger als erwartet.</value>
