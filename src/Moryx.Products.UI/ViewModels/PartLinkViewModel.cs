@@ -1,7 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Linq;
 using Caliburn.Micro;
 using Moryx.AbstractionLayer.UI;
 using Moryx.Controls;
@@ -75,7 +74,7 @@ namespace Moryx.Products.UI
         /// </summary>
         public void CopyFromModel()
         {
-            Properties = new EntryViewModel(Model.Properties.Clone(true));
+            Properties = new EntryViewModel(Model.Properties.ToSerializationEntry());
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace Moryx.Products.UI
         /// </summary>
         public void CopyToModel()
         {
-            Model.Properties = Properties.Entry;
+            Model.Properties = Properties.Entry.ToServiceEntry();
         }
     }
 }

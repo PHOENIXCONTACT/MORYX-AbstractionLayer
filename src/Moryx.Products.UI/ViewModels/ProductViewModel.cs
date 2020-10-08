@@ -9,8 +9,8 @@ using Caliburn.Micro;
 using Moryx.AbstractionLayer.UI;
 using Moryx.Controls;
 using Moryx.Products.UI.ProductService;
-using Moryx.Serialization;
 using Moryx.Tools;
+using Entry = Moryx.Serialization.Entry;
 
 namespace Moryx.Products.UI
 {
@@ -47,7 +47,7 @@ namespace Moryx.Products.UI
             Name = Model.Name;
             State = Model.State;
             Properties = Model.Properties != null
-                ? new EntryViewModel(Model.Properties.Clone(true))
+                ? new EntryViewModel(Model.Properties.ToSerializationEntry())
                 : new EntryViewModel(new List<Entry>());
 
             if (Model.Parts != null)
@@ -61,7 +61,7 @@ namespace Moryx.Products.UI
         {
             Model.Name = Name;
             Model.State = State;
-            Model.Properties = Properties.Entry;
+            Model.Properties = Properties.Entry.ToServiceEntry();
             Model.Parts = Parts.Select(p => p.Model).ToArray();
             Model.Recipes = Recipes.Select(r => r.Model).ToArray();
         }

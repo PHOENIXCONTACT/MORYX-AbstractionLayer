@@ -74,7 +74,11 @@ namespace Moryx.Resources.UI.Interaction.Aspects.Methods
 
         private async Task InvokeMethod(object parameters)
         {
-            var resultEntry = await ResourceServiceModel.InvokeMethod(Resource.Id, ((ResourceMethodViewModel) parameters).Model);
+            var vm = (ResourceMethodViewModel) parameters;
+            vm.CopyToModel();
+
+            var result = await ResourceServiceModel.InvokeMethod(Resource.Id, ((ResourceMethodViewModel) parameters).Model);
+            var resultEntry = result.ToSerializationEntry();
 
             if (resultEntry == null)
                 MethodInvocationResult = new EntryViewModel(new Entry());

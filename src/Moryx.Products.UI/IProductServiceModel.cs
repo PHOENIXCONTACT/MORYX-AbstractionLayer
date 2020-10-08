@@ -2,10 +2,9 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Threading.Tasks;
-using Moryx.AbstractionLayer.UI;
 using Moryx.Products.UI.ProductService;
-using Moryx.Serialization;
 using Moryx.Tools.Wcf;
+using Entry = Moryx.Products.UI.ProductService.Entry;
 
 namespace Moryx.Products.UI
 {

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Moryx.Resources.UI.ResourceService;
 using Moryx.Serialization;
 using Moryx.Tools.Wcf;
+using Entry = Moryx.Resources.UI.ResourceService.Entry;
+using MethodEntry = Moryx.Resources.UI.ResourceService.MethodEntry;
 
 namespace Moryx.Resources.UI
 {

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Moryx.Products.UI.ProductService;
 using Moryx.Serialization;
 using Moryx.Tools.Wcf;
+using Entry = Moryx.Products.UI.ProductService.Entry;
 
 namespace Moryx.Products.UI
 {

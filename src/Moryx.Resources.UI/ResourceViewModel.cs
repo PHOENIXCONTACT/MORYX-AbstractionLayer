@@ -6,11 +6,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
-using Moryx.AbstractionLayer.UI;
 using Moryx.Controls;
 using Moryx.Resources.UI.ResourceService;
 using Moryx.Serialization;
 using Moryx.Tools;
+using Entry = Moryx.Serialization.Entry;
 
 namespace Moryx.Resources.UI
 {
@@ -150,7 +150,7 @@ namespace Moryx.Resources.UI
         {
             Model.Name = Name;
             Model.Description = Description;
-            Model.Properties = Properties.Entry;
+            Model.Properties = Properties.Entry.ToServiceEntry();
             Model.References = References.Select(r => r.Model).ToArray();
         }
 
@@ -163,7 +163,7 @@ namespace Moryx.Resources.UI
             Description = Model.Description;
 
             Properties = Model.Properties != null
-                ? new EntryViewModel(Model.Properties.Clone(true))
+                ? new EntryViewModel(Model.Properties.ToSerializationEntry())
                 : new EntryViewModel(new List<Entry>());
 
             Methods = Model.Methods != null

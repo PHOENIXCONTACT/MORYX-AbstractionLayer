@@ -4,8 +4,7 @@
 using System;
 using System.ComponentModel;
 using Moryx.Controls;
-using Moryx.Products.UI.ProductService;
-using Moryx.Serialization;
+using Entry = Moryx.Serialization.Entry;
 
 namespace Moryx.Products.UI.Interaction
 {
