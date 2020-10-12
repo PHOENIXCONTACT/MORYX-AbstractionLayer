@@ -112,7 +112,7 @@ namespace Moryx.Products.UI
             var partModel = new PartModel
             {
                 Product = productModel,
-                Properties = Model.PropertyTemplates.Clone(true)
+                Properties = Model.PropertyTemplates.SerializationClone()
             };
 
             return new PartLinkViewModel(partModel, product);

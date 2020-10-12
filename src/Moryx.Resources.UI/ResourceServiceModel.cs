@@ -3,8 +3,10 @@
 
 using System.Threading.Tasks;
 using Moryx.Resources.UI.ResourceService;
-using Moryx.Serialization;
 using Moryx.Tools.Wcf;
+using MethodEntry = Moryx.Resources.UI.ResourceService.MethodEntry;
+using Entry = Moryx.Resources.UI.ResourceService.Entry;
+
 
 namespace Moryx.Resources.UI
 {

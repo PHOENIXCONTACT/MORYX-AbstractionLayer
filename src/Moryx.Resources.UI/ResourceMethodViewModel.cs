@@ -3,7 +3,7 @@
 
 using Caliburn.Micro;
 using Moryx.Controls;
-using Moryx.Serialization;
+using Moryx.Resources.UI.ResourceService;
 
 namespace Moryx.Resources.UI
 {
@@ -22,17 +22,22 @@ namespace Moryx.Resources.UI
         /// </summary>
         public ResourceMethodViewModel(MethodEntry model)
         {
-            UpdateModel(model);
+            CopyFromModel(model);
         }
 
-        public void UpdateModel(MethodEntry model)
+        private void CopyFromModel(MethodEntry model)
         {
             Model = model;
             NotifyOfPropertyChange(nameof(DisplayName));
             NotifyOfPropertyChange(nameof(Description));
 
-            Parameters = new EntryViewModel(Model.Parameters);
+            Parameters = new EntryViewModel(Model.Parameters.ToSerializationEntry());
             NotifyOfPropertyChange(nameof(Parameters));
+        }
+
+        public void CopyToModel()
+        {
+            Model.Parameters = Parameters.Entry.ToServiceEntry();
         }
 
         /// <summary>

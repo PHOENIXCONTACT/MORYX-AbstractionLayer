@@ -4,6 +4,7 @@
 using Caliburn.Micro;
 using Moryx.Products.UI.ProductService;
 using Moryx.Workflows;
+using WorkplanState = Moryx.Products.UI.ProductService.WorkplanState;
 
 namespace Moryx.Products.UI
 {

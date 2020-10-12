@@ -139,7 +139,7 @@ namespace Moryx.Products.UI
             Type = Model.Type;
             Classification = Model.Classification;
             Revision = Model.Revision;
-            Properties = new EntryViewModel(Model.Properties.Clone(true));
+            Properties = new EntryViewModel(Model.Properties.ToSerializationEntry());
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Moryx.Products.UI
             Model.Type = _type;
             Model.Classification = _classification;
             Model.Revision = _revision;
-            Model.Properties = Properties.Entry;
+            Model.Properties = Properties.Entry.ToServiceEntry();
             Model.WorkplanId = Workplan?.Id ?? 0;
         }
 

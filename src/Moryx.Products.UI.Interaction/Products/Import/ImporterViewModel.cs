@@ -1,12 +1,12 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Moryx.Controls;
 using Moryx.Products.UI.ProductService;
-using Moryx.Serialization;
 
 namespace Moryx.Products.UI.Interaction
 {
@@ -24,7 +24,7 @@ namespace Moryx.Products.UI.Interaction
             CreateParameterViewModel(_importer.Parameters);
         }
 
-        private void CreateParameterViewModel(Entry parameters)
+        private void CreateParameterViewModel(ProductService.Entry parameters)
         {
             if (Parameters != null)
             {
@@ -34,10 +34,10 @@ namespace Moryx.Products.UI.Interaction
                 }
             }
 
-            Parameters = new EntryViewModel(new Entry { DisplayName = "Root" });
+            Parameters = new EntryViewModel(new Serialization.Entry { DisplayName = "Root" });
             foreach (var parameter in parameters.SubEntries)
             {
-                var viewModel = new ImportParameterViewModel(parameter.Clone(true));
+                var viewModel = new ImportParameterViewModel(parameter.ToSerializationEntry());
                 viewModel.ValueChanged += OnUpdateTriggerChanged;
                 Parameters.SubEntries.Add(viewModel);
             }
@@ -46,11 +46,11 @@ namespace Moryx.Products.UI.Interaction
         /// <summary>
         /// Update parameters if a <see cref="ImportParameterViewModel.ValueChanged"/> was modified
         /// </summary>
-        private async void OnUpdateTriggerChanged(object sender, Entry importParameter)
+        private async void OnUpdateTriggerChanged(object sender, Serialization.Entry importParameter)
         {
             var parameters = Parameters.Entry;
-            parameters = await _productServiceModel.UpdateImportParameters(_importer.Name, parameters);
-            CreateParameterViewModel(parameters);
+            var updatedParameters = await _productServiceModel.UpdateImportParameters(_importer.Name, parameters.ToServiceEntry());
+            CreateParameterViewModel(updatedParameters);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Moryx.Products.UI.Interaction
         public Task<ProductModel> Import()
         {
             var parameters = Parameters.Entry;
-            return _productServiceModel.ImportProduct(_importer.Name, parameters);
+            return _productServiceModel.ImportProduct(_importer.Name, parameters.ToServiceEntry());
         }
     }
 }
