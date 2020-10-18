@@ -3,7 +3,7 @@
   "Version": "15.0.40203.910",
   "ExtendedData": {
     "inputs": [
-      "http://localhost/metadata/resourceinteraction"
+      "http://localhost/metadata/resources"
     ],
     "collectionTypes": [
       "System.Array",

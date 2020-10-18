@@ -41,7 +41,7 @@ namespace Moryx.Resources.UI.Interaction
             {
                 if (Registrations.ContainsKey(typeModel.Name))
                     return Registrations[typeModel.Name];
-                typeModel = typeModel.BaseType;
+                typeModel = FindType(typeModel.BaseType, ServiceModel.TypeTree);
             }
 
             // If all failed use the default

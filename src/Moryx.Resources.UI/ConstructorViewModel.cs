@@ -59,7 +59,7 @@ namespace Moryx.Resources.UI
             Model = model;
             NotifyOfPropertyChange(nameof(DisplayName));
 
-            Parameters = new EntryViewModel(model.Parameters.ToSerializationEntry());
+            Parameters = new EntryViewModel(Model.Parameters.ToSerializationEntry());
             NotifyOfPropertyChange(nameof(Parameters));
         }
     }

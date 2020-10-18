@@ -1,7 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using System;
 using System.Threading.Tasks;
+using Moryx.Modules;
 using Moryx.Resources.UI.ResourceService;
 using Moryx.Serialization;
 using Moryx.Tools.Wcf;
@@ -38,7 +40,12 @@ namespace Moryx.Resources.UI
         /// <summary>
         /// Creates a new resource with the given plugin name
         /// </summary>
-        Task<ResourceModel> CreateResource(string typeName, MethodEntry constructor);
+        Task<ResourceModel> CreateResource(string typeName);
+
+        /// <summary>
+        /// Creates a new resource with the given plugin name
+        /// </summary>
+        Task<ResourceModel> CreateResource(string typeName, MethodEntry arguments);
 
         /// <summary>
         /// Saves the given resource with all changes

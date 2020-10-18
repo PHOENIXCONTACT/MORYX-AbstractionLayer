@@ -15,11 +15,11 @@ namespace Moryx.Resources.UI.ResourceService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceTypeModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction")]
     public partial class ResourceTypeModel : object
     {
         
-        private Moryx.Resources.UI.ResourceService.ResourceTypeModel BaseTypeField;
+        private string BaseTypeField;
         
         private Moryx.Resources.UI.ResourceService.MethodEntry[] ConstructorsField;
         
@@ -36,7 +36,7 @@ namespace Moryx.Resources.UI.ResourceService
         private Moryx.Resources.UI.ResourceService.ReferenceTypeModel[] ReferencesField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Moryx.Resources.UI.ResourceService.ResourceTypeModel BaseType
+        public string BaseType
         {
             get
             {
@@ -891,7 +891,7 @@ namespace Moryx.Resources.UI.ResourceService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction")]
     public partial class ResourceModel : object
     {
         
@@ -906,6 +906,8 @@ namespace Moryx.Resources.UI.ResourceService
         private bool PartiallyLoadedField;
         
         private Moryx.Resources.UI.ResourceService.Entry PropertiesField;
+        
+        private long ReferenceIdField;
         
         private Moryx.Resources.UI.ResourceService.ResourceReferenceModel[] ReferencesField;
         
@@ -990,6 +992,19 @@ namespace Moryx.Resources.UI.ResourceService
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ReferenceId
+        {
+            get
+            {
+                return this.ReferenceIdField;
+            }
+            set
+            {
+                this.ReferenceIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public Moryx.Resources.UI.ResourceService.ResourceReferenceModel[] References
         {
             get
@@ -1018,7 +1033,7 @@ namespace Moryx.Resources.UI.ResourceService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceReferenceModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResourceReferenceModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Resources.Interaction")]
     public partial class ResourceReferenceModel : object
     {
         
@@ -1065,19 +1080,28 @@ namespace Moryx.Resources.UI.ResourceService
         System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel[]> GetResourcesAsync(Moryx.Resources.UI.ResourceService.ResourceQuery query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/GetDetails", ReplyAction="http://tempuri.org/IResourceInteraction/GetDetailsResponse")]
-        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel[]> GetDetailsAsync(long[] ids);
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> GetDetailsAsync(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/GetDetailsBatch", ReplyAction="http://tempuri.org/IResourceInteraction/GetDetailsBatchResponse")]
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel[]> GetDetailsBatchAsync(string ids);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/InvokeMethod", ReplyAction="http://tempuri.org/IResourceInteraction/InvokeMethodResponse")]
-        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.Entry> InvokeMethodAsync(long id, Moryx.Resources.UI.ResourceService.MethodEntry method);
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.Entry> InvokeMethodAsync(string id, string method, Moryx.Resources.UI.ResourceService.Entry parameters);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Create", ReplyAction="http://tempuri.org/IResourceInteraction/CreateResponse")]
-        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> CreateAsync(string resourceType, Moryx.Resources.UI.ResourceService.MethodEntry constructor);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Construct", ReplyAction="http://tempuri.org/IResourceInteraction/ConstructResponse")]
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> ConstructAsync(string type);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/ConstructWithParameters", ReplyAction="http://tempuri.org/IResourceInteraction/ConstructWithParametersResponse")]
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> ConstructWithParametersAsync(string type, string method, Moryx.Resources.UI.ResourceService.Entry parameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Save", ReplyAction="http://tempuri.org/IResourceInteraction/SaveResponse")]
         System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> SaveAsync(Moryx.Resources.UI.ResourceService.ResourceModel resource);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Update", ReplyAction="http://tempuri.org/IResourceInteraction/UpdateResponse")]
+        System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> UpdateAsync(string id, Moryx.Resources.UI.ResourceService.ResourceModel model);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResourceInteraction/Remove", ReplyAction="http://tempuri.org/IResourceInteraction/RemoveResponse")]
-        System.Threading.Tasks.Task<bool> RemoveAsync(long id);
+        System.Threading.Tasks.Task RemoveAsync(string id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
@@ -1089,41 +1113,6 @@ namespace Moryx.Resources.UI.ResourceService
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public partial class ResourceInteractionClient : System.ServiceModel.ClientBase<Moryx.Resources.UI.ResourceService.IResourceInteraction>, Moryx.Resources.UI.ResourceService.IResourceInteraction
     {
-        
-        /// <summary>
-        /// Implement this partial method to configure the service endpoint.
-        /// </summary>
-        /// <param name="serviceEndpoint">The endpoint to configure</param>
-        /// <param name="clientCredentials">The client credentials</param>
-        static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
-        
-        public ResourceInteractionClient() : 
-                base(ResourceInteractionClient.GetDefaultBinding(), ResourceInteractionClient.GetDefaultEndpointAddress())
-        {
-            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_IResourceInteraction.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public ResourceInteractionClient(EndpointConfiguration endpointConfiguration) : 
-                base(ResourceInteractionClient.GetBindingForEndpoint(endpointConfiguration), ResourceInteractionClient.GetEndpointAddress(endpointConfiguration))
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public ResourceInteractionClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(ResourceInteractionClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public ResourceInteractionClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(ResourceInteractionClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
         
         public ResourceInteractionClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress)
@@ -1140,19 +1129,29 @@ namespace Moryx.Resources.UI.ResourceService
             return base.Channel.GetResourcesAsync(query);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel[]> GetDetailsAsync(long[] ids)
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> GetDetailsAsync(string id)
         {
-            return base.Channel.GetDetailsAsync(ids);
+            return base.Channel.GetDetailsAsync(id);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.Entry> InvokeMethodAsync(long id, Moryx.Resources.UI.ResourceService.MethodEntry method)
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel[]> GetDetailsBatchAsync(string ids)
         {
-            return base.Channel.InvokeMethodAsync(id, method);
+            return base.Channel.GetDetailsBatchAsync(ids);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> CreateAsync(string resourceType, Moryx.Resources.UI.ResourceService.MethodEntry constructor)
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.Entry> InvokeMethodAsync(string id, string method, Moryx.Resources.UI.ResourceService.Entry parameters)
         {
-            return base.Channel.CreateAsync(resourceType, constructor);
+            return base.Channel.InvokeMethodAsync(id, method, parameters);
+        }
+        
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> ConstructAsync(string type)
+        {
+            return base.Channel.ConstructAsync(type);
+        }
+        
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> ConstructWithParametersAsync(string type, string method, Moryx.Resources.UI.ResourceService.Entry parameters)
+        {
+            return base.Channel.ConstructWithParametersAsync(type, method, parameters);
         }
         
         public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> SaveAsync(Moryx.Resources.UI.ResourceService.ResourceModel resource)
@@ -1160,7 +1159,12 @@ namespace Moryx.Resources.UI.ResourceService
             return base.Channel.SaveAsync(resource);
         }
         
-        public System.Threading.Tasks.Task<bool> RemoveAsync(long id)
+        public System.Threading.Tasks.Task<Moryx.Resources.UI.ResourceService.ResourceModel> UpdateAsync(string id, Moryx.Resources.UI.ResourceService.ResourceModel model)
+        {
+            return base.Channel.UpdateAsync(id, model);
+        }
+        
+        public System.Threading.Tasks.Task RemoveAsync(string id)
         {
             return base.Channel.RemoveAsync(id);
         }
@@ -1173,45 +1177,6 @@ namespace Moryx.Resources.UI.ResourceService
         public virtual System.Threading.Tasks.Task CloseAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
-        }
-        
-        private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
-        {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IResourceInteraction))
-            {
-                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
-                result.MaxBufferSize = int.MaxValue;
-                result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
-                result.MaxReceivedMessageSize = int.MaxValue;
-                result.AllowCookies = true;
-                return result;
-            }
-            throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
-        }
-        
-        private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
-        {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IResourceInteraction))
-            {
-                return new System.ServiceModel.EndpointAddress("http://pxc-n2488/ResourceInteraction");
-            }
-            throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
-        }
-        
-        private static System.ServiceModel.Channels.Binding GetDefaultBinding()
-        {
-            return ResourceInteractionClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_IResourceInteraction);
-        }
-        
-        private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
-        {
-            return ResourceInteractionClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IResourceInteraction);
-        }
-        
-        public enum EndpointConfiguration
-        {
-            
-            BasicHttpBinding_IResourceInteraction,
         }
     }
 }
