@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Moryx.ClientFramework" Version="3.0.0-dev.41" />
-    <PackageReference Include="Moryx.Controls" Version="3.0.0-dev.41" />
+    <PackageReference Include="Moryx.ClientFramework" Version="3.0.0-dev.43" />
+    <PackageReference Include="Moryx.Controls" Version="3.0.0-dev.43" />
   </ItemGroup>
 
   <ItemGroup>
