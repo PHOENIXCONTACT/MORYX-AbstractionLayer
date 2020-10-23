@@ -1,4 +1,5 @@
-﻿using Moryx.Logging;
+﻿using Moryx.Communication;
+using Moryx.Logging;
 using Moryx.Tools.Wcf;
 
 namespace Moryx.Products.UI
@@ -11,12 +12,10 @@ namespace Moryx.Products.UI
         /// <summary>
         /// Creates a service model instance
         /// </summary>
-        /// <param name="clientFactory">ClientFactory to initialize connections</param>
-        /// <param name="logger">Logger</param>
         /// <returns>A service model instance</returns>
-        public static IProductServiceModel CreateServiceModel(IWcfClientFactory clientFactory, IModuleLogger logger)
+        public static IProductServiceModel CreateServiceModel(string host, int port, IProxyConfig config)
         {
-            return new ProductServiceModel(clientFactory);
+            return new ProductServiceModel(host, port, config);
         }
     }
 }

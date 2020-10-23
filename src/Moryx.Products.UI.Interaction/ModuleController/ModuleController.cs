@@ -40,10 +40,9 @@ namespace Moryx.Products.UI.Interaction
             Container.LoadComponents<IProductAspect>();
 
             // Register and start service model
-            var clientFactory = Container.Resolve<IWcfClientFactory>();
-            var logger = Container.Resolve<IModuleLogger>();
-
-            var serviceModel = Products.CreateServiceModel(clientFactory, logger);
+            var runtimeConfig = ConfigProvider.GetConfiguration<RuntimeConfig>();
+            var proxyConfig = ConfigProvider.GetConfiguration<ProxyConfig>();
+            var serviceModel = Products.CreateServiceModel(runtimeConfig.Host, runtimeConfig.Port, proxyConfig);
 
             Container.SetInstance(serviceModel);
 

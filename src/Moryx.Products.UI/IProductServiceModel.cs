@@ -1,7 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using System;
 using System.Threading.Tasks;
+using Moryx.Modules;
 using Moryx.Products.UI.ProductService;
 using Moryx.Tools.Wcf;
 using Entry = Moryx.Products.UI.ProductService.Entry;
