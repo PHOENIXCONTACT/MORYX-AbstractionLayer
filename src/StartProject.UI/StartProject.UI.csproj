@@ -16,10 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Moryx.ClientFramework.Configurator" Version="3.0.0-dev.41" />
-    <PackageReference Include="Moryx.ClientFramework.Kernel" Version="3.0.0-dev.41" />
-    <PackageReference Include="Moryx.ClientFramework.SimpleShell" Version="3.0.0-dev.41" />
-    <PackageReference Include="Moryx.Tools.WcfClient.UI.Viewer" Version="3.0.0-dev.41" />
+    <PackageReference Include="Moryx.ClientFramework.Configurator" />
+    <PackageReference Include="Moryx.ClientFramework.Kernel" />
+    <PackageReference Include="Moryx.ClientFramework.SimpleShell" />
   </ItemGroup>
 
   <ItemGroup>
