@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Moryx.Controls" />
+    <PackageReference Include="Moryx.Tools.Wcf" />
   </ItemGroup>
 
   <ItemGroup>

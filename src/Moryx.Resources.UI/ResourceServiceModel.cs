@@ -7,52 +7,41 @@ using Moryx.Tools.Wcf;
 using MethodEntry = Moryx.Resources.UI.ResourceService.MethodEntry;
 using Entry = Moryx.Resources.UI.ResourceService.Entry;
 
-
 namespace Moryx.Resources.UI
 {
-    internal class ResourceServiceModel : HttpServiceConnectorBase<ResourceInteractionClient, IResourceInteraction>, IResourceServiceModel
+    /// <summary>
+    /// Service model implementation for the resource rest service
+    /// </summary>
+    internal class ResourceServiceModel : WebHttpServiceConnectorBase, IResourceServiceModel
     {
-        #region Properties
+        public override string ServiceName => nameof(IResourceInteraction);
 
-        protected override string MinServerVersion => "2.0.0";
-
-        protected override string ClientVersion => "2.0.0";
+        protected override string ClientVersion => "5.0.0";
 
         public ResourceTypeModel TypeTree { get; private set; }
 
-        #endregion
-
-        public ResourceServiceModel(IWcfClientFactory clientFactory)
+        public ResourceServiceModel(IWcfClientFactory clientFactory) : base(clientFactory)
         {
-            ClientFactory = clientFactory;
-            TypeTree = new ResourceTypeModel();
         }
 
-        protected override void ClientCallback(ConnectionState state, ResourceInteractionClient client)
+        public override async Task ConnectionCallback(ConnectionState connectionState)
         {
-            base.ClientCallback(state, client);
-
-            if (state != ConnectionState.Success)
+            if (connectionState != ConnectionState.Success)
                 TypeTree = new ResourceTypeModel();
 
             if (IsAvailable)
-            {
-                Task.Run(async delegate
-                {
-                    await GetTypeTree();
-                });
-            }
+                await GetTypeTree();
         }
 
         public async Task<ResourceTypeModel> GetTypeTree()
         {
-            TypeTree = await WcfClient.GetTypeTreeAsync();
+            TypeTree = await GetAsync<ResourceTypeModel>("types");
             return TypeTree;
         }
 
         public Task<ResourceModel[]> GetResourceTree()
         {
-            return WcfClient.GetResourcesAsync(new ResourceQuery
+            var query = new ResourceQuery
             {
                 ReferenceCondition = new ReferenceFilter
                 {
@@ -62,39 +51,48 @@ namespace Moryx.Resources.UI
                 ReferenceRecursion = true,
                 IncludedReferences = new[]
                 {
-                    new ReferenceFilter{Name = "Children"}
+                    new ReferenceFilter {Name = "Children"}
                 }
-            });
+            };
+
+            return GetResources(query);
         }
 
         public Task<ResourceModel[]> GetResources(ResourceQuery query)
         {
-            return WcfClient.GetResourcesAsync(query);
+            return PostAsync<ResourceModel[]>("query", query);
+        }
+
+        public Task<ResourceModel> CreateResource(string typeName)
+        {
+            return PostAsync<ResourceModel>($"construct/{typeName}", null);
         }
 
         public Task<ResourceModel> CreateResource(string typeName, MethodEntry constructor)
         {
-            return WcfClient.CreateAsync(typeName, constructor);
+            return PostAsync<ResourceModel>($"construct/{typeName}?method={constructor.Name}", constructor.Parameters);
         }
 
         public Task<ResourceModel> SaveResource(ResourceModel resource)
         {
-            return WcfClient.SaveAsync(resource);
+            return resource.Id == 0
+                ? PostAsync<ResourceModel>("resource", resource)
+                : PutAsync<ResourceModel>($"resource/{resource.Id}", resource);
         }
 
         public Task<bool> RemoveResource(long resourceId)
         {
-            return WcfClient.RemoveAsync(resourceId);
+            return DeleteAsync($"resource/{resourceId}");
         }
 
         public Task<ResourceModel[]> GetDetails(long[] resourceIds)
         {
-            return WcfClient.GetDetailsAsync(resourceIds);
+            return GetAsync<ResourceModel[]>($"batch/{string.Join(",", resourceIds)}");
         }
 
         public Task<Entry> InvokeMethod(long resourceId, MethodEntry method)
         {
-            return WcfClient.InvokeMethodAsync(resourceId, method);
+            return PostAsync<Entry>($"resource/{resourceId}/invoke/{method.Name}", method.Parameters);
         }
     }
 }

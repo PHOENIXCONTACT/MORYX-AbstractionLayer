@@ -29,24 +29,6 @@ namespace Moryx.Resources.UI
         }
 
         /// <summary>
-        /// Converts the <see cref="Moryx.Resources.UI.ResourceService.MethodEntry"/> to <see cref="Moryx.Serialization.MethodEntry"/>
-        /// </summary>
-        public static Moryx.Serialization.MethodEntry ToSerializationEntry(this Moryx.Resources.UI.ResourceService.MethodEntry serviceEntry)
-        {
-            var json = JsonConvert.SerializeObject(serviceEntry);
-            return JsonConvert.DeserializeObject<Moryx.Serialization.MethodEntry>(json);
-        }
-
-        /// <summary>
-        /// Converts the <see cref="Moryx.Serialization.MethodEntry"/> to <see cref="Moryx.Resources.UI.ResourceService.MethodEntry"/>
-        /// </summary>
-        public static Moryx.Resources.UI.ResourceService.MethodEntry ToServiceEntry(this Moryx.Serialization.MethodEntry serializationEntry)
-        {
-            var json = JsonConvert.SerializeObject(serializationEntry);
-            return JsonConvert.DeserializeObject<Moryx.Resources.UI.ResourceService.MethodEntry>(json);
-        }
-
-        /// <summary>
         /// Clones an object by serialize it and reads it again
         /// </summary>
         public static TType SerializationClone<TType>(this TType obj)

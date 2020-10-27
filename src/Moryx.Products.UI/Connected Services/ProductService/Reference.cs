@@ -742,7 +742,7 @@ namespace Moryx.Products.UI.ProductService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     public partial class ProductModel : object
     {
         
@@ -966,7 +966,7 @@ namespace Moryx.Products.UI.ProductService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PartConnector", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PartConnector", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     public partial class PartConnector : object
     {
         
@@ -1063,7 +1063,7 @@ namespace Moryx.Products.UI.ProductService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RecipeModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     public partial class RecipeModel : object
     {
         
@@ -1205,7 +1205,7 @@ namespace Moryx.Products.UI.ProductService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PartModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PartModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     public partial class PartModel : object
     {
         
@@ -1440,34 +1440,37 @@ namespace Moryx.Products.UI.ProductService
         System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> CreateProductAsync(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetProductDetails", ReplyAction="http://tempuri.org/IProductInteraction/GetProductDetailsResponse")]
-        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> GetProductDetailsAsync(long id);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> GetProductDetailsAsync(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveProduct", ReplyAction="http://tempuri.org/IProductInteraction/SaveProductResponse")]
-        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> SaveProductAsync(Moryx.Products.UI.ProductService.ProductModel instance);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> SaveProductAsync(string id, Moryx.Products.UI.ProductService.ProductModel instance);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DuplicateProduct", ReplyAction="http://tempuri.org/IProductInteraction/DuplicateProductResponse")]
-        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(long sourceId, string identifier, short revisionNo);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(string sourceId, Moryx.Products.UI.ProductService.ProductModel model);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DeleteProduct", ReplyAction="http://tempuri.org/IProductInteraction/DeleteProductResponse")]
-        System.Threading.Tasks.Task<bool> DeleteProductAsync(long id);
+        System.Threading.Tasks.Task<bool> DeleteProductAsync(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ImportProduct", ReplyAction="http://tempuri.org/IProductInteraction/ImportProductResponse")]
-        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> ImportProductAsync(string importerName, Moryx.Products.UI.ProductService.Entry parametersModel);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> ImportProductAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
-        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.Entry> UpdateParametersAsync(string importer, Moryx.Products.UI.ProductService.Entry currentParameters);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.Entry> UpdateParametersAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipe", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipeResponse")]
-        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> GetRecipeAsync(long recipeId);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> GetRecipeAsync(string recipeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipes", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipesResponse")]
-        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel[]> GetRecipesAsync(long productId);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel[]> GetRecipesAsync(string productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/CreateRecipe", ReplyAction="http://tempuri.org/IProductInteraction/CreateRecipeResponse")]
         System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> CreateRecipeAsync(string recipeType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveRecipe", ReplyAction="http://tempuri.org/IProductInteraction/SaveRecipeResponse")]
         System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Moryx.Products.UI.ProductService.RecipeModel recipe);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateRecipe", ReplyAction="http://tempuri.org/IProductInteraction/UpdateRecipeResponse")]
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> UpdateRecipeAsync(string id, Moryx.Products.UI.ProductService.RecipeModel recipe);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetWorkplans", ReplyAction="http://tempuri.org/IProductInteraction/GetWorkplansResponse")]
         System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.WorkplanModel[]> GetWorkplansAsync();
@@ -1485,41 +1488,6 @@ namespace Moryx.Products.UI.ProductService
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public partial class ProductInteractionClient : System.ServiceModel.ClientBase<Moryx.Products.UI.ProductService.IProductInteraction>, Moryx.Products.UI.ProductService.IProductInteraction
     {
-        
-        /// <summary>
-        /// Implement this partial method to configure the service endpoint.
-        /// </summary>
-        /// <param name="serviceEndpoint">The endpoint to configure</param>
-        /// <param name="clientCredentials">The client credentials</param>
-        static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
-        
-        public ProductInteractionClient() : 
-                base(ProductInteractionClient.GetDefaultBinding(), ProductInteractionClient.GetDefaultEndpointAddress())
-        {
-            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_IProductInteraction.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public ProductInteractionClient(EndpointConfiguration endpointConfiguration) : 
-                base(ProductInteractionClient.GetBindingForEndpoint(endpointConfiguration), ProductInteractionClient.GetEndpointAddress(endpointConfiguration))
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public ProductInteractionClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(ProductInteractionClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public ProductInteractionClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(ProductInteractionClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
         
         public ProductInteractionClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress)
@@ -1541,42 +1509,42 @@ namespace Moryx.Products.UI.ProductService
             return base.Channel.CreateProductAsync(type);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> GetProductDetailsAsync(long id)
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> GetProductDetailsAsync(string id)
         {
             return base.Channel.GetProductDetailsAsync(id);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> SaveProductAsync(Moryx.Products.UI.ProductService.ProductModel instance)
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> SaveProductAsync(string id, Moryx.Products.UI.ProductService.ProductModel instance)
         {
-            return base.Channel.SaveProductAsync(instance);
+            return base.Channel.SaveProductAsync(id, instance);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(long sourceId, string identifier, short revisionNo)
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.DuplicateProductResponse> DuplicateProductAsync(string sourceId, Moryx.Products.UI.ProductService.ProductModel model)
         {
-            return base.Channel.DuplicateProductAsync(sourceId, identifier, revisionNo);
+            return base.Channel.DuplicateProductAsync(sourceId, model);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteProductAsync(long id)
+        public System.Threading.Tasks.Task<bool> DeleteProductAsync(string id)
         {
             return base.Channel.DeleteProductAsync(id);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> ImportProductAsync(string importerName, Moryx.Products.UI.ProductService.Entry parametersModel)
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> ImportProductAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters)
         {
-            return base.Channel.ImportProductAsync(importerName, parametersModel);
+            return base.Channel.ImportProductAsync(importer, importParameters);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.Entry> UpdateParametersAsync(string importer, Moryx.Products.UI.ProductService.Entry currentParameters)
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.Entry> UpdateParametersAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters)
         {
-            return base.Channel.UpdateParametersAsync(importer, currentParameters);
+            return base.Channel.UpdateParametersAsync(importer, importParameters);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> GetRecipeAsync(long recipeId)
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> GetRecipeAsync(string recipeId)
         {
             return base.Channel.GetRecipeAsync(recipeId);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel[]> GetRecipesAsync(long productId)
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel[]> GetRecipesAsync(string productId)
         {
             return base.Channel.GetRecipesAsync(productId);
         }
@@ -1589,6 +1557,11 @@ namespace Moryx.Products.UI.ProductService
         public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Moryx.Products.UI.ProductService.RecipeModel recipe)
         {
             return base.Channel.SaveRecipeAsync(recipe);
+        }
+        
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> UpdateRecipeAsync(string id, Moryx.Products.UI.ProductService.RecipeModel recipe)
+        {
+            return base.Channel.UpdateRecipeAsync(id, recipe);
         }
         
         public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.WorkplanModel[]> GetWorkplansAsync()
@@ -1609,45 +1582,6 @@ namespace Moryx.Products.UI.ProductService
         public virtual System.Threading.Tasks.Task CloseAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
-        }
-        
-        private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
-        {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IProductInteraction))
-            {
-                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
-                result.MaxBufferSize = int.MaxValue;
-                result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
-                result.MaxReceivedMessageSize = int.MaxValue;
-                result.AllowCookies = true;
-                return result;
-            }
-            throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
-        }
-        
-        private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
-        {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IProductInteraction))
-            {
-                return new System.ServiceModel.EndpointAddress("http://pxc-n2488/ProductInteraction");
-            }
-            throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
-        }
-        
-        private static System.ServiceModel.Channels.Binding GetDefaultBinding()
-        {
-            return ProductInteractionClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_IProductInteraction);
-        }
-        
-        private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
-        {
-            return ProductInteractionClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IProductInteraction);
-        }
-        
-        public enum EndpointConfiguration
-        {
-            
-            BasicHttpBinding_IProductInteraction,
         }
     }
 }

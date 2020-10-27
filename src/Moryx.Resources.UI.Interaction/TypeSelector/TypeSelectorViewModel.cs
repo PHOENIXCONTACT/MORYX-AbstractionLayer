@@ -126,7 +126,17 @@ namespace Moryx.Resources.UI.Interaction
         {
             try
             {
-                ResourcePrototype = await _resourceServiceModel.CreateResource(SelectedType.Name, SelectedType.Constructors.FirstOrDefault(c => c.IsSelected)?.Model);
+                var constructor = SelectedType.Constructors.FirstOrDefault(c => c.IsSelected);
+                if (constructor == null)
+                {
+                    ResourcePrototype = await _resourceServiceModel.CreateResource(SelectedType.Name);
+                }
+                else
+                {
+                    var method = constructor.Model;
+                    method.Parameters = constructor.Parameters.Entry.ToServiceEntry();
+                    ResourcePrototype = await _resourceServiceModel.CreateResource(SelectedType.Name, method); 
+                }
                 TryClose(true);
             }
             catch (Exception e)

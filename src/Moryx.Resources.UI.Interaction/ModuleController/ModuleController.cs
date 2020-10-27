@@ -1,12 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
 using System.Windows.Media;
 using C4I;
 using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
-using Moryx.Logging;
 using Moryx.Resources.UI.Interaction.Properties;
 using Moryx.Tools.Wcf;
 
@@ -41,9 +39,7 @@ namespace Moryx.Resources.UI.Interaction
 
             // Register and start service model
             var clientFactory = Container.Resolve<IWcfClientFactory>();
-            var logger = Container.Resolve<IModuleLogger>();
-
-            var serviceModel = Resources.CreateServiceModel(clientFactory, logger);
+            var serviceModel = Resources.CreateServiceModel(clientFactory);
 
             Container.SetInstance(serviceModel);
 
