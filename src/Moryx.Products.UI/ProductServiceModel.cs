@@ -1,120 +1,36 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Runtime.Serialization;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
-using Moryx.Communication;
 using Moryx.Products.UI.ProductService;
 using Moryx.Tools.Wcf;
-using Newtonsoft.Json;
 using Entry = Moryx.Products.UI.ProductService.Entry;
 
 namespace Moryx.Products.UI
 {
     /// <summary>
-    /// Similar to ResourceServiceModel, replace with proper Platform support
+    /// Service model implementation for the products rest service
     /// </summary>
-    internal class ProductServiceModel : IProductServiceModel
+    internal class ProductServiceModel : WebHttpServiceConnectorBase, IProductServiceModel
     {
-        private readonly string _host;
-        private readonly int _port;
-        private readonly IProxyConfig _proxyConfig;
-
-        private HttpClient _httpClient;
-
-        private bool _isAvailable;
-        public bool IsAvailable
-        {
-            get => _isAvailable;
-            set
-            {
-                _isAvailable = value;
-                AvailabilityChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
-        public event EventHandler AvailabilityChanged;
-        
-        public ProductServiceModel(string host, int port, IProxyConfig proxyConfig)
-        {
-            _host = host;
-            _port = port;
-            _proxyConfig = proxyConfig;
-        }
-
         private ProductCustomization _customization;
 
-        public void Start()
+        public override string ServiceName => nameof(IProductInteraction);
+
+        protected override string ClientVersion => "5.0.0";
+
+        public ProductServiceModel(IWcfClientFactory clientFactory) : base(clientFactory)
         {
-            // Create HttpClient
-            if (_proxyConfig?.EnableProxy == true && !_proxyConfig.UseDefaultWebProxy)
-            {
-                var proxy = new WebProxy
-                {
-                    Address = new Uri($"http://{_proxyConfig.Address}:{_proxyConfig.Port}"),
-                    BypassProxyOnLocal = false,
-                    UseDefaultCredentials = true
-                };
-
-                _httpClient = new HttpClient(new HttpClientHandler { Proxy = proxy });
-            }
-            else
-            {
-                _httpClient = new HttpClient();
-            }
-            _httpClient.BaseAddress = new Uri($"http://{_host}:{_port}/endpoints/");
-
-            TryFetchEndpoint();
         }
 
-        private void TryFetchEndpoint()
+        public override async Task ConnectionCallback(ConnectionState connectionState)
         {
-            // Fetch endpoint name
-            _httpClient.GetStringAsync($"service/{nameof(IProductInteraction)}")
-                .ContinueWith(EvaluateResponse);
+            if (connectionState != ConnectionState.Success)
+                _customization = null;
+
+            await GetCustomization();
         }
 
-        private void EvaluateResponse(Task<string> resp)
-        {
-            //Try again or dispose old client
-            if (resp.Status != TaskStatus.RanToCompletion || string.IsNullOrEmpty(resp.Result))
-            {
-                TryFetchEndpoint();
-                return;
-            }
-
-            // Parse endpoint url
-            var endpoints = JsonConvert.DeserializeObject<Endpoint[]>(resp.Result);
-            var productEndpoint = endpoints.FirstOrDefault(e => e.Binding == ServiceBindingType.WebHttp)?.Address;
-            if (string.IsNullOrEmpty(productEndpoint))
-            {
-                TryFetchEndpoint();
-                return;
-            }
-
-            // Create new base address client
-            _httpClient.Dispose();
-            _httpClient = new HttpClient { BaseAddress = new Uri(productEndpoint) };
-
-            IsAvailable = true;
-
-            Task.Run(async delegate
-            {
-                await GetCustomization();
-            });
-        }
-
-        public void Stop()
-        {
-            _httpClient?.Dispose();
-        }
-        
         public async Task<ProductCustomization> GetCustomization()
         {
             if (_customization != null)
@@ -198,58 +114,6 @@ namespace Moryx.Products.UI
         public Task<WorkplanModel[]> GetWorkplans()
         {
             return GetAsync<WorkplanModel[]>("workplans");
-        }
-
-        private async Task<T> GetAsync<T>(string url)
-        {
-            var response = await _httpClient.GetStringAsync(url);
-            return JsonConvert.DeserializeObject<T>(response);
-        }
-
-        private async Task<T> PostAsync<T>(string url, object payload)
-        {
-            var payloadString = string.Empty;
-            if (payload != null)
-                payloadString = JsonConvert.SerializeObject(payload);
-
-            var response = await _httpClient.PostAsync(url, new StringContent(payloadString, Encoding.UTF8, "text/json"));
-            var responseContent = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(responseContent);
-        }
-
-        private async Task<T> PutAsync<T>(string url, object payload)
-        {
-            var payloadString = string.Empty;
-            if (payload != null)
-                payloadString = JsonConvert.SerializeObject(payload);
-
-            var response = await _httpClient.PutAsync(url, new StringContent(payloadString, Encoding.UTF8, "text/json"));
-            var responseContent = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(responseContent);
-        }
-
-        private async Task<bool> DeleteAsync(string url)
-        {
-            var response = await _httpClient.DeleteAsync(url);
-            return response.StatusCode == HttpStatusCode.OK;
-        }
-
-        private class Endpoint
-        {
-            /// <summary>
-            /// The binding type of the service.
-            /// </summary>
-            public ServiceBindingType Binding { get; set; }
-
-            /// <summary>
-            /// The URL of the service.
-            /// </summary>
-            public string Address { get; set; }
-
-            /// <summary>
-            /// The service's version
-            /// </summary>
-            public string Version { get; set; }
         }
     }
 }

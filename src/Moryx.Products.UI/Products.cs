@@ -12,10 +12,11 @@ namespace Moryx.Products.UI
         /// <summary>
         /// Creates a service model instance
         /// </summary>
+        /// <param name="clientFactory">ClientFactory to initialize connections</param>
         /// <returns>A service model instance</returns>
-        public static IProductServiceModel CreateServiceModel(string host, int port, IProxyConfig config)
+        public static IProductServiceModel CreateServiceModel(IWcfClientFactory clientFactory)
         {
-            return new ProductServiceModel(host, port, config);
+            return new ProductServiceModel(clientFactory);
         }
     }
 }

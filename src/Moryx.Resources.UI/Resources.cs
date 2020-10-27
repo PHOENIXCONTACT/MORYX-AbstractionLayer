@@ -1,6 +1,4 @@
-﻿using Moryx.Communication;
-using Moryx.Logging;
-using Moryx.Tools.Wcf;
+﻿using Moryx.Tools.Wcf;
 
 namespace Moryx.Resources.UI
 {
@@ -12,10 +10,11 @@ namespace Moryx.Resources.UI
         /// <summary>
         /// Creates a service model instance
         /// </summary>
+        /// <param name="clientFactory">ClientFactory to initialize connections</param>
         /// <returns>A service model instance</returns>
-        public static IResourceServiceModel CreateServiceModel(string host, int port, IProxyConfig config)
+        public static IResourceServiceModel CreateServiceModel(IWcfClientFactory clientFactory)
         {
-            return new ResourceServiceModel(host, port, config);
+            return new ResourceServiceModel(clientFactory);
         }
     }
 }

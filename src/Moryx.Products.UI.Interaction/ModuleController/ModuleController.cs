@@ -5,7 +5,6 @@ using System.Windows.Media;
 using C4I;
 using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
-using Moryx.Logging;
 using Moryx.Products.UI.Interaction.Properties;
 using Moryx.Tools.Wcf;
 
@@ -40,9 +39,8 @@ namespace Moryx.Products.UI.Interaction
             Container.LoadComponents<IProductAspect>();
 
             // Register and start service model
-            var runtimeConfig = ConfigProvider.GetConfiguration<RuntimeConfig>();
-            var proxyConfig = ConfigProvider.GetConfiguration<ProxyConfig>();
-            var serviceModel = Products.CreateServiceModel(runtimeConfig.Host, runtimeConfig.Port, proxyConfig);
+            var clientFactory = Container.Resolve<IWcfClientFactory>();
+            var serviceModel = Products.CreateServiceModel(clientFactory);
 
             Container.SetInstance(serviceModel);
 

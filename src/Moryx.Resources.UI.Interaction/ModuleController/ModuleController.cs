@@ -1,12 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
 using System.Windows.Media;
 using C4I;
 using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
-using Moryx.Logging;
 using Moryx.Resources.UI.Interaction.Properties;
 using Moryx.Tools.Wcf;
 
@@ -40,9 +38,8 @@ namespace Moryx.Resources.UI.Interaction
             Container.LoadComponents<IResourceDetails>();
 
             // Register and start service model
-            var runtimeConfig = ConfigProvider.GetConfiguration<RuntimeConfig>();
-            var proxyConfig = ConfigProvider.GetConfiguration<ProxyConfig>();
-            var serviceModel = Resources.CreateServiceModel(runtimeConfig.Host, runtimeConfig.Port, proxyConfig);
+            var clientFactory = Container.Resolve<IWcfClientFactory>();
+            var serviceModel = Resources.CreateServiceModel(clientFactory);
 
             Container.SetInstance(serviceModel);
 
