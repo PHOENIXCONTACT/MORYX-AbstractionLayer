@@ -27,8 +27,10 @@ namespace Moryx.Products.UI
         {
             if (connectionState != ConnectionState.Success)
                 _customization = null;
-
-            await GetCustomization();
+            else
+            {
+                await GetCustomization();
+            }
         }
 
         public async Task<ProductCustomization> GetCustomization()
