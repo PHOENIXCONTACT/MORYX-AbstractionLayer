@@ -28,9 +28,10 @@ namespace Moryx.Resources.UI
         {
             if (connectionState != ConnectionState.Success)
                 TypeTree = new ResourceTypeModel();
-
-            if (IsAvailable)
+            else
+            {
                 await GetTypeTree();
+            }
         }
 
         public async Task<ResourceTypeModel> GetTypeTree()
