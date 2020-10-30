@@ -5,6 +5,7 @@ using System.Windows.Media;
 using C4I;
 using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
+using Moryx.Logging;
 using Moryx.Resources.UI.Interaction.Properties;
 using Moryx.Tools.Wcf;
 
@@ -39,7 +40,8 @@ namespace Moryx.Resources.UI.Interaction
 
             // Register and start service model
             var clientFactory = Container.Resolve<IWcfClientFactory>();
-            var serviceModel = Resources.CreateServiceModel(clientFactory);
+            var logger = Container.Resolve<IModuleLogger>();
+            var serviceModel = Resources.CreateServiceModel(clientFactory, logger);
 
             Container.SetInstance(serviceModel);
 
