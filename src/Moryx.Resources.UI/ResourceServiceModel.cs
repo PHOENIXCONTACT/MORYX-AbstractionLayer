@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Threading.Tasks;
+using Moryx.Logging;
 using Moryx.Resources.UI.ResourceService;
 using Moryx.Tools.Wcf;
 using MethodEntry = Moryx.Resources.UI.ResourceService.MethodEntry;
@@ -20,7 +21,8 @@ namespace Moryx.Resources.UI
 
         public ResourceTypeModel TypeTree { get; private set; }
 
-        public ResourceServiceModel(IWcfClientFactory clientFactory) : base(clientFactory)
+        public ResourceServiceModel(IWcfClientFactory clientFactory, IModuleLogger  logger)
+            : base(clientFactory, logger.GetChild(nameof(ResourceServiceModel), typeof(ResourceServiceModel)))
         {
         }
 

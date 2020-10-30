@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Threading.Tasks;
+using Moryx.Logging;
 using Moryx.Products.UI.ProductService;
 using Moryx.Tools.Wcf;
 using Entry = Moryx.Products.UI.ProductService.Entry;
@@ -19,7 +20,8 @@ namespace Moryx.Products.UI
 
         protected override string ClientVersion => "5.0.0";
 
-        public ProductServiceModel(IWcfClientFactory clientFactory) : base(clientFactory)
+        public ProductServiceModel(IWcfClientFactory clientFactory, IModuleLogger logger)
+            : base(clientFactory, logger.GetChild(nameof(ProductServiceModel), typeof(ProductServiceModel)))
         {
         }
 
