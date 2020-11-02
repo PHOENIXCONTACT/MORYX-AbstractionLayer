@@ -1345,7 +1345,59 @@ namespace Moryx.Products.UI.ProductService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WorkplanModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ImportStateModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management")]
+    public partial class ImportStateModel : object
+    {
+        
+        private bool CompletedField;
+        
+        private string ErrorMessageField;
+        
+        private System.Guid SessionField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Completed
+        {
+            get
+            {
+                return this.CompletedField;
+            }
+            set
+            {
+                this.CompletedField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorMessage
+        {
+            get
+            {
+                return this.ErrorMessageField;
+            }
+            set
+            {
+                this.ErrorMessageField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Session
+        {
+            get
+            {
+                return this.SessionField;
+            }
+            set
+            {
+                this.SessionField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WorkplanModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     public partial class WorkplanModel : object
     {
         
@@ -1451,8 +1503,11 @@ namespace Moryx.Products.UI.ProductService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/DeleteProduct", ReplyAction="http://tempuri.org/IProductInteraction/DeleteProductResponse")]
         System.Threading.Tasks.Task<bool> DeleteProductAsync(string id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/ImportProduct", ReplyAction="http://tempuri.org/IProductInteraction/ImportProductResponse")]
-        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> ImportProductAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/Import", ReplyAction="http://tempuri.org/IProductInteraction/ImportResponse")]
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ImportStateModel> ImportAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/FetchImportProgress", ReplyAction="http://tempuri.org/IProductInteraction/FetchImportProgressResponse")]
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ImportStateModel> FetchImportProgressAsync(string guid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateParameters", ReplyAction="http://tempuri.org/IProductInteraction/UpdateParametersResponse")]
         System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.Entry> UpdateParametersAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters);
@@ -1467,7 +1522,7 @@ namespace Moryx.Products.UI.ProductService
         System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> CreateRecipeAsync(string recipeType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/SaveRecipe", ReplyAction="http://tempuri.org/IProductInteraction/SaveRecipeResponse")]
-        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Moryx.Products.UI.ProductService.RecipeModel recipe);
+        System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Moryx.Products.UI.ProductService.RecipeModel recipeModel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/UpdateRecipe", ReplyAction="http://tempuri.org/IProductInteraction/UpdateRecipeResponse")]
         System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> UpdateRecipeAsync(string id, Moryx.Products.UI.ProductService.RecipeModel recipe);
@@ -1529,9 +1584,14 @@ namespace Moryx.Products.UI.ProductService
             return base.Channel.DeleteProductAsync(id);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ProductModel> ImportProductAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters)
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ImportStateModel> ImportAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters)
         {
-            return base.Channel.ImportProductAsync(importer, importParameters);
+            return base.Channel.ImportAsync(importer, importParameters);
+        }
+        
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.ImportStateModel> FetchImportProgressAsync(string guid)
+        {
+            return base.Channel.FetchImportProgressAsync(guid);
         }
         
         public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.Entry> UpdateParametersAsync(string importer, Moryx.Products.UI.ProductService.Entry importParameters)
@@ -1554,9 +1614,9 @@ namespace Moryx.Products.UI.ProductService
             return base.Channel.CreateRecipeAsync(recipeType);
         }
         
-        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Moryx.Products.UI.ProductService.RecipeModel recipe)
+        public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> SaveRecipeAsync(Moryx.Products.UI.ProductService.RecipeModel recipeModel)
         {
-            return base.Channel.SaveRecipeAsync(recipe);
+            return base.Channel.SaveRecipeAsync(recipeModel);
         }
         
         public System.Threading.Tasks.Task<Moryx.Products.UI.ProductService.RecipeModel> UpdateRecipeAsync(string id, Moryx.Products.UI.ProductService.RecipeModel recipe)

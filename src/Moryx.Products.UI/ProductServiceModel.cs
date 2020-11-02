@@ -1,6 +1,7 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using System;
 using System.Threading.Tasks;
 using Moryx.Logging;
 using Moryx.Products.UI.ProductService;
@@ -83,9 +84,14 @@ namespace Moryx.Products.UI
             return PutAsync<Entry>($"import/{importer}/parameters", currentParameters);
         }
 
-        public Task<ProductModel> ImportProduct(string importerName, Entry parameters)
+        public Task<ImportStateModel> Import(string importerName, Entry parameters)
         {
-            return PostAsync<ProductModel>($"import/{importerName}", parameters);
+            return PostAsync<ImportStateModel>($"import/{importerName}", parameters);
+        }
+
+        public Task<ImportStateModel> FetchImportProgress(Guid session)
+        {
+            return GetAsync<ImportStateModel>($"import/session/{session}");
         }
 
         public Task<bool> DeleteProduct(long productId)
