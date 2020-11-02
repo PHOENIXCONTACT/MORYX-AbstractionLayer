@@ -260,7 +260,7 @@ namespace Moryx.Products.UI.Interaction
         {
             var dialog = new ImportViewModel(Logger, ProductServiceModel);
             await DialogManager.ShowDialogAsync(dialog);
-            if (!dialog.Result || dialog.ImportedProduct == null)
+            if (!dialog.Result)
                 return;
 
             IsBusy = true;

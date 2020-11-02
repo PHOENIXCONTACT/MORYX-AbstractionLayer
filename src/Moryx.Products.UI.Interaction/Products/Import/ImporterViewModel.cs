@@ -24,7 +24,7 @@ namespace Moryx.Products.UI.Interaction
             CreateParameterViewModel(_importer.Parameters);
         }
 
-        private void CreateParameterViewModel(ProductService.Entry parameters)
+        private void CreateParameterViewModel(Entry parameters)
         {
             if (Parameters != null)
             {
@@ -83,10 +83,10 @@ namespace Moryx.Products.UI.Interaction
         /// Import product using the current values
         /// </summary>
         /// <returns></returns>
-        public Task<ProductModel> Import()
+        public Task<ImportStateModel> Import()
         {
             var parameters = Parameters.Entry;
-            return _productServiceModel.ImportProduct(_importer.Name, parameters.ToServiceEntry());
+            return _productServiceModel.Import(_importer.Name, parameters.ToServiceEntry());
         }
     }
 }

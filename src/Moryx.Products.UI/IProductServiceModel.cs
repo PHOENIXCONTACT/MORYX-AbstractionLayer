@@ -59,12 +59,18 @@ namespace Moryx.Products.UI
         Task<Entry> UpdateImportParameters(string importer, Entry currentParameters);
 
         /// <summary>
-        /// Import product
+        /// Call an importer with the given parameters
         /// </summary>
         /// <param name="importerName">Name of the importer</param>
         /// <param name="parameters">List of parameters</param>
-        /// <returns>Imported product</returns>
-        Task<ProductModel> ImportProduct(string importerName, Entry parameters);
+        /// <returns>State of the import</returns>
+        Task<ImportStateModel> Import(string importerName, Entry parameters);
+
+        /// <summary>
+        /// Returns the current importer state
+        /// </summary>
+        /// <param name="session">Guid of the session</param>
+        Task<ImportStateModel> FetchImportProgress(Guid session);
 
         /// <summary>
         /// Remove a product from the database
