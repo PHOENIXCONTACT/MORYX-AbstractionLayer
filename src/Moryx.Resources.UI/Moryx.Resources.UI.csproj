@@ -1,11 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <Import Project="..\..\.build\Common.props"></Import>
-
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
     <UseWPF>true</UseWPF>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Moryx.Resources.UI</Description>
     <CreatePackage>true</CreatePackage>
   </PropertyGroup>
