@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <UseWPF>true</UseWPF>
     <Description>Moryx.Resources.UI</Description>
     <CreatePackage>true</CreatePackage>
