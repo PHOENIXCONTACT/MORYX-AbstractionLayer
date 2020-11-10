@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using C4I;
+using Moryx.WpfToolkit;
 using Moryx.ClientFramework.Dialog;
 using Moryx.Container;
 

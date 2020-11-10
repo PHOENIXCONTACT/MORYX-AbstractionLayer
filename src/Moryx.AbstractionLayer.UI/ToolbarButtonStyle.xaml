@@ -19,7 +19,7 @@
         <Style.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="pack://application:,,,/Controls4Industry;component/themes/generic/common.xaml"></ResourceDictionary>
+                    <ResourceDictionary Source="pack://application:,,,/Moryx.WpfToolkit;component/themes/generic/common.xaml"></ResourceDictionary>
                 </ResourceDictionary.MergedDictionaries>
 
                 <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>

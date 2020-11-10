@@ -9,7 +9,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Moryx.Resources.UI.Interaction"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:c4i="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:wpfToolkit="clr-namespace:Moryx.WpfToolkit;assembly=Moryx.WpfToolkit"
              xmlns:controls="clr-namespace:Moryx.AbstractionLayer.UI.Controls;assembly=Moryx.AbstractionLayer.UI"
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
@@ -27,8 +27,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/ToolbarButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <c4i:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
-            <c4i:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <wpfToolkit:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+            <InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="DisplayName" />
 
             <Style x:Key="IconPathStyle" TargetType="Path">
@@ -84,7 +84,7 @@
                                     <Button Style="{StaticResource ExtendedToolBarButtonStyle}"
                                             Command="{Binding RemoveResourceCmd}">
                                         <DockPanel>
-                                            <Path Style="{StaticResource IconPathStyle}" c4i:Eddie.Icon="Minus"/>
+                                            <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Minus"/>
                                             <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.InteractionWorkspaceView_Remove}"/>
                                         </DockPanel>
                                     </Button>
@@ -139,7 +139,7 @@
         <KeyBinding Command="{Binding AddResourceCmd}" Modifiers="Control" Key="N"/>
     </UserControl.InputBindings>
     <DockPanel Margin="5" LastChildFill="True">
-        <TextBlock c4i:Eddie.TextFormat="Header1" DockPanel.Dock="Top"
+        <TextBlock Eddie.TextFormat="Header1" DockPanel.Dock="Top"
                    Text="{x:Static properties:Strings.InteractionWorkspaceView_Resources}" />
 
         <Grid DockPanel.Dock="Top">

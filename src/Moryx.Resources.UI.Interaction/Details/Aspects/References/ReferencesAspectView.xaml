@@ -9,7 +9,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:aspects="clr-namespace:Moryx.Resources.UI.Interaction.Aspects"
              xmlns:ui="clr-namespace:Moryx.Resources.UI;assembly=Moryx.Resources.UI"
-             xmlns:c4I ="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:wpfToolkit ="clr-namespace:Moryx.WpfToolkit;assembly=Moryx.WpfToolkit"
              xmlns:al="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance aspects:ReferencesAspectViewModel}"
@@ -26,7 +26,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <c4I:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <wpfToolkit:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
             <al:SortedCollectionViewSourceConverter x:Key="DisplayNameSourceConverter" Property="DisplayName" />
             <al:SortedCollectionViewSourceConverter x:Key="NameViewSourceConverter" Property="Name" />
@@ -63,7 +63,7 @@
                             <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Center">
                                 <Path Data="{MdiShape Link_Variant_Remove}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
                                 <TextBlock HorizontalAlignment="Center"
-                                           c4I:Eddie.TextFormat="Bold"
+                                           Eddie.TextFormat="Bold"
                                            Text="{x:Static properties:Strings.ReferencesAspectView_SingleReference_TargetNull}" />
                             </StackPanel>
                         </DockPanel>

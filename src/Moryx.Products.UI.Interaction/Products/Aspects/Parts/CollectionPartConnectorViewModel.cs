@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using C4I;
+using Moryx.WpfToolkit;
 using Moryx.AbstractionLayer.UI;
 using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;

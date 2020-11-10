@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using C4I;
+using Moryx.WpfToolkit;
 using Caliburn.Micro;
 using Moryx.AbstractionLayer.UI.Properties;
 using Moryx.ClientFramework;
@@ -238,7 +238,7 @@ namespace Moryx.AbstractionLayer.UI
         /// </summary>
         protected virtual Task OnSaveError(Exception exception)
         {
-            return DialogManager.ShowMessageBoxAsync(Strings.MasterDetailsWorkspace_SaveError_Message + exception, 
+            return DialogManager.ShowMessageBoxAsync(Strings.MasterDetailsWorkspace_SaveError_Message + exception,
                 Strings.MasterDetailsWorkspace_SaveError_Title,
                 MessageBoxOptions.Ok, MessageBoxImage.Error);
         }

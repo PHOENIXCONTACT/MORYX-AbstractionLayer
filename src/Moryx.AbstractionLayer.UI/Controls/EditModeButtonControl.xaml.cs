@@ -4,7 +4,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using C4I;
+using Moryx.WpfToolkit;
 
 namespace Moryx.AbstractionLayer.UI.Controls
 {
