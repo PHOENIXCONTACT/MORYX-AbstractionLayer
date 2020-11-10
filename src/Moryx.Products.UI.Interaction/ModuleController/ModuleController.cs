@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Windows.Media;
-using C4I;
+using Moryx.WpfToolkit;
 using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
 using Moryx.Logging;

@@ -9,7 +9,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Moryx.Products.UI.Interaction"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:c4I="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:wpfToolkit="clr-namespace:Moryx.WpfToolkit;assembly=Moryx.WpfToolkit"
              xmlns:controls="clr-namespace:Moryx.AbstractionLayer.UI.Controls;assembly=Moryx.AbstractionLayer.UI"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
@@ -31,8 +31,8 @@
             </ResourceDictionary.MergedDictionaries>
 
             <sys:Boolean x:Key="True">True</sys:Boolean>
-            <c4I:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
-            <c4I:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <wpfToolkit:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+            <InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="DisplayName" />
 
             <Style x:Key="IconPathStyle" TargetType="Path">
@@ -125,7 +125,7 @@
                             Padding="0" Height="30" Width="40"
                             DockPanel.Dock="Right"
                             Command="{Binding AspectConfiguratorCmd}">
-                        <Path Style="{StaticResource IconPathStyle}" c4I:Eddie.Icon="Gear" />
+                        <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Gear" />
                     </Button>
                     <UniformGrid Rows="1" DockPanel.Dock="Left">
                         <Button Style="{StaticResource ToolBarButtonStyle}" Margin="0,0,2.5,0"
@@ -261,7 +261,7 @@
 
                                 <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding ShowRevisionsCmd}">
                                     <DockPanel>
-                                        <Path Style="{StaticResource IconPathStyle}" c4I:Eddie.Icon="ClockWithCheckmark"/>
+                                        <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="ClockWithCheckmark"/>
                                         <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.ProductsWorkspaceView_Revisions}"/>
                                     </DockPanel>
                                 </Button>
@@ -270,7 +270,7 @@
 
                                 <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding RemoveCmd}">
                                     <DockPanel>
-                                        <Path Style="{StaticResource IconPathStyle}" c4I:Eddie.Icon="Minus"/>
+                                        <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Minus"/>
                                         <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.ProductsWorkspaceView_Remove}"/>
                                     </DockPanel>
                                 </Button>

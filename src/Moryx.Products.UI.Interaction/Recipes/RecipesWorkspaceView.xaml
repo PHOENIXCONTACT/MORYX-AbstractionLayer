@@ -8,7 +8,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:c4I="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:wpfToolkit="clr-namespace:Moryx.WpfToolkit;assembly=Moryx.WpfToolkit"
              xmlns:interaction="clr-namespace:Moryx.Products.UI.Interaction"
              xmlns:ui="clr-namespace:Moryx.Products.UI;assembly=Moryx.Products.UI"
              xmlns:controls="clr-namespace:Moryx.AbstractionLayer.UI.Controls;assembly=Moryx.AbstractionLayer.UI"
@@ -20,7 +20,7 @@
         </Style>
     </d:DesignerProperties.DesignStyle>
     <UserControl.Resources>
-        <c4I:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+        <wpfToolkit:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
 
         <Style x:Key="EditableObjectVisibilityStyle" TargetType="FrameworkElement">
             <Setter Property="Visibility" Value="Visible" />

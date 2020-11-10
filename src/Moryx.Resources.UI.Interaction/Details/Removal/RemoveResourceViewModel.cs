@@ -4,7 +4,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using C4I;
+using Moryx.WpfToolkit;
 using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
 using Moryx.ClientFramework.Tasks;

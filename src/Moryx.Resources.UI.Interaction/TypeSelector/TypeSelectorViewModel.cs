@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using C4I;
+using Moryx.WpfToolkit;
 using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
 using Moryx.ClientFramework.Tasks;
@@ -135,7 +135,7 @@ namespace Moryx.Resources.UI.Interaction
                 {
                     var method = constructor.Model;
                     method.Parameters = constructor.Parameters.Entry.ToServiceEntry();
-                    ResourcePrototype = await _resourceServiceModel.CreateResource(SelectedType.Name, method); 
+                    ResourcePrototype = await _resourceServiceModel.CreateResource(SelectedType.Name, method);
                 }
                 TryClose(true);
             }

@@ -9,7 +9,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Moryx.Controls;assembly=Moryx.Controls"
              xmlns:aspects="clr-namespace:Moryx.Products.UI.Interaction.Aspects"
-             xmlns:c4I="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:wpfToolkit="clr-namespace:Moryx.WpfToolkit;assembly=Moryx.WpfToolkit"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance aspects:SinglePartConnectorPartViewModel}" d:DesignWidth="900" d:DesignHeight="183">
@@ -24,13 +24,11 @@
                 <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/styles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
 
-            <c4I:BooleanToVisibilityConverter x:Key="ReBooleanToVisibilityConverter" TriggerValue="False" />
+            <wpfToolkit:BooleanToVisibilityConverter x:Key="ReBooleanToVisibilityConverter" TriggerValue="False" />
 
             <ControlTemplate x:Key="PartNotNullTemplate">
                 <DockPanel LastChildFill="True">
-                    <TextBlock DockPanel.Dock="Top"
-                           Margin="0,0,0,10"
-                           c4I:Eddie.TextFormat="Header2">
+                    <TextBlock DockPanel.Dock="Top" Margin="0,0,0,10" Eddie.TextFormat="Header2">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}{0}: {1}">
                                 <Binding Path="PartConnector.Name" />
@@ -79,8 +77,8 @@
                             </ControlTemplate>
                             <ControlTemplate x:Key="EmptyProperties">
                                 <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                                    <Path c4I:Eddie.Icon="Gear" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" c4I:Eddie.TextFormat="Bold"
+                                    <Path Eddie.Icon="Gear" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Eddie.TextFormat="Bold"
                                            Text="{x:Static properties:Strings.SinglePartConnectorPartView_EmptyProperties}"/>
                                 </StackPanel>
                             </ControlTemplate>
@@ -104,7 +102,7 @@
 
             <ControlTemplate x:Key="PartNullTemplate">
                 <DockPanel LastChildFill="True">
-                    <TextBlock DockPanel.Dock="Top" Margin="0,0,0,10" c4I:Eddie.TextFormat="Header2">
+                    <TextBlock DockPanel.Dock="Top" Margin="0,0,0,10" Eddie.TextFormat="Header2">
                         <Run Text="{Binding PartConnector.Name, Mode=OneWay}" />
                         <Run Text=": " />
                         <Run Text="{x:Static properties:Strings.SinglePartConnectorPartView_DefaultPartConnectorName}" />
@@ -121,8 +119,7 @@
 
                     <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Center">
                         <Path Data="{MdiShape Link_Variant_Remove}" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
-                        <TextBlock HorizontalAlignment="Center"
-                               c4I:Eddie.TextFormat="Bold"
+                        <TextBlock HorizontalAlignment="Center" Eddie.TextFormat="Bold"
                                Text="{x:Static properties:Strings.SinglePartConnectorPartView_NullLink}" />
                     </StackPanel>
                 </DockPanel>

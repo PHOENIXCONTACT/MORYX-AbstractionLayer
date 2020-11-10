@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using C4I;
+using Moryx.WpfToolkit;
 using Caliburn.Micro;
 using Moryx.AbstractionLayer.UI;
 using Moryx.AbstractionLayer.UI.Aspects;

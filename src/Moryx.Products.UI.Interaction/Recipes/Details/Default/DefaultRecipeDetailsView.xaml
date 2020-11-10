@@ -9,7 +9,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Moryx.Controls;assembly=Moryx.Controls"
              xmlns:interaction="clr-namespace:Moryx.Products.UI.Interaction"
-             xmlns:c4I="clr-namespace:C4I;assembly=Controls4Industry"
+             xmlns:wpfToolkit="clr-namespace:Moryx.WpfToolkit;assembly=Moryx.WpfToolkit"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:productService1="clr-namespace:Moryx.Products.UI.ProductService;assembly=Moryx.Products.UI"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
@@ -21,7 +21,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Moryx.Products.UI;component/Templates.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <c4I:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+            <wpfToolkit:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
 
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
                                 x:Key="RecipeClassificationValues">
@@ -85,8 +85,8 @@
 
                 <ControlTemplate x:Key="NoProperties">
                     <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                        <Path c4I:Eddie.Icon="Gear" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" c4I:Eddie.TextFormat="Bold"
+                        <Path Eddie.Icon="Gear" Stretch="Uniform" Fill="LightGray" Width="150" Height="150" Margin="0,0,0,14"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Eddie.TextFormat="Bold"
                                    Text="{x:Static properties:Strings.DefaultRecipeDetailsView_NoProperties}"/>
                     </StackPanel>
                 </ControlTemplate>
