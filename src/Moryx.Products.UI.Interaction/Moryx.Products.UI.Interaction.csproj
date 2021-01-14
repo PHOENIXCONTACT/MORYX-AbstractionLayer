@@ -4,7 +4,7 @@
     <TargetFramework>net45</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <UseWPF>true</UseWPF>
-    <Description>Moryx.Products.UI.Interaction</Description>
+    <Description>MORYX WPF module to configure products types and recipes</Description>
     <CreatePackage>true</CreatePackage>
   </PropertyGroup>
 

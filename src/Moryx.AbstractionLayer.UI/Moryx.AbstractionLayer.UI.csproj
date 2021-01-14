@@ -4,7 +4,7 @@
     <TargetFramework>net45</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <UseWPF>true</UseWPF>
-    <Description>Moryx.AbstractionLayer.UI</Description>
+    <Description>Common package for AbstractionLayer UI packages</Description>
     <CreatePackage>true</CreatePackage>
   </PropertyGroup>
 
