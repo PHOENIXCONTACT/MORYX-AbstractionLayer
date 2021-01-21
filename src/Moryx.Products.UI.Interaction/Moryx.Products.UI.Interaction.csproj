@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <Description>MORYX WPF module to configure products types and recipes</Description>
     <CreatePackage>true</CreatePackage>
+    <PackageTags>MORYX;IIoT;IoT;WPF;Configuration;Config;UI;Controls</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
