@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <Description>Package for UI applications based on ResourceManagement UI</Description>
     <CreatePackage>true</CreatePackage>
+    <PackageTags>MORYX;IIoT;IoT;UI;WCF;Controls;View</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

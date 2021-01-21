@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <Description>Common package for AbstractionLayer UI packages</Description>
     <CreatePackage>true</CreatePackage>
+    <PackageTags>MORYX;IIoT;IoT;Abstraction;UI;Controls</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
