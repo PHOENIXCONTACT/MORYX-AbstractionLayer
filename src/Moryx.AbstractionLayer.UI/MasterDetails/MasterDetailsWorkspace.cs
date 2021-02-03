@@ -208,6 +208,7 @@ namespace Moryx.AbstractionLayer.UI
                 {
                     var message = string.Join(Environment.NewLine, validationErrors.Select(v => v.ErrorMessage));
                     await DialogManager.ShowMessageBoxAsync(message, "Error");
+                    IsBusy = false;
                     return;
                 }
 
