@@ -10,7 +10,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
-using Moryx.AbstractionLayer.Identity;
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Container;
@@ -586,10 +585,11 @@ namespace Moryx.Products.Management
 
         private ProductTypeEntity GetPartEntity(ref ProductPartsSaverContext saverContext, IProductPartLink link)
         {
-            var product = saverContext.EntityCache.ContainsKey((ProductIdentity)link.Product.Identity)?
-                saverContext.EntityCache[(ProductIdentity)link.Product.Identity] :
-                link.Product.Id == 0 ? SaveProduct(ref saverContext, link.Product) : saverContext.UnitOfWork.GetEntity<ProductTypeEntity>(link.Product);
-            return product;
+            if (saverContext.EntityCache.ContainsKey((ProductIdentity) link.Product.Identity))
+                return saverContext.EntityCache[(ProductIdentity) link.Product.Identity];
+            if (link.Product.Id == 0)
+                return SaveProduct(ref saverContext, link.Product);
+            return saverContext.UnitOfWork.GetEntity<ProductTypeEntity>(link.Product);
         }
 
         /// <summary>
