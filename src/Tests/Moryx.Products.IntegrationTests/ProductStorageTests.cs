@@ -357,6 +357,47 @@ namespace Moryx.Products.IntegrationTests
         }
 
         [Test]
+        public void PartLinksWithTheSameIdentifierAreOnlySavedOnce()
+        {
+           //Arrange
+            var watch = new WatchType
+            {
+                Name = "watch",
+                Identity = new ProductIdentity("223",1),
+                Needles = new List<NeedlePartLink>
+                {
+                    new NeedlePartLink
+                    {
+                        Role = NeedleRole.Minutes,
+                        Product = new NeedleType
+                        {
+                            Identity = new ProductIdentity("222", 0),
+                            Name = "name"
+                        }
+                    },
+                    new NeedlePartLink
+                    {
+                        Role = NeedleRole.Seconds,
+                        Product = new NeedleType
+                        {
+                            Identity = new ProductIdentity("222", 0),
+                            Name = "name"
+                        }
+                    }
+                }
+            };
+
+            //Act
+            _storage.SaveType(watch);
+            var minuteNeedle = watch.Needles.Find(t => t.Role == NeedleRole.Minutes);
+            var secondsNeedle = watch.Needles.Find(t => t.Role == NeedleRole.Seconds);
+
+            //Assert
+            Assert.AreNotEqual(minuteNeedle.Product.Id, 0, "Id of Needle for minutes was 0");
+            Assert.AreEqual(secondsNeedle.Product.Id, 0, "Id of the second needle, which is the same as the first one, has to be 0");
+        }
+
+        [Test]
         public void SaveWatchProduct()
         {
             // Arrange

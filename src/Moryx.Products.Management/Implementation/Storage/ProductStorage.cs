@@ -473,7 +473,7 @@ namespace Moryx.Products.Management
             using (var uow = Factory.Create())
             {
                 var productSaverContext = new ProductPartsSaverContext(uow);
-                var entity = SaveProduct(ref productSaverContext, modifiedInstance);
+                var entity = SaveProduct(productSaverContext, modifiedInstance);
 
                 uow.SaveChanges();
 
@@ -481,12 +481,12 @@ namespace Moryx.Products.Management
             }
         }
 
-        private ProductTypeEntity SaveProduct(ref ProductPartsSaverContext saverContext, IProductType modifiedInstance)
+        private ProductTypeEntity SaveProduct(ProductPartsSaverContext saverContext, IProductType modifiedInstance)
         {
             var strategy = TypeStrategies[modifiedInstance.GetType().Name];
 
             // Get or create entity
-            var repo = saverContext.UnitOfWork.GetRepository<IProductTypeEntityRepository>();
+            var repo = saverContext.GetRepository<IProductTypeEntityRepository>();
             var identity = (ProductIdentity)modifiedInstance.Identity;
             ProductTypeEntity typeEntity;
             var entities = repo.Linq
@@ -508,7 +508,7 @@ namespace Moryx.Products.Management
             // Check if we need to create a new version
             if (typeEntity.CurrentVersion == null || typeEntity.CurrentVersion.State != (int)modifiedInstance.State || strategy.HasChanged(modifiedInstance, typeEntity.CurrentVersion))
             {
-                var version = saverContext.UnitOfWork.GetRepository<IProductPropertiesRepository>().Create();
+                var version = saverContext.GetRepository<IProductPropertiesRepository>().Create();
                 version.State = (int)modifiedInstance.State;
                 typeEntity.SetCurrentVersion(version);
             }
@@ -518,7 +518,7 @@ namespace Moryx.Products.Management
 
             // And nasty again!
             var type = modifiedInstance.GetType();
-            var linkRepo = saverContext.UnitOfWork.GetRepository<IPartLinkRepository>();
+            var linkRepo = saverContext.GetRepository<IPartLinkRepository>();
             foreach (var linkStrategy in LinkStrategies[strategy.TargetType.Name].Values)
             {
                 var property = type.GetProperty(linkStrategy.PropertyName);
@@ -533,7 +533,7 @@ namespace Moryx.Products.Management
                         linkEntity.Parent = typeEntity;
                         linkStrategy.SavePartLink(link, linkEntity);
                         EntityIdListener.Listen(linkEntity, link);
-                        linkEntity.Child = GetPartEntity(ref saverContext, link);
+                        linkEntity.Child = GetPartEntity(saverContext, link);
                     }
                     else if (linkEntity != null && link == null) // link was removed
                     {
@@ -543,7 +543,7 @@ namespace Moryx.Products.Management
                     else if (linkEntity != null && link != null) // link was modified
                     {
                         linkStrategy.SavePartLink(link, linkEntity);
-                        linkEntity.Child = GetPartEntity(ref saverContext, link);
+                        linkEntity.Child = GetPartEntity(saverContext, link);
                     }
                     // else: link was null and is still null
 
@@ -575,7 +575,7 @@ namespace Moryx.Products.Management
                             linkEntity = typeEntity.Parts.First(p => p.Id == link.Id);
                         }
                         linkStrategy.SavePartLink(link, linkEntity);
-                        linkEntity.Child = GetPartEntity(ref saverContext, link);
+                        linkEntity.Child = GetPartEntity(saverContext, link);
                     }
                 }
             }
@@ -583,12 +583,12 @@ namespace Moryx.Products.Management
             return typeEntity;
         }
 
-        private ProductTypeEntity GetPartEntity(ref ProductPartsSaverContext saverContext, IProductPartLink link)
+        private ProductTypeEntity GetPartEntity(ProductPartsSaverContext saverContext, IProductPartLink link)
         {
             if (saverContext.EntityCache.ContainsKey((ProductIdentity) link.Product.Identity))
                 return saverContext.EntityCache[(ProductIdentity) link.Product.Identity];
             if (link.Product.Id == 0)
-                return SaveProduct(ref saverContext, link.Product);
+                return SaveProduct(saverContext, link.Product);
             return saverContext.UnitOfWork.GetEntity<ProductTypeEntity>(link.Product);
         }
 
@@ -822,6 +822,11 @@ namespace Moryx.Products.Management
             {
                 UnitOfWork = uow;
                 EntityCache = new Dictionary<ProductIdentity, ProductTypeEntity>();
+            }
+
+            public T GetRepository<T>() where T : class, IRepository
+            {
+                return UnitOfWork.GetRepository<T>();
             }
         }
     }
