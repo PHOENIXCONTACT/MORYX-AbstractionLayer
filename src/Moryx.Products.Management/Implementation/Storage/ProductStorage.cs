@@ -586,7 +586,12 @@ namespace Moryx.Products.Management
         private ProductTypeEntity GetPartEntity(ProductPartsSaverContext saverContext, IProductPartLink link)
         {
             if (saverContext.EntityCache.ContainsKey((ProductIdentity) link.Product.Identity))
-                return saverContext.EntityCache[(ProductIdentity) link.Product.Identity];
+            {
+                var part = saverContext.EntityCache[(ProductIdentity) link.Product.Identity];
+                EntityIdListener.Listen(part,link.Product);
+                return part;
+            }
+
             if (link.Product.Id == 0)
                 return SaveProduct(saverContext, link.Product);
             return saverContext.UnitOfWork.GetEntity<ProductTypeEntity>(link.Product);

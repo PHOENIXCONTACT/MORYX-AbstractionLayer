@@ -394,7 +394,8 @@ namespace Moryx.Products.IntegrationTests
 
             //Assert
             Assert.AreNotEqual(minuteNeedle.Product.Id, 0, "Id of Needle for minutes was 0");
-            Assert.AreEqual(secondsNeedle.Product.Id, 0, "Id of the second needle, which is the same as the first one, has to be 0");
+            Assert.AreNotEqual(secondsNeedle.Product.Id, 0, "Id of Needle for seconds was 0");
+            Assert.AreEqual(secondsNeedle.Product.Id, minuteNeedle.Product.Id, "Both needles must have the same Id since they are the same product");
         }
 
         [Test]
