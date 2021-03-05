@@ -33,6 +33,17 @@ namespace Moryx.AbstractionLayer.Products
         public static ProductIdentity AsLatestRevision(string identifier) => new ProductIdentity(identifier, LatestRevision);
 
         /// <summary>
+        /// Create a product identity from a string. Counterpart to ToString() method
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <returns></returns>
+        public static ProductIdentity Parse(string identifier)
+        {
+            var splitIdentity = identifier.Split('-');
+            return splitIdentity.Length != 2 ? null : new ProductIdentity(splitIdentity[0], Convert.ToInt16(splitIdentity[1]));
+        }
+
+        /// <summary>
         /// Main and unique string identifier
         /// </summary>
         public string Identifier { get; }
