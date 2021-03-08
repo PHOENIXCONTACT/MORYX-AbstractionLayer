@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0
 
 using System;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Moryx.AbstractionLayer.Identity;
 
@@ -40,10 +41,11 @@ namespace Moryx.AbstractionLayer.Products
         /// <returns></returns>
         public static ProductIdentity Parse(string identityString)
         {
-            var splitIdentity = identityString.Split('-');
-            if(splitIdentity.Length != 2 )
+            Regex rx = new Regex(@"(?<identifier>\w+)-(?<revision>\d+)");
+            if (!rx.IsMatch(identityString) )
                 throw new FormatException("identityString should consist of <identity>-<revision> instead of "+identityString);
-            return new ProductIdentity(splitIdentity[0], Convert.ToInt16(splitIdentity[1]));
+            var groups = rx.Match(identityString).Groups;
+            return new ProductIdentity(groups["identifier"].Value, Convert.ToInt16(groups["revision"].Value));
         }
 
         /// <summary>
@@ -55,10 +57,9 @@ namespace Moryx.AbstractionLayer.Products
         /// <returns></returns>
         public static bool TryParse(string identityString, out ProductIdentity result)
         {
-            var splitIdentity = identityString.Split('-');
             try
             {
-                result = new ProductIdentity(splitIdentity[0], Convert.ToInt16(splitIdentity[1]));
+                result = Parse(identityString);
                 return true;
             }
             catch(Exception)
