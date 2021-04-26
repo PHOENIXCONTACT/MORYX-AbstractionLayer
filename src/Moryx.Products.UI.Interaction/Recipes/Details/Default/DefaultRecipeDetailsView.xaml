@@ -58,6 +58,11 @@
                     <EddieComboBox ItemsSource="{Binding Workplans}"
                                    SelectedItem="{Binding EditableObject.Workplan, Mode=TwoWay}"
                                    ItemTemplate="{StaticResource WorkplanComboBoxTemplate}"
+                                   IsEditable="True"
+                                   IsTextSearchCaseSensitive="False"
+                                   IsTextSearchEnabled="True"
+                                   StaysOpenOnEdit="True"
+                                   TextSearch.TextPath="Name"
                                    IsEnabled="{Binding IsEditMode}" />
                 </LabeledControlHost>
 
