@@ -9,7 +9,10 @@ using Moryx.AbstractionLayer;
 using Moryx.Configuration;
 using Moryx.Products.Management.Importers;
 using Moryx.Serialization;
+
+#if USE_WCF
 using Moryx.Tools.Wcf;
+#endif
 
 namespace Moryx.Products.Management
 {
@@ -24,6 +27,7 @@ namespace Moryx.Products.Management
         /// </summary>
         public ModuleConfig()
         {
+#if USE_WCF
             InteractionHost = new HostConfig
             {
                 BindingType = ServiceBindingType.WebHttp,
@@ -31,6 +35,7 @@ namespace Moryx.Products.Management
                 MetadataEnabled = true,
                 HelpEnabled = true
             };
+#endif
         }
 
         /// <inheritdoc />
@@ -55,11 +60,13 @@ namespace Moryx.Products.Management
         [Description("Maximum wait time for an import in seconds")]
         public int MaxImporterWait { get; set; }
 
+#if USE_WCF
         /// <summary>
         /// The interaction host.
         /// </summary>
         [DataMember]
         public HostConfig InteractionHost { get; set; }
+#endif
 
         /// <summary>
         /// List of configured importers

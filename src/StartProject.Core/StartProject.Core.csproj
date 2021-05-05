@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0</TargetFrameworks>
+    <Description>StartProject of the AbstractionLayer. This is for debugging only.</Description>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moryx.Runtime.Kernel" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Moryx.Products.Management\Moryx.Products.Management.csproj" />
+    <ProjectReference Include="..\Moryx.Resources.Management\Moryx.Resources.Management.csproj" />
+  </ItemGroup>
+
+</Project>
