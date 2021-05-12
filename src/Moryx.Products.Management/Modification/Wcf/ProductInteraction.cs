@@ -1,6 +1,7 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+#if USE_WCF
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -361,3 +362,4 @@ namespace Moryx.Products.Management.Modification
         }
     }
 }
+#endif

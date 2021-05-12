@@ -7,8 +7,10 @@ using Moryx.Products.Management.Importers;
 using Moryx.Products.Management.Modification;
 using Moryx.Runtime.Container;
 using Moryx.Runtime.Modules;
+#if USE_WCF
 using Moryx.Runtime.Wcf;
 using Moryx.Tools.Wcf;
+#endif
 
 namespace Moryx.Products.Management
 {
@@ -29,13 +31,15 @@ namespace Moryx.Products.Management
         /// </summary>
         public IDbContextManager DbContextManager { get; set; }
 
+#if USE_WCF
         /// <summary>
         /// Host factory to create wcf hosts
         /// </summary>
         public IWcfHostFactory WcfHostFactory { get; set; }
 
-        private IConfiguredServiceHost _host;
 
+        private IConfiguredServiceHost _host;
+#endif
         #region State transition
 
         /// <summary>
@@ -44,7 +48,9 @@ namespace Moryx.Products.Management
         protected override void OnInitialize()
         {
             // Extend container
+#if USE_WCF
             Container.RegisterWcf(WcfHostFactory);
+#endif
             Container.ActivateDbContexts(DbContextManager);
 
             // Register imports
@@ -71,9 +77,11 @@ namespace Moryx.Products.Management
             Container.Resolve<IProductStorage>().Start();
             Container.Resolve<IProductManager>().Start();
 
+#if USE_WCF
             // Start all plugins
             _host = Container.Resolve<IConfiguredHostFactory>().CreateHost<IProductInteraction>(Config.InteractionHost);
             _host.Start();
+#endif
 
             // Activate facades
             ActivateFacade(_productManagement);
@@ -87,8 +95,10 @@ namespace Moryx.Products.Management
             // Deactivate facades
             DeactivateFacade(_productManagement);
 
+#if USE_WCF
             _host.Stop();
             _host = null;
+#endif
         }
         #endregion
 
