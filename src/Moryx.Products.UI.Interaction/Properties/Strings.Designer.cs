@@ -898,6 +898,15 @@ namespace Moryx.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string SelectPartLinkDialogView_Search {
+            get {
+                return ResourceManager.GetString("SelectPartLinkDialogView_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select a product from the list.
         /// </summary>
         public static string SelectPartLinkDialogView_SelectProduct {
