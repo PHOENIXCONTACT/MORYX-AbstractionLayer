@@ -400,4 +400,7 @@
   <data name="ProductsWorkspaceViewModel_SaveTimeOut_Message" xml:space="preserve">
     <value>Das Speichern dauert länger als erwartet.</value>
   </data>
+  <data name="SelectPartLinkDialogView_Search" xml:space="preserve">
+    <value>Suche</value>
+  </data>
 </root>

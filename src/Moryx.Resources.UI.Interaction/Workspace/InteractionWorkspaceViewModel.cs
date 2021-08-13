@@ -218,6 +218,9 @@ namespace Moryx.Resources.UI.Interaction
             IsBusy = true;
 
             await UpdateTreeAsync();
+            
+            if (SelectedResource != null)
+                await SelectResource(SelectedResource);
 
             IsBusy = false;
         }

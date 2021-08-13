@@ -1,4 +1,4 @@
-<!--
+﻿<!--
  Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
  Licensed under the Apache License, Version 2.0
 -->
@@ -10,19 +10,30 @@
              xmlns:controls="clr-namespace:Moryx.Controls;assembly=Moryx.Controls"
              xmlns:aspects="clr-namespace:Moryx.Products.UI.Interaction.Aspects"
              xmlns:ui="clr-namespace:Moryx.Products.UI;assembly=Moryx.Products.UI"
-             xmlns:ui1="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance aspects:SelectPartLinkDialogViewModel}">
+             d:DataContext="{d:DesignInstance aspects:SelectPartLinkDialogViewModel}"
+             x:Name="UserControl">
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White"/>
         </Style>
     </d:DesignerProperties.DesignStyle>
     <UserControl.Resources>
-        <ui1:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="Identifier" />
+        <CollectionViewSource x:Key="FilteredProducts" Source="{Binding ElementName=UserControl, Path=DataContext.AvailableProducts}"
+                              IsLiveFilteringRequested="True" IsLiveSortingRequested="True">
+            <CollectionViewSource.LiveFilteringProperties>
+                <system:String>DisplayName</system:String>
+            </CollectionViewSource.LiveFilteringProperties>
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="Identifier" Direction="Ascending"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </UserControl.Resources>
-    <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}" MinWidth="500" MinHeight="400">
+    <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}" MinWidth="500" MinHeight="400" MaxHeight="700"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <DialogPanel.Buttons>
             <EddieButton Content="{x:Static properties:Strings.SelectPartLinkDialogView_Apply}" Icon="{CommonShape CheckMark}" Command="{Binding SelectCmd}" />
             <EddieButton Content="{x:Static properties:Strings.SelectPartLinkDialogView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray" Command="{Binding CancelCmd}" />
@@ -43,9 +54,19 @@
                     <ColumnDefinition MinWidth="340" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-                <EddieListBox Grid.Row="0" Grid.Column="0"
-                          ItemsSource="{Binding AvailableProducts, Converter={StaticResource SortedCollectionViewSourceConverter}}"
+                <EddieTextBox Icon="{CommonShape Magnifier}"
+                              Name="SearchTextBox"
+                              Watermark="{x:Static properties:Strings.SelectPartLinkDialogView_Search}"
+                              TextChanged="OnSearchTextChanged"
+                              Margin="0,0,5,5"/>
+                <EddieListBox Grid.Row="1" Grid.Column="0"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ItemsSource="{Binding Source={StaticResource FilteredProducts}}"
                           Margin="0,0,5,0" SelectedItem="{Binding SelectedProduct}">
                     <EddieListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type ui:ProductInfoViewModel}">
@@ -60,7 +81,7 @@
                     </EddieListBox.ItemTemplate>
                 </EddieListBox>
 
-                <controls:EntryEditor Grid.Column="1" Margin="0,0,0,0"
+                <controls:EntryEditor Grid.Column="1" Margin="0,0,0,0" Grid.RowSpan="2"
                                    RootEntry="{Binding PartLink.Properties}"
                                    IsEditMode="True" Width="500">
                     <controls:EntryEditor.Style>
