@@ -8,6 +8,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Moryx.Products.UI.Interaction"
+             xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance interaction:DuplicateProductDialogViewModel}">
@@ -18,12 +19,13 @@
     </d:DesignerProperties.DesignStyle>
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}" Command="{Binding DuplicateCmd}" Content="{x:Static properties:Strings.DuplicateProductDialogView_Clone}" />
+            <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}" Command="{Binding DuplicateCmd}" Content="{x:Static properties:Strings.DuplicateProductDialogView_Clone}" 
+                         Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanDuplicate}}"/>
             <EddieButton Content="{x:Static properties:Strings.DuplicateProductDialogView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          Command="{Binding CloseCmd}" Margin="10,0,0,0"/>
         </DialogPanel.Buttons>
-
-        <DockPanel>
+        <Grid>
+            <DockPanel>
             <DockPanel.Resources>
                 <Style TargetType="LabeledControlHost" BasedOn="{StaticResource {x:Type LabeledControlHost}}">
                     <Setter Property="LabelMinWidth" Value="100" />
@@ -50,5 +52,9 @@
                        Text="{Binding ErrorMessage}"
                        FontWeight="Bold" Foreground="Red"/>
         </DockPanel>
+            <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanDuplicate}, Inverse=True}">
+                <TextBlock Text="You have no permission to duplicate a product" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </Grid>
     </DialogPanel>
 </UserControl>

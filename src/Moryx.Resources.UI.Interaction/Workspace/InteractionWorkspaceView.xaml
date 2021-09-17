@@ -92,7 +92,7 @@
                                         </DockPanel>
                                     </Button>
 
-                                    <Separator BorderBrush="DarkGray"/>
+                                    <Separator BorderBrush="DarkGray" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanRemove}}"/>
                                 </StackPanel>
                             </Border>
 
