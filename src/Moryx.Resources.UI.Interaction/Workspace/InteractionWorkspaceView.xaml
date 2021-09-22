@@ -28,6 +28,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/ToolbarButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            
+            <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Resources" />
+            
             <wpfToolkit:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
             <InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="DisplayName" />

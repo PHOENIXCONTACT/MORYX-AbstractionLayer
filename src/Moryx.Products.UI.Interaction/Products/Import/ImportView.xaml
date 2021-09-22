@@ -18,6 +18,11 @@
             <Setter Property="Background" Value="White"/>
         </Style>
     </d:DesignerProperties.DesignStyle>
+    
+    <UserControl.Resources>
+        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
+    </UserControl.Resources>
+    
     <DialogPanel Background="White" BusyVisibility="{Binding OkCmd.Execution.BusyVisibility}">
             <DialogPanel.Header>
                 <TextBlock Margin="0,5,0,5" Text="{x:Static properties:Strings.ImportView_Description}" />

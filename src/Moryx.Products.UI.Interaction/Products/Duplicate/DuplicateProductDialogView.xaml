@@ -17,6 +17,11 @@
             <Setter Property="Background" Value="White"/>
         </Style>
     </d:DesignerProperties.DesignStyle>
+    
+    <UserControl.Resources>
+        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
+    </UserControl.Resources>
+    
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
             <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}" Command="{Binding DuplicateCmd}" Content="{x:Static properties:Strings.DuplicateProductDialogView_Clone}" 
