@@ -8,11 +8,11 @@ namespace Moryx.Products.UI.Interaction
 {
     static class Permissions
     {
-        public const string CanImport = "Moryx.Products.CanImport";
-        public const string CanShowAspectConfigurator = "Moryx.Products.CanShowAspectConfigurator";
-        public const string CanEdit = "Moryx.Products.CanEdit";
-        public const string CanDuplicate = "Moryx.Products.CanDuplicate";
-        public const string CanShowRevisions = "Moryx.Products.CanShowRevisions";
-        public const string CanRemove = "Moryx.Products.CanRemove";
+        public const string CanImport = "CanImport";
+        public const string CanShowAspectConfigurator = "CanShowAspectConfigurator";
+        public const string CanEdit = "CanEdit";
+        public const string CanDuplicate = "CanDuplicate";
+        public const string CanShowRevisions = "CanShowRevisions";
+        public const string CanRemove = "CanRemove";
     }
 }

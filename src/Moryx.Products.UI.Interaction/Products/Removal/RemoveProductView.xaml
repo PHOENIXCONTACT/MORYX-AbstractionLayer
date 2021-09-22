@@ -19,6 +19,8 @@
         </Style>
     </d:DesignerProperties.DesignStyle>
     <UserControl.Resources>
+        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
+
         <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="Identifier" />
     </UserControl.Resources>
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">

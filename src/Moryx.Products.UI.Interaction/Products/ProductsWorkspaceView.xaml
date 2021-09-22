@@ -31,6 +31,8 @@
                 <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/ToolbarButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
+
             <sys:Boolean x:Key="True">True</sys:Boolean>
             <wpfToolkit:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
             <InverseBooleanConverter x:Key="InverseBooleanConverter" />
