@@ -24,10 +24,10 @@
     </UserControl.Resources>
     
     <DialogPanel Background="White" BusyVisibility="{Binding OkCmd.Execution.BusyVisibility}">
-         <DialogPanel.Header>
+        <DialogPanel.Header>
             <TextBlock Margin="0,5,0,5" Text="{x:Static properties:Strings.ImportView_Description}" />
-         </DialogPanel.Header>
-         <DialogPanel.Buttons>
+        </DialogPanel.Header>
+        <DialogPanel.Buttons>
             <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}"
                          Command="{Binding OkCmd}" IsEnabled="{Binding OkCmd.Execution.TaskCompleted}"
                          Content="{x:Static properties:Strings.ImportView_ImportProduct}"
