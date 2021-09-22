@@ -25,7 +25,7 @@
     <UserControl.Resources>
         <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Resources" />
     </UserControl.Resources>
-    
+
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding CancelCmd}" Key="Escape" />
         <KeyBinding Command="{Binding CreateCmd}" Key="Enter" />

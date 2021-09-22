@@ -11,7 +11,7 @@ namespace StartProject.UI
     {
         [STAThread]
         static void Main(string[] args)
-        {          
+        {
             var heartOfLead = new HeartOfLead(args);
             heartOfLead.AuthorizeEverything();
             heartOfLead.Initialize();

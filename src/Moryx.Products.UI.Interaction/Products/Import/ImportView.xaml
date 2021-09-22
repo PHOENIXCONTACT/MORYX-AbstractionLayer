@@ -18,11 +18,11 @@
             <Setter Property="Background" Value="White"/>
         </Style>
     </d:DesignerProperties.DesignStyle>
-    
+
     <UserControl.Resources>
         <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
     </UserControl.Resources>
-    
+
     <DialogPanel Background="White" BusyVisibility="{Binding OkCmd.Execution.BusyVisibility}">
         <DialogPanel.Header>
             <TextBlock Margin="0,5,0,5" Text="{x:Static properties:Strings.ImportView_Description}" />
@@ -36,30 +36,30 @@
             <EddieButton Content="{x:Static properties:Strings.ImportView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          HorizontalAlignment="Right"
                          Margin="5" Command="{Binding CancelCmd}" />
-            </DialogPanel.Buttons>
-            <Grid>
-                <DockPanel LastChildFill="True">
-                    <EddieComboBox DockPanel.Dock="Top" ItemsSource="{Binding Importers}"
+        </DialogPanel.Buttons>
+        <Grid>
+            <DockPanel LastChildFill="True">
+                <EddieComboBox DockPanel.Dock="Top" ItemsSource="{Binding Importers}"
                                                SelectedItem="{Binding SelectedImporter}" Margin="5,5,5,10" Width="250">
-                        <EddieComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}"/>
-                            </DataTemplate>
-                        </EddieComboBox.ItemTemplate>
-                    </EddieComboBox>
+                    <EddieComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </EddieComboBox.ItemTemplate>
+                </EddieComboBox>
 
-                    <controls:EntryEditor BreadcrumbVisibility="Visible" DockPanel.Dock="Top" IsEditMode="True"
+                <controls:EntryEditor BreadcrumbVisibility="Visible" DockPanel.Dock="Top" IsEditMode="True"
                                        RootEntry="{Binding SelectedImporter.Parameters}"
                                        MaxHeight="450"/>
 
-                    <TextBlock DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Center"
+                <TextBlock DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Center"
                            FontWeight="Bold" Foreground="Red" Margin="2,20,0,20"
                            Text="{Binding ErrorText}" />
 
-                </DockPanel>
-                <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanImport}, Inverse=True}">
-                    <TextBlock Text="You have no permission to import a product" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
-            </Grid>
+            </DockPanel>
+            <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanImport}, Inverse=True}">
+                <TextBlock Text="You have no permission to import a product" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </Grid>
     </DialogPanel>
 </UserControl>
