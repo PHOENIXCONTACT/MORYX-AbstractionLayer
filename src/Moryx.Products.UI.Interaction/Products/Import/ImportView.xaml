@@ -24,16 +24,16 @@
     </UserControl.Resources>
     
     <DialogPanel Background="White" BusyVisibility="{Binding OkCmd.Execution.BusyVisibility}">
-            <DialogPanel.Header>
-                <TextBlock Margin="0,5,0,5" Text="{x:Static properties:Strings.ImportView_Description}" />
-            </DialogPanel.Header>
-            <DialogPanel.Buttons>
-                <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}"
+         <DialogPanel.Header>
+            <TextBlock Margin="0,5,0,5" Text="{x:Static properties:Strings.ImportView_Description}" />
+         </DialogPanel.Header>
+         <DialogPanel.Buttons>
+            <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}"
                          Command="{Binding OkCmd}" IsEnabled="{Binding OkCmd.Execution.TaskCompleted}"
                          Content="{x:Static properties:Strings.ImportView_ImportProduct}"
                          Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanImport}}"/>
 
-                <EddieButton Content="{x:Static properties:Strings.ImportView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
+            <EddieButton Content="{x:Static properties:Strings.ImportView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          HorizontalAlignment="Right"
                          Margin="5" Command="{Binding CancelCmd}" />
             </DialogPanel.Buttons>
