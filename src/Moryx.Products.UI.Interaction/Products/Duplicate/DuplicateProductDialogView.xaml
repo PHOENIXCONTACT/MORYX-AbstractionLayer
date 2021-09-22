@@ -17,11 +17,11 @@
             <Setter Property="Background" Value="White"/>
         </Style>
     </d:DesignerProperties.DesignStyle>
-    
+
     <UserControl.Resources>
         <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
     </UserControl.Resources>
-    
+
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
             <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}" Command="{Binding DuplicateCmd}" Content="{x:Static properties:Strings.DuplicateProductDialogView_Clone}" 
@@ -30,33 +30,33 @@
                          Command="{Binding CloseCmd}" Margin="10,0,0,0"/>
         </DialogPanel.Buttons>
         <Grid>
-        <DockPanel>
-            <DockPanel.Resources>
-                <Style TargetType="LabeledControlHost" BasedOn="{StaticResource {x:Type LabeledControlHost}}">
-                    <Setter Property="LabelMinWidth" Value="100" />
-                    <Setter Property="Eddie.TextFormat" Value="Bold" />
-                </Style>
-            </DockPanel.Resources>
+            <DockPanel>
+                <DockPanel.Resources>
+                    <Style TargetType="LabeledControlHost" BasedOn="{StaticResource {x:Type LabeledControlHost}}">
+                        <Setter Property="LabelMinWidth" Value="100" />
+                        <Setter Property="Eddie.TextFormat" Value="Bold" />
+                    </Style>
+                </DockPanel.Resources>
 
-            <LabeledControlHost DockPanel.Dock="Top"
+                <LabeledControlHost DockPanel.Dock="Top"
                                 LabelA="{x:Static properties:Strings.DuplicateProductDialogView_Identifier}">
-                <EddieTextBox Text="{Binding Identifier, UpdateSourceTrigger=PropertyChanged}"
+                    <EddieTextBox Text="{Binding Identifier, UpdateSourceTrigger=PropertyChanged}"
                               Watermark="2988773"  HorizontalAlignment="Stretch" MinWidth="300" />
-            </LabeledControlHost>
+                </LabeledControlHost>
 
-            <LabeledControlHost DockPanel.Dock="Top"
+                <LabeledControlHost DockPanel.Dock="Top"
                                 LabelA="{x:Static properties:Strings.DuplicateProductDialogView_Revision}"
                                 Margin="0,5,0,5">
-                <EddieTextBox Text="{Binding Revision, UpdateSourceTrigger=PropertyChanged}"
+                    <EddieTextBox Text="{Binding Revision, UpdateSourceTrigger=PropertyChanged}"
                               Watermark="0" Width="80" HorizontalAlignment="Left" />
-            </LabeledControlHost>
+                </LabeledControlHost>
 
-            <TextBlock DockPanel.Dock="Top"
+                <TextBlock DockPanel.Dock="Top"
                        Margin="0,10,0,0"
                        HorizontalAlignment="Center"
                        Text="{Binding ErrorMessage}"
                        FontWeight="Bold" Foreground="Red"/>
-        </DockPanel>
+            </DockPanel>
             <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanDuplicate}, Inverse=True}">
                 <TextBlock Text="You have no permission to duplicate a product" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
