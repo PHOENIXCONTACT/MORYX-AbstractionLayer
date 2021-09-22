@@ -30,7 +30,7 @@
                          Command="{Binding CloseCmd}" Margin="10,0,0,0"/>
         </DialogPanel.Buttons>
         <Grid>
-            <DockPanel>
+        <DockPanel>
             <DockPanel.Resources>
                 <Style TargetType="LabeledControlHost" BasedOn="{StaticResource {x:Type LabeledControlHost}}">
                     <Setter Property="LabelMinWidth" Value="100" />
