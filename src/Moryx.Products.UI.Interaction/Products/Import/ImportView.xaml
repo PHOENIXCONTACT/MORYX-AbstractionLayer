@@ -58,7 +58,7 @@
 
             </DockPanel>
             <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanImport}, Inverse=True}">
-                <TextBlock Text="You have no permission to import a product" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static properties:Strings.ImportView_MissingPermission}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </Grid>
     </DialogPanel>

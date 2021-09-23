@@ -60,7 +60,7 @@
                        FontWeight="Bold" Foreground="Red"/>
             </DockPanel>
             <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowRevisions}, Inverse=True}">
-                <TextBlock Text="You have no permission to view revisions" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static properties:Strings.CreateRevisionView_MissingPermission}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </Grid>
     </DialogPanel>

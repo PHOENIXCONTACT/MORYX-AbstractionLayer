@@ -58,7 +58,7 @@
                        FontWeight="Bold" Foreground="Red"/>
             </DockPanel>
             <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanDuplicate}, Inverse=True}">
-                <TextBlock Text="You have no permission to duplicate a product" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static properties:Strings.DuplicateProductDialogView_MissingPermission}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </Grid>
     </DialogPanel>

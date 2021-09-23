@@ -34,7 +34,7 @@
                 </TextBlock>
             </DockPanel>
             <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static local:Permissions.CanRemove}, Inverse=True}">
-                <TextBlock Text="You have no permission to remove a resource" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static properties:Strings.RemoveResourceView_MissingPermission}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </Grid>
         <DialogPanel.Buttons>
