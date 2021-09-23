@@ -276,4 +276,10 @@
   <data name="InteractionWorkspaceViewModel_SaveTimeOut_Title" xml:space="preserve">
     <value>Zeitüberschreitung</value>
   </data>
+  <data name="TypeSelectorView_MissingPermission" xml:space="preserve">
+    <value>Sie haben nicht die Berechtigung, um Ressourcen anzulegen!</value>
+  </data>
+  <data name="RemoveResourceView_MissingPermission" xml:space="preserve">
+    <value>Sie haben nicht die Berechtigung, um Ressourcen zu entfernen!</value>
+  </data>
 </root>

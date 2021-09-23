@@ -9,6 +9,7 @@ namespace StartProject.UI
         static void Main(string[] args)
         {
             var heartOfLead = new HeartOfLead(args);
+            heartOfLead.AuthorizeEverything();
             heartOfLead.Initialize();
             heartOfLead.Start();
         }

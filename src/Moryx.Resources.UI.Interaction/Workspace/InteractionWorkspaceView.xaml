@@ -13,6 +13,7 @@
              xmlns:controls="clr-namespace:Moryx.AbstractionLayer.UI.Controls;assembly=Moryx.AbstractionLayer.UI"
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
+             xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:InteractionWorkspaceViewModel }"
              d:DesignHeight="416" d:DesignWidth="956">
 
@@ -27,6 +28,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/ToolbarButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Resources" />
+
             <wpfToolkit:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
             <InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="DisplayName" />
@@ -70,7 +74,8 @@
                                                         CancelEditCmd="{Binding CancelEditCmd}"
                                                         CancelEditContent="{x:Static properties:Strings.InteractionWorkspaceView_Cancel}"
                                                         SaveCmd="{Binding SaveCmd}"
-                                                        SaveContent="{x:Static properties:Strings.InteractionWorkspaceView_Save}"/>
+                                                        SaveContent="{x:Static properties:Strings.InteractionWorkspaceView_Save}"
+                                                        Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanEdit}}"/>
 
                     <Border DockPanel.Dock="Top"
                                 Background="#FFF1F3F5"
@@ -82,14 +87,15 @@
                                 <StackPanel MinWidth="155" Margin="3,0,0,0">
 
                                     <Button Style="{StaticResource ExtendedToolBarButtonStyle}"
-                                            Command="{Binding RemoveResourceCmd}">
+                                            Command="{Binding RemoveResourceCmd}"
+                                            Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanRemove}}">
                                         <DockPanel>
                                             <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Minus"/>
                                             <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.InteractionWorkspaceView_Remove}"/>
                                         </DockPanel>
                                     </Button>
 
-                                    <Separator BorderBrush="DarkGray"/>
+                                    <Separator BorderBrush="DarkGray" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanRemove}}"/>
                                 </StackPanel>
                             </Border>
 
@@ -153,7 +159,8 @@
                     <Button Style="{StaticResource ToolBarButtonStyle}" Margin="2.5,0,0,0"
                             Padding="0" Height="30" Width="40"
                             DockPanel.Dock="Right"
-                            Command="{Binding AspectConfiguratorCmd}">
+                            Command="{Binding AspectConfiguratorCmd}"
+                            Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowAspectConfigurator}}">
                         <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Gear" />
                     </Button>
                     <UniformGrid DockPanel.Dock="Left" Rows="1" >
@@ -168,7 +175,8 @@
                         </Button>
                         <Button Style="{StaticResource ToolBarButtonStyle}"
                                 Command="{Binding AddResourceCmd}"
-                                Padding="0" Height="30" HorizontalContentAlignment="Left">
+                                Padding="0" Height="30" HorizontalContentAlignment="Left"
+                                Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanAddResource}}">
                             <DockPanel>
                                 <Path Style="{StaticResource IconPathStyle}" Data="{CommonShape Plus}"/>
                                 <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.InteractionWorkspaceView_Add}"/>

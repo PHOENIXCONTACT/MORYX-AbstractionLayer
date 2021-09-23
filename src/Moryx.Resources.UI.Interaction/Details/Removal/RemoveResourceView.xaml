@@ -7,28 +7,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Moryx.Resources.UI.Interaction"
              xmlns:interaction="clr-namespace:Moryx.Resources.UI.Interaction"
+             xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:RemoveResourceViewModel}"
              d:DesignHeight="450" d:DesignWidth="800" MinHeight="150" Width="550">
+
+    <UserControl.Resources>
+        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Resources" />
+    </UserControl.Resources>
+
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
-        <DockPanel Width="550">
-            <TextBlock DockPanel.Dock="Bottom"
+        <Grid>
+            <DockPanel Width="550">
+                <TextBlock DockPanel.Dock="Bottom"
                        Margin="0,10,0,0"
                        HorizontalAlignment="Center"
                        Text="{Binding ErrorMessage}"
                        FontWeight="Bold"
                        Foreground="Red"
                        TextWrapping="Wrap"/>
-            <TextBlock DockPanel.Dock="Top">
+                <TextBlock DockPanel.Dock="Top">
                 <Run Text="{x:Static properties:Strings.RemoveResourceView_Description}" />
                 <Run FontWeight="Bold" Text="{Binding ResourceToRemove.Name, Mode=OneWay}"/>
-            </TextBlock>
-        </DockPanel>
+                </TextBlock>
+            </DockPanel>
+            <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static local:Permissions.CanRemove}, Inverse=True}">
+                <TextBlock Text="{x:Static properties:Strings.RemoveResourceView_MissingPermission}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </Grid>
         <DialogPanel.Buttons>
             <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}"
                          Command="{Binding RemoveCmd}"
-                         Content="{x:Static properties:Strings.RemoveResourceView_Remove}" />
+                         Content="{x:Static properties:Strings.RemoveResourceView_Remove}" 
+                         Visibility="{principals:VisibilityPermission Action={x:Static local:Permissions.CanRemove}}"  />
 
             <EddieButton DockPanel.Dock="Bottom" Content="{x:Static properties:Strings.RemoveResourceView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          HorizontalAlignment="Right"

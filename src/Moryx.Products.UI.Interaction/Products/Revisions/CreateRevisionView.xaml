@@ -8,6 +8,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Moryx.Products.UI.Interaction"
+             xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:CreateRevisionViewModel}"
              d:DesignHeight="216" d:DesignWidth="615" MinHeight="200" MinWidth="550">
@@ -16,41 +17,51 @@
             <Setter Property="Background" Value="White"/>
         </Style>
     </d:DesignerProperties.DesignStyle>
+
+    <UserControl.Resources>
+        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
+    </UserControl.Resources>
+
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <DialogPanel.Buttons>
-            <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.CreateRevisionView_Create}" />
+            <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.CreateRevisionView_Create}" 
+                         Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowRevisions}}" />
             <EddieButton DockPanel.Dock="Bottom" Content="{x:Static properties:Strings.CreateRevisionView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          HorizontalAlignment="Right" Command="{Binding CancelCmd}" Margin="5,0,0,0"/>
         </DialogPanel.Buttons>
+        <Grid>
+            <DockPanel>
+                <DockPanel.Resources>
+                    <Style TargetType="LabeledControlHost" BasedOn="{StaticResource {x:Type LabeledControlHost}}">
+                        <Setter Property="LabelMinWidth" Value="140" />
+                        <Setter Property="Eddie.TextFormat" Value="Bold" />
+                    </Style>
+                </DockPanel.Resources>
 
-        <DockPanel>
-            <DockPanel.Resources>
-                <Style TargetType="LabeledControlHost" BasedOn="{StaticResource {x:Type LabeledControlHost}}">
-                    <Setter Property="LabelMinWidth" Value="140" />
-                    <Setter Property="Eddie.TextFormat" Value="Bold" />
-                </Style>
-            </DockPanel.Resources>
-
-            <LabeledControlHost DockPanel.Dock="Top"
+                <LabeledControlHost DockPanel.Dock="Top"
                                 LabelA="{x:Static properties:Strings.CreateRevisionView_Product}">
-                <TextBlock Margin="0,0,0,5">
+                    <TextBlock Margin="0,0,0,5">
                     <Run Text="{Binding Product.FullIdentifier, Mode=OneWay}"/>
                     <Run Text="{Binding Product.Name, Mode=OneWay}"/>
-                </TextBlock>
-            </LabeledControlHost>
+                    </TextBlock>
+                </LabeledControlHost>
 
-            <LabeledControlHost DockPanel.Dock="Top" LabelA="{x:Static properties:Strings.CreateRevisionView_Revision}">
-                <StackPanel Orientation="Horizontal">
-                    <EddieTextBox Width="100" Text="{Binding NewRevision, UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding NumberErrorMessage}" Foreground="Red" Margin="4,0" HorizontalAlignment="Center" />
-                </StackPanel>
-            </LabeledControlHost>
+                <LabeledControlHost DockPanel.Dock="Top" LabelA="{x:Static properties:Strings.CreateRevisionView_Revision}">
+                    <StackPanel Orientation="Horizontal">
+                        <EddieTextBox Width="100" Text="{Binding NewRevision, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding NumberErrorMessage}" Foreground="Red" Margin="4,0" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </LabeledControlHost>
 
-            <TextBlock DockPanel.Dock="Top"
+                <TextBlock DockPanel.Dock="Top"
                        Margin="0,10,0,0"
                        HorizontalAlignment="Center"
                        Text="{Binding ErrorMessage}"
                        FontWeight="Bold" Foreground="Red"/>
-        </DockPanel>
+            </DockPanel>
+            <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowRevisions}, Inverse=True}">
+                <TextBlock Text="{x:Static properties:Strings.CreateRevisionView_MissingPermission}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </Grid>
     </DialogPanel>
 </UserControl>

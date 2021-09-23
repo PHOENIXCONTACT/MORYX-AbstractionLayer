@@ -151,6 +151,15 @@ namespace Moryx.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have permission to create new revisions!.
+        /// </summary>
+        public static string CreateRevisionView_MissingPermission {
+            get {
+                return ResourceManager.GetString("CreateRevisionView_MissingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product:.
         /// </summary>
         public static string CreateRevisionView_Product {
@@ -277,6 +286,15 @@ namespace Moryx.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have permission to duplicate a product..
+        /// </summary>
+        public static string DuplicateProductDialogView_MissingPermission {
+            get {
+                return ResourceManager.GetString("DuplicateProductDialogView_MissingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Revision.
         /// </summary>
         public static string DuplicateProductDialogView_Revision {
@@ -327,6 +345,15 @@ namespace Moryx.Products.UI.Interaction.Properties {
         public static string ImportView_ImportProduct {
             get {
                 return ResourceManager.GetString("ImportView_ImportProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have permission to add products!.
+        /// </summary>
+        public static string ImportView_MissingPermission {
+            get {
+                return ResourceManager.GetString("ImportView_MissingPermission", resourceCulture);
             }
         }
         
@@ -808,6 +835,15 @@ namespace Moryx.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have permission to remove products!.
+        /// </summary>
+        public static string RemoveProductView_MissingPermission {
+            get {
+                return ResourceManager.GetString("RemoveProductView_MissingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string RemoveProductView_RemoveProduct {
@@ -858,6 +894,15 @@ namespace Moryx.Products.UI.Interaction.Properties {
         public static string RevisionsView_Create {
             get {
                 return ResourceManager.GetString("RevisionsView_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have permission to view revisions!.
+        /// </summary>
+        public static string RevisionsView_MissingPermission {
+            get {
+                return ResourceManager.GetString("RevisionsView_MissingPermission", resourceCulture);
             }
         }
         

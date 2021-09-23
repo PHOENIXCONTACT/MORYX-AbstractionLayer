@@ -9,6 +9,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interaction="clr-namespace:Moryx.Products.UI.Interaction"
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
+             xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:RevisionsViewModel}" d:DesignWidth="325.354" d:DesignHeight="88.955"
              MinHeight="300" MinWidth="550">
@@ -17,6 +18,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Moryx.Products.UI;component/Templates.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
+
             <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="Revision" />
         </ResourceDictionary>
     </UserControl.Resources>
@@ -29,37 +33,43 @@
 
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}" MinWidth="480">
         <DialogPanel.Buttons>
-            <EddieButton Icon="{CommonShape CheckMark}" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.RevisionsView_Create}" Margin="0,0,10,0"/>
+            <EddieButton Icon="{CommonShape CheckMark}" Command="{Binding CreateCmd}" Content="{x:Static properties:Strings.RevisionsView_Create}" Margin="0,0,10,0"
+                          Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowRevisions}}"/>
             <EddieButton Icon="{MdiShape Folder_Open}" Command="{Binding OpenCmd}" CommandParameter="{Binding ElementName=RevisionsList, Path=SelectedItem}"
-                         Content="{x:Static properties:Strings.RevisionsView_Open}" />
+                         Content="{x:Static properties:Strings.RevisionsView_Open}"
+                         Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowRevisions}}"/>
 
             <EddieButton Icon="{CommonShape Cross}" Command="{Binding CloseCmd}" Content="{x:Static properties:Strings.RevisionsView_Close}" EddieStyle="Gray"/>
         </DialogPanel.Buttons>
-
-        <DockPanel LastChildFill="True">
-            <TextBlock DockPanel.Dock="Bottom"
+        <Grid>
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Bottom"
                        Margin="0,10,0,0"
                        HorizontalAlignment="Center"
                        Text="{Binding ErrorMessage}"
                        FontWeight="Bold" Foreground="Red"/>
 
-            <EddieListBox x:Name="RevisionsList"
+                <EddieListBox x:Name="RevisionsList"
                           DockPanel.Dock="Top"
                           ItemsSource="{Binding Revisions, Converter={StaticResource SortedCollectionViewSourceConverter}}"
                           SelectedItem="{Binding SelectedRevision, Mode=TwoWay}">
-                <EddieListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center"
+                    <EddieListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center"
                                    Text="{Binding DisplayName, Mode=OneWay}">
-                            <TextBlock.InputBindings>
-                                <MouseBinding MouseAction="LeftDoubleClick"
+                                <TextBlock.InputBindings>
+                                    <MouseBinding MouseAction="LeftDoubleClick"
                                               Command="{Binding DataContext.OpenCmd, RelativeSource={RelativeSource AncestorType={x:Type EddieListBox}}}"
                                               CommandParameter="{Binding}" />
-                            </TextBlock.InputBindings>
-                        </TextBlock>
-                    </DataTemplate>
-                </EddieListBox.ItemTemplate>
-            </EddieListBox>
-        </DockPanel>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                        </DataTemplate>
+                    </EddieListBox.ItemTemplate>
+                </EddieListBox>
+            </DockPanel>
+            <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowRevisions}, Inverse=True}">
+                <TextBlock Text="{x:Static properties:Strings.RevisionsView_MissingPermission}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </Grid>
     </DialogPanel>
 </UserControl>

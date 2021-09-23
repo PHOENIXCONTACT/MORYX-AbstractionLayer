@@ -12,6 +12,7 @@
              xmlns:controls="clr-namespace:Moryx.Controls;assembly=Moryx.Controls"
              xmlns:ui="clr-namespace:Moryx.Resources.UI;assembly=Moryx.Resources.UI"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
+             xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:TypeSelectorViewModel }"
              d:DesignHeight="441" d:DesignWidth="728" Height="450" Width="760">
 
@@ -20,6 +21,10 @@
             <Setter Property="Background" Value="White"/>
         </Style>
     </d:DesignerProperties.DesignStyle>
+
+    <UserControl.Resources>
+        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Resources" />
+    </UserControl.Resources>
 
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding CancelCmd}" Key="Escape" />
@@ -37,46 +42,46 @@
             <EddieButton Content="{x:Static properties:Strings.TypeSelectorView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          Command="{Binding CancelCmd}" Margin="10,0,0,0"/>
         </DialogPanel.Buttons>
+        <Grid>
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-        <Grid DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <EddieTreeView ItemsSource="{Binding TypeTree}" Width="320" Margin="0,0,5,0"
+                <EddieTreeView ItemsSource="{Binding TypeTree}" Width="320" Margin="0,0,5,0"
                            cal:Message.Attach="[Event SelectedItemChanged] = [Action OnTreeItemChanged($source, $eventArgs)]">
-                <EddieTreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type ui:ResourceTypeViewModel}" ItemsSource="{Binding DerivedTypes}">
-                        <TextBlock Text="{Binding DisplayName}" Eddie.TextFormat="Bold"/>
-                    </HierarchicalDataTemplate>
-                </EddieTreeView.Resources>
-            </EddieTreeView>
+                    <EddieTreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type ui:ResourceTypeViewModel}" ItemsSource="{Binding DerivedTypes}">
+                            <TextBlock Text="{Binding DisplayName}" Eddie.TextFormat="Bold"/>
+                        </HierarchicalDataTemplate>
+                    </EddieTreeView.Resources>
+                </EddieTreeView>
 
-            <DockPanel Grid.Column="1">
-                <StackPanel DockPanel.Dock="Top">
-                    <StackPanel.Resources>
-                        <Style TargetType="LabeledControlHost">
-                            <Setter Property="Eddie.TextFormat" Value="Bold" />
-                            <Setter Property="Margin" Value="0,0,0,10" />
-                            <Setter Property="LabelMinWidth" Value="90" />
-                        </Style>
-                    </StackPanel.Resources>
+                <DockPanel Grid.Column="1">
+                    <StackPanel DockPanel.Dock="Top">
+                        <StackPanel.Resources>
+                            <Style TargetType="LabeledControlHost">
+                                <Setter Property="Eddie.TextFormat" Value="Bold" />
+                                <Setter Property="Margin" Value="0,0,0,10" />
+                                <Setter Property="LabelMinWidth" Value="90" />
+                            </Style>
+                        </StackPanel.Resources>
 
-                    <LabeledControlHost LabelA="{x:Static properties:Strings.TypeSelectorView_Name}">
-                        <TextBlock Text="{Binding SelectedType.DisplayName}" />
-                    </LabeledControlHost>
+                        <LabeledControlHost LabelA="{x:Static properties:Strings.TypeSelectorView_Name}">
+                            <TextBlock Text="{Binding SelectedType.DisplayName}" />
+                        </LabeledControlHost>
 
-                    <LabeledControlHost LabelA="{x:Static properties:Strings.TypeSelectorView_Internal}">
-                        <TextBlock Text="{Binding SelectedType.Name}" />
-                    </LabeledControlHost>
+                        <LabeledControlHost LabelA="{x:Static properties:Strings.TypeSelectorView_Internal}">
+                            <TextBlock Text="{Binding SelectedType.Name}" />
+                        </LabeledControlHost>
 
-                    <LabeledControlHost LabelA="{x:Static properties:Strings.TypeSelectorView_Description}">
-                        <TextBlock Text="{Binding SelectedType.Description}" />
-                    </LabeledControlHost>
-                </StackPanel>
+                        <LabeledControlHost LabelA="{x:Static properties:Strings.TypeSelectorView_Description}">
+                            <TextBlock Text="{Binding SelectedType.Description}" />
+                        </LabeledControlHost>
+                    </StackPanel>
 
-                <TextBlock DockPanel.Dock="Bottom"
+                    <TextBlock DockPanel.Dock="Bottom"
                            Margin="0,10,0,0"
                            HorizontalAlignment="Center"
                            Text="{Binding ErrorMessage}"
@@ -84,29 +89,33 @@
                            Foreground="Red"
                            TextWrapping="Wrap"/>
 
-                <ScrollViewer DockPanel.Dock="Bottom"
+                    <ScrollViewer DockPanel.Dock="Bottom"
                               HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding SelectedType.Constructors}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Margin="0,10, 0, 10" Orientation="Vertical"></StackPanel>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <RadioButton GroupName="Constructor" IsChecked="{Binding IsSelected}" Content="{Binding DisplayName}"/>
-                                    <controls:EntryEditor BreadcrumbVisibility="Collapsed" IsEditMode="True"
+                        <ItemsControl ItemsSource="{Binding SelectedType.Constructors}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Margin="0,10, 0, 10" Orientation="Vertical"></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <RadioButton GroupName="Constructor" IsChecked="{Binding IsSelected}" Content="{Binding DisplayName}"/>
+                                        <controls:EntryEditor BreadcrumbVisibility="Collapsed" IsEditMode="True"
                                                            DockPanel.Dock="Bottom"
                                                            RootEntry="{Binding Parameters}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
 
-            </DockPanel>
+                </DockPanel>
+            </Grid>
+            <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanAddResource}, Inverse=True}">
+                <TextBlock Text="{x:Static properties:Strings.TypeSelectorView_MissingPermission}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
         </Grid>
     </DialogPanel>
 </UserControl>
