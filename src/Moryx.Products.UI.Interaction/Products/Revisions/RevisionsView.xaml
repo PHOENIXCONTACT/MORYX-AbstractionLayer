@@ -11,6 +11,7 @@
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
+             principals:PermissionProvider.DefaultResource="Moryx.Products"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:RevisionsViewModel}" d:DesignWidth="325.354" d:DesignHeight="88.955"
              MinHeight="300" MinWidth="550">
     <UserControl.Resources>
@@ -18,8 +19,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Moryx.Products.UI;component/Templates.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
 
             <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="Revision" />
         </ResourceDictionary>

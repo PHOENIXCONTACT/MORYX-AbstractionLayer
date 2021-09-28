@@ -14,6 +14,7 @@
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
              xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
+             principals:PermissionProvider.DefaultResource="Moryx.Resources"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:InteractionWorkspaceViewModel }"
              d:DesignHeight="416" d:DesignWidth="956">
 
@@ -28,8 +29,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/ToolbarButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
-            <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Resources" />
 
             <wpfToolkit:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
             <InverseBooleanConverter x:Key="InverseBooleanConverter" />

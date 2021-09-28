@@ -13,6 +13,7 @@
              xmlns:ui="clr-namespace:Moryx.Resources.UI;assembly=Moryx.Resources.UI"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
              xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
+             principals:PermissionProvider.DefaultResource="Moryx.Resources"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:TypeSelectorViewModel }"
              d:DesignHeight="441" d:DesignWidth="728" Height="450" Width="760">
 
@@ -21,10 +22,6 @@
             <Setter Property="Background" Value="White"/>
         </Style>
     </d:DesignerProperties.DesignStyle>
-
-    <UserControl.Resources>
-        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Resources" />
-    </UserControl.Resources>
 
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding CancelCmd}" Key="Escape" />
