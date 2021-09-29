@@ -181,4 +181,43 @@
   <data name="SelectTargetDialogView_Name" xml:space="preserve">
     <value>Nazwa</value>
   </data>
+  <data name="InteractionWorkspaceViewModel_SaveTimeOut_Message" xml:space="preserve">
+    <value>Zapisanie trwa dłużej, niż zazwyczaj. Aktualizuj ponownie później.</value>
+  </data>
+  <data name="InteractionWorkspaceViewModel_SaveTimeOut_Title" xml:space="preserve">
+    <value>Zapisz przekroczenie czasu</value>
+  </data>
+  <data name="PropertiesAspectViewModel_DisplayName" xml:space="preserve">
+    <value>Właściwości</value>
+  </data>
+  <data name="ReferencesAspectView_AddTarget" xml:space="preserve">
+    <value>Dodaj cel</value>
+  </data>
+  <data name="ReferencesAspectView_LinkTarget" xml:space="preserve">
+    <value>Powiąż cel</value>
+  </data>
+  <data name="ReferencesAspectView_RequiredReference" xml:space="preserve">
+    <value>Ta referencja jest niezbędna i musi zostać określona!</value>
+  </data>
+  <data name="ReferencesAspectView_SingleReference_TargetNull" xml:space="preserve">
+    <value>Te referencja nie ma obecnie celu.</value>
+  </data>
+  <data name="ReferencesAspectView_UnlinkTarget" xml:space="preserve">
+    <value>Usuń powiązanie celu</value>
+  </data>
+  <data name="ReferencesAspectViewModel_Validation_CollectionTargetMustBeSet" xml:space="preserve">
+    <value>Referencja musi mieć przynajmniej jeden cel!</value>
+  </data>
+  <data name="ReferencesAspectViewModel_Validation_SingleTargetMustBeSet" xml:space="preserve">
+    <value>Ta referencja wymaga celu</value>
+  </data>
+  <data name="RemoveResourceView_Description" xml:space="preserve">
+    <value>Następujący zasób zostanie usunięty:</value>
+  </data>
+  <data name="RemoveResourceViewModel_DisplayName" xml:space="preserve">
+    <value>Usuń zasób</value>
+  </data>
+  <data name="RemoveResourceViewModel_ErrorWhileRemove" xml:space="preserve">
+    <value>Zasób nie został usunięty!</value>
+  </data>
 </root>
