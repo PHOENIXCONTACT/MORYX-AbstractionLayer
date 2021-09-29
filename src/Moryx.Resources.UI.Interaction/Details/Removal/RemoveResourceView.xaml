@@ -11,12 +11,9 @@
              xmlns:interaction="clr-namespace:Moryx.Resources.UI.Interaction"
              xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
+             principals:PermissionProvider.DefaultResource="Moryx.Resources"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:RemoveResourceViewModel}"
              d:DesignHeight="450" d:DesignWidth="800" MinHeight="150" Width="550">
-
-    <UserControl.Resources>
-        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Resources" />
-    </UserControl.Resources>
 
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
         <Grid>

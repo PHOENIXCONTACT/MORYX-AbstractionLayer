@@ -16,6 +16,7 @@
              xmlns:productService1="clr-namespace:Moryx.Products.UI.ProductService;assembly=Moryx.Products.UI"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
              xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
+             principals:PermissionProvider.DefaultResource="Moryx.Products"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:ProductsWorkspaceViewModel}"
              d:DesignHeight="616" d:DesignWidth="1077"
              x:Name="UserControl">
@@ -30,8 +31,6 @@
                 <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/styles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Moryx.AbstractionLayer.UI;component/ToolbarButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
-            <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
 
             <sys:Boolean x:Key="True">True</sys:Boolean>
             <wpfToolkit:BooleanToVisibilityConverter x:Key="VisibilityConverter" />

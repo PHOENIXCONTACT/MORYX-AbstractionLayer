@@ -11,6 +11,7 @@
              xmlns:controls="clr-namespace:Moryx.Controls;assembly=Moryx.Controls"
              xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
+             principals:PermissionProvider.DefaultResource="Moryx.Products"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:ImportViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <d:DesignerProperties.DesignStyle>
@@ -18,10 +19,6 @@
             <Setter Property="Background" Value="White"/>
         </Style>
     </d:DesignerProperties.DesignStyle>
-
-    <UserControl.Resources>
-        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
-    </UserControl.Resources>
 
     <DialogPanel Background="White" BusyVisibility="{Binding OkCmd.Execution.BusyVisibility}">
         <DialogPanel.Header>

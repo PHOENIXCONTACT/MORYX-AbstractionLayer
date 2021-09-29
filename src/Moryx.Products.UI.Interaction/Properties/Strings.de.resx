@@ -410,7 +410,7 @@
     <value>Sie haben nicht die nötige Berechtigung, um Produkte zu entfernen!</value>
   </data>
   <data name="ImportView_MissingPermission" xml:space="preserve">
-    <value>Sie haben nicht die Berechtigung, um Produkte hinzu zu fügen!</value>
+    <value>Sie haben nicht die Berechtigung, um Produkte hinzuzufügen!</value>
   </data>
   <data name="DuplicateProductDialogView_MissingPermission" xml:space="preserve">
     <value>Sie haben nicht die Berechtigung, um Produkte zu duplizieren.</value>

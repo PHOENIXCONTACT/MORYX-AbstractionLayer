@@ -11,6 +11,7 @@
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
+             principals:PermissionProvider.DefaultResource="Moryx.Products"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance local:RemoveProductViewModel}"
              d:DesignHeight="300" d:DesignWidth="300" MinWidth="550" MinHeight="150">
     <d:DesignerProperties.DesignStyle>
@@ -19,8 +20,6 @@
         </Style>
     </d:DesignerProperties.DesignStyle>
     <UserControl.Resources>
-        <principals:UserControlPermissions x:Key="{x:Static principals:UserControlPermissions.Key}" Resource="Moryx.Products" />
-
         <ui:SortedCollectionViewSourceConverter x:Key="SortedCollectionViewSourceConverter" Property="Identifier" />
     </UserControl.Resources>
     <DialogPanel BusyVisibility="{Binding TaskNotifier.BusyVisibility}">
