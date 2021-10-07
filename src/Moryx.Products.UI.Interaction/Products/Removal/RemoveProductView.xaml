@@ -9,7 +9,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Moryx.Products.UI.Interaction"
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
+             xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
+             principals:PermissionProvider.DefaultResource="Moryx.Products"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance local:RemoveProductViewModel}"
              d:DesignHeight="300" d:DesignWidth="300" MinWidth="550" MinHeight="150">
     <d:DesignerProperties.DesignStyle>
@@ -30,49 +32,55 @@
         <DialogPanel.Buttons>
             <EddieButton IsDefault="True" Icon="{CommonShape CheckMark}"
                          Command="{Binding RemoveCmd}"
-                         Content="{x:Static properties:Strings.RemoveProductView_RemoveProduct}" />
+                         Content="{x:Static properties:Strings.RemoveProductView_RemoveProduct}" 
+                         Visibility="{principals:VisibilityPermission Action={x:Static local:Permissions.CanRemove}}" />
 
             <EddieButton DockPanel.Dock="Bottom" Content="{x:Static properties:Strings.RemoveProductView_Cancel}" Icon="{CommonShape Cross}" EddieStyle="Gray"
                          HorizontalAlignment="Right"
                          Command="{Binding CancelCmd}" />
         </DialogPanel.Buttons>
 
-        <DockPanel LastChildFill="True">
-            <DockPanel.Style>
-                <Style TargetType="DockPanel">
-                    <Setter Property="Visibility" Value="Visible" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding AffectedProducts.Count}" Value="0">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DockPanel.Style>
+        <Grid>
+            <DockPanel LastChildFill="True">
+                <DockPanel.Style>
+                    <Style TargetType="DockPanel">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AffectedProducts.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DockPanel.Style>
 
-            <TextBlock DockPanel.Dock="Bottom"
+                <TextBlock DockPanel.Dock="Bottom"
                        Margin="0,10,0,0"
                        HorizontalAlignment="Center"
                        Text="{Binding ErrorMessage}"
                        FontWeight="Bold" Foreground="Red"/>
 
-            <ScrollViewer DockPanel.Dock="Top" Margin="0,5,0,0" MinHeight="300" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <DockPanel LastChildFill="True">
-                    <TextBlock DockPanel.Dock="Top" FontWeight="Bold" Text="{x:Static properties:Strings.RemoveProductView_InUseBy}" Margin="0,0,0,5" />
+                <ScrollViewer DockPanel.Dock="Top" Margin="0,5,0,0" MinHeight="300" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <DockPanel LastChildFill="True">
+                        <TextBlock DockPanel.Dock="Top" FontWeight="Bold" Text="{x:Static properties:Strings.RemoveProductView_InUseBy}" Margin="0,0,0,5" />
 
-                    <Border BorderThickness="1,1,1,1" BorderBrush="LightGray" DockPanel.Dock="Bottom" >
-                        <ItemsControl ItemsSource="{Binding AffectedProducts, Converter={StaticResource SortedCollectionViewSourceConverter}}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Height="30">
-                                        <TextBlock DockPanel.Dock="Left" Margin="5,0,0,0" VerticalAlignment="Center"
+                        <Border BorderThickness="1,1,1,1" BorderBrush="LightGray" DockPanel.Dock="Bottom" >
+                            <ItemsControl ItemsSource="{Binding AffectedProducts, Converter={StaticResource SortedCollectionViewSourceConverter}}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Height="30">
+                                            <TextBlock DockPanel.Dock="Left" Margin="5,0,0,0" VerticalAlignment="Center"
                                                    Text="{Binding DisplayName, Mode=OneWay}" />
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </Border>
-                </DockPanel>
-            </ScrollViewer>
-        </DockPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border>
+                    </DockPanel>
+                </ScrollViewer>
+            </DockPanel>
+            <Border BorderThickness="1" Background="White" Visibility="{principals:VisibilityPermission Action={x:Static local:Permissions.CanRemove}, Inverse=True}">
+                <TextBlock Text="{x:Static properties:Strings.RemoveProductView_MissingPermission}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </Grid>
     </DialogPanel>
 </UserControl>
