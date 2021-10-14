@@ -368,7 +368,7 @@ namespace Moryx.Products.Management
                 {
                     // Get all revisions of this product
                     var revisions = productRepo.Linq
-                        .Where(p => p.Identifier == identity.Identifier)
+                        .Where(p => p.Identifier == identity.Identifier && p.Deleted != null)
                         .Select(p => p.Revision).ToList();
                     if (revisions.Any())
                         revision = revisions.Max();
