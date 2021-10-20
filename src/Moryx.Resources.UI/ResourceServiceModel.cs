@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Threading.Tasks;
+using Moryx.Communication;
 using Moryx.Logging;
 using Moryx.Resources.UI.ResourceService;
 using Moryx.Tools.Wcf;
@@ -13,19 +14,30 @@ namespace Moryx.Resources.UI
     /// <summary>
     /// Service model implementation for the resource rest service
     /// </summary>
-    internal class ResourceServiceModel : WebHttpServiceConnectorBase, IResourceServiceModel
+    public class ResourceServiceModel : WebHttpServiceConnectorBase, IResourceServiceModel
     {
+        /// <inheritdoc />
         public override string ServiceName => nameof(IResourceInteraction);
 
+        /// <inheritdoc />
         protected override string ClientVersion => "5.0.0";
 
+        /// <inheritdoc />
         public ResourceTypeModel TypeTree { get; private set; }
 
+        /// <inheritdoc />
         public ResourceServiceModel(IWcfClientFactory clientFactory, IModuleLogger  logger)
             : base(clientFactory, logger.GetChild(nameof(ResourceServiceModel), typeof(ResourceServiceModel)))
         {
         }
 
+        /// <inheritdoc />
+        public ResourceServiceModel(string host, int port, IProxyConfig proxyConfig, IModuleLogger logger)
+            : base(host, port, proxyConfig, logger.GetChild(nameof(ResourceServiceModel), typeof(ResourceServiceModel)))
+        {
+        }
+
+        /// <inheritdoc />
         public override async Task ConnectionCallback(ConnectionState connectionState)
         {
             if (connectionState != ConnectionState.Success)
@@ -36,12 +48,14 @@ namespace Moryx.Resources.UI
             }
         }
 
+        /// <inheritdoc />
         public async Task<ResourceTypeModel> GetTypeTree()
         {
             TypeTree = await GetAsync<ResourceTypeModel>("types");
             return TypeTree;
         }
 
+        /// <inheritdoc />
         public Task<ResourceModel[]> GetResourceTree()
         {
             var query = new ResourceQuery
@@ -61,21 +75,25 @@ namespace Moryx.Resources.UI
             return GetResources(query);
         }
 
+        /// <inheritdoc />
         public Task<ResourceModel[]> GetResources(ResourceQuery query)
         {
             return PostAsync<ResourceModel[]>("query", query);
         }
 
+        /// <inheritdoc />
         public Task<ResourceModel> CreateResource(string typeName)
         {
             return PostAsync<ResourceModel>($"construct/{typeName}", null);
         }
 
+        /// <inheritdoc />
         public Task<ResourceModel> CreateResource(string typeName, MethodEntry constructor)
         {
             return PostAsync<ResourceModel>($"construct/{typeName}?method={constructor.Name}", constructor.Parameters);
         }
 
+        /// <inheritdoc />
         public Task<ResourceModel> SaveResource(ResourceModel resource)
         {
             return resource.Id == 0
@@ -83,16 +101,19 @@ namespace Moryx.Resources.UI
                 : PutAsync<ResourceModel>($"resource/{resource.Id}", resource);
         }
 
+        /// <inheritdoc />
         public Task<bool> RemoveResource(long resourceId)
         {
             return DeleteAsync($"resource/{resourceId}");
         }
 
+        /// <inheritdoc />
         public Task<ResourceModel[]> GetDetails(long[] resourceIds)
         {
             return GetAsync<ResourceModel[]>($"batch/{string.Join(",", resourceIds)}");
         }
 
+        /// <inheritdoc />
         public Task<Entry> InvokeMethod(long resourceId, MethodEntry method)
         {
             return PostAsync<Entry>($"resource/{resourceId}/invoke/{method.Name}", method.Parameters);
