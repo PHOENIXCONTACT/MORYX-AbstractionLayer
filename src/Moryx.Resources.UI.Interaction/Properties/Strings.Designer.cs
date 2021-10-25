@@ -322,6 +322,15 @@ namespace Moryx.Resources.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have permissions to remove a resource!.
+        /// </summary>
+        public static string RemoveResourceView_MissingPermission {
+            get {
+                return ResourceManager.GetString("RemoveResourceView_MissingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string RemoveResourceView_Remove {
@@ -507,6 +516,15 @@ namespace Moryx.Resources.UI.Interaction.Properties {
         public static string TypeSelectorView_Internal {
             get {
                 return ResourceManager.GetString("TypeSelectorView_Internal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have permissions to add a resource!.
+        /// </summary>
+        public static string TypeSelectorView_MissingPermission {
+            get {
+                return ResourceManager.GetString("TypeSelectorView_MissingPermission", resourceCulture);
             }
         }
         

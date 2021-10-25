@@ -42,7 +42,7 @@ namespace Moryx.Products.UI.Interaction
             // Register and start service model
             var clientFactory = Container.Resolve<IWcfClientFactory>();
             var logger = Container.Resolve<IModuleLogger>();
-            var serviceModel = Products.CreateServiceModel(clientFactory, logger);
+            IProductServiceModel serviceModel = new ProductServiceModel(clientFactory, logger);
 
             Container.SetInstance(serviceModel);
 

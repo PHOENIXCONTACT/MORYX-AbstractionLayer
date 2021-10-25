@@ -400,4 +400,22 @@
   <data name="ProductsWorkspaceViewModel_SaveTimeOut_Message" xml:space="preserve">
     <value>Das Speichern dauert länger als erwartet.</value>
   </data>
+  <data name="SelectPartLinkDialogView_Search" xml:space="preserve">
+    <value>Suche</value>
+  </data>
+  <data name="CreateRevisionView_MissingPermission" xml:space="preserve">
+    <value>Sie haben nicht die Berechtigung, um Revisionen anzulegen!</value>
+  </data>
+  <data name="RemoveProductView_MissingPermission" xml:space="preserve">
+    <value>Sie haben nicht die nötige Berechtigung, um Produkte zu entfernen!</value>
+  </data>
+  <data name="ImportView_MissingPermission" xml:space="preserve">
+    <value>Sie haben nicht die Berechtigung, um Produkte hinzuzufügen!</value>
+  </data>
+  <data name="DuplicateProductDialogView_MissingPermission" xml:space="preserve">
+    <value>Sie haben nicht die Berechtigung, um Produkte zu duplizieren.</value>
+  </data>
+  <data name="RevisionsView_MissingPermission" xml:space="preserve">
+    <value>Sie haben nicht die nötige Berechtigung, um Revisionen einzusehen!</value>
+  </data>
 </root>

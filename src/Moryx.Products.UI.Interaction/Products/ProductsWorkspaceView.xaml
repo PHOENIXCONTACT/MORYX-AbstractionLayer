@@ -15,6 +15,8 @@
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:productService1="clr-namespace:Moryx.Products.UI.ProductService;assembly=Moryx.Products.UI"
              xmlns:properties="clr-namespace:Moryx.Products.UI.Interaction.Properties"
+             xmlns:principals="clr-namespace:Moryx.ClientFramework.Principals;assembly=Moryx.ClientFramework"
+             principals:PermissionProvider.DefaultResource="Moryx.Products"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance interaction:ProductsWorkspaceViewModel}"
              d:DesignHeight="616" d:DesignWidth="1077"
              x:Name="UserControl">
@@ -124,7 +126,7 @@
                     <Button Style="{StaticResource ToolBarButtonStyle}" Margin="2.5,0,0,0"
                             Padding="0" Height="30" Width="40"
                             DockPanel.Dock="Right"
-                            Command="{Binding AspectConfiguratorCmd}">
+                            Command="{Binding AspectConfiguratorCmd}" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowAspectConfigurator}}">
                         <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Gear" />
                     </Button>
                     <UniformGrid Rows="1" DockPanel.Dock="Left">
@@ -138,7 +140,7 @@
                         </Button>
                         <Button Style="{StaticResource ToolBarButtonStyle}"
                                 Padding="0" Height="30" HorizontalContentAlignment="Left"
-                                Command="{Binding ImportCmd}">
+                                Command="{Binding ImportCmd}" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanImport}}">
                             <DockPanel LastChildFill="True">
                                 <Path Style="{StaticResource IconPathStyle}" DockPanel.Dock="Left" Data="{MdiShape Import}" />
                                 <TextBlock Style="{StaticResource TextBlockStyle}" DockPanel.Dock="Right" Text="{x:Static properties:Strings.ProductsWorkspaceView_Import}"/>
@@ -228,7 +230,8 @@
                                                 CancelEditCmd="{Binding CancelEditCmd}"
                                                 CancelEditContent="{x:Static properties:Strings.ProductsWorkspaceView_Cancel}"
                                                 SaveCmd="{Binding SaveCmd}"
-                                                SaveContent="{x:Static properties:Strings.ProductsWorkspaceView_Save}" />
+                                                SaveContent="{x:Static properties:Strings.ProductsWorkspaceView_Save}" 
+                                                Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanEdit}}"/>
 
                 <Border DockPanel.Dock="Top"
                         Style="{StaticResource EditableObjectVisibilityStyle}"
@@ -250,25 +253,28 @@
                                     </ResourceDictionary>
                                 </StackPanel.Resources>
 
-                                <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding DuplicateCmd}">
+                                <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding DuplicateCmd}" 
+                                        Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanDuplicate}}">
                                     <DockPanel>
                                         <Path Style="{StaticResource IconPathStyle}" Data="{MdiShape Content_Duplicate}"/>
                                         <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.ProductsWorkspaceView_Duplicate}"/>
                                     </DockPanel>
                                 </Button>
 
-                                <Separator BorderBrush="DarkGray"/>
+                                <Separator BorderBrush="DarkGray" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanDuplicate}}"/>
 
-                                <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding ShowRevisionsCmd}">
+                                <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding ShowRevisionsCmd}"
+                                        Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowRevisions}}">
                                     <DockPanel>
                                         <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="ClockWithCheckmark"/>
                                         <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.ProductsWorkspaceView_Revisions}"/>
                                     </DockPanel>
                                 </Button>
 
-                                <Separator BorderBrush="DarkGray"/>
+                                <Separator BorderBrush="DarkGray" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanShowRevisions}}"/>
 
-                                <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding RemoveCmd}">
+                                <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding RemoveCmd}"
+                                        Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanRemove}}">
                                     <DockPanel>
                                         <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Minus"/>
                                         <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.ProductsWorkspaceView_Remove}"/>

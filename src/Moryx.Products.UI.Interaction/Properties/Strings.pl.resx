@@ -259,4 +259,100 @@
   <data name="SelectPartLinkDialogView_Cancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
+  <data name="AddRecipeDialogView_Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="CreateRevisionViewModel_ConflictedIdentity" xml:space="preserve">
+    <value>Podana tożsamość i wersja są sprzeczne z aktualnymi danymi.</value>
+  </data>
+  <data name="CreateRevisionViewModel_RevisionNotAvailable" xml:space="preserve">
+    <value>Wersja niedostępna</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_General_Classification" xml:space="preserve">
+    <value>Klasyfikacja</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_General_Title" xml:space="preserve">
+    <value>Informacje ogólne</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_General_Workplan" xml:space="preserve">
+    <value>Plan pracy</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_NoProperties" xml:space="preserve">
+    <value>Receptura nie ma konfigurowalnych właściwości.</value>
+  </data>
+  <data name="DefaultRecipeDetailsView_Properties" xml:space="preserve">
+    <value>Właściwości</value>
+  </data>
+  <data name="DuplicateProductDialogViewModel_ConflictedIdentity" xml:space="preserve">
+    <value>Podana tożsamość i wersja są sprzeczne z aktualnymi danymi.</value>
+  </data>
+  <data name="ImportView_Description" xml:space="preserve">
+    <value>Importowanie produktu używając importerów.</value>
+  </data>
+  <data name="ProductsWorkspaceView_Duplicate" xml:space="preserve">
+    <value>Duplikuj</value>
+  </data>
+  <data name="ProductsWorkspaceView_Filter" xml:space="preserve">
+    <value>Filtr</value>
+  </data>
+  <data name="ProductsWorkspaceView_Filter_Identifier" xml:space="preserve">
+    <value>Identyfikator</value>
+  </data>
+  <data name="ProductsWorkspaceView_General_Identifier" xml:space="preserve">
+    <value>Identyfikator:</value>
+  </data>
+  <data name="ProductsWorkspaceView_Import" xml:space="preserve">
+    <value>Importuj</value>
+  </data>
+  <data name="ProductsWorkspaceViewModel_SaveTimeOut_Message" xml:space="preserve">
+    <value>Zapisanie trwa dłużej, niż zazwyczaj. Aktualizuj ponownie później.</value>
+  </data>
+  <data name="ProductsWorkspaceViewModel_SaveTimeOut_Title" xml:space="preserve">
+    <value>Zapisz przekroczenie czasu</value>
+  </data>
+  <data name="PropertiesAspectViewModel_DisplayName" xml:space="preserve">
+    <value>Właściwości</value>
+  </data>
+  <data name="RelationsAspectView_ListTitle" xml:space="preserve">
+    <value>Powiązania:</value>
+  </data>
+  <data name="RelationsAspectView_ListView_Identifier" xml:space="preserve">
+    <value>Identyfikator</value>
+  </data>
+  <data name="RelationsAspectView_ListView_Revision" xml:space="preserve">
+    <value>Wersja</value>
+  </data>
+  <data name="RelationsAspectViewModel_DisplayName" xml:space="preserve">
+    <value>Powiązania</value>
+  </data>
+  <data name="RemoveProductView_Description" xml:space="preserve">
+    <value>Następujący produkt zostanie usunięty:</value>
+  </data>
+  <data name="RemoveProductView_InUseBy" xml:space="preserve">
+    <value>W użyciu przez:</value>
+  </data>
+  <data name="RemoveProductViewModel_DisplayName" xml:space="preserve">
+    <value>Usuń produkt</value>
+  </data>
+  <data name="RemoveProductViewModel_ErrorWhileRemove" xml:space="preserve">
+    <value>Produkt nie został usunięty!</value>
+  </data>
+  <data name="SinglePartConnectorPartView_Change" xml:space="preserve">
+    <value>Zmiana</value>
+  </data>
+  <data name="SinglePartConnectorPartView_Clear" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="SinglePartConnectorPartView_DefaultPartConnectorName" xml:space="preserve">
+    <value>Pusta</value>
+  </data>
+  <data name="SinglePartConnectorPartView_Description" xml:space="preserve">
+    <value>Poniższa konfiguracja edytuje właściwości powiązania z produktem.</value>
+  </data>
+  <data name="SinglePartConnectorPartView_EmptyProperties" xml:space="preserve">
+    <value>Powiązanie nie udostępnia konfiguracji.</value>
+  </data>
+  <data name="SinglePartConnectorPartView_NullLink" xml:space="preserve">
+    <value>Dla wybranego powiązania nie ma żadnego produktu.</value>
+  </data>
 </root>
