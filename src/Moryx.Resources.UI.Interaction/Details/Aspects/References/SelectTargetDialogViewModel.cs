@@ -3,10 +3,11 @@
 
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Moryx.WpfToolkit;
 using Caliburn.Micro;
+using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
 using Moryx.ClientFramework.Tasks;
 using Moryx.Resources.UI.Interaction.Properties;
@@ -60,8 +61,8 @@ namespace Moryx.Resources.UI.Interaction.Aspects
             _resourceServiceModel = resourceServiceModel;
             Reference = reference;
 
-            SelectCmd = new RelayCommand(Select, CanSelect);
-            CancelCmd = new RelayCommand(Cancel);
+            SelectCmd = new AsyncCommand(Select, CanSelect, true);
+            CancelCmd = new AsyncCommand(Cancel, _ => true, true);
         }
 
         public ResourceInfoViewModel[] PossibleTargets { get; private set; }
@@ -77,9 +78,9 @@ namespace Moryx.Resources.UI.Interaction.Aspects
         }
 
         /// <inheritdoc />
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
 
             var loadingTask = Task.Run(async delegate
             {
@@ -94,7 +95,7 @@ namespace Moryx.Resources.UI.Interaction.Aspects
                     var possibleTargetsVms = possibleTargets.Where(resource => Reference.Targets.All(t => t.Id != resource.Id))
                         .Select(possible => new ResourceInfoViewModel(possible));
 
-                    await Execute.OnUIThreadAsync(delegate
+                    Execute.OnUIThread(delegate
                     {
                         PossibleTargets = possibleTargetsVms.ToArray();
                         SelectedTarget = PossibleTargets.FirstOrDefault();
@@ -103,9 +104,9 @@ namespace Moryx.Resources.UI.Interaction.Aspects
                 }
                 catch (Exception e)
                 {
-                    await Execute.OnUIThreadAsync(() => ErrorMessage = e.Message);
+                    Execute.OnUIThread(() => ErrorMessage = e.Message);
                 }
-            });
+            }, cancellationToken);
 
             TaskNotifier = new TaskNotifier(loadingTask);
         }
@@ -113,10 +114,10 @@ namespace Moryx.Resources.UI.Interaction.Aspects
         private bool CanSelect(object obj) =>
             SelectedTarget != null;
 
-        private void Select(object obj) =>
-            TryClose(true);
+        private Task Select(object obj) =>
+            TryCloseAsync(true);
 
-        private void Cancel(object obj) =>
-            TryClose(false);
+        private Task Cancel(object obj) =>
+            TryCloseAsync(false);
     }
 }

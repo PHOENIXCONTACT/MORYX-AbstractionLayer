@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Moryx.ClientFramework.Commands;
@@ -10,7 +11,7 @@ using Moryx.Controls;
 using Moryx.Resources.UI.Interaction.Properties;
 using Moryx.Serialization;
 
-namespace Moryx.Resources.UI.Interaction.Aspects.Methods
+namespace Moryx.Resources.UI.Interaction.Aspects
 {
     [ResourceAspectRegistration(nameof(ResourceMethodsAspectViewModel))]
     internal class ResourceMethodsAspectViewModel : ResourceAspectViewModelBase
@@ -55,9 +56,9 @@ namespace Moryx.Resources.UI.Interaction.Aspects.Methods
             }
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
 
             MethodInvokeCmd = new AsyncCommand(InvokeMethod, CanInvokeMethod, true);
         }

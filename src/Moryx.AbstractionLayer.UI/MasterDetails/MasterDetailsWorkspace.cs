@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -79,7 +80,7 @@ namespace Moryx.AbstractionLayer.UI
         /// </summary>
         public bool IsEditMode
         {
-            get { return _isEditMode; }
+            get => _isEditMode;
             private set
             {
                 _isEditMode = value;
@@ -94,7 +95,7 @@ namespace Moryx.AbstractionLayer.UI
         /// </summary>
         public bool IsBusy
         {
-            get { return _isBusy; }
+            get => _isBusy;
             protected set
             {
                 _isBusy = value;
@@ -120,10 +121,8 @@ namespace Moryx.AbstractionLayer.UI
         }
 
         ///
-        protected override void OnInitialize()
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
-
             // Show busy indicator on master because we are not sure if the master is currently loaded
             IsBusy = true;
 
@@ -132,6 +131,8 @@ namespace Moryx.AbstractionLayer.UI
             // Create empty details here
             EmptyDetails = DetailsFactory.Create(DetailsConstants.EmptyType) as TEmptyDetails;
             ShowEmpty();
+
+            return base.OnInitializeAsync(cancellationToken);
         }
 
         /// <summary>
@@ -159,7 +160,7 @@ namespace Moryx.AbstractionLayer.UI
                 Logger.LogException(LogLevel.Error, e, errorMessage);
 
                 EmptyDetails.Display(MessageSeverity.Error, errorMessage);
-                ActivateItem(EmptyDetails);
+                await ActivateItemAsync(EmptyDetails);
                 throw;
             }
             finally
@@ -253,7 +254,7 @@ namespace Moryx.AbstractionLayer.UI
         }
 
         /// <inheritdoc />
-        public override void ActivateItem(IScreen item)
+        public override async Task ActivateItemAsync(IScreen item, CancellationToken cancellationToken = default)
         {
             if (item == ActiveItem)
                 return;
@@ -261,21 +262,21 @@ namespace Moryx.AbstractionLayer.UI
             if (ActiveItem != null)
             {
                 // TODO: ActiveItem is null after Deactivate
-                base.DeactivateItem(ActiveItem, true);
+                await base.DeactivateItemAsync(ActiveItem, true, cancellationToken);
                 var detailItem = (TDetailsType)ActiveItem;
                 DetailsFactory.Destroy(detailItem);
             }
 
-            base.ActivateItem(item);
+            await base.ActivateItemAsync(item, cancellationToken);
             NotifyOfPropertyChange(() => CurrentDetails);
         }
 
         /// <summary>
         /// Shows the empty view model with the message to select a product from the tree.
         /// </summary>
-        protected virtual void ShowEmpty()
+        protected virtual Task ShowEmpty()
         {
-            ActivateItem(EmptyDetails);
+            return ActivateItemAsync(EmptyDetails);
         }
     }
 }

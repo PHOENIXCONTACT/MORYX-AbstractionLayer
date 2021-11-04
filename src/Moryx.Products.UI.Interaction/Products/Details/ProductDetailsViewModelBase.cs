@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Moryx.AbstractionLayer.UI;
@@ -57,20 +58,20 @@ namespace Moryx.Products.UI.Interaction
         }
 
         /// <inheritdoc />
-        protected override void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
-            base.OnActivate();
-            ScreenExtensions.TryActivate(Aspects);
+            await base.OnActivateAsync(cancellationToken);
+            await ScreenExtensions.TryActivateAsync(Aspects, cancellationToken);
         }
 
         /// <inheritdoc />
-        protected override void OnDeactivate(bool close)
+        protected override async Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
         {
-            base.OnDeactivate(close);
+            await base.OnDeactivateAsync(close, cancellationToken);
 
             // Copy aspects, because they are cleared on deactivation
             var aspects = Aspects.Items.Cast<IProductAspect>().ToArray();
-            ScreenExtensions.TryDeactivate(Aspects, close);
+            await ScreenExtensions.TryDeactivateAsync(Aspects, close, cancellationToken);
 
             if (close)
                 aspects.ForEach(aspect => AspectFactory.Destroy(aspect));

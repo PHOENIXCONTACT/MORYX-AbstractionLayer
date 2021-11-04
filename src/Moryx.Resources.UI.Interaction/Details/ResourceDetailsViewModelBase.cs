@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Moryx.AbstractionLayer.UI;
@@ -76,18 +77,17 @@ namespace Moryx.Resources.UI.Interaction
         }
 
         /// <inheritdoc />
-        protected override void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
-            base.OnActivate();
-            ScreenExtensions.TryActivate(Aspects);
-
+            await base.OnActivateAsync(cancellationToken);
+            await ScreenExtensions.TryActivateAsync(Aspects, cancellationToken);
         }
 
         /// <inheritdoc />
-        protected override void OnDeactivate(bool close)
+        protected override async Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
         {
-            base.OnDeactivate(close);
-            ScreenExtensions.TryDeactivate(Aspects, close);
+            await base.OnDeactivateAsync(close, cancellationToken);
+            await ScreenExtensions.TryDeactivateAsync(Aspects, close, cancellationToken);
         }
 
         /// <inheritdoc />

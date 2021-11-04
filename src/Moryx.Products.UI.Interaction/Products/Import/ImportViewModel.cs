@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Moryx.WpfToolkit;
 using Caliburn.Micro;
 using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
@@ -36,7 +35,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public string ErrorText
         {
-            get { return _errorText; }
+            get => _errorText;
             set
             {
                 _errorText = value;
@@ -47,7 +46,7 @@ namespace Moryx.Products.UI.Interaction
         private BindableCollection<ImporterViewModel> _importers;
         public BindableCollection<ImporterViewModel> Importers
         {
-            get { return _importers; }
+            get => _importers;
             set
             {
                 _importers = value;
@@ -64,7 +63,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public ImporterViewModel SelectedImporter
         {
-            get { return _selectedImporter; }
+            get => _selectedImporter;
             set
             {
                 _selectedImporter = value;
@@ -74,7 +73,7 @@ namespace Moryx.Products.UI.Interaction
 
         public TaskNotifier TaskNotifier
         {
-            get { return _taskNotifier; }
+            get => _taskNotifier;
             set
             {
                 _taskNotifier = value;
@@ -91,17 +90,19 @@ namespace Moryx.Products.UI.Interaction
             _productServiceModel = productServiceModel;
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
+            await base.OnInitializeAsync(cancellationToken);
+
             DisplayName = Strings.ImportViewModel_DisplayName;
 
             OkCmd = new AsyncCommand(Ok);
-            CancelCmd = new RelayCommand(Cancel);
+            CancelCmd = new AsyncCommand(Cancel, o => true, true);
 
             var loaderTask = Task.Run(async delegate
             {
                 var customization = await _productServiceModel.GetCustomization().ConfigureAwait(false);
-                await Execute.OnUIThreadAsync(delegate
+                Execute.OnUIThread(delegate
                 {
                     var importers = customization.Importers.Select(i => new ImporterViewModel(i, _productServiceModel));
                     Importers = new BindableCollection<ImporterViewModel>(importers);
@@ -109,7 +110,7 @@ namespace Moryx.Products.UI.Interaction
                     if (Importers.Count > 0)
                         SelectedImporter = Importers[0];
                 });
-            });
+            }, cancellationToken);
 
             TaskNotifier = new TaskNotifier(loaderTask);
         }
@@ -129,7 +130,7 @@ namespace Moryx.Products.UI.Interaction
                 var importState = await SelectedImporter.Import();
                 if (importState.Completed && string.IsNullOrEmpty(importState.ErrorMessage))
                 {
-                    TryClose(true);
+                    await TryCloseAsync(true);
                 }
                 else if (importState.Completed && !string.IsNullOrEmpty(importState.ErrorMessage))
                 {
@@ -163,11 +164,11 @@ namespace Moryx.Products.UI.Interaction
 
                 if (string.IsNullOrEmpty(currentImportState.ErrorMessage))
                 {
-                    TryClose(true);
+                    await TryCloseAsync(true);
                 }
                 else
                 {
-                    await Execute.OnUIThreadAsync(() => ErrorText = currentImportState.ErrorMessage);
+                    Execute.OnUIThread(() =>ErrorText = currentImportState.ErrorMessage);
                 }
 
                 break;
@@ -177,7 +178,7 @@ namespace Moryx.Products.UI.Interaction
         /// <summary>
         /// Method call on Cancel
         /// </summary>
-        private void Cancel(object obj)
+        private Task Cancel(object obj)
         {
             if (_currentImportCts != null)
             {
@@ -186,7 +187,7 @@ namespace Moryx.Products.UI.Interaction
                 _currentImportCts = null;
             }
 
-            TryClose(false);
+            return TryCloseAsync(false);
         }
     }
 }

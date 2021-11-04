@@ -4,10 +4,11 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Moryx.WpfToolkit;
 using Caliburn.Micro;
+using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
 using Moryx.ClientFramework.Tasks;
 using Moryx.Products.UI.Interaction.Properties;
@@ -55,7 +56,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public TaskNotifier TaskNotifier
         {
-            get { return _taskNotifier; }
+            get => _taskNotifier;
             private set
             {
                 _taskNotifier = value;
@@ -68,7 +69,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public string ErrorMessage
         {
-            get { return _errorMessage; }
+            get => _errorMessage;
             set
             {
                 _errorMessage = value;
@@ -81,7 +82,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public ProductInfoViewModel SelectedRevision
         {
-            get { return _selectedRevision; }
+            get => _selectedRevision;
             set
             {
                 _selectedRevision = value;
@@ -98,14 +99,15 @@ namespace Moryx.Products.UI.Interaction
             _productServiceModel = productServiceModel;
             Product = product;
 
-            OpenCmd = new RelayCommand(Open, CanOpen);
-            CreateCmd = new RelayCommand(Create, CanCreate);
-            CloseCmd = new RelayCommand(Close, CanClose);
+            OpenCmd = new AsyncCommand(Open, CanOpen, true);
+            CreateCmd = new AsyncCommand(Create, CanCreate, true);
+            CloseCmd = new AsyncCommand(Close, CanClose, true);
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
+
             DisplayName = Strings.RevisionsViewModel_DisplayName;
 
             var loadingTask = Task.Run(async delegate
@@ -119,18 +121,30 @@ namespace Moryx.Products.UI.Interaction
                     }).ConfigureAwait(false);
 
                     var vms = revisions.Select(r => new ProductInfoViewModel(r)).ToArray();
-                    await Execute.OnUIThreadAsync(() => Revisions.AddRange(vms));
+                    await Execute.OnUIThreadAsync(() =>
+                    {
+                        Revisions.AddRange(vms);
+                        return Task.CompletedTask;
+                    });
                 }
                 catch (Exception e)
                 {
-                    await Execute.OnUIThreadAsync(() => ErrorMessage = e.Message);
+                    await Execute.OnUIThreadAsync(() =>
+                    {
+                        ErrorMessage = e.Message;
+                        return Task.CompletedTask;
+                    });
                 }
 
                 finally
                 {
-                    await Execute.OnUIThreadAsync(CommandManager.InvalidateRequerySuggested);
+                    await Execute.OnUIThreadAsync(() =>
+                    {
+                        CommandManager.InvalidateRequerySuggested();
+                        return Task.CompletedTask;
+                    });
                 }
-            });
+            }, cancellationToken);
 
             TaskNotifier = new TaskNotifier(loadingTask);
         }
@@ -141,22 +155,22 @@ namespace Moryx.Products.UI.Interaction
         private bool CanOpen(object parameters) =>
             IsNotBusy() && SelectedRevision != null;
 
-        private void Open(object parameters) =>
-            TryClose(true);
+        private Task Open(object parameters) =>
+            TryCloseAsync(true);
 
         private bool CanClose(object parameters) =>
             IsNotBusy();
 
-        private void Close(object parameters) =>
-            TryClose(false);
+        private Task Close(object parameters) =>
+            TryCloseAsync(false);
 
         private bool CanCreate(object parameters) =>
             IsNotBusy();
 
-        private void Create(object parameters)
+        private Task Create(object parameters)
         {
             NewRevisionRequested = true;
-            TryClose(true);
+            return TryCloseAsync(true);
         }
     }
 }

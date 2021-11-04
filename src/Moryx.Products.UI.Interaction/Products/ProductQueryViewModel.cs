@@ -17,7 +17,7 @@ namespace Moryx.Products.UI.Interaction
 
         public RevisionFilter RevisionFilter
         {
-            get { return _revisionFilter; }
+            get => _revisionFilter;
             set
             {
                 _revisionFilter = value;
@@ -27,7 +27,7 @@ namespace Moryx.Products.UI.Interaction
 
         public Selector Selector
         {
-            get { return _selector; }
+            get => _selector;
             set
             {
                 _selector = value;
@@ -37,7 +37,7 @@ namespace Moryx.Products.UI.Interaction
 
         public RecipeFilter RecipeFilter
         {
-            get { return _recipeFilter; }
+            get => _recipeFilter;
             set
             {
                 _recipeFilter = value;
@@ -47,7 +47,7 @@ namespace Moryx.Products.UI.Interaction
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 _name = value;
@@ -57,7 +57,7 @@ namespace Moryx.Products.UI.Interaction
 
         public string Identifier
         {
-            get { return _identifier; }
+            get => _identifier;
             set
             {
                 _identifier = value;
@@ -67,7 +67,7 @@ namespace Moryx.Products.UI.Interaction
 
         public short Revision
         {
-            get { return _revision; }
+            get => _revision;
             set
             {
                 _revision = value;

@@ -3,9 +3,8 @@
 
 using System;
 using System.Threading.Tasks;
-using Moryx.Modules;
+using Moryx.Communication.Endpoints;
 using Moryx.Products.UI.ProductService;
-using Moryx.Tools.Wcf;
 using Entry = Moryx.Products.UI.ProductService.Entry;
 
 namespace Moryx.Products.UI
@@ -13,7 +12,7 @@ namespace Moryx.Products.UI
     /// <summary>
     /// Model interface for product interaction
     /// </summary>
-    public interface IProductServiceModel : IHttpServiceConnector
+    public interface IProductServiceModel : IWebServiceConnector
     {
         /// <summary>
         /// Customization of the application, e.g. RecipeCreation, Importers, ....

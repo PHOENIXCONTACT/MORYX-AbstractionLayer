@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -67,7 +68,7 @@ namespace Moryx.Products.UI.Interaction
         private TreeItemViewModel _selectedItem;
         public TreeItemViewModel SelectedItem
         {
-            get { return _selectedItem; }
+            get => _selectedItem;
             set
             {
                 _selectedItem = value;
@@ -78,7 +79,7 @@ namespace Moryx.Products.UI.Interaction
         private ProductInfoViewModel _selectedRevision;
         public ProductInfoViewModel SelectedRevision
         {
-            get { return _selectedRevision; }
+            get => _selectedRevision;
             set
             {
                 _selectedRevision = value;
@@ -89,7 +90,7 @@ namespace Moryx.Products.UI.Interaction
         private bool _isCustomQuery;
         public bool IsCustomQuery
         {
-            get { return _isCustomQuery; }
+            get => _isCustomQuery;
             set
             {
                 _isCustomQuery = value;
@@ -118,9 +119,9 @@ namespace Moryx.Products.UI.Interaction
             IsCustomQuery = !IsCustomQuery;
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
 
             ProductServiceModel.AvailabilityChanged += OnAvailabilityChanged;
 
@@ -131,12 +132,12 @@ namespace Moryx.Products.UI.Interaction
                 IsBusy = false;
         }
 
-        protected override void OnDeactivate(bool close)
+        protected override Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
         {
-            base.OnDeactivate(close);
-
             if (close)
                 ProductServiceModel.AvailabilityChanged -= OnAvailabilityChanged;
+
+            return base.OnDeactivateAsync(close, cancellationToken);
         }
 
         private void OnAvailabilityChanged(object sender, EventArgs e)
@@ -156,8 +157,7 @@ namespace Moryx.Products.UI.Interaction
         {
             SelectedItem = treeItem;
 
-            var productItem = treeItem as ProductItemViewModel;
-            if (productItem != null)
+            if (treeItem is ProductItemViewModel productItem)
             {
                 // Set current revision when selecting a product
                 SelectedRevision = productItem.Product;
@@ -174,7 +174,7 @@ namespace Moryx.Products.UI.Interaction
             var detailsVm = DetailsFactory.Create(productType);
             await LoadDetails(() => detailsVm.Load(detailsId));
 
-            ActivateItem(detailsVm);
+            await ActivateItemAsync(detailsVm);
 
             // Don't know why but validate all commands again
             CommandManager.InvalidateRequerySuggested();
@@ -222,14 +222,14 @@ namespace Moryx.Products.UI.Interaction
             catch(Exception e)
             {
                 ProductGroups.Clear();
-                ShowEmpty();
+                await ShowEmpty();
             }
         }
 
-        protected override void ShowEmpty()
+        protected override Task ShowEmpty()
         {
             EmptyDetails.Display(MessageSeverity.Info, Strings.ProductsWorkspaceViewModel_SelectProduct);
-            base.ShowEmpty();
+            return base.ShowEmpty();
         }
 
         private bool CanRefresh(object parameter) =>

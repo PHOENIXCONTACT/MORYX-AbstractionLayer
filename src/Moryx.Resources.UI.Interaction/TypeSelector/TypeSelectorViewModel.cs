@@ -4,10 +4,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Moryx.WpfToolkit;
 using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
 using Moryx.ClientFramework.Tasks;
@@ -28,7 +28,7 @@ namespace Moryx.Resources.UI.Interaction
 
         public ICommand CancelCmd { get; }
 
-        public AsyncCommand CreateCmd { get; }
+        public ICommand CreateCmd { get; }
 
         /// <summary>
         /// Type tree is set depending on selected node
@@ -42,7 +42,6 @@ namespace Moryx.Resources.UI.Interaction
             {
                 _selectedType = value;
                 NotifyOfPropertyChange();
-                CreateCmd.RaiseCanExecuteChanged();
             }
         }
 
@@ -94,8 +93,8 @@ namespace Moryx.Resources.UI.Interaction
 
             TypeTree = matches.Select(type => new ResourceTypeViewModel(type));
 
-            CreateCmd = new AsyncCommand(Create, CanCreate);
-            CancelCmd = new RelayCommand(Cancel, CanCancel);
+            CreateCmd = new AsyncCommand(Create, CanCreate, true);
+            CancelCmd = new AsyncCommand(Cancel, CanCancel, true);
         }
 
         private static IReadOnlyList<ResourceTypeModel> FilterTypes(ResourceTypeModel typeNode, string[] constraint)
@@ -107,9 +106,9 @@ namespace Moryx.Resources.UI.Interaction
         }
 
         ///
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
             DisplayName = Strings.TypeSelectorViewModel_DisplayName;
         }
 
@@ -137,7 +136,7 @@ namespace Moryx.Resources.UI.Interaction
                     method.Parameters = constructor.Parameters.Entry.ToServiceEntry();
                     ResourcePrototype = await _resourceServiceModel.CreateResource(SelectedType.Name, method);
                 }
-                TryClose(true);
+                await TryCloseAsync(true);
             }
             catch (Exception e)
             {
@@ -146,13 +145,13 @@ namespace Moryx.Resources.UI.Interaction
         }
 
         private bool CanCancel(object obj) =>
-            !CreateCmd.IsExecuting;
+            !((AsyncCommand)CreateCmd).IsExecuting;
 
         /// <summary>
         /// Will be called by <see cref="CancelCmd"/> and will return a false result
         /// </summary>
-        private void Cancel(object obj) =>
-            TryClose(false);
+        private Task Cancel(object obj) =>
+            TryCloseAsync(false);
 
         public void OnTreeItemChanged(object sender, RoutedPropertyChangedEventArgs<object> args)
         {

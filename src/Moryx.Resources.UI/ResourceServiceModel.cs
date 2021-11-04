@@ -3,9 +3,9 @@
 
 using System.Threading.Tasks;
 using Moryx.Communication;
+using Moryx.Communication.Endpoints;
 using Moryx.Logging;
 using Moryx.Resources.UI.ResourceService;
-using Moryx.Tools.Wcf;
 using MethodEntry = Moryx.Resources.UI.ResourceService.MethodEntry;
 using Entry = Moryx.Resources.UI.ResourceService.Entry;
 
@@ -14,22 +14,16 @@ namespace Moryx.Resources.UI
     /// <summary>
     /// Service model implementation for the resource rest service
     /// </summary>
-    public class ResourceServiceModel : WebHttpServiceConnectorBase, IResourceServiceModel
+    public class ResourceServiceModel : WebServiceConnectorBase, IResourceServiceModel
     {
         /// <inheritdoc />
-        public override string ServiceName => nameof(IResourceInteraction);
+        public override string ServiceName => "IResourceInteraction";
 
         /// <inheritdoc />
-        protected override string ClientVersion => "5.0.0";
+        protected override string ClientVersion => "6.0.0";
 
         /// <inheritdoc />
         public ResourceTypeModel TypeTree { get; private set; }
-
-        /// <inheritdoc />
-        public ResourceServiceModel(IWcfClientFactory clientFactory, IModuleLogger  logger)
-            : base(clientFactory, logger.GetChild(nameof(ResourceServiceModel), typeof(ResourceServiceModel)))
-        {
-        }
 
         /// <inheritdoc />
         public ResourceServiceModel(string host, int port, IProxyConfig proxyConfig, IModuleLogger logger)

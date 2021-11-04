@@ -4,9 +4,9 @@
 using System;
 using System.Threading.Tasks;
 using Moryx.Communication;
+using Moryx.Communication.Endpoints;
 using Moryx.Logging;
 using Moryx.Products.UI.ProductService;
-using Moryx.Tools.Wcf;
 using Entry = Moryx.Products.UI.ProductService.Entry;
 
 namespace Moryx.Products.UI
@@ -14,21 +14,15 @@ namespace Moryx.Products.UI
     /// <summary>
     /// Service model implementation for the products rest service
     /// </summary>
-    public class ProductServiceModel : WebHttpServiceConnectorBase, IProductServiceModel
+    public class ProductServiceModel : WebServiceConnectorBase, IProductServiceModel
     {
         private ProductCustomization _customization;
 
         /// <inheritdoc />
-        public override string ServiceName => nameof(IProductInteraction);
+        public override string ServiceName => "IProductInteraction";
 
         /// <inheritdoc />
-        protected override string ClientVersion => "5.0.0";
-
-        /// <inheritdoc />
-        public ProductServiceModel(IWcfClientFactory clientFactory, IModuleLogger logger)
-            : base(clientFactory, logger.GetChild(nameof(ProductServiceModel), typeof(ProductServiceModel)))
-        {
-        }
+        protected override string ClientVersion => "6.0.0";
 
         /// <inheritdoc />
         public ProductServiceModel(string host, int port, IProxyConfig proxyConfig, IModuleLogger logger)

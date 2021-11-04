@@ -3,6 +3,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using Moryx.ClientFramework.Dialog;
 using Moryx.Products.UI.Interaction.Properties;
@@ -27,17 +29,18 @@ namespace Moryx.Products.UI.Interaction.Aspects
         private IPartConnectorViewModel _selectedPartConnector;
         public IPartConnectorViewModel SelectedPartConnector
         {
-            get { return _selectedPartConnector; }
+            get => _selectedPartConnector;
             set
             {
                 var oldPartDetail = _selectedPartConnector;
                 _selectedPartConnector = value;
 
+                // TODO: Await calls here instead of synchronous wait
                 if (oldPartDetail != null)
-                    ScreenExtensions.TryDeactivate(oldPartDetail, false);
+                    ScreenExtensions.TryDeactivateAsync(oldPartDetail, false).Wait();
 
                 if (_selectedPartConnector != null)
-                    ScreenExtensions.TryActivate(_selectedPartConnector);
+                    ScreenExtensions.TryActivateAsync(_selectedPartConnector).Wait();
 
                 NotifyOfPropertyChange(nameof(SelectedPartConnector));
             }
@@ -50,9 +53,9 @@ namespace Moryx.Products.UI.Interaction.Aspects
         }
 
         /// <inheritdoc />
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
 
             var partConnectors = new List<IPartConnectorViewModel>(Product.Parts.Count);
             foreach (var partConnector in Product.Parts)

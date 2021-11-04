@@ -4,7 +4,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Moryx.ClientFramework.Commands;
 using Moryx.WpfToolkit;
 using Moryx.ClientFramework.Dialog;
 using Moryx.Container;
@@ -62,7 +65,7 @@ namespace Moryx.AbstractionLayer.UI.Aspects
         /// </summary>
         public TypedAspectConfiguration SelectedConfiguration
         {
-            get { return _selectedConfiguration; }
+            get => _selectedConfiguration;
             set
             {
                 _selectedConfiguration = value;
@@ -80,7 +83,7 @@ namespace Moryx.AbstractionLayer.UI.Aspects
         /// </summary>
         public ObservableCollection<AspectConfiguration> Aspects
         {
-            get { return _aspects; }
+            get => _aspects;
             private set
             {
                 _aspects = value;
@@ -93,7 +96,7 @@ namespace Moryx.AbstractionLayer.UI.Aspects
         /// </summary>
         public AspectConfiguration SelectedAspect
         {
-            get { return _selectedAspect; }
+            get => _selectedAspect;
             set
             {
                 _selectedAspect = value;
@@ -106,7 +109,7 @@ namespace Moryx.AbstractionLayer.UI.Aspects
         /// </summary>
         public string SelectedNewAspect
         {
-            get { return _selectedNewAspect; }
+            get => _selectedNewAspect;
             set
             {
                 _selectedNewAspect = value;
@@ -122,16 +125,14 @@ namespace Moryx.AbstractionLayer.UI.Aspects
             _types = types;
             Configurations = current;
 
-            OkCmd = new RelayCommand(Ok);
+            OkCmd = new AsyncCommand(Ok, _ => true, true);
             AddNewAspectCmd = new RelayCommand(AddNewAspect, CanAddNewAspect);
             RemoveAspectCmd = new RelayCommand(RemoveAspect, CanRemoveAspect);
         }
 
         /// <inheritdoc />
-        protected override void OnInitialize()
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
-
             var newTypes = _types.Where(pluginName => !Configurations.Select(c => c.TypeName).Contains(pluginName)).ToArray();
             foreach (var newType in newTypes)
                 Configurations.Add(new TypedAspectConfiguration {TypeName = newType});
@@ -142,11 +143,13 @@ namespace Moryx.AbstractionLayer.UI.Aspects
 
             var plugins = Container.GetRegisteredImplementations(typeof(IAspect)).Select(t => t.Name);
             PossibleAspects = plugins.ToArray();
+
+            return base.OnInitializeAsync(cancellationToken);
         }
 
-        private void Ok(object obj)
+        private Task Ok(object obj)
         {
-            TryClose(true);
+            return TryCloseAsync(true);
         }
 
         private bool CanRemoveAspect(object obj)

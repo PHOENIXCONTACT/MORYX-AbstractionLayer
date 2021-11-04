@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Moryx.WpfToolkit;
@@ -56,9 +57,9 @@ namespace Moryx.Resources.UI.Interaction
             CancelCmd = new RelayCommand(Cancel, CanCancel);
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
             DisplayName = Strings.RemoveResourceViewModel_DisplayName;
         }
 
@@ -79,7 +80,7 @@ namespace Moryx.Resources.UI.Interaction
                 }
                 else
                 {
-                    TryClose(true);
+                    await TryCloseAsync(true);
                 }
             }
             catch (Exception e)
@@ -92,6 +93,6 @@ namespace Moryx.Resources.UI.Interaction
             !RemoveCmd.IsExecuting;
 
         private void Cancel(object obj) =>
-            TryClose(false);
+            TryCloseAsync(false);
     }
 }

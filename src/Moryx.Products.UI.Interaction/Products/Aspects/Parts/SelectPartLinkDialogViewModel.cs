@@ -3,10 +3,11 @@
 
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Moryx.WpfToolkit;
 using Caliburn.Micro;
+using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
 using Moryx.ClientFramework.Tasks;
 using Moryx.Container;
@@ -37,7 +38,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
         private ProductInfoViewModel _selectedProduct;
         public ProductInfoViewModel SelectedProduct
         {
-            get { return _selectedProduct; }
+            get => _selectedProduct;
             set
             {
                 _selectedProduct = value;
@@ -52,7 +53,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
         private PartLinkViewModel _partLink;
         public PartLinkViewModel PartLink
         {
-            get { return _partLink; }
+            get => _partLink;
             set
             {
                 _partLink = value;
@@ -64,7 +65,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
 
         public TaskNotifier TaskNotifier
         {
-            get { return _taskNotifier; }
+            get => _taskNotifier;
             private set
             {
                 _taskNotifier = value;
@@ -79,7 +80,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
         /// </summary>
         public string ErrorMessage
         {
-            get { return _errorMessage; }
+            get => _errorMessage;
             set
             {
                 _errorMessage = value;
@@ -91,13 +92,13 @@ namespace Moryx.Products.UI.Interaction.Aspects
         {
             _partConnector = partConnector;
 
-            SelectCmd = new RelayCommand(Select, CanSelect);
-            CancelCmd = new RelayCommand(Cancel);
+            SelectCmd = new AsyncCommand(Select, CanSelect, true);
+            CancelCmd = new AsyncCommand(Cancel, _ => true, true);
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
 
             var loadingTask = Task.Run(async delegate
             {
@@ -114,7 +115,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
                     var products = await productsLoadTask;
                     var productVms = products.Select(pm => new ProductInfoViewModel(pm)).OrderBy(p => p.FullIdentifier);
 
-                    await Execute.OnUIThreadAsync(delegate
+                    Execute.OnUIThread(delegate
                     {
                         AvailableProducts = productVms.ToArray();
                         NotifyOfPropertyChange(nameof(AvailableProducts));
@@ -122,9 +123,9 @@ namespace Moryx.Products.UI.Interaction.Aspects
                 }
                 catch (Exception e)
                 {
-                    await Execute.OnUIThreadAsync(() => ErrorMessage = e.Message);
+                    Execute.OnUIThread(() => ErrorMessage = e.Message);
                 }
-            });
+            }, cancellationToken);
 
             TaskNotifier = new TaskNotifier(loadingTask);
         }
@@ -132,10 +133,10 @@ namespace Moryx.Products.UI.Interaction.Aspects
         private bool CanSelect(object obj) =>
             SelectedProduct != null && PartLink != null;
 
-        private void Select(object obj) =>
-            TryClose(true);
+        private Task Select(object obj) =>
+            TryCloseAsync(true);
 
-        private void Cancel(object obj) =>
-            TryClose(false);
+        private Task Cancel(object obj) =>
+            TryCloseAsync(false);
     }
 }

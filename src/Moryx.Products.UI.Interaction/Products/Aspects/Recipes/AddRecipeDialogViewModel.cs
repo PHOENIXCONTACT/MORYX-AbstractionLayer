@@ -4,9 +4,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Moryx.WpfToolkit;
 using Caliburn.Micro;
 using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
@@ -56,7 +56,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
         /// </summary>
         public RecipeDefinitionViewModel SelectedRecipeDefinition
         {
-            get { return _selectedRecipeDefinition; }
+            get => _selectedRecipeDefinition;
             set
             {
                 _selectedRecipeDefinition = value;
@@ -74,7 +74,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
         /// </summary>
         public TaskNotifier TaskNotifier
         {
-            get { return _taskNotifier; }
+            get => _taskNotifier;
             private set
             {
                 _taskNotifier = value;
@@ -87,7 +87,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
         /// </summary>
         public string ErrorMessage
         {
-            get { return _errorMessage; }
+            get => _errorMessage;
             set
             {
                 _errorMessage = value;
@@ -109,23 +109,23 @@ namespace Moryx.Products.UI.Interaction.Aspects
             Workplans = workplans.ToArray();
             SelectedWorkplan = Workplans.FirstOrDefault();
 
-            CloseCmd = new RelayCommand(Close, CanClose);
+            CloseCmd = new AsyncCommand(Close, CanClose, true);
             CreateCmd = new AsyncCommand(Create, CanCreate, true);
         }
 
         private bool CanClose(object obj) =>
             TaskNotifier == null || TaskNotifier != null && TaskNotifier.IsCompleted;
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
 
             var loadingTask = Task.Run(async delegate
             {
                 try
                 {
                     var customization = await _productServiceModel.GetCustomization().ConfigureAwait(false);
-                    await Execute.OnUIThreadAsync(delegate
+                    Execute.OnUIThread(delegate
                     {
                         PossibleRecipeTypes = customization.RecipeTypes.Select(r => new RecipeDefinitionViewModel(r)).ToArray();
                         SelectedRecipeDefinition = PossibleRecipeTypes.FirstOrDefault();
@@ -133,9 +133,9 @@ namespace Moryx.Products.UI.Interaction.Aspects
                 }
                 catch (Exception e)
                 {
-                    await Execute.OnUIThreadAsync(() => ErrorMessage = e.Message);
+                    Execute.OnUIThread(() => ErrorMessage = e.Message);
                 }
-            });
+            }, cancellationToken);
 
             TaskNotifier = new TaskNotifier(loadingTask);
         }
@@ -178,10 +178,10 @@ namespace Moryx.Products.UI.Interaction.Aspects
                 ErrorMessage = e.Message;
             }
 
-            TryClose(true);
+            await TryCloseAsync(true);
         }
 
-        private void Close(object obj) =>
-            TryClose(false);
+        private Task Close(object obj) =>
+            TryCloseAsync(false);
     }
 }

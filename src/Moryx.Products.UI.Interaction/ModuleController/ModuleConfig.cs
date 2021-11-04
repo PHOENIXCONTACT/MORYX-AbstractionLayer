@@ -62,7 +62,7 @@ namespace Moryx.Products.UI.Interaction
         public List<TypedAspectConfiguration> AspectConfigurations { get; set; }
 
         /// <summary>
-        /// Default aspects as fallback for unconfigured types
+        /// Default aspects as fallback for not configured types
         /// </summary>
         [DataMember]
         public List<AspectConfiguration> DefaultAspects { get; set; }

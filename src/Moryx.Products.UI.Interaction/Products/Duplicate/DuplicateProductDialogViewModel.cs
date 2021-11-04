@@ -2,8 +2,9 @@
 // Licensed under the Apache License, Version 2.0
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
-using Moryx.WpfToolkit;
+using System.Windows.Input;
 using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
 using Moryx.ClientFramework.Tasks;
@@ -22,12 +23,12 @@ namespace Moryx.Products.UI.Interaction
         /// <summary>
         /// Command for cloning
         /// </summary>
-        public AsyncCommand DuplicateCmd { get; }
+        public ICommand DuplicateCmd { get; }
 
         /// <summary>
         /// Command for closing the dialog
         /// </summary>
-        public RelayCommand CloseCmd { get; }
+        public ICommand CloseCmd { get; }
 
         /// <summary>
         /// Product to clone
@@ -44,7 +45,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public TaskNotifier TaskNotifier
         {
-            get { return _taskNotifier; }
+            get => _taskNotifier;
             private set
             {
                 _taskNotifier = value;
@@ -59,7 +60,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public string ErrorMessage
         {
-            get { return _errorMessage; }
+            get => _errorMessage;
             set
             {
                 _errorMessage = value;
@@ -85,13 +86,14 @@ namespace Moryx.Products.UI.Interaction
             Product = product;
 
             DuplicateCmd = new AsyncCommand(Duplicate, CanDuplicate, true);
-            CloseCmd = new RelayCommand(Close);
+            CloseCmd = new AsyncCommand(Close, _ => true, true);
         }
 
         /// <inheritdoc />
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
+
             DisplayName = string.Format(Strings.DuplicateProductDialogViewModel_DisplayName, Product.Name);
         }
 
@@ -115,7 +117,7 @@ namespace Moryx.Products.UI.Interaction
                 else
                 {
                     ClonedProduct = response.Duplicate;
-                    TryClose(true);
+                    await TryCloseAsync(true);
                 }
             }
             catch (Exception e)
@@ -124,7 +126,7 @@ namespace Moryx.Products.UI.Interaction
             }
         }
 
-        private void Close(object obj) =>
-            TryClose(false);
+        private Task Close(object obj) =>
+            TryCloseAsync(false);
     }
 }

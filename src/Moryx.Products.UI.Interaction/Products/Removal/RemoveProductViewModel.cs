@@ -4,6 +4,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Moryx.WpfToolkit;
@@ -31,7 +32,7 @@ namespace Moryx.Products.UI.Interaction
         /// <summary>
         /// Command to execute the removal
         /// </summary>
-        public AsyncCommand RemoveCmd { get; }
+        public ICommand RemoveCmd { get; }
 
         /// <summary>
         /// Command to cancel this dialog
@@ -48,7 +49,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public TaskNotifier TaskNotifier
         {
-            get { return _taskNotifier; }
+            get => _taskNotifier;
             set
             {
                 _taskNotifier = value;
@@ -61,7 +62,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public string ErrorMessage
         {
-            get { return _errorMessage; }
+            get => _errorMessage;
             set
             {
                 _errorMessage = value;
@@ -82,8 +83,10 @@ namespace Moryx.Products.UI.Interaction
         }
 
         /// <inheritdoc />
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
+            await base.OnInitializeAsync(cancellationToken);
+
             DisplayName = Strings.RemoveProductViewModel_DisplayName;
 
             var loadingTask = Task.Run(async delegate
@@ -97,12 +100,12 @@ namespace Moryx.Products.UI.Interaction
                 }).ConfigureAwait(false);
 
                 var vms = affectedProducts.Select(r => new ProductInfoViewModel(r)).ToArray();
-                await Execute.OnUIThreadAsync(delegate
+                Execute.OnUIThread(delegate
                 {
                     AffectedProducts.AddRange(vms);
                     ErrorMessage = Strings.RemoveProductViewModel_NonDeletableHint;
                 });
-            });
+            }, cancellationToken);
 
             TaskNotifier = new TaskNotifier(loadingTask);
         }
@@ -124,7 +127,7 @@ namespace Moryx.Products.UI.Interaction
                 }
                 else
                 {
-                    TryClose(true);
+                    await TryCloseAsync(true);
                 }
             }
             catch (Exception e)
@@ -134,9 +137,9 @@ namespace Moryx.Products.UI.Interaction
         }
 
         private bool CanCancel(object obj) =>
-            !RemoveCmd.IsExecuting;
+            !((AsyncCommand)RemoveCmd).IsExecuting;
 
         private void Cancel(object obj) =>
-            TryClose(false);
+            TryCloseAsync(false);
     }
 }

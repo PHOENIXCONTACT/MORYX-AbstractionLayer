@@ -101,7 +101,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
                 .FirstOrDefault(d => d.EditableObject == dialog.RecipePrototype);
 
             if (details != null)
-                RecipeConductor.ActivateItem(details);
+                await RecipeConductor.ActivateItemAsync(details);
         }
 
         private bool CanRemoveRecipe(object obj) =>

@@ -1,13 +1,15 @@
 ﻿// Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using System.Threading.Tasks;
 using System.Windows.Media;
 using Moryx.WpfToolkit;
 using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
+using Moryx.Configuration;
 using Moryx.Logging;
 using Moryx.Products.UI.Interaction.Properties;
-using Moryx.Tools.Wcf;
+using ProxyConfig = Moryx.ClientFramework.ProxyConfig;
 
 namespace Moryx.Products.UI.Interaction
 {
@@ -23,9 +25,14 @@ namespace Moryx.Products.UI.Interaction
         public override Geometry Icon => IconGeometry;
 
         /// <summary>
+        /// Config manager to get configurations
+        /// </summary>
+        public IConfigManager ConfigManager { get; set; }
+
+        /// <summary>
         /// Initializes the module
         /// </summary>
-        protected override void OnInitialize()
+        protected override Task OnInitializeAsync()
         {
             DisplayName = Strings.ModuleController_DisplayName;
 
@@ -40,30 +47,35 @@ namespace Moryx.Products.UI.Interaction
             Container.LoadComponents<IProductAspect>();
 
             // Register and start service model
-            var clientFactory = Container.Resolve<IWcfClientFactory>();
+            var runtimeConfig = ConfigManager.GetConfiguration<RuntimeConfig>();
+            var proxyConfig = ConfigManager.GetConfiguration<ProxyConfig>();
             var logger = Container.Resolve<IModuleLogger>();
-            IProductServiceModel serviceModel = new ProductServiceModel(clientFactory, logger);
 
+            IProductServiceModel serviceModel = new ProductServiceModel(runtimeConfig.Host, runtimeConfig.Port, proxyConfig, logger);
             Container.SetInstance(serviceModel);
 
             serviceModel.Start();
+
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Will be called when the module will be selected
         /// </summary>
-        protected override void OnActivate()
+        protected override Task OnActivateAsync()
         {
-
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Will be called when the module will be deactivated
         /// </summary>
-        protected override void OnDeactivate(bool close)
+        protected override Task OnDeactivateAsync(bool close)
         {
             if (close)
                 Container.Resolve<IProductServiceModel>().Stop();
+
+            return Task.CompletedTask;
         }
 
         /// <summary>

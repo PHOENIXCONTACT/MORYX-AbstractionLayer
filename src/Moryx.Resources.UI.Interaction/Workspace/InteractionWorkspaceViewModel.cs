@@ -4,6 +4,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -78,19 +79,20 @@ namespace Moryx.Resources.UI.Interaction
             AspectConfiguratorCmd = new AsyncCommand(ShowAspectConfigurator, CanShowAspectConfigurator, true);
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
 
             ResourceServiceModel.AvailabilityChanged += OnAvailabilityChanged;
 
             if (ResourceServiceModel.IsAvailable)
+                // ReSharper disable once MethodHasAsyncOverload
                 UpdateTree();
         }
 
-        protected override void OnDeactivate(bool close)
+        protected override async Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
         {
-            base.OnDeactivate(close);
+            await base.OnDeactivateAsync(close, cancellationToken);
 
             if (close)
                 ResourceServiceModel.AvailabilityChanged -= OnAvailabilityChanged;
@@ -121,7 +123,7 @@ namespace Moryx.Resources.UI.Interaction
 
             if (treeItem == null)
             {
-                ShowEmpty();
+                await ShowEmpty();
                 return;
             }
 
@@ -129,7 +131,7 @@ namespace Moryx.Resources.UI.Interaction
             var detailsVm = DetailsFactory.Create(treeItem.Resource.TypeName);
             await LoadDetails(() => detailsVm.Load(treeItem.Resource.Id));
 
-            ActivateItem(detailsVm);
+            await ActivateItemAsync(detailsVm);
         }
 
         /// <summary>
@@ -163,7 +165,7 @@ namespace Moryx.Resources.UI.Interaction
                 parentReference.Targets.Add(SelectedResource.Resource);
             }
 
-            ActivateItem(detailsVm);
+            await ActivateItemAsync(detailsVm);
             EnterEdit();
 
             IsBusy = false;
@@ -218,7 +220,7 @@ namespace Moryx.Resources.UI.Interaction
             IsBusy = true;
 
             await UpdateTreeAsync();
-            
+
             if (SelectedResource != null)
                 await SelectResource(SelectedResource);
 
@@ -249,10 +251,10 @@ namespace Moryx.Resources.UI.Interaction
             return base.OnSaveError(exception);
         }
 
-        protected override void ShowEmpty()
+        protected override Task ShowEmpty()
         {
             EmptyDetails.Display(MessageSeverity.Info, Strings.InteractionWorkspaceViewModel_SelectResourceFromTree);
-            base.ShowEmpty();
+            return base.ShowEmpty();
         }
 
         private void UpdateTree()
@@ -285,7 +287,7 @@ namespace Moryx.Resources.UI.Interaction
             catch (Exception e)
             {
                 Tree?.Clear();
-                ShowEmpty();
+                await ShowEmpty();
             }
             finally
             {

@@ -27,7 +27,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
 
         public PartLinkViewModel PartLink
         {
-            get { return _partLink; }
+            get => _partLink;
             private set
             {
                 _partLink = value;

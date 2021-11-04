@@ -9,8 +9,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ui="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:aspects="clr-namespace:Moryx.Resources.UI.Interaction.Aspects"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance aspects:SelectTargetDialogViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <d:DesignerProperties.DesignStyle>
@@ -39,11 +39,11 @@
             <EddieListView x:Name="TargetsListView" DockPanel.Dock="Top" SelectionMode="Single" MaxHeight="500" MinHeight="300"
                       ItemsSource="{Binding PossibleTargets, Converter={StaticResource NameViewSourceConverter}}"
                       SelectedItem="{Binding SelectedTarget}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding SelectCmd}" CommandParameter="{Binding ElementName=TargetsListView, Path=SelectedItem}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="MouseDoubleClick">
+                        <b:InvokeCommandAction Command="{Binding SelectCmd}" CommandParameter="{Binding ElementName=TargetsListView, Path=SelectedItem}"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
 
                 <EddieListView.View>
                     <GridView>

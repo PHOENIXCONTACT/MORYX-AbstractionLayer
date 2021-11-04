@@ -6,7 +6,6 @@ using System.Runtime.Serialization;
 using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
 using Moryx.Resources.UI.Interaction.Aspects;
-using Moryx.Resources.UI.Interaction.Aspects.Methods;
 
 namespace Moryx.Resources.UI.Interaction
 {

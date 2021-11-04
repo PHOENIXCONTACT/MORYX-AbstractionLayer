@@ -1,7 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -29,7 +28,7 @@ namespace Moryx.AbstractionLayer.UI
         /// <inheritdoc />
         public bool IsEditMode
         {
-            get { return _isEditMode; }
+            get => _isEditMode;
             private set
             {
                 _isEditMode = value;
@@ -40,7 +39,7 @@ namespace Moryx.AbstractionLayer.UI
         /// <inheritdoc />
         public bool IsBusy
         {
-            get { return _isBusy; }
+            get => _isBusy;
             protected set
             {
                 _isBusy = value;

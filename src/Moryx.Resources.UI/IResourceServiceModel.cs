@@ -1,12 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
 using System.Threading.Tasks;
-using Moryx.Modules;
+using Moryx.Communication.Endpoints;
 using Moryx.Resources.UI.ResourceService;
-using Moryx.Serialization;
-using Moryx.Tools.Wcf;
 using Entry = Moryx.Resources.UI.ResourceService.Entry;
 using MethodEntry = Moryx.Resources.UI.ResourceService.MethodEntry;
 
@@ -15,7 +12,7 @@ namespace Moryx.Resources.UI
     /// <summary>
     /// Model interface for resource interaction
     /// </summary>
-    public interface IResourceServiceModel : IHttpServiceConnector
+    public interface IResourceServiceModel : IWebServiceConnector
     {
         /// <summary>
         /// Full type tree of the currently installed resources

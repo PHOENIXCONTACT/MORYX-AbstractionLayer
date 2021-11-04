@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0
 
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Moryx.ClientFramework.Tasks;
@@ -33,7 +34,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
         /// </summary>
         public TaskNotifier TaskNotifier
         {
-            get { return _taskNotifier; }
+            get => _taskNotifier;
             set
             {
                 _taskNotifier = value;
@@ -41,9 +42,9 @@ namespace Moryx.Products.UI.Interaction.Aspects
             }
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
 
             var loaderTask = Task.Run(async delegate
             {
@@ -56,8 +57,8 @@ namespace Moryx.Products.UI.Interaction.Aspects
                 }).ConfigureAwait(false);
 
                 Parents = parents.Select(p => new ProductInfoViewModel(p)).ToArray();
-                await Execute.OnUIThreadAsync(() => NotifyOfPropertyChange(nameof(Parents)));
-            });
+                Execute.OnUIThread(() => NotifyOfPropertyChange(nameof(Parents)));
+            }, cancellationToken);
 
             TaskNotifier = new TaskNotifier(loaderTask);
         }

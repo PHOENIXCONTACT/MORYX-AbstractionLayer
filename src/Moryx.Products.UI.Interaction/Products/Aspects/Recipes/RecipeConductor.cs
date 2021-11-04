@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
@@ -20,7 +21,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
         private bool _isEditMode;
         public bool IsEditMode
         {
-            get { return _isEditMode; }
+            get => _isEditMode;
             set
             {
                 _isEditMode = value;
@@ -91,10 +92,10 @@ namespace Moryx.Products.UI.Interaction.Aspects
             Items.Add(detailsVm);
         }
 
-        protected override void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
-            base.OnActivate();
-            ActivateItem(Items.FirstOrDefault());
+            await base.OnActivateAsync(cancellationToken);
+            await ActivateItemAsync(Items.FirstOrDefault(), cancellationToken);
         }
 
         public void BeginEdit()

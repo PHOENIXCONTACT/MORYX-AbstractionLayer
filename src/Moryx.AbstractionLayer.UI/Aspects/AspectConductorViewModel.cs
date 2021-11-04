@@ -3,6 +3,8 @@
 
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 
 namespace Moryx.AbstractionLayer.UI.Aspects
@@ -27,12 +29,12 @@ namespace Moryx.AbstractionLayer.UI.Aspects
         }
 
         /// <inheritdoc />
-        protected override void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
-            base.OnActivate();
-
             if (Items.Any())
-                ActivateItem(Items.First());
+                await ActivateItemAsync(Items.First(), cancellationToken);
+
+            await base.OnActivateAsync(cancellationToken);
         }
 
         /// <inheritdoc />

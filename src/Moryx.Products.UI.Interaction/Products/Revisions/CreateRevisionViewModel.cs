@@ -3,9 +3,9 @@
 
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Moryx.WpfToolkit;
 using Caliburn.Micro;
 using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
@@ -37,7 +37,7 @@ namespace Moryx.Products.UI.Interaction
 
         public short NewRevision
         {
-            get { return _newRevision; }
+            get => _newRevision;
             set
             {
                 _newRevision = value;
@@ -50,7 +50,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public TaskNotifier TaskNotifier
         {
-            get { return _taskNotifier; }
+            get => _taskNotifier;
             private set
             {
                 _taskNotifier = value;
@@ -63,7 +63,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public string NumberErrorMessage
         {
-            get { return _numberErrorMessage; }
+            get => _numberErrorMessage;
             set
             {
                 _numberErrorMessage = value;
@@ -81,7 +81,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public string ErrorMessage
         {
-            get { return _errorMessage; }
+            get => _errorMessage;
             set
             {
                 _errorMessage = value;
@@ -103,13 +103,14 @@ namespace Moryx.Products.UI.Interaction
             Product = product;
 
             CreateCmd = new AsyncCommand(CreateRevision, CanCreateRevision, true);
-            CancelCmd = new RelayCommand(Cancel, CanCancel);
+            CancelCmd = new AsyncCommand(Cancel, CanCancel, true);
         }
 
         /// <inheritdoc />
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(cancellationToken);
+
             DisplayName = Strings.CreateRevisionViewModel_DisplayName;
 
             var loadingTask = Task.Run(async delegate
@@ -122,13 +123,13 @@ namespace Moryx.Products.UI.Interaction
                         RevisionFilter = RevisionFilter.All
                     }).ConfigureAwait(false);
 
-                    await Execute.OnUIThreadAsync(() => NewRevision = (short)(_currentRevisions.Max(pr => pr.Revision) + 1));
+                    Execute.OnUIThread(() => NewRevision = (short) (_currentRevisions.Max(pr => pr.Revision) + 1));
                 }
                 catch (Exception e)
                 {
-                    await Execute.OnUIThreadAsync(() => ErrorMessage = e.Message);
+                    Execute.OnUIThread(() => ErrorMessage = e.Message);
                 }
-            });
+            }, cancellationToken);
 
             TaskNotifier = new TaskNotifier(loadingTask);
         }
@@ -167,7 +168,7 @@ namespace Moryx.Products.UI.Interaction
                 else
                 {
                     CreatedProduct = new ProductInfoViewModel(response.Duplicate);
-                    TryClose(true);
+                    await TryCloseAsync(true);
                 }
             }
             catch (Exception e)
@@ -179,7 +180,7 @@ namespace Moryx.Products.UI.Interaction
         private bool CanCancel(object obj) =>
             !((AsyncCommand)CreateCmd).IsExecuting;
 
-        private void Cancel(object parameters) =>
-            TryClose(false);
+        private Task Cancel(object parameters) =>
+            TryCloseAsync(false);
     }
 }

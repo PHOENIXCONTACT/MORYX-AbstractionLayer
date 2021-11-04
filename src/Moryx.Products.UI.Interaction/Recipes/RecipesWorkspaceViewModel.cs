@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
@@ -39,7 +40,7 @@ namespace Moryx.Products.UI.Interaction
         private RecipeViewModel _selectedRecipe;
         public RecipeViewModel SelectedRecipe
         {
-            get { return _selectedRecipe; }
+            get => _selectedRecipe;
             set
             {
                 if (_selectedRecipe == value)
@@ -66,10 +67,12 @@ namespace Moryx.Products.UI.Interaction
             Title = title;
         }
 
-        protected override void OnActivate()
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken)
         {
-            base.OnActivate();
+            await base.OnActivateAsync(cancellationToken);
+#pragma warning disable 4014
             Task.Run(LoadData);
+#pragma warning restore 4014
         }
 
         public override async Task OnMasterItemChanged(object sender, RoutedPropertyChangedEventArgs<object> args)
@@ -77,14 +80,14 @@ namespace Moryx.Products.UI.Interaction
             var selectedRecipe = (RecipeViewModel)args.NewValue;
             if (selectedRecipe == null)
             {
-                ShowEmpty();
+                await ShowEmpty();
                 return;
             }
 
             var detailsVm = DetailsFactory.Create(selectedRecipe.Type);
             await LoadDetails(() => detailsVm.Load(selectedRecipe.Id, _workplans));
 
-            ActivateItem(detailsVm);
+            await ActivateItemAsync(detailsVm);
         }
 
         protected override async Task OnSaved()
@@ -98,11 +101,11 @@ namespace Moryx.Products.UI.Interaction
             await LoadRecipesByIds();
         }
 
-        protected override void ShowEmpty()
+        protected override Task ShowEmpty()
         {
             EmptyDetails.Display(MessageSeverity.Info, Strings.RecipeWorkspaceViewModel_SelectRecipe);
 
-            base.ShowEmpty();
+            return base.ShowEmpty();
         }
 
         private async Task LoadData()
@@ -113,7 +116,11 @@ namespace Moryx.Products.UI.Interaction
             {
                 await LoadWorkplans().ConfigureAwait(false);
                 await LoadRecipesByIds().ConfigureAwait(false);
-                await Execute.OnUIThreadAsync(() => SelectedRecipe = Recipes.FirstOrDefault());
+                await Execute.OnUIThreadAsync(delegate
+                {
+                    SelectedRecipe = Recipes.FirstOrDefault();
+                    return Task.CompletedTask;
+                });
             }
             finally
             {
@@ -157,7 +164,7 @@ namespace Moryx.Products.UI.Interaction
             await Execute.OnUIThreadAsync(() => AddRecipeToCollection(recipes.ToArray()));
         }
 
-        private void AddRecipeToCollection(RecipeModel[] recipeModels)
+        private Task AddRecipeToCollection(RecipeModel[] recipeModels)
         {
             foreach (var recipeModel in recipeModels)
             {
@@ -176,9 +183,11 @@ namespace Moryx.Products.UI.Interaction
                     });
                 }
             }
+
+            return Task.CompletedTask;
         }
 
-        private void AddWorkplanToCollection(WorkplanModel[] workplanModels)
+        private Task AddWorkplanToCollection(WorkplanModel[] workplanModels)
         {
             foreach (var workplanModel in workplanModels)
             {
@@ -188,6 +197,8 @@ namespace Moryx.Products.UI.Interaction
                 else
                     _workplans.Add(new WorkplanViewModel(workplanModel));
             }
+
+            return Task.CompletedTask;
         }
     }
 }

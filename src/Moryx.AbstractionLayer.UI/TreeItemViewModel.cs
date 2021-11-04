@@ -20,7 +20,7 @@ namespace Moryx.AbstractionLayer.UI
         /// <summary>
         /// Children of this tree item
         /// </summary>
-        public ObservableCollection<TreeItemViewModel> Children { get; } = new ObservableCollection<TreeItemViewModel>();
+        public ObservableCollection<TreeItemViewModel> Children { get; } = new();
 
         /// <summary>
         /// Display name of this TreeViewItem
@@ -32,7 +32,7 @@ namespace Moryx.AbstractionLayer.UI
         /// </summary>
         public bool IsExpanded
         {
-            get { return _isExpanded; }
+            get => _isExpanded;
             set
             {
                 _isExpanded = value;
@@ -45,7 +45,7 @@ namespace Moryx.AbstractionLayer.UI
         /// </summary>
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get => _isSelected;
             set
             {
                 _isSelected = value;

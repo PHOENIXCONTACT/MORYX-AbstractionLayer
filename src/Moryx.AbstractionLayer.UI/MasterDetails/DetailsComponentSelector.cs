@@ -2,7 +2,6 @@
 // Licensed under the Apache License, Version 2.0
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -41,8 +40,7 @@ namespace Moryx.AbstractionLayer.UI
         ///
         protected override string GetComponentName(MethodInfo method, object[] arguments)
         {
-            var groupType = arguments.FirstOrDefault() as string;
-            return groupType != null && Registrations.ContainsKey(groupType)
+            return arguments.FirstOrDefault() is string groupType && Registrations.ContainsKey(groupType)
                 ? Registrations[groupType]
                 : Registrations[DetailsConstants.DefaultType];
         }

@@ -2,17 +2,17 @@
  Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
  Licensed under the Apache License, Version 2.0
 -->
-<UserControl x:Class="Moryx.Resources.UI.Interaction.Aspects.Methods.ResourceMethodsAspectView"
+<UserControl x:Class="Moryx.Resources.UI.Interaction.Aspects.ResourceMethodsAspectView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ui="clr-namespace:Moryx.Resources.UI;assembly=Moryx.Resources.UI"
              xmlns:controls="clr-namespace:Moryx.Controls;assembly=Moryx.Controls"
-             xmlns:methods="clr-namespace:Moryx.Resources.UI.Interaction.Aspects.Methods"
              xmlns:al="clr-namespace:Moryx.AbstractionLayer.UI;assembly=Moryx.AbstractionLayer.UI"
              xmlns:properties="clr-namespace:Moryx.Resources.UI.Interaction.Properties"
-             mc:Ignorable="d" d:DataContext="{d:DesignInstance methods:ResourceMethodsAspectViewModel}"
+             xmlns:aspects="clr-namespace:Moryx.Resources.UI.Interaction.Aspects"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance aspects:ResourceMethodsAspectViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">

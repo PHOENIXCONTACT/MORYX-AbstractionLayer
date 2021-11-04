@@ -1,7 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
@@ -64,7 +63,7 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         public EntryViewModel Parameters
         {
-            get { return _parameters; }
+            get => _parameters;
             set
             {
                 if (Equals(value, _parameters))

@@ -39,7 +39,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
         private SinglePartConnectorPartViewModel _selectedPartLink;
         public SinglePartConnectorPartViewModel SelectedPartLink
         {
-            get { return _selectedPartLink; }
+            get => _selectedPartLink;
             set
             {
                 _selectedPartLink = value;

@@ -8,7 +8,6 @@ using System.Linq;
 using Caliburn.Micro;
 using Moryx.Controls;
 using Moryx.Resources.UI.ResourceService;
-using Moryx.Serialization;
 using Moryx.Tools;
 using Entry = Moryx.Serialization.Entry;
 
@@ -53,7 +52,7 @@ namespace Moryx.Resources.UI
         /// </summary>
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 _name = value;
@@ -71,7 +70,7 @@ namespace Moryx.Resources.UI
         /// </summary>
         public string Description
         {
-            get { return _description; }
+            get => _description;
             set
             {
                 _description = value;
@@ -84,7 +83,7 @@ namespace Moryx.Resources.UI
         /// </summary>
         public EntryViewModel Properties
         {
-            get { return _properties; }
+            get => _properties;
             set
             {
                 _properties = value;
@@ -97,7 +96,7 @@ namespace Moryx.Resources.UI
         /// </summary>
         public ResourceMethodViewModel[] Methods
         {
-            get { return _methods; }
+            get => _methods;
             set
             {
                 _methods = value;

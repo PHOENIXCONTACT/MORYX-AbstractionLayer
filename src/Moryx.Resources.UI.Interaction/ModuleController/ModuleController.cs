@@ -1,29 +1,33 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using System.Threading.Tasks;
 using System.Windows.Media;
 using Moryx.WpfToolkit;
 using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
+using Moryx.Configuration;
 using Moryx.Logging;
 using Moryx.Resources.UI.Interaction.Properties;
-using Moryx.Tools.Wcf;
 
 namespace Moryx.Resources.UI.Interaction
 {
     /// <summary>
     /// Module controller of the Resources UI.
     /// </summary>
-    [ClientModule(ModuleName)]
+    [ClientModule("Resources")]
     public class ModuleController : WorkspaceModuleBase<ModuleConfig>
     {
-        internal const string ModuleName = "Resources";
-
         /// <inheritdoc />
         public override Geometry Icon => CommonShapeFactory.GetShapeGeometry(CommonShapeType.Cells);
 
+        /// <summary>
+        /// Config manager to get configurations
+        /// </summary>
+        public IConfigManager ConfigManager { get; set; }
+
         ///
-        protected override void OnInitialize()
+        protected override Task OnInitializeAsync()
         {
             DisplayName = Strings.ModuleController_DisplayName;
 
@@ -39,26 +43,31 @@ namespace Moryx.Resources.UI.Interaction
             Container.LoadComponents<IResourceDetails>();
 
             // Register and start service model
-            var clientFactory = Container.Resolve<IWcfClientFactory>();
+            var runtimeConfig = ConfigManager.GetConfiguration<RuntimeConfig>();
+            var proxyConfig = ConfigManager.GetConfiguration<ProxyConfig>();
             var logger = Container.Resolve<IModuleLogger>();
-            IResourceServiceModel serviceModel = new ResourceServiceModel(clientFactory, logger);
 
+            IResourceServiceModel serviceModel = new ResourceServiceModel(runtimeConfig.Host, runtimeConfig.Port, proxyConfig, logger);
             Container.SetInstance(serviceModel);
 
             serviceModel.Start();
+
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc />
-        protected override void OnActivate()
+        protected override Task OnActivateAsync()
         {
-
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc />
-        protected override void OnDeactivate(bool close)
+        protected override Task OnDeactivateAsync(bool close)
         {
             if(close)
                 Container.Resolve<IResourceServiceModel>().Stop();
+
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc />
@@ -70,7 +79,6 @@ namespace Moryx.Resources.UI.Interaction
         /// <inheritdoc />
         protected override void OnDestroyWorkspace(IModuleWorkspace workspace)
         {
-
         }
     }
 }
