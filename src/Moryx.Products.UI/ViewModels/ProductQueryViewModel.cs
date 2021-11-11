@@ -8,21 +8,6 @@ using Moryx.Products.UI.ProductService;
 
 namespace Moryx.Products.UI
 {
-    public class PropertyFilterViewModel : PropertyChangedBase
-    {
-        public Serialization.Entry Model { get; set; }
-
-        public PropertyFilterViewModel(ProductService.Entry model)
-        {
-            Model = model.ToSerializationEntry();
-        }
-
-        public PropertyFilterViewModel(Serialization.Entry model)
-        {
-            Model = model;
-        }
-    }
-
     public class ProductQueryViewModel : PropertyChangedBase
     {
         private RevisionFilter _revisionFilter;
@@ -99,6 +84,10 @@ namespace Moryx.Products.UI
             get => _type;
             set
             {
+                // Clear property filters if type was changed
+                if (value == null || (_type != null && value.Model.Name != _type.Model.Name))
+                    PropertyFilters = null;
+
                 _type = value;
                 NotifyOfPropertyChange();
             }
@@ -129,7 +118,8 @@ namespace Moryx.Products.UI
             {
                 query.PropertyFilters = PropertyFilters.Select(pf => new PropertyFilter
                 {
-                    Entry = pf.Model.ToServiceEntry()
+                    Entry = pf.Property.ToServiceEntry(),
+                    Operator = pf.Operator
                 }).ToArray();
             }
 

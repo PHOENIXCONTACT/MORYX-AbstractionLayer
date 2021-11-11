@@ -63,7 +63,7 @@ namespace Moryx.Products.UI.Interaction
 
         public ICommand FilterCmd { get; }
 
-        public ICommand AdvancedFilterCmd { get; }
+        public ICommand PropertyFilterCmd { get; }
 
         public ICommand AspectConfiguratorCmd { get; }
 
@@ -122,29 +122,11 @@ namespace Moryx.Products.UI.Interaction
             RemoveCmd = new AsyncCommand(RemoveProduct, CanRemoveProduct, true);
             ShowRevisionsCmd = new AsyncCommand(ShowRevisions, CanShowRevisions, true);
             FilterCmd = new RelayCommand(ShowFilter);
-            AdvancedFilterCmd = new AsyncCommand(ShowAdvancedFilter, _ => true, true);
+            PropertyFilterCmd = new AsyncCommand(ShowPropertyFilter, _ => true, true);
             AspectConfiguratorCmd = new AsyncCommand(ShowAspectConfigurator, CanShowAspectConfigurator, true);
 
             // Set initial query
             ResetQuery();
-        }
-
-        private async Task ShowAdvancedFilter(object arg)
-        {
-            var filterDialog = new PropertyFilterDialogViewModel(Query.Type);
-            await DialogManager.ShowDialogAsync(filterDialog);
-            if (!filterDialog.Result)
-                return;
-
-            var configuredProperties = filterDialog.CurrentEntryViewModel?.SubEntries
-                                       ?? new ObservableCollection<EntryViewModel>();
-
-            Query.PropertyFilters = configuredProperties.Select(c => new PropertyFilterViewModel(c.Entry)).ToList();
-        }
-
-        private void ShowFilter(object obj)
-        {
-            IsCustomQuery = !IsCustomQuery;
         }
 
         protected override void OnInitialize()
@@ -243,7 +225,7 @@ namespace Moryx.Products.UI.Interaction
                 var customization = await ProductServiceModel.GetCustomization(true);
                 var productTypes = customization.ProductTypes;
                 ProductTypes = productTypes.Select(p => new ProductDefinitionViewModel(p)).ToArray();
-
+                // TODO ERROR Clears
                 var products = await ProductServiceModel.GetProducts(Query.GetQuery());
 
                 Merge(productTypes, products);
@@ -254,7 +236,6 @@ namespace Moryx.Products.UI.Interaction
                 ShowEmpty();
             }
         }
-
 
         protected override void ShowEmpty()
         {
@@ -281,6 +262,24 @@ namespace Moryx.Products.UI.Interaction
             IsBusy = false;
             if (reset)
                 IsCustomQuery = false;
+        }
+
+        private async Task ShowPropertyFilter(object arg)
+        {
+            var filterDialog = new PropertyFilterDialogViewModel(Query.Type);
+            await DialogManager.ShowDialogAsync(filterDialog);
+            if (!filterDialog.Result)
+                return;
+
+            var configuredProperties = filterDialog.CurrentFilter?.SubEntries
+                                       ?? new ObservableCollection<EntryViewModel>();
+
+            Query.PropertyFilters = configuredProperties.Select(c => new PropertyFilterViewModel(c.Entry)).ToList();
+        }
+
+        private void ShowFilter(object obj)
+        {
+            IsCustomQuery = !IsCustomQuery;
         }
 
         private bool CanImportProduct(object obj) =>
