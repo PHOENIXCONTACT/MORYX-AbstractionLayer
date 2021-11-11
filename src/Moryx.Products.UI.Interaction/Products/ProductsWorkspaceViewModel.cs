@@ -15,6 +15,7 @@ using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
 using Moryx.ClientFramework.Commands;
 using Moryx.Container;
+using Moryx.Controls;
 using Moryx.Products.UI.Interaction.Properties;
 using Moryx.Products.UI.ProductService;
 using Moryx.Tools;
@@ -62,6 +63,8 @@ namespace Moryx.Products.UI.Interaction
 
         public ICommand FilterCmd { get; }
 
+        public ICommand AdvancedFilterCmd { get; }
+
         public ICommand AspectConfiguratorCmd { get; }
 
         private TreeItemViewModel _selectedItem;
@@ -87,12 +90,24 @@ namespace Moryx.Products.UI.Interaction
         }
 
         private bool _isCustomQuery;
+
         public bool IsCustomQuery
         {
             get { return _isCustomQuery; }
             set
             {
                 _isCustomQuery = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private ProductDefinitionViewModel[] _productTypes;
+        public ProductDefinitionViewModel[] ProductTypes
+        {
+            get => _productTypes;
+            set
+            {
+                _productTypes = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -107,10 +122,24 @@ namespace Moryx.Products.UI.Interaction
             RemoveCmd = new AsyncCommand(RemoveProduct, CanRemoveProduct, true);
             ShowRevisionsCmd = new AsyncCommand(ShowRevisions, CanShowRevisions, true);
             FilterCmd = new RelayCommand(ShowFilter);
+            AdvancedFilterCmd = new AsyncCommand(ShowAdvancedFilter, _ => true, true);
             AspectConfiguratorCmd = new AsyncCommand(ShowAspectConfigurator, CanShowAspectConfigurator, true);
 
             // Set initial query
             ResetQuery();
+        }
+
+        private async Task ShowAdvancedFilter(object arg)
+        {
+            var filterDialog = new PropertyFilterDialogViewModel(Query.Type);
+            await DialogManager.ShowDialogAsync(filterDialog);
+            if (!filterDialog.Result)
+                return;
+
+            var configuredProperties = filterDialog.CurrentEntryViewModel?.SubEntries
+                                       ?? new ObservableCollection<EntryViewModel>();
+
+            Query.PropertyFilters = configuredProperties.Select(c => new PropertyFilterViewModel(c.Entry)).ToList();
         }
 
         private void ShowFilter(object obj)
@@ -156,8 +185,7 @@ namespace Moryx.Products.UI.Interaction
         {
             SelectedItem = treeItem;
 
-            var productItem = treeItem as ProductItemViewModel;
-            if (productItem != null)
+            if (treeItem is ProductItemViewModel productItem)
             {
                 // Set current revision when selecting a product
                 SelectedRevision = productItem.Product;
@@ -214,6 +242,7 @@ namespace Moryx.Products.UI.Interaction
             {
                 var customization = await ProductServiceModel.GetCustomization(true);
                 var productTypes = customization.ProductTypes;
+                ProductTypes = productTypes.Select(p => new ProductDefinitionViewModel(p)).ToArray();
 
                 var products = await ProductServiceModel.GetProducts(Query.GetQuery());
 
@@ -225,6 +254,7 @@ namespace Moryx.Products.UI.Interaction
                 ShowEmpty();
             }
         }
+
 
         protected override void ShowEmpty()
         {

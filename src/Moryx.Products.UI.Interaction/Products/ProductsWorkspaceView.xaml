@@ -160,31 +160,59 @@
                                                 Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
                                 <EddieTextBox Text="{Binding Query.Identifier}" />
                             </LabeledControlHost>
-                            <DockPanel LastChildFill="True">
 
-                                <EddieTextBox DockPanel.Dock="Right" Width="50" Height="22"
-                                          VerticalAlignment="Top" Margin="5,0,0,0"
-                                          Text="{Binding Query.Revision}">
-                                    <EddieTextBox.Style>
-                                        <Style TargetType="EddieTextBox">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Query.RevisionFilter}" Value="{x:Static productService1:RevisionFilter.Specific}">
-                                                    <Setter Property="Visibility" Value="Visible" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </EddieTextBox.Style>
-                                </EddieTextBox>
+                            <LabeledControlHost DockPanel.Dock="Left" LabelA="{x:Static properties:Strings.ProductsWorkspaceView_Filter_Revisions}"
+                                                Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
+                                <DockPanel LastChildFill="True">
+                                    <EddieTextBox DockPanel.Dock="Right" Width="50" Height="22"
+                                                  VerticalAlignment="Top" Margin="5,0,0,0"
+                                                  Text="{Binding Query.Revision}">
+                                        <EddieTextBox.Style>
+                                            <Style TargetType="EddieTextBox">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Query.RevisionFilter}" Value="{x:Static productService1:RevisionFilter.Specific}">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </EddieTextBox.Style>
+                                    </EddieTextBox>
 
-                                <LabeledControlHost DockPanel.Dock="Left" LabelA="{x:Static properties:Strings.ProductsWorkspaceView_Filter_Revisions}" Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
-                                    <EddieComboBox ItemsSource="{Binding Source={StaticResource RevisionFilterValues}}" SelectedItem="{Binding Query.RevisionFilter}"
-                                               HorizontalAlignment="Stretch" />
-                                </LabeledControlHost>
-                            </DockPanel>
+                                    <EddieComboBox DockPanel.Dock="Left" ItemsSource="{Binding Source={StaticResource RevisionFilterValues}}"
+                                                   SelectedItem="{Binding Query.RevisionFilter}"
+                                                   HorizontalAlignment="Stretch" />
+                                </DockPanel>
+                            </LabeledControlHost>
 
-                            <LabeledControlHost LabelA="{x:Static properties:Strings.ProductsWorkspaceView_Filter_Selector}"  SharedSizeGroupName="ProductQuery">
+                            <LabeledControlHost LabelA="{x:Static properties:Strings.ProductsWorkspaceView_Filter_Selector}" Margin="0,0,0,5" SharedSizeGroupName="ProductQuery">
                                 <EddieComboBox ItemsSource="{Binding Source={StaticResource SelectorValues}}" SelectedItem="{Binding Query.Selector}" />
+                            </LabeledControlHost>
+
+                            <LabeledControlHost DockPanel.Dock="Left" LabelA="Type" SharedSizeGroupName="ProductQuery">
+                                <DockPanel LastChildFill="True">
+                                    <Button DockPanel.Dock="Right" Margin="5,0,0,0"
+                                            Padding="0" Height="25" HorizontalContentAlignment="Left"
+                                            Command="{Binding AdvancedFilterCmd}">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource ToolBarButtonStyle}">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Query.Type}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+
+                                        <Path Style="{StaticResource IconPathStyle}" Data="{MdiShape Screwdriver}" />
+                                    </Button>
+
+                                    <EddieComboBox DockPanel.Dock="Left"
+                                                   ItemsSource="{Binding ProductTypes}" DisplayMemberPath="DisplayName"
+                                                   SelectedItem="{Binding Query.Type}"
+                                                   AllowClearButton="True" />
+                                </DockPanel>
                             </LabeledControlHost>
 
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -230,7 +258,7 @@
                                                 CancelEditCmd="{Binding CancelEditCmd}"
                                                 CancelEditContent="{x:Static properties:Strings.ProductsWorkspaceView_Cancel}"
                                                 SaveCmd="{Binding SaveCmd}"
-                                                SaveContent="{x:Static properties:Strings.ProductsWorkspaceView_Save}" 
+                                                SaveContent="{x:Static properties:Strings.ProductsWorkspaceView_Save}"
                                                 Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanEdit}}"/>
 
                 <Border DockPanel.Dock="Top"
@@ -253,7 +281,7 @@
                                     </ResourceDictionary>
                                 </StackPanel.Resources>
 
-                                <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding DuplicateCmd}" 
+                                <Button Style="{StaticResource ExtendedToolBarButtonStyle}" Command="{Binding DuplicateCmd}"
                                         Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanDuplicate}}">
                                     <DockPanel>
                                         <Path Style="{StaticResource IconPathStyle}" Data="{MdiShape Content_Duplicate}"/>
