@@ -1071,6 +1071,8 @@ namespace Moryx.Products.UI.ProductService
         
         private long IdField;
         
+        private bool IsCloneField;
+        
         private string NameField;
         
         private Moryx.Products.UI.ProductService.Entry PropertiesField;
@@ -1106,6 +1108,19 @@ namespace Moryx.Products.UI.ProductService
             set
             {
                 this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsClone
+        {
+            get
+            {
+                return this.IsCloneField;
+            }
+            set
+            {
+                this.IsCloneField = value;
             }
         }
         

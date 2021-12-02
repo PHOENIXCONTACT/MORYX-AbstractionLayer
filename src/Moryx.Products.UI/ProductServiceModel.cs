@@ -22,7 +22,7 @@ namespace Moryx.Products.UI
         public override string ServiceName => nameof(IProductInteraction);
 
         /// <inheritdoc />
-        protected override string ClientVersion => "5.0.0";
+        protected override string ClientVersion => "5.1.0";
 
         /// <inheritdoc />
         public ProductServiceModel(IWcfClientFactory clientFactory, IModuleLogger logger)

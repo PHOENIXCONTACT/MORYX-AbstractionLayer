@@ -8,6 +8,5 @@ namespace Moryx.Products.UI.Interaction
     [RecipeDetailsRegistration(DetailsConstants.DefaultType)]
     internal class DefaultRecipeDetailsViewModel : RecipeDetailsViewModelBase
     {
-
     }
 }

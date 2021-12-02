@@ -19,6 +19,7 @@ namespace Moryx.Products.UI
         private string _type;
         private int _revision;
         private RecipeClassificationModel _classification;
+        private bool _isClone;
 
         private WorkplanViewModel _workplan;
         private EntryViewModel _properties;
@@ -105,6 +106,19 @@ namespace Moryx.Products.UI
         }
 
         /// <summary>
+        /// Gets whether this recipe is a clone
+        /// </summary>
+        public bool IsClone
+        {
+            get { return _isClone; }
+            set
+            {
+                _isClone = value;
+                NotifyOfPropertyChange(nameof(IsClone));
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the revision of the recipe
         /// </summary>
         public int Revision
@@ -138,6 +152,7 @@ namespace Moryx.Products.UI
             Name = Model.Name;
             Type = Model.Type;
             Classification = Model.Classification;
+            IsClone = Model.IsClone;
             Revision = Model.Revision;
             Properties = new EntryViewModel(Model.Properties.ToSerializationEntry());
         }
@@ -150,6 +165,7 @@ namespace Moryx.Products.UI
             Model.Name = _name;
             Model.Type = _type;
             Model.Classification = _classification;
+            Model.IsClone = _isClone;
             Model.Revision = _revision;
             Model.Properties = Properties.Entry.ToServiceEntry();
             Model.WorkplanId = Workplan?.Id ?? 0;
