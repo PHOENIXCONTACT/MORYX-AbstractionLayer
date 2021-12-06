@@ -413,30 +413,108 @@ namespace Moryx.Products.UI.Interaction
 
         private void Merge(IEnumerable<ProductDefinitionModel> productTypes, ProductModel[] products)
         {
-            var productItemMergeStrategy = new ProductItemMergeStrategy();
-            var updatedGroups = new List<TypeItemViewModel>();
-            foreach (var productType in productTypes)
+            if (!Config.ShowProductTypeTree)
             {
-                var groupItem = ProductGroups.FirstOrDefault(item => item.TypeName == productType.Name);
-                var productsForGroup = products.Where(p => p.Type == productType.Name);
+                var productItemMergeStrategy = new ProductItemMergeStrategy();
+                var updatedGroups = new List<TypeItemViewModel>();
+                foreach (var productType in productTypes)
+                {
+                    var groupItem = ProductGroups.FirstOrDefault(item => item.TypeName == productType.Name);
+                    var productsForGroup = products.Where(p => p.Type == productType.Name);
 
+                    if (groupItem == null)
+                    {
+                        groupItem = new TypeItemViewModel(productType);
+                        groupItem.Children.AddRange(productsForGroup.Select(p => new ProductItemViewModel(p)));
+                        ProductGroups.Add(groupItem);
+                    }
+                    else
+                    {
+                        groupItem.UpdateModel(productType);
+                        groupItem.Children.MergeCollection(productsForGroup.ToArray(), productItemMergeStrategy);
+                    }
+
+                    updatedGroups.Add(groupItem);
+                }
+
+                var removedGroups = ProductGroups.Where(treeItem => !updatedGroups.Select(g => g.TypeName).Contains(treeItem.TypeName)).ToArray();
+                ProductGroups.RemoveRange(removedGroups);
+            }
+            else
+            {
+                // Create target tree
+                var targetStructure = new List<TypeItemViewModel>();
+                var typeItems = productTypes.Select(p => new TypeItemViewModel(p)).ToList();
+                foreach (var typeItem in typeItems)
+                {
+                    var productsForGroup = products.Where(p => p.Type == typeItem.TypeName);
+                    typeItem.Children.AddRange(productsForGroup.Select(p => new ProductItemViewModel(p)));
+                    var parent = typeItems.FirstOrDefault(i => i.TypeName == typeItem.Model.BaseDefinition);
+                    if (parent != null)
+                    {
+                        parent.Children.Add(typeItem);
+                    }
+                    else
+                    {
+                        targetStructure.Add(typeItem);
+                    }
+                }
+
+                // Update root entries
+                var added = targetStructure.Where(t => ProductGroups.All(s => s.TypeName != t.TypeName));
+                var removed = ProductGroups.Where(s => targetStructure.All(t => t.TypeName != s.TypeName));
+                ProductGroups.RemoveRange(removed);
+                ProductGroups.AddRange(added);
+
+                // Update each branch
+                foreach (var template in targetStructure)
+                {
+                    var toUpdate = ProductGroups.First(s => s.TypeName == template.TypeName);
+                    toUpdate.UpdateModel(template.Model);
+                    UpdateBranch(template, toUpdate);
+                }
+            }
+        }
+
+        private static void UpdateBranch(TypeItemViewModel template, TypeItemViewModel toUpdate)
+        {
+            var productsForGroup = template.Children.OfType<ProductItemViewModel>().Select(c => c.Product.Model);
+            var subGroups = template.Children.OfType<TypeItemViewModel>();
+
+            var removedProducts = toUpdate.Children
+                .OfType<ProductItemViewModel>()
+                .Where(c => productsForGroup.All(p => p.Id != c.Id));
+            var removedSubGroups = toUpdate.Children
+                .OfType<TypeItemViewModel>()
+                .Where(c => subGroups.All(g => g.TypeName != c.TypeName));
+
+            toUpdate.Children.RemoveRange(removedProducts);
+            toUpdate.Children.RemoveRange(removedSubGroups);
+
+            // Update products for parent group
+            foreach (var productModel in productsForGroup)
+            {
+                var productItem = (ProductItemViewModel)toUpdate.Children.FirstOrDefault(c => c.Id == productModel.Id);
+                if(productItem == null)
+                    toUpdate.Children.Add(new ProductItemViewModel(productModel));
+                else
+                    productItem.UpdateModel(productModel);
+            }
+            
+            // Update subgroups
+            foreach (var group in subGroups)
+            {
+                var groupItem = toUpdate.Children.OfType<TypeItemViewModel>().FirstOrDefault(c => c.TypeName == group.TypeName);
                 if (groupItem == null)
                 {
-                    groupItem = new TypeItemViewModel(productType);
-                    groupItem.Children.AddRange(productsForGroup.Select(p => new ProductItemViewModel(p)));
-                    ProductGroups.Add(groupItem);
+                    groupItem = new TypeItemViewModel(group.Model);
+                    toUpdate.Children.Add(groupItem);
                 }
                 else
-                {
-                    groupItem.UpdateModel(productType);
-                    groupItem.Children.MergeCollection(productsForGroup.ToArray(), productItemMergeStrategy);
-                }
+                    groupItem.UpdateModel(group.Model);
 
-                updatedGroups.Add(groupItem);
+                UpdateBranch(group, groupItem);
             }
-
-            var removedGroups = ProductGroups.Where(treeItem => !updatedGroups.Select(g => g.TypeName).Contains(treeItem.TypeName)).ToArray();
-            ProductGroups.RemoveRange(removedGroups);
         }
 
         private class ProductItemMergeStrategy : IMergeStrategy<ProductModel, TreeItemViewModel>
