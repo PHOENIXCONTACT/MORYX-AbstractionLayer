@@ -101,14 +101,26 @@ namespace Moryx.Products.UI.Interaction
             }
         }
 
-        private ProductDefinitionViewModel[] _productTypes;
+        // TODO: Change to ObservableCollection in the next major
         public ProductDefinitionViewModel[] ProductTypes
         {
-            get => _productTypes;
+            get => ProductTypesObservable.ToArray();
             set
             {
-                _productTypes = value;
+                ProductTypesObservable = new ObservableCollection<ProductDefinitionViewModel>(value);
                 NotifyOfPropertyChange();
+            }
+        }
+
+        private ObservableCollection<ProductDefinitionViewModel> _productTypesObservable = new ObservableCollection<ProductDefinitionViewModel>();
+        public ObservableCollection<ProductDefinitionViewModel> ProductTypesObservable
+        {
+            get => _productTypesObservable;
+            set
+            {
+                _productTypesObservable = value;
+                NotifyOfPropertyChange();
+                NotifyOfPropertyChange(nameof(ProductTypes));
             }
         }
 
@@ -224,8 +236,27 @@ namespace Moryx.Products.UI.Interaction
             {
                 var customization = await ProductServiceModel.GetCustomization(true);
                 var productTypes = customization.ProductTypes;
-                ProductTypes = productTypes.Select(p => new ProductDefinitionViewModel(p)).ToArray();
-                // TODO ERROR Clears
+
+                // Merge type collection
+                var removed = ProductTypesObservable.Where(r => productTypes.All(u => u.Name != r.Model.Name)).ToList();
+                foreach (var obj in removed)
+                    ProductTypesObservable.Remove(obj);
+
+                foreach (var updatedModel in productTypes)
+                {
+                    var match = ProductTypesObservable.FirstOrDefault(r => r.Model.Name == updatedModel.Name);
+                    if (match != null)
+                    {
+                        // TODO: Update definition
+                    }
+                    else
+                    {
+                        var vm = new ProductDefinitionViewModel(updatedModel);
+                        ProductTypesObservable.Add(vm);
+                        NotifyOfPropertyChange(nameof(ProductTypes));
+                    }
+                }
+
                 var products = await ProductServiceModel.GetProducts(Query.GetQuery());
 
                 Merge(productTypes, products);
@@ -529,7 +560,7 @@ namespace Moryx.Products.UI.Interaction
                 else
                     productItem.UpdateModel(productModel);
             }
-            
+
             // Update subgroups
             foreach (var group in subGroups)
             {
