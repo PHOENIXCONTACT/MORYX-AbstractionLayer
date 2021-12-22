@@ -15,6 +15,7 @@ using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
 using Moryx.ClientFramework.Commands;
 using Moryx.Container;
+using Moryx.Controls;
 using Moryx.Products.UI.Interaction.Properties;
 using Moryx.Products.UI.ProductService;
 using Moryx.Tools;
@@ -62,6 +63,8 @@ namespace Moryx.Products.UI.Interaction
 
         public ICommand FilterCmd { get; }
 
+        public ICommand PropertyFilterCmd { get; }
+
         public ICommand AspectConfiguratorCmd { get; }
 
         private TreeItemViewModel _selectedItem;
@@ -87,6 +90,7 @@ namespace Moryx.Products.UI.Interaction
         }
 
         private bool _isCustomQuery;
+
         public bool IsCustomQuery
         {
             get { return _isCustomQuery; }
@@ -94,6 +98,29 @@ namespace Moryx.Products.UI.Interaction
             {
                 _isCustomQuery = value;
                 NotifyOfPropertyChange();
+            }
+        }
+
+        // TODO: Change to ObservableCollection in the next major
+        public ProductDefinitionViewModel[] ProductTypes
+        {
+            get => ProductTypesObservable.ToArray();
+            set
+            {
+                ProductTypesObservable = new ObservableCollection<ProductDefinitionViewModel>(value);
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private ObservableCollection<ProductDefinitionViewModel> _productTypesObservable = new ObservableCollection<ProductDefinitionViewModel>();
+        public ObservableCollection<ProductDefinitionViewModel> ProductTypesObservable
+        {
+            get => _productTypesObservable;
+            set
+            {
+                _productTypesObservable = value;
+                NotifyOfPropertyChange();
+                NotifyOfPropertyChange(nameof(ProductTypes));
             }
         }
 
@@ -107,15 +134,11 @@ namespace Moryx.Products.UI.Interaction
             RemoveCmd = new AsyncCommand(RemoveProduct, CanRemoveProduct, true);
             ShowRevisionsCmd = new AsyncCommand(ShowRevisions, CanShowRevisions, true);
             FilterCmd = new RelayCommand(ShowFilter);
+            PropertyFilterCmd = new AsyncCommand(ShowPropertyFilter, _ => true, true);
             AspectConfiguratorCmd = new AsyncCommand(ShowAspectConfigurator, CanShowAspectConfigurator, true);
 
             // Set initial query
             ResetQuery();
-        }
-
-        private void ShowFilter(object obj)
-        {
-            IsCustomQuery = !IsCustomQuery;
         }
 
         protected override void OnInitialize()
@@ -156,8 +179,7 @@ namespace Moryx.Products.UI.Interaction
         {
             SelectedItem = treeItem;
 
-            var productItem = treeItem as ProductItemViewModel;
-            if (productItem != null)
+            if (treeItem is ProductItemViewModel productItem)
             {
                 // Set current revision when selecting a product
                 SelectedRevision = productItem.Product;
@@ -215,6 +237,26 @@ namespace Moryx.Products.UI.Interaction
                 var customization = await ProductServiceModel.GetCustomization(true);
                 var productTypes = customization.ProductTypes;
 
+                // Merge type collection
+                var removed = ProductTypesObservable.Where(r => productTypes.All(u => u.Name != r.Model.Name)).ToList();
+                foreach (var obj in removed)
+                    ProductTypesObservable.Remove(obj);
+
+                foreach (var updatedModel in productTypes)
+                {
+                    var match = ProductTypesObservable.FirstOrDefault(r => r.Model.Name == updatedModel.Name);
+                    if (match != null)
+                    {
+                        // TODO: Update definition
+                    }
+                    else
+                    {
+                        var vm = new ProductDefinitionViewModel(updatedModel);
+                        ProductTypesObservable.Add(vm);
+                        NotifyOfPropertyChange(nameof(ProductTypes));
+                    }
+                }
+
                 var products = await ProductServiceModel.GetProducts(Query.GetQuery());
 
                 Merge(productTypes, products);
@@ -251,6 +293,24 @@ namespace Moryx.Products.UI.Interaction
             IsBusy = false;
             if (reset)
                 IsCustomQuery = false;
+        }
+
+        private async Task ShowPropertyFilter(object arg)
+        {
+            var filterDialog = new PropertyFilterDialogViewModel(Query.Type);
+            await DialogManager.ShowDialogAsync(filterDialog);
+            if (!filterDialog.Result)
+                return;
+
+            var configuredProperties = filterDialog.CurrentFilter?.SubEntries
+                                       ?? new ObservableCollection<EntryViewModel>();
+
+            Query.PropertyFilters = configuredProperties.Select(c => new PropertyFilterViewModel(c.Entry)).ToList();
+        }
+
+        private void ShowFilter(object obj)
+        {
+            IsCustomQuery = !IsCustomQuery;
         }
 
         private bool CanImportProduct(object obj) =>
@@ -500,7 +560,7 @@ namespace Moryx.Products.UI.Interaction
                 else
                     productItem.UpdateModel(productModel);
             }
-            
+
             // Update subgroups
             foreach (var group in subGroups)
             {

@@ -1,12 +1,14 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using System.Collections.Generic;
+using System.Linq;
 using Caliburn.Micro;
 using Moryx.Products.UI.ProductService;
 
-namespace Moryx.Products.UI.Interaction
+namespace Moryx.Products.UI
 {
-    internal class ProductQueryViewModel : PropertyChangedBase
+    public class ProductQueryViewModel : PropertyChangedBase
     {
         private RevisionFilter _revisionFilter;
         private Selector _selector;
@@ -14,10 +16,12 @@ namespace Moryx.Products.UI.Interaction
         private string _identifier;
         private short _revision;
         private string _name;
+        private ProductDefinitionViewModel _type;
+        private List<PropertyFilterViewModel> _propertyFilters;
 
         public RevisionFilter RevisionFilter
         {
-            get { return _revisionFilter; }
+            get => _revisionFilter;
             set
             {
                 _revisionFilter = value;
@@ -27,7 +31,7 @@ namespace Moryx.Products.UI.Interaction
 
         public Selector Selector
         {
-            get { return _selector; }
+            get => _selector;
             set
             {
                 _selector = value;
@@ -37,7 +41,7 @@ namespace Moryx.Products.UI.Interaction
 
         public RecipeFilter RecipeFilter
         {
-            get { return _recipeFilter; }
+            get => _recipeFilter;
             set
             {
                 _recipeFilter = value;
@@ -47,7 +51,7 @@ namespace Moryx.Products.UI.Interaction
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 _name = value;
@@ -57,7 +61,7 @@ namespace Moryx.Products.UI.Interaction
 
         public string Identifier
         {
-            get { return _identifier; }
+            get => _identifier;
             set
             {
                 _identifier = value;
@@ -67,10 +71,34 @@ namespace Moryx.Products.UI.Interaction
 
         public short Revision
         {
-            get { return _revision; }
+            get => _revision;
             set
             {
                 _revision = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public ProductDefinitionViewModel Type
+        {
+            get => _type;
+            set
+            {
+                // Clear property filters if type was changed
+                if (value == null || (_type != null && value.Model.Name != _type.Model.Name))
+                    PropertyFilters = null;
+
+                _type = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        public List<PropertyFilterViewModel> PropertyFilters
+        {
+            get => _propertyFilters;
+            set
+            {
+                _propertyFilters = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -82,8 +110,18 @@ namespace Moryx.Products.UI.Interaction
                 RevisionFilter = RevisionFilter,
                 RecipeFilter = RecipeFilter,
                 Selector = Selector,
-                Revision = Revision
+                Revision = Revision,
+                Type = Type?.Model.Name,
             };
+
+            if (PropertyFilters != null)
+            {
+                query.PropertyFilters = PropertyFilters.Select(pf => new PropertyFilter
+                {
+                    Entry = pf.Property.ToServiceEntry(),
+                    Operator = pf.Operator
+                }).ToArray();
+            }
 
             if (!string.IsNullOrWhiteSpace(Identifier))
                 query.Identifier = Identifier;

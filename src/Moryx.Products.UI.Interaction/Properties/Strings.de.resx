@@ -418,4 +418,16 @@
   <data name="RevisionsView_MissingPermission" xml:space="preserve">
     <value>Sie haben nicht die nötige Berechtigung, um Revisionen einzusehen!</value>
   </data>
+  <data name="PropertyFilterDialogViewModel_DisplayName" xml:space="preserve">
+    <value>Eigenschaftenfilter für '{0}'</value>
+  </data>
+  <data name="PropertyFilterDialogView_Apply" xml:space="preserve">
+    <value>Anwenden</value>
+  </data>
+  <data name="PropertyFilterDialogView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="PropertyFilterDialogView_Add" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
 </root>
