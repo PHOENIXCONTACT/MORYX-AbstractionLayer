@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace Moryx.Notifications
+namespace Moryx.Notifications.Adapter
 {
     /// <summary>
     /// Adapter for <see cref="INotificationSender"/> to publish and acknowledge notifications

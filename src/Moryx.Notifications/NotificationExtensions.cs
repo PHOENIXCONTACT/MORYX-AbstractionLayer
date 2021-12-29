@@ -1,4 +1,5 @@
 ﻿using Moryx.Container;
+using Moryx.Notifications.Adapter;
 
 namespace Moryx.Notifications
 {

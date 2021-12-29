@@ -3,6 +3,7 @@
 
 using System;
 using Moq;
+using Moryx.Notifications.Adapter;
 using NUnit.Framework;
 
 namespace Moryx.Notifications.Tests
