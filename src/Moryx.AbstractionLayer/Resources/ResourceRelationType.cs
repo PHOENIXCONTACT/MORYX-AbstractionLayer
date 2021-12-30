@@ -56,7 +56,7 @@ namespace Moryx.AbstractionLayer.Resources
         /// <summary>
         /// Defines a transport route from one resource to another
         /// </summary>
-        TransportRoute =  (9 << 3)  + 4,  // Transport relation of type usage relation
+        TransportRoute = (9 << 3) + 4,  // Transport relation of type usage relation
 
         /// <summary>
         /// Defines the current mounted exchangeable part like a probe head.

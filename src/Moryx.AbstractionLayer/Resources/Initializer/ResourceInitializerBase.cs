@@ -1,12 +1,33 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.AbstractionLayer (net45)'
+Before:
 using System;
 using System.Collections.Generic;
 using Moryx.Logging;
+After:
+using Moryx.Logging;
 using Moryx.Modules;
+using System;
+*/
 
-namespace Moryx.AbstractionLayer.Resources
+/* Unmerged change from project 'Moryx.AbstractionLayer (net5.0)'
+Before:
+using System;
+using System.Collections.Generic;
+using Moryx.Logging;
+After:
+using Moryx.Logging;
+using Moryx.Modules;
+using System;
+*/
+using Moryx.Logging;
+using Moryx.Modules;
+using System.Collections.Generic;
+
+namespace Moryx.AbstractionLayer.Resources.Initializer
 {
     /// <summary>
     /// Base class for resource initializers without a custom config

@@ -1,13 +1,13 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using Moryx.AbstractionLayer;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Modules;
+using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Products.Model;
+using System;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Components
 {
     /// <summary>
     /// Interface for plugins that can convert recipes

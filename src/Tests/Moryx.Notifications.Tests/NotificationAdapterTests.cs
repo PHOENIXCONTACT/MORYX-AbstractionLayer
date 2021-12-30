@@ -1,9 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
 using Moq;
+using Moryx.Notifications.Adapters;
+using Moryx.Notifications.Notifications;
 using NUnit.Framework;
+using System;
 
 namespace Moryx.Notifications.Tests
 {
@@ -175,10 +177,10 @@ namespace Moryx.Notifications.Tests
             _adapter.Publish(_sender, new Notification());
             _adapter.Publish(_sender, new Notification());
             int counter = 0;
-            ((INotificationSourceAdapter) _adapter).Published += delegate { counter += 1; };
+            ((INotificationSourceAdapter)_adapter).Published += delegate { counter += 1; };
 
             // Act
-            ((INotificationSourceAdapter) _adapter).Sync();
+            ((INotificationSourceAdapter)_adapter).Sync();
 
             // Assert
             Assert.AreEqual(4, counter, "There should be four publish events. One for each pending notification");
@@ -196,10 +198,10 @@ namespace Moryx.Notifications.Tests
             _adapter.Acknowledge(_sender, notifiaction1);
             _adapter.Acknowledge(_sender, notifiaction2);
             int counter = 0;
-            ((INotificationSourceAdapter) _adapter).Acknowledged += delegate { counter += 1; };
+            ((INotificationSourceAdapter)_adapter).Acknowledged += delegate { counter += 1; };
 
             // Act
-            ((INotificationSourceAdapter) _adapter).Sync();
+            ((INotificationSourceAdapter)_adapter).Sync();
 
             // Assert
             Assert.AreEqual(2, counter, "There should be two ackowledge events. One for each pending acknowledgement which should be synchronized with the Publisher");
@@ -216,10 +218,10 @@ namespace Moryx.Notifications.Tests
             ((INotificationSourceAdapter)_adapter).PublishProcessed(notification1);
             ((INotificationSourceAdapter)_adapter).PublishProcessed(notification2);
             int counter = 0;
-            ((INotificationSourceAdapter) _adapter).Published += delegate { counter += 1; };
+            ((INotificationSourceAdapter)_adapter).Published += delegate { counter += 1; };
 
             // Act
-            ((INotificationSourceAdapter) _adapter).Sync();
+            ((INotificationSourceAdapter)_adapter).Sync();
 
             // Assert
             Assert.AreEqual(0, counter, "There should be no publish events because everything should be up to date");

@@ -4,7 +4,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Moryx.AbstractionLayer.Products
+namespace Moryx.AbstractionLayer.Products.Import
 {
     /// <summary>
     /// Base class for importing a prototype

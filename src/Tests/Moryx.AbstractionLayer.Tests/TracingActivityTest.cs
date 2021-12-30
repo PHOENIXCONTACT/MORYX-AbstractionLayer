@@ -1,9 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
 using Moq;
+using Moryx.AbstractionLayer.Activities;
 using NUnit.Framework;
+using System;
 
 namespace Moryx.AbstractionLayer.Tests
 {
@@ -143,8 +144,8 @@ namespace Moryx.AbstractionLayer.Tests
 
             public new FooProgress Progress
             {
-                get { return (FooProgress) base.Progress; }
-                set { base.Progress = (int) value; }
+                get { return (FooProgress)base.Progress; }
+                set { base.Progress = (int)value; }
             }
 
             public void Processing()

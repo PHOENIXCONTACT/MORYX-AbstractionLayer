@@ -1,18 +1,32 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Collections.Generic;
-using System.Linq;
 using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Extensions;
 using Moryx.Configuration;
 using Moryx.Model;
 using Moryx.Model.Repositories;
-using Moryx.Resources.Model;
+using Moryx.Resources.Model.API;
+using Moryx.Resources.Model.Entities;
 using Moryx.Serialization;
-using Moryx.Tools;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
+Before:
+using System.Collections.Generic;
+After:
+using System.Linq;
+*/
 
-namespace Moryx.Resources.Management
+/* Unmerged change from project 'Moryx.Resources.Management (net45)'
+Before:
+using System.Collections.Generic;
+After:
+using System.Linq;
+*/
+
+
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Dedicated type to load a resources, its sources and targets from the database
@@ -176,7 +190,7 @@ namespace Moryx.Resources.Management
         /// Type of the reference relation
         /// </summary>
         public ResourceRelationType RelationType => (ResourceRelationType)Entity.RelationType;
-        
+
         /// <summary>
         /// Id of the referenced resource
         /// </summary>

@@ -3,7 +3,7 @@
 
 using Moryx.Products.Model;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Interface for business object mapping onto an <see cref="IGenericColumns"/> entity

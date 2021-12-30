@@ -1,13 +1,13 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Moryx.AbstractionLayer.Resources;
 
-namespace Moryx.Resources.Management.Tests
+namespace Moryx.Resources.Management.Tests.Mocks
 {
     public interface IReferenceResource : IPublicResource
     {

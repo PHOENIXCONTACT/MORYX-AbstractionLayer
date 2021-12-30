@@ -1,15 +1,16 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Resources;
+using Moryx.Container;
+using Moryx.Resources.Management.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Container;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Class that can construct a new <see cref="ResourceProxy{TTarget}"/> for a given
@@ -268,7 +269,7 @@ namespace Moryx.Resources.Management
         /// Create a unique name for each explicit member implementation
         /// </summary>
         private static string ExplicitMemberName(MemberInfo member) => $"{member.DeclaringType.Name}_{member.Name}";
-        
+
 
         /// <summary>
         /// Determine if the return type indicates a resource reference

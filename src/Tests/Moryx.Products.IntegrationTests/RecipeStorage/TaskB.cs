@@ -1,11 +1,13 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Moryx.AbstractionLayer;
+using Moryx.AbstractionLayer.Activities;
 using Moryx.AbstractionLayer.Capabilities;
+using Moryx.AbstractionLayer.Processes;
+using Moryx.AbstractionLayer.Tasks;
 using Moryx.Serialization;
 
-namespace Moryx.Products.IntegrationTests
+namespace Moryx.Products.IntegrationTests.RecopeStorage
 {
     public class TaskB : TaskStep<ActivityB, ParametersB>
     {
@@ -19,7 +21,7 @@ namespace Moryx.Products.IntegrationTests
 
         protected override void Populate(IProcess process, Parameters instance)
         {
-            var parameters = (ParametersB) instance;
+            var parameters = (ParametersB)instance;
             parameters.Subs = Subs;
         }
     }

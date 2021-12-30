@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Moryx.AbstractionLayer.Resources
+namespace Moryx.AbstractionLayer.Resources.Attributes
 {
     /// <summary>
     /// Members of the given interfaces are available outside of the resource management

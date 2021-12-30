@@ -1,16 +1,34 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
 using System;
 using System.Linq.Expressions;
 using Moryx.AbstractionLayer;
+After:
+using Moryx.AbstractionLayer;
+*/
+
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using System;
+using System.Linq.Expressions;
+using Moryx.AbstractionLayer;
+After:
+using Moryx.AbstractionLayer;
+*/
 using Moryx.AbstractionLayer.Products;
 using Moryx.Container;
-using Moryx.Model;
 using Moryx.Modules;
+using Moryx.Products.Management.Components;
+using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Products.Model;
+using System;
+using System.Linq.Expressions;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Generic strategy for product instances
@@ -31,7 +49,7 @@ namespace Moryx.Products.Management
         public override void Initialize(ProductInstanceConfiguration config)
         {
             base.Initialize(config);
-            
+
             EntityMapper.Initialize(TargetType, Config);
         }
 

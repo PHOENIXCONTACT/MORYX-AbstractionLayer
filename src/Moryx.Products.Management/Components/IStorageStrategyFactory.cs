@@ -2,8 +2,9 @@
 // Licensed under the Apache License, Version 2.0
 
 using Moryx.Container;
+using Moryx.Products.Management.Implementations.Storage;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Components
 {
     /// <summary>
     /// Factory to instantiate <see cref="IProductTypeStrategy"/>

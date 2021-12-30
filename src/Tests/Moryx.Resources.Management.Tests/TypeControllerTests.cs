@@ -1,13 +1,15 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moq;
+using Moryx.AbstractionLayer.Resources;
+using Moryx.Container;
+using Moryx.Resources.Management.Resources;
+using Moryx.Resources.Management.Tests.Mocks;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Container;
-using Moq;
-using NUnit.Framework;
 
 namespace Moryx.Resources.Management.Tests
 {
@@ -49,7 +51,7 @@ namespace Moryx.Resources.Management.Tests
         public void ReadAndWriteProperties()
         {
             // Arrange: Create instance
-            var resource = new SimpleResource {Id = 1, Foo = 1337};
+            var resource = new SimpleResource { Id = 1, Foo = 1337 };
 
             // Act: Build Proxy
             var proxy = (ISimpleResource)_typeController.GetProxy(resource);
@@ -68,12 +70,12 @@ namespace Moryx.Resources.Management.Tests
         public void UseBaseProxyForDerivedType()
         {
             // Arrange: Create instance
-            var baseInstance = new SimpleResource { Id = 2};
-            var instance = new DerivedResource {Id = 3};
+            var baseInstance = new SimpleResource { Id = 2 };
+            var instance = new DerivedResource { Id = 3 };
 
             // Act: Build Proxy
-            var baseProxy = (ISimpleResource) _typeController.GetProxy(baseInstance);
-            var proxy = (ISimpleResource) _typeController.GetProxy(instance);
+            var baseProxy = (ISimpleResource)_typeController.GetProxy(baseInstance);
+            var proxy = (ISimpleResource)_typeController.GetProxy(instance);
 
             // Assert: Make sure proxy is still the base type
             Assert.AreEqual(baseProxy.GetType(), proxy.GetType());
@@ -83,10 +85,10 @@ namespace Moryx.Resources.Management.Tests
         public void CallMethodOnProxy()
         {
             // Arrange: Create instance
-            var instance = new SimpleResource { Id= 4, Foo = 10};
+            var instance = new SimpleResource { Id = 4, Foo = 10 };
 
             // Act: Build proxy and call method
-            var proxy = (ISimpleResource) _typeController.GetProxy(instance);
+            var proxy = (ISimpleResource)_typeController.GetProxy(instance);
             var result = proxy.MultiplyFoo(3);
             proxy.MultiplyFoo(2, 10);
 
@@ -132,7 +134,7 @@ namespace Moryx.Resources.Management.Tests
 
             // Act:
             IResourceWithImplicitApi proxy = null;
-            Assert.DoesNotThrow(() => proxy = (IResourceWithImplicitApi) _typeController.GetProxy(instance));
+            Assert.DoesNotThrow(() => proxy = (IResourceWithImplicitApi)_typeController.GetProxy(instance));
 
             // Assert:
             Assert.IsInstanceOf<IExtension>(proxy);
@@ -143,8 +145,8 @@ namespace Moryx.Resources.Management.Tests
         public void ForwardEventsFromProxy()
         {
             // Arrange: Create instance and proxy
-            var instance = new SimpleResource { Id = 6};
-            var proxy = (ISimpleResource) _typeController.GetProxy(instance);
+            var instance = new SimpleResource { Id = 6 };
+            var proxy = (ISimpleResource)_typeController.GetProxy(instance);
 
             // Act: Register listener and change foo
             object eventSender = null, eventSender2 = null;
@@ -176,7 +178,7 @@ namespace Moryx.Resources.Management.Tests
         public void AfterDisposeTheProxyIsDetached()
         {
             // Arrange: Create a proxy and register to an event
-            var instance = new SimpleResource { Id = 7};
+            var instance = new SimpleResource { Id = 7 };
             var proxy = (ISimpleResource)_typeController.GetProxy(instance);
             var called = false;
             proxy.FooChanged += (sender, i) => called = true;
@@ -198,8 +200,8 @@ namespace Moryx.Resources.Management.Tests
         {
             // Arrange: Create instance and reference
             var ref1 = new DerivedResource { Id = 9, Foo = 20 };
-            var ref2 = new SimpleResource { Id = 10, Foo = 30};
-            var nonPub = new NonPublicResource {Name = "NonPublic"};
+            var ref2 = new SimpleResource { Id = 10, Foo = 30 };
+            var nonPub = new NonPublicResource { Name = "NonPublic" };
             var instance = new ReferenceResource
             {
                 Id = 8,

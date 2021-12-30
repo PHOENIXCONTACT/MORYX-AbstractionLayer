@@ -1,14 +1,15 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Moryx.AbstractionLayer;
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Container;
 using Moryx.Modules;
+using Moryx.Products.Management.Components;
+using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Products.Model;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Generic strategy for product instances

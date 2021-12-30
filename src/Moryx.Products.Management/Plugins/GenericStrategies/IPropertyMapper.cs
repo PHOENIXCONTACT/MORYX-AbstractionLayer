@@ -1,11 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Modules;
 using System.Linq.Expressions;
 using System.Reflection;
-using Moryx.Modules;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Strategy to map a single property into the database

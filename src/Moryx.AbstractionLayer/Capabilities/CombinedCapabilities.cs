@@ -45,8 +45,8 @@ namespace Moryx.AbstractionLayer.Capabilities
 
         bool ICapabilities.Provides(ICapabilities required)
         {
-            return required.IsCombined 
-                ? required.GetAll().All(rc => rc.ProvidedBy(this)) 
+            return required.IsCombined
+                ? required.GetAll().All(rc => rc.ProvidedBy(this))
                 : _capabilities.Any(required.ProvidedBy);
         }
 

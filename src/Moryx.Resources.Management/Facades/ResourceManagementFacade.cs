@@ -1,13 +1,15 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Generic;
 using Moryx.AbstractionLayer.Capabilities;
 using Moryx.AbstractionLayer.Resources;
+using Moryx.Resources.Management.Extensions;
+using Moryx.Resources.Management.Resources;
 using Moryx.Runtime.Modules;
+using System;
+using System.Collections.Generic;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Facades
 {
     internal class ResourceManagementFacade : IResourceManagement, IFacadeControl
     {

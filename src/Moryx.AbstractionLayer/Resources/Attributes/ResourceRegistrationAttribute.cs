@@ -1,11 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Container;
 using System;
 using System.Linq;
-using Moryx.Container;
 
-namespace Moryx.AbstractionLayer.Resources
+namespace Moryx.AbstractionLayer.Resources.Attributes
 {
     /// <summary>
     /// Simplified plugin registration attribute for resources

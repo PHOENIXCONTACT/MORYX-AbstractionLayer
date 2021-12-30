@@ -1,15 +1,35 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Container;
+using Moryx.Products.Management.Implementations.Storage;
+using Moryx.Serialization;
+using Moryx.Tools;
+
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
+using Newtonsoft.Json;
+After:
+using Newtonsoft.Json;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using Moryx.Container;
-using Moryx.Serialization;
-using Moryx.Tools;
-using Newtonsoft.Json;
+*/
 
-namespace Moryx.Products.Management
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using Newtonsoft.Json;
+After:
+using Newtonsoft.Json;
+using System;
+using System.Linq.Expressions;
+using System.Reflection;
+*/
+using Newtonsoft.Json;
+using System;
+using System.Reflection;
+
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Mapper for columns of type <see cref="string"/>

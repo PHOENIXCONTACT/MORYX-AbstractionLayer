@@ -1,15 +1,16 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Runtime.Serialization;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Model;
-using Moryx.Resources.Model;
-using Moryx.Serialization;
 using Moq;
+using Moryx.AbstractionLayer.Resources;
 using Moryx.Model.Repositories;
+using Moryx.Resources.Management.Extensions;
+using Moryx.Resources.Management.Resources;
+using Moryx.Resources.Model.Entities;
+using Moryx.Serialization;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using System.Runtime.Serialization;
 
 namespace Moryx.Resources.Management.Tests
 {

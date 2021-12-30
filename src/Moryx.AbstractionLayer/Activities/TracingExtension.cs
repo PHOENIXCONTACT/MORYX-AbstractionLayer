@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.Activities
 {
     /// <summary>
     /// Extension to override tracing information
@@ -12,7 +12,7 @@ namespace Moryx.AbstractionLayer
         /// </summary>
         public static T TransformTracing<T>(this IActivity activity) where T : class, IActivityTracing, new()
         {
-            var baseType = (Activity) activity;
+            var baseType = (Activity)activity;
             var tracing = baseType.Tracing.Transform<T>();
             baseType.Tracing = tracing;
             return tracing;

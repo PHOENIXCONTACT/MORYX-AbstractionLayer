@@ -1,10 +1,41 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.AbstractionLayer (net45)'
+Before:
 using System;
-using System.Text.RegularExpressions;
+After:
+using Moryx.AbstractionLayer.Identity;
+using System;
+*/
+
+/* Unmerged change from project 'Moryx.AbstractionLayer (net5.0)'
+Before:
+using System;
+After:
+using Moryx.AbstractionLayer.Identity;
+using System;
+*/
+using Moryx.AbstractionLayer.Identity;
+
+/* Unmerged change from project 'Moryx.AbstractionLayer (net45)'
+Before:
 using System.Threading;
 using Moryx.AbstractionLayer.Identity;
+After:
+using System.Threading;
+*/
+
+/* Unmerged change from project 'Moryx.AbstractionLayer (net5.0)'
+Before:
+using System.Threading;
+using Moryx.AbstractionLayer.Identity;
+After:
+using System.Threading;
+*/
+using System;
+using System.Text.RegularExpressions;
 
 namespace Moryx.AbstractionLayer.Products
 {
@@ -42,8 +73,8 @@ namespace Moryx.AbstractionLayer.Products
         public static ProductIdentity Parse(string identityString)
         {
             Regex rx = new Regex(@"(?<identifier>\w+)-(?<revision>\d+)");
-            if (!rx.IsMatch(identityString) )
-                throw new FormatException("identityString should consist of <identity>-<revision> instead of "+identityString);
+            if (!rx.IsMatch(identityString))
+                throw new FormatException("identityString should consist of <identity>-<revision> instead of " + identityString);
             var groups = rx.Match(identityString).Groups;
             return new ProductIdentity(groups["identifier"].Value, Convert.ToInt16(groups["revision"].Value));
         }
@@ -62,11 +93,11 @@ namespace Moryx.AbstractionLayer.Products
                 result = Parse(identityString);
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 result = null;
                 return false;
-            } 
+            }
         }
 
         /// <summary>

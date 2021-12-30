@@ -1,15 +1,18 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
+using Moryx.AbstractionLayer.Resources.Extensions;
+using Moryx.Resources.Interaction.Models;
+using Moryx.Serialization;
+using Moryx.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Serialization;
-using Moryx.Tools;
 
 namespace Moryx.Resources.Interaction.Converter
 {
@@ -88,7 +91,7 @@ namespace Moryx.Resources.Interaction.Converter
             else
             {
                 // Only generate reference ids and add to cache for non-partial instance
-                model.ReferenceId = --_refId; 
+                model.ReferenceId = --_refId;
                 _resourceCache.Add(current, model);
 
                 // Properties and methods are read from the descriptor

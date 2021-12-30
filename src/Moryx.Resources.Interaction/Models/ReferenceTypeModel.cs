@@ -1,10 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Runtime.Serialization;
 using Moryx.AbstractionLayer.Resources;
+using System.Runtime.Serialization;
 
-namespace Moryx.Resources.Interaction
+namespace Moryx.Resources.Interaction.Models
 {
     /// <summary>
     /// Type model for a reference property on a resource type

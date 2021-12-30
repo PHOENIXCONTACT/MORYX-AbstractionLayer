@@ -1,14 +1,15 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Linq.Expressions;
-using Moryx.AbstractionLayer;
 using Moryx.AbstractionLayer.Products;
 using Moryx.Container;
+using Moryx.Products.Management.Components;
+using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Products.Model;
+using System;
+using System.Linq.Expressions;
 
-namespace Moryx.Products.Management.NullStrategies
+namespace Moryx.Products.Management.Plugins.NullStrategies
 {
     /// <summary>
     /// Strategy for product instances that should not be saved to the database

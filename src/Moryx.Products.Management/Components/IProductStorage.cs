@@ -1,14 +1,14 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Modules;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Components
 {
     /// <summary>
     /// API for the application specific product storage

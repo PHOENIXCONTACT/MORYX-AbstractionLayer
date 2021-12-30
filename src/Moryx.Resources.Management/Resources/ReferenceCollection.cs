@@ -1,13 +1,28 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
+Before:
+using System;
+After:
+using Moryx.AbstractionLayer.Resources;
+using System;
+*/
+
+/* Unmerged change from project 'Moryx.Resources.Management (net45)'
+Before:
+using System;
+After:
+using Moryx.AbstractionLayer.Resources;
+using System;
+*/
+using Moryx.AbstractionLayer.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
-using Moryx.AbstractionLayer.Resources;
 
 namespace Moryx.Resources.Management
 {

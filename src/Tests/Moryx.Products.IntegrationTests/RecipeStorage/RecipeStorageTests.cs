@@ -1,15 +1,15 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Linq;
 using Moryx.Model.InMemory;
 using Moryx.Model.Repositories;
-using Moryx.Products.Management;
+using Moryx.Products.Management.Implementations;
 using Moryx.Products.Model;
 using Moryx.Workflows;
 using NUnit.Framework;
+using System.Linq;
 
-namespace Moryx.Products.IntegrationTests
+namespace Moryx.Products.IntegrationTests.RecopeStorage
 {
     [TestFixture]
     public class RecipeStorageTests
@@ -104,8 +104,8 @@ namespace Moryx.Products.IntegrationTests
 
             var unmount1 = new TaskA
             {
-                Inputs = {[0] = inter2},
-                Outputs = {[0] = end, [1] = end, [2] = end }
+                Inputs = { [0] = inter2 },
+                Outputs = { [0] = end, [1] = end, [2] = end }
             };
 
             var unmount2 = new TaskB

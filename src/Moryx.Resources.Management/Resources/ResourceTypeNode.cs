@@ -1,13 +1,14 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Resources;
+using Moryx.Container;
+using Moryx.Resources.Management.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Container;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Class that represents a single resource type in the type tree
@@ -16,7 +17,7 @@ namespace Moryx.Resources.Management
     {
         /// <inheritdoc />
         public string Name => ResourceType.ResourceType();
-        
+
         /// <inheritdoc />
         public Type ResourceType { get; set; }
 

@@ -1,11 +1,26 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Products.Samples (netcoreapp3.1)'
+Before:
 using System.ComponentModel;
 using Moryx.AbstractionLayer;
-using Moryx.AbstractionLayer.Products;
+After:
+using Moryx.AbstractionLayer;
+*/
+
+/* Unmerged change from project 'Moryx.Products.Samples (net5.0)'
+Before:
+using System.ComponentModel;
+using Moryx.AbstractionLayer;
+After:
+using Moryx.AbstractionLayer;
+*/
+using Moryx.AbstractionLayer.Processes;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Serialization;
+using System.ComponentModel;
 
 namespace Moryx.Products.Samples.Recipe
 {

@@ -1,6 +1,6 @@
-using System;
-using Moryx.Products.Management;
+using Moryx.Products.Management.Implementations.Storage;
 using NUnit.Framework;
+using System;
 
 namespace Moryx.Products.IntegrationTests
 {
@@ -20,7 +20,7 @@ namespace Moryx.Products.IntegrationTests
         [TestCase(typeof(object), 0, Description = "Checks the TextStrategy type compliance for Object")]
         [TestCase(typeof(SomeType), 1, Description = "Checks the TextStrategy type compliance for simple not inherited classes")]
         [TestCase(typeof(SomeInheritedType), 2, Description = "Checks the TextStrategy type compliance for a inherited classes")]
-        [TestCase(typeof(ICloneable), int.MaxValue-1, Description = "Checks the TextStrategy type compliance for interfaces")]
+        [TestCase(typeof(ICloneable), int.MaxValue - 1, Description = "Checks the TextStrategy type compliance for interfaces")]
         public void TextStrategyComplianceString(Type type, int expCompliance)
         {
             // Act

@@ -1,12 +1,13 @@
 #if HAVE_WCF
+using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
+using Moryx.Container;
+using Moryx.Serialization;
+using Moryx.Tools.Wcf;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Container;
-using Moryx.Serialization;
-using Moryx.Tools.Wcf;
 
 namespace Moryx.Resources.Samples
 {
@@ -43,8 +44,8 @@ namespace Moryx.Resources.Samples
         }
 
         [ResourceConstructor, DisplayName("Create Clients")]
-        public void CreateHost([Description("Number of clients")]int clientCount,
-            [ResourceTypes(typeof(VisualInstructor))]string instructorType)
+        public void CreateHost([Description("Number of clients")] int clientCount,
+            [ResourceTypes(typeof(VisualInstructor))] string instructorType)
         {
             DefaultConstructor();
 
@@ -55,7 +56,7 @@ namespace Moryx.Resources.Samples
                 Instructors.Add(instructor);
             }
         }
-        
+
         /// <summary>
         /// Current service host
         /// </summary>

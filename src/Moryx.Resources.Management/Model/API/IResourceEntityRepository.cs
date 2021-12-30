@@ -2,9 +2,10 @@
 // Licensed under the Apache License, Version 2.0
 
 using Moryx.Model.Repositories;
+using Moryx.Resources.Model.Entities;
 
 // ReSharper disable once CheckNamespace
-namespace Moryx.Resources.Model
+namespace Moryx.Resources.Model.API
 {
     /// <summary>
     /// The public API of the ResourceEntity repository.

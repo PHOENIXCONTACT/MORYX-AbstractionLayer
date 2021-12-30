@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.Activities
 {
     /// <summary>
     /// Class to decorate activities to declare the results enum
@@ -22,6 +22,6 @@ namespace Moryx.AbstractionLayer
         /// <summary>
         /// Type of the enum containing the results
         /// </summary>
-        public Type ResultEnum{ get; private set; }
+        public Type ResultEnum { get; private set; }
     }
 }

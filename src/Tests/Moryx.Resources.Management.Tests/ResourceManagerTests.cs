@@ -1,18 +1,23 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Generic;
+using Moq;
 using Moryx.AbstractionLayer.Capabilities;
 using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
+using Moryx.AbstractionLayer.Resources.Initializer;
 using Moryx.AbstractionLayer.TestTools;
-using Moryx.Model;
-using Moryx.Resources.Model;
-using Moryx.TestTools.UnitTest;
-using Moq;
 using Moryx.Model.InMemory;
 using Moryx.Model.Repositories;
+using Moryx.Resources.Management.Extensions;
+using Moryx.Resources.Management.Resources;
+using Moryx.Resources.Model;
+using Moryx.Resources.Model.API;
+using Moryx.Resources.Model.Entities;
+using Moryx.TestTools.UnitTest;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace Moryx.Resources.Management.Tests
 {

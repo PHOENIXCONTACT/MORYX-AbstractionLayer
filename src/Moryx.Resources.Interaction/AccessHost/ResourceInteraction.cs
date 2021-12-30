@@ -12,6 +12,8 @@ using Moryx.Container;
 using Moryx.Logging;
 using Moryx.Resources.Interaction.Converter;
 using Moryx.Serialization;
+using Moryx.Resources.Interaction.Models;
+using Moryx.AbstractionLayer.Resources.Attributes;
 
 #if USE_WCF
 using System.ServiceModel;
@@ -22,7 +24,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Moryx.Communication.Endpoints;
 #endif
 
-namespace Moryx.Resources.Interaction
+namespace Moryx.Resources.Interaction.AccessHost
 {
     /// <seealso cref="IResourceInteraction"/>
     [Plugin(LifeCycle.Transient, typeof(IResourceInteraction))]

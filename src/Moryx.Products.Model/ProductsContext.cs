@@ -1,12 +1,12 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Model;
+using Moryx.Model.PostgreSQL;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Annotations;
-using Moryx.Model;
-using Moryx.Model.PostgreSQL;
 
 namespace Moryx.Products.Model
 {

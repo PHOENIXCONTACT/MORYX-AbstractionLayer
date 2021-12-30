@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Moryx.AbstractionLayer.Resources
+namespace Moryx.AbstractionLayer.Resources.Attributes
 {
     /// <summary>
     /// Attribute to decorate properties that override the lower type bound of base class references. Those properties only

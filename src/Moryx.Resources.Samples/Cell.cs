@@ -1,11 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Hardware;
+using Moryx.AbstractionLayer.Resources;
+using Moryx.Serialization;
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.AbstractionLayer.Hardware;
-using Moryx.Serialization;
 
 namespace Moryx.Resources.Samples
 {
@@ -22,7 +22,7 @@ namespace Moryx.Resources.Samples
         public int EditorValue { get; set; }
 
         [EntrySerialize, DisplayName("Do Foo")]
-        public int Foo([Description("Very important parameter")]string bla = "Hallo")
+        public int Foo([Description("Very important parameter")] string bla = "Hallo")
         {
             LastCall = bla.Length;
             RaiseResourceChanged();

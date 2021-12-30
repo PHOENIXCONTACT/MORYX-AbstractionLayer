@@ -1,15 +1,18 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
+using Moryx.AbstractionLayer.Resources.Extensions;
+using Moryx.Container;
+using Moryx.Resources.Management.Extensions;
+using Moryx.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Container;
-using Moryx.Tools;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Class to build resource proxies at runtime. It also contains a cache for types and instances
@@ -137,7 +140,7 @@ namespace Moryx.Resources.Management
 
         public Resource Create(string type)
         {
-            if(!_typeCache.ContainsKey(type))
+            if (!_typeCache.ContainsKey(type))
                 throw new KeyNotFoundException($"No resource of type {type} found!");
 
             var linker = _typeCache[type];

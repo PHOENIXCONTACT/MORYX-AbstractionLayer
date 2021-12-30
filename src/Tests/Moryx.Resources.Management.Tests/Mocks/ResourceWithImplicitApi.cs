@@ -3,7 +3,7 @@
 
 using Moryx.AbstractionLayer.Resources;
 
-namespace Moryx.Resources.Management.Tests
+namespace Moryx.Resources.Management.Tests.Mocks
 {
     public interface IExtension
     {
@@ -12,7 +12,7 @@ namespace Moryx.Resources.Management.Tests
 
     public interface IResourceWithImplicitApi : IPublicResource, IExtension
     {
-        
+
     }
 
     public class ResourceWithImplicitApi : PublicResource, IResourceWithImplicitApi

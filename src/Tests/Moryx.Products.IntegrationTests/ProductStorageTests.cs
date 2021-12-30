@@ -1,25 +1,29 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Moryx.AbstractionLayer;
+using Moq;
+using Moryx.AbstractionLayer.Identity;
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
+using Moryx.AbstractionLayer.Workplans;
+using Moryx.Model.InMemory;
+using Moryx.Model.Repositories;
 using Moryx.Products.Management;
-using Moryx.Products.Management.NullStrategies;
+using Moryx.Products.Management.Components;
+using Moryx.Products.Management.Implementations;
+using Moryx.Products.Management.Implementations.Storage;
+using Moryx.Products.Management.Plugins.GenericStrategies;
+using Moryx.Products.Management.Plugins.NullStrategies;
 using Moryx.Products.Model;
 using Moryx.Products.Samples;
 using Moryx.Products.Samples.Recipe;
+using Moryx.Serialization;
 using Moryx.Tools;
 using Moryx.Workflows;
-using Moq;
-using Moryx.AbstractionLayer.Identity;
-using Moryx.Model.InMemory;
-using Moryx.Model.Repositories;
-using Moryx.Serialization;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Moryx.Products.IntegrationTests
 {
@@ -389,11 +393,11 @@ namespace Moryx.Products.IntegrationTests
         [Test]
         public void PartLinksWithTheSameIdentifierAreOnlySavedOnce()
         {
-           //Arrange
+            //Arrange
             var watch = new WatchType
             {
                 Name = "watch",
-                Identity = new ProductIdentity("223",1),
+                Identity = new ProductIdentity("223", 1),
                 Needles = new List<NeedlePartLink>
                 {
                     new NeedlePartLink
@@ -751,7 +755,7 @@ namespace Moryx.Products.IntegrationTests
             // Assert
             Assert.AreEqual(1, products.Count, "There should be a product for the given query");
         }
-        
+
         [TestCase(false, false, Description = "Duplicate product with valid id")]
         [TestCase(false, true, Description = "Duplicate product, but identity already taken")]
         [TestCase(true, false, Description = "Duplicate product but with template missmatch")]
@@ -848,7 +852,7 @@ namespace Moryx.Products.IntegrationTests
             var watch = SetupProduct("Jaques Lemans", string.Empty);
             _storage.SaveType(watch);
             // Reload from storage for partlink ids if the object exists
-            watch = (WatchType) _storage.LoadType(watch.Id);
+            watch = (WatchType)_storage.LoadType(watch.Id);
 
             // Act
             var instance = (WatchInstance)watch.CreateInstance();

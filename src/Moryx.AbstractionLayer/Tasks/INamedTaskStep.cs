@@ -1,4 +1,4 @@
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.Tasks
 {
     // TODO: Remove if https://github.com/PHOENIXCONTACT/MORYX-Platform/issues/103 is done
     /// <summary>

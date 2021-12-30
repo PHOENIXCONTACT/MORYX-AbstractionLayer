@@ -1,21 +1,23 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Moryx.AbstractionLayer.Capabilities;
 using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Initializer;
 using Moryx.Container;
 using Moryx.Logging;
 using Moryx.Model;
 using Moryx.Model.Repositories;
 using Moryx.Modules;
 using Moryx.Resources.Model;
+using Moryx.Resources.Model.API;
 using Moryx.Tools;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     [Plugin(LifeCycle.Singleton, typeof(IResourceManager))]
     internal class ResourceManager : IResourceManager
@@ -402,7 +404,7 @@ namespace Moryx.Resources.Management
             // Notify listeners about the removal of the resource
             if (removed && instance is IPublicResource publicResource)
                 RaiseResourceRemoved(publicResource);
-            
+
             // Destroy the object
             TypeController.Destroy(instance);
 

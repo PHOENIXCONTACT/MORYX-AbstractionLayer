@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Moryx.AbstractionLayer.Resources
+namespace Moryx.AbstractionLayer.Resources.Attributes
 {
     /// <summary>
     /// Attribute to decorate methods that can be used to construct a resource instance

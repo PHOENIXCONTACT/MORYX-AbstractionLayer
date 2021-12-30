@@ -1,17 +1,18 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
+using Moryx.AbstractionLayer.Activities;
 using Moryx.Serialization;
 using Moryx.Tools;
 using Moryx.Workflows;
 using Moryx.Workflows.Transitions;
 using Moryx.Workflows.WorkplanSteps;
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.Tasks
 {
     /// <summary>
     /// Abstract base class of all Tasks
@@ -63,7 +64,7 @@ namespace Moryx.AbstractionLayer
         {
             return (from value in Enum.GetValues(enumType).OfType<object>()
                     let name = value.ToString()
-                    let numeric = (int) value
+                    let numeric = (int)value
                     select new OutputDescription
                     {
                         Name = name,

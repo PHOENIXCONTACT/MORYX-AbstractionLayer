@@ -3,7 +3,7 @@
 
 using Moryx.Workflows;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.Activities
 {
     /// <summary>
     /// Default results for activities. 

@@ -1,11 +1,12 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Products.Management.Implementations.Storage;
 using System;
 using System.Linq;
 using System.Reflection;
 
-namespace Moryx.Products.Management.NullStrategies
+namespace Moryx.Products.Management.Plugins.NullStrategies
 {
     /// <summary>
     /// Strategy configuration for types without specialized properties

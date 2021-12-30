@@ -1,13 +1,58 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Moryx.Container;
+After:
+using Moryx.Container;
+using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Tools;
+using System;
+*/
 
-namespace Moryx.Products.Management
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using Moryx.Container;
+After:
+using Moryx.Container;
+using Moryx.Products.Management.Implementations.Storage;
+using Moryx.Tools;
+using System;
+*/
+using Moryx.Container;
+
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System;
+After:
+using System;
+using System.Reflection;
+using System.Reflection;
+*/
+
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System;
+After:
+using System;
+using System.Reflection;
+using System.Reflection;
+*/
+using System;
+
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Mapper for columns of type <see cref="long"/>
@@ -28,14 +73,14 @@ namespace Moryx.Products.Management
             if (objectProp.PropertyType.IsEnum)
             {
                 _enumType = Enum.GetUnderlyingType(objectProp.PropertyType);
-                return new ConversionAccessor<long,object>(objectProp, ReadEnum, WriteEnum);
+                return new ConversionAccessor<long, object>(objectProp, ReadEnum, WriteEnum);
             }
 
             if (objectProp.PropertyType == typeof(DateTime))
-                return new ConversionAccessor<long,DateTime>(objectProp, dt => dt.Ticks, DateTime.FromBinary);
+                return new ConversionAccessor<long, DateTime>(objectProp, dt => dt.Ticks, DateTime.FromBinary);
 
-            if(objectProp.PropertyType == typeof(bool))
-                return new ConversionAccessor<long,bool>(objectProp, v => v ? 1 : 0, l => l > 0);
+            if (objectProp.PropertyType == typeof(bool))
+                return new ConversionAccessor<long, bool>(objectProp, v => v ? 1 : 0, l => l > 0);
 
             return base.CreatePropertyAccessor(objectProp);
         }

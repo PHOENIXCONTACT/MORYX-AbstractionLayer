@@ -1,15 +1,15 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Moryx.AbstractionLayer.Capabilities;
 using Moryx.Container;
 using Moryx.Serialization;
 using Moryx.Tools;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Moryx.AbstractionLayer.Resources
+namespace Moryx.AbstractionLayer.Resources.Attributes
 {
     /// <summary>
     /// Attribute to configure capabilities in resource configs
@@ -23,7 +23,7 @@ namespace Moryx.AbstractionLayer.Resources
 
         /// <inheritdoc />
         public override bool UpdateFromPredecessor => false;
-        
+
         /// <summary>
         /// List all capabilities
         /// </summary>
@@ -88,7 +88,7 @@ namespace Moryx.AbstractionLayer.Resources
                 // recursion --> see recursion
                 ctorArgs[i] = Instantiate(parameterInfo.ParameterType);
             }
-            
+
             return Activator.CreateInstance(type, ctorArgs);
         }
 

@@ -1,8 +1,19 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Runtime.Serialization;
+/* Unmerged change from project 'Moryx.AbstractionLayer (net45)'
+Before:
 using Moryx.AbstractionLayer.Identity;
+After:
+using System.Runtime.Serialization;
+*/
+
+/* Unmerged change from project 'Moryx.AbstractionLayer (net5.0)'
+Before:
+using Moryx.AbstractionLayer.Identity;
+After:
+using System.Runtime.Serialization;
+*/
 
 namespace Moryx.AbstractionLayer.Products
 {
@@ -44,7 +55,7 @@ namespace Moryx.AbstractionLayer.Products
         /// </summary>
         public new TProduct Type
         {
-            get => (TProduct) base.Type;
+            get => (TProduct)base.Type;
             set => base.Type = value;
         }
     }

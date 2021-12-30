@@ -36,7 +36,7 @@ namespace Moryx.AbstractionLayer.Resources
         /// Base type this node is derived from
         /// </summary>
         IResourceTypeNode BaseType { get; }
-        
+
         /// <summary>
         /// Types derived from this node
         /// </summary>

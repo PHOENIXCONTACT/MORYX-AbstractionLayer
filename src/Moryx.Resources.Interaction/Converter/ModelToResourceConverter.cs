@@ -1,10 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Resources;
+using Moryx.Resources.Interaction.Models;
+using Moryx.Serialization;
 using System.Collections.Generic;
 using System.Linq;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Serialization;
 
 namespace Moryx.Resources.Interaction.Converter
 {

@@ -4,9 +4,10 @@
 using Moryx.AbstractionLayer.Products;
 using Moryx.Communication.Endpoints;
 using Moryx.Model;
-using Moryx.Modules;
-using Moryx.Products.Management.Importers;
+using Moryx.Products.Management.Components;
+using Moryx.Products.Management.Facades;
 using Moryx.Products.Management.Modification;
+using Moryx.Products.Management.Plugins.GenericStrategies;
 using Moryx.Runtime.Container;
 using Moryx.Runtime.Modules;
 #if USE_WCF
@@ -37,7 +38,7 @@ namespace Moryx.Products.Management
         /// Endpoint hosting
         /// </summary>
 #if USE_WCF
-        
+
         public IWcfHostFactory WcfHostFactory { get; set; }
 #else
         public IEndpointHosting Hosting { get; set; }
@@ -109,16 +110,16 @@ namespace Moryx.Products.Management
             _host.Stop();
             _host = null;
         }
-#endregion
+        #endregion
 
-#region FacadeContainer
+        #region FacadeContainer
         private readonly ProductManagementFacade _productManagement = new ProductManagementFacade();
         IProductManagement IFacadeContainer<IProductManagement>.Facade
         {
             get { return _productManagement; }
         }
 
-#endregion
+        #endregion
     }
 
 }

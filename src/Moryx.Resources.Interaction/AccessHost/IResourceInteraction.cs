@@ -1,8 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Net;
+using Moryx.Resources.Interaction.Models;
 using Moryx.Serialization;
+using System.Net;
 
 #if USE_WCF
 using System.ServiceModel;
@@ -10,7 +11,7 @@ using System.ServiceModel.Web;
 using Moryx.Tools.Wcf;
 #endif
 
-namespace Moryx.Resources.Interaction
+namespace Moryx.Resources.Interaction.AccessHost
 {
     /// <summary>
     /// Interface to provide functions for interaction of resources.
@@ -18,7 +19,7 @@ namespace Moryx.Resources.Interaction
 #if USE_WCF
     [ServiceContract]
     [ServiceVersion("5.0.0")]
-# endif
+#endif
     internal interface IResourceInteraction
     {
         /// <summary>

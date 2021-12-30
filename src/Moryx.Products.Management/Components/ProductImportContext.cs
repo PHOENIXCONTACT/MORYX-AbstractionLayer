@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Components
 {
     /// <summary>
     /// Context of a product import session

@@ -1,12 +1,14 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Generic;
+using Moryx.AbstractionLayer.Activities;
+using Moryx.AbstractionLayer.Processes;
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Bindings;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace Moryx.AbstractionLayer.Tests
 {
@@ -91,12 +93,12 @@ namespace Moryx.AbstractionLayer.Tests
 
             protected override void Populate(IProcess process, Parameters instance)
             {
-                var parameters = (InsertPartParameters) instance;
+                var parameters = (InsertPartParameters)instance;
 
                 if (_resolver == null)
                     _resolver = ResolverFactory.Create(Part);
 
-                parameters.Target = (IProductType) _resolver.Resolve(process);
+                parameters.Target = (IProductType)_resolver.Resolve(process);
             }
         }
 

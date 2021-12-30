@@ -1,17 +1,65 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Concurrent;
+using Moryx.AbstractionLayer.Resources;
+using Moryx.Container;
+
+/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
+Before:
 using System.Collections.Generic;
-using System.ComponentModel;
+After:
+using Moryx.Resources.Management.Extensions;
+*/
+
+/* Unmerged change from project 'Moryx.Resources.Management (net45)'
+Before:
+using System.Collections.Generic;
+After:
+using Moryx.Resources.Management.Extensions;
+*/
+using Moryx.Resources.Management.Extensions;
+using System;
+
+/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
+Before:
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using Moryx.AbstractionLayer.Resources;
 using Moryx.Container;
+using Moryx.Resources.Management.Extensions;
+After:
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using Moryx.Reflection;
+using System.Threading;
+*/
 
-namespace Moryx.Resources.Management
+/* Unmerged change from project 'Moryx.Resources.Management (net45)'
+Before:
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using Moryx.AbstractionLayer.Resources;
+using Moryx.Container;
+using Moryx.Resources.Management.Extensions;
+After:
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using Moryx.Reflection;
+using System.Threading;
+*/
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Resource grap implementation
@@ -128,8 +176,10 @@ namespace Moryx.Resources.Management
             }
             else
             {
-                matches = from wrapper in _graph.Values let target = wrapper.Target as TResource 
-                    where target != null && predicate(target) select target;
+                matches = from wrapper in _graph.Values
+                          let target = wrapper.Target as TResource
+                          where target != null && predicate(target)
+                          select target;
             }
             _graphLock.ExitReadLock();
 

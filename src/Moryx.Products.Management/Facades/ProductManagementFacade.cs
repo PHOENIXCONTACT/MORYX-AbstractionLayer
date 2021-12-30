@@ -1,18 +1,19 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Identity;
+using Moryx.AbstractionLayer.Products;
+using Moryx.AbstractionLayer.Recipes;
+using Moryx.Products.Management.Components;
+using Moryx.Runtime.Modules;
+using Moryx.Workflows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Moryx.AbstractionLayer.Identity;
-using Moryx.AbstractionLayer.Products;
-using Moryx.AbstractionLayer.Recipes;
-using Moryx.Runtime.Modules;
-using Moryx.Workflows;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Facades
 {
     internal class ProductManagementFacade : IFacadeControl, IWorkplansVersions, IProductManagementTypeSearch
     {
@@ -198,7 +199,7 @@ namespace Moryx.Products.Management
             var instance = ProductManager
                 .GetInstances<IIdentifiableObject>(i => identity.Equals(i.Identity))
                 .SingleOrDefault();
-            return (ProductInstance) instance;
+            return (ProductInstance)instance;
         }
 
         public TInstance GetInstance<TInstance>(Expression<Func<TInstance, bool>> selector)
@@ -228,7 +229,7 @@ namespace Moryx.Products.Management
         {
             ValidateHealthState();
 
-            if(ids == null)
+            if (ids == null)
                 throw new ArgumentNullException(nameof(ids));
 
             return ProductManager.GetInstances(ids);
@@ -251,7 +252,7 @@ namespace Moryx.Products.Management
                 throw new ArgumentException("Recipe could not be found");
         }
 
-        private TRecipe ReplaceOrigin<TRecipe>(TRecipe recipe) where  TRecipe : IRecipe
+        private TRecipe ReplaceOrigin<TRecipe>(TRecipe recipe) where TRecipe : IRecipe
         {
             recipe.Origin = this;
             return recipe;

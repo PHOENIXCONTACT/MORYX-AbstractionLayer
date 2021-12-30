@@ -1,12 +1,14 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Linq;
+using Moryx.AbstractionLayer.Activities;
+using Moryx.AbstractionLayer.Processes;
 using Moryx.Workflows;
 using Moryx.Workflows.Transitions;
+using System;
+using System.Linq;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.Tasks
 {
     /// <summary>
     /// Transition representing a certain task
@@ -45,7 +47,7 @@ namespace Moryx.AbstractionLayer
         ///
         protected override void InputTokenAdded(object sender, IToken token)
         {
-            Executing(() => TakeToken((IPlace) sender, token));
+            Executing(() => TakeToken((IPlace)sender, token));
 
             // Raise the triggered event if engine is still running
             if (!_paused)
@@ -86,7 +88,7 @@ namespace Moryx.AbstractionLayer
         /// <summary>
         /// Activity created by this task
         /// </summary>
-        public Type ActivityType => typeof (TActivity);
+        public Type ActivityType => typeof(TActivity);
 
         /// <summary>
         /// Create activity instance from transition

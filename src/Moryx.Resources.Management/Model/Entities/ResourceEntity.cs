@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 // ReSharper disable once CheckNamespace
-namespace Moryx.Resources.Model
+namespace Moryx.Resources.Model.Entities
 {
     public class ResourceEntity : ModificationTrackedEntityBase
     {

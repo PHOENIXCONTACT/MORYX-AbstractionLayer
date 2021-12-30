@@ -1,14 +1,26 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Collections.Generic;
-using System.Reflection;
 using Moryx.AbstractionLayer.Resources;
-using Moryx.Model;
 using Moryx.Model.Repositories;
-using Moryx.Resources.Model;
+using Moryx.Resources.Model.Entities;
+using System.Collections.Generic;
+/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
+Before:
+using System.Collections.Generic;
+After:
+using System.Reflection;
+*/
 
-namespace Moryx.Resources.Management
+/* Unmerged change from project 'Moryx.Resources.Management (net45)'
+Before:
+using System.Collections.Generic;
+After:
+using System.Reflection;
+*/
+
+
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Helper class responsible for linking the flat list of resources

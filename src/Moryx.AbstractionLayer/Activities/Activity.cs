@@ -1,11 +1,12 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
 using Moryx.AbstractionLayer.Capabilities;
+using Moryx.AbstractionLayer.Processes;
 using Moryx.Tools;
+using System;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.Activities
 {
     /// <summary>
     /// Base class for all <see cref="IActivity"/>
@@ -123,7 +124,7 @@ namespace Moryx.AbstractionLayer
         ///
         public new TTracing Tracing
         {
-            get => (TTracing) base.Tracing;
+            get => (TTracing)base.Tracing;
             set => base.Tracing = value;
         }
     }

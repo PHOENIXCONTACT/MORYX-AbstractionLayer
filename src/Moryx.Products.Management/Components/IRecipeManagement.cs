@@ -1,13 +1,30 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
 using System;
 using System.Collections.Generic;
+After:
 using Moryx.AbstractionLayer;
+using Moryx.Collections.Generic;
+*/
+
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using System;
+using System.Collections.Generic;
+After:
+using Moryx.AbstractionLayer;
+using Moryx.Collections.Generic;
+*/
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
+using System;
+using System.Collections.Generic;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Components
 {
     /// <summary>
     /// Component to handle all recipe operations

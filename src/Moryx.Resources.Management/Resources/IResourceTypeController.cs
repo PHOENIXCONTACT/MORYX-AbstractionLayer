@@ -1,12 +1,12 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Generic;
 using Moryx.AbstractionLayer.Resources;
 using Moryx.Modules;
+using System;
+using System.Collections.Generic;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Central component responsible for reading the type tree and building/managing proxies

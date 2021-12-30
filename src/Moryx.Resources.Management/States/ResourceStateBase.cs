@@ -1,9 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Resources.Management.Resources;
 using Moryx.StateMachines;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.States
 {
     /// <summary>
     /// Base class for states of the <see cref="ResourceWrapper"/>

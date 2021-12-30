@@ -1,12 +1,12 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
-using System.Collections.Generic;
 using Moryx.Container;
 using Moryx.Serialization;
+using System;
+using System.Collections.Generic;
 
-namespace Moryx.AbstractionLayer.Resources
+namespace Moryx.AbstractionLayer.Resources.Attributes
 {
     /// <summary>
     /// Attribute to decorate properties or method parameters of type string and return

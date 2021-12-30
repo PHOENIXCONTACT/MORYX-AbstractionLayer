@@ -1,10 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
 using Moryx.AbstractionLayer.Capabilities;
+using Moryx.AbstractionLayer.Processes;
+using System;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.Activities
 {
     /// <summary>
     /// Activity interface

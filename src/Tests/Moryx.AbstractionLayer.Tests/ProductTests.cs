@@ -1,10 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Linq;
 using Moryx.AbstractionLayer.Products;
 using Moryx.Products.Samples;
 using NUnit.Framework;
+using System.Linq;
 
 namespace Moryx.AbstractionLayer.Tests
 {

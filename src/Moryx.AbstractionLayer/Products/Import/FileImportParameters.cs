@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using static System.IO.File;
 
-namespace Moryx.AbstractionLayer.Products
+namespace Moryx.AbstractionLayer.Products.Import
 {
     /// <summary>
     /// Base parameters for a file import

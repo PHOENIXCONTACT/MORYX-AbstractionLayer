@@ -13,6 +13,6 @@ namespace Moryx.Products.Model
         /// <summary>
         /// Creates instance with all not nullable properties prefilled
         /// </summary>
-        ConnectorEntity Create(long connectorId, int classification); 
+        ConnectorEntity Create(long connectorId, int classification);
     }
 }

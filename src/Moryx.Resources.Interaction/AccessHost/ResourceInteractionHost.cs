@@ -4,6 +4,7 @@
 using System;
 using System.ComponentModel;
 using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
 using Moryx.Container;
 
 #if USE_WCF
@@ -13,7 +14,7 @@ using Moryx.Tools.Wcf;
 using Moryx.Communication.Endpoints;
 #endif
 
-namespace Moryx.Resources.Interaction
+namespace Moryx.Resources.Interaction.AccessHost
 {
     /// <summary>
     /// Default interaction resource which hosts the default web service

@@ -1,13 +1,13 @@
 // Copyright (c) 2021, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Container;
+using Moryx.Products.Model;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using Moryx.Container;
-using Moryx.Products.Model;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Null property mapper which does not read or write properties from any column

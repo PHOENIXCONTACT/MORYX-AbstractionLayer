@@ -1,18 +1,21 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Products;
+using Moryx.AbstractionLayer.Products.Import;
+using Moryx.Container;
+using Moryx.Modules;
+using Moryx.Products.Management.Components;
+using Moryx.Products.Management.Implementations.Import;
+using Moryx.Serialization;
+using Moryx.Tools;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Moryx.AbstractionLayer.Products;
-using Moryx.Container;
-using Moryx.Modules;
-using Moryx.Serialization;
-using Moryx.Tools;
 
-namespace Moryx.Products.Management.Importers
+namespace Moryx.Products.Management.Plugins.Importers
 {
     /// <summary>
     /// Product importer which can create all types of products

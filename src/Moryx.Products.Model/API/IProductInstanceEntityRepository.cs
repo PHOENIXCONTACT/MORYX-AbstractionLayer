@@ -1,8 +1,8 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Collections.Generic;
 using Moryx.Model.Repositories;
+using System.Collections.Generic;
 
 namespace Moryx.Products.Model
 {

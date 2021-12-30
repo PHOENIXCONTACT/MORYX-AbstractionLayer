@@ -3,14 +3,15 @@
 
 using Moryx.AbstractionLayer.Resources;
 using Moryx.Modules;
+using Moryx.Resources.Management.States;
 using Moryx.StateMachines;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     internal sealed class ResourceWrapper : IStateContext
     {
         internal Resource Target { get; }
-        
+
         internal ResourceStateBase State { get; private set; }
 
         void IStateContext.SetState(IState state)
@@ -48,7 +49,7 @@ namespace Moryx.Resources.Management
         {
             State.ErrorOccured();
         }
-        
+
         internal void Stop()
         {
             State.Stop();

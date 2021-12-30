@@ -1,11 +1,33 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Resources.Samples (netstandard2.0)'
+Before:
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using Moryx.AbstractionLayer.Resources;
+After:
+using System.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
 using Moryx.Container;
+*/
+
+/* Unmerged change from project 'Moryx.Resources.Samples (net5.0)'
+Before:
+using System.ComponentModel;
+using System.Runtime.Serialization;
+using Moryx.AbstractionLayer.Resources;
+After:
+using System.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
+using Moryx.Container;
+*/
+using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
 using Moryx.Serialization;
+using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace Moryx.Resources.Samples
 {
@@ -24,7 +46,7 @@ namespace Moryx.Resources.Samples
         [ReferenceOverride(nameof(Parent))]
         public InstructionServiceHost ServiceHost
         {
-            get { return (InstructionServiceHost) Parent; }
+            get { return (InstructionServiceHost)Parent; }
             set { Parent = value; }
         }
 #endif

@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.Activities
 {
     /// <summary>
     /// Interface for activity trace information
@@ -18,7 +18,7 @@ namespace Moryx.AbstractionLayer
         /// <summary>
         /// The time when this activity was finished.
         /// </summary>
-        DateTime? Completed { get; set;  }
+        DateTime? Completed { get; set; }
 
         /// <summary>
         /// Contains the error code that is associated with the error that caused e.g. an activity failure

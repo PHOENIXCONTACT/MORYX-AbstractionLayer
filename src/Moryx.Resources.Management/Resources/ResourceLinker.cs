@@ -1,6 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
+Before:
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,15 +11,66 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using Moryx.AbstractionLayer.Resources;
+After:
+using Moryx.AbstractionLayer.Resources;
+*/
+
+/* Unmerged change from project 'Moryx.Resources.Management (net45)'
+Before:
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Reflection;
+using Moryx.AbstractionLayer.Resources;
+After:
+using Moryx.AbstractionLayer.Resources;
+*/
+using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
 using Moryx.Container;
 using Moryx.Logging;
 using Moryx.Model;
 using Moryx.Model.Repositories;
-using Moryx.Resources.Model;
+using Moryx.Resources.Model.API;
+using Moryx.Resources.Model.Entities;
 using Moryx.Tools;
-using static Moryx.Resources.Management.ResourceReferenceTools;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
+Before:
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+After:
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Linq;
+using System.Reflection;
+*/
 
-namespace Moryx.Resources.Management
+/* Unmerged change from project 'Moryx.Resources.Management (net45)'
+Before:
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+After:
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Linq;
+using System.Reflection;
+*/
+
+
+namespace Moryx.Resources.Management.Resources
 {
     [Component(LifeCycle.Singleton, typeof(IResourceLinker))]
     internal class ResourceLinker : IResourceLinker
@@ -44,7 +98,7 @@ namespace Moryx.Resources.Management
         public void LinkReferences(Resource resource, ICollection<ResourceRelationAccessor> relations)
         {
             var resourceType = resource.GetType();
-            var referenceProperties = ReferenceProperties(resourceType, false).ToList();
+            var referenceProperties = ResourceReferenceTools.ReferenceProperties(resourceType, false).ToList();
             // Create delegate once to optimize memory usage
             var resolverDelegate = new Func<ResourceRelationAccessor, Resource>(ResolveRefernceWithGraph);
             foreach (var property in referenceProperties)
@@ -100,7 +154,7 @@ namespace Moryx.Resources.Management
                 .ToList();
 
             var createdResources = new List<Resource>();
-            foreach (var referenceProperty in ReferenceProperties(instance.GetType(), false))
+            foreach (var referenceProperty in ResourceReferenceTools.ReferenceProperties(instance.GetType(), false))
             {
                 var matches = MatchingRelations(relations, referenceProperty);
                 var typeMatches = TypeFilter(matches, referenceProperty, context.ResolveReference).ToList();
@@ -260,7 +314,7 @@ namespace Moryx.Resources.Management
         private static ISet<IResource> CurrentReferences(Resource instance, ResourceReferenceAttribute referenceAtt)
         {
             // Get all references of this resource with the same relation information
-            var currentReferences = (from property in ReferenceProperties(instance.GetType(), false)
+            var currentReferences = (from property in ResourceReferenceTools.ReferenceProperties(instance.GetType(), false)
                                      let att = property.GetCustomAttribute<ResourceReferenceAttribute>()
                                      where att.RelationType == referenceAtt.RelationType
                                            && att.Name == referenceAtt.Name
@@ -293,7 +347,7 @@ namespace Moryx.Resources.Management
         /// <returns></returns>
         private static PropertyInfo FindBackLink(Resource target, Resource value, ResourceReferenceAttribute referenceAtt)
         {
-            var propOnTarget = (from prop in ReferenceProperties(target.GetType(), false)
+            var propOnTarget = (from prop in ResourceReferenceTools.ReferenceProperties(target.GetType(), false)
                                 where IsInstanceOfReference(prop, value)
                                 let backAtt = prop.GetCustomAttribute<ResourceReferenceAttribute>()
                                 where backAtt.Name == referenceAtt.Name // Compare name
@@ -418,7 +472,7 @@ namespace Moryx.Resources.Management
         {
             // Try to find a property on the reference back-linking to the deleted instance
             var type = reference.GetType();
-            var backReference = (from property in ReferenceProperties(type, false)
+            var backReference = (from property in ResourceReferenceTools.ReferenceProperties(type, false)
                                      // Instead of comparing the resource type we simply look for the object reference
                                  let value = property.GetValue(reference)
                                  where value == deletedInstance || ((value as IEnumerable<IResource>)?.Contains(deletedInstance) ?? false)

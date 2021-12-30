@@ -1,12 +1,12 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.ComponentModel;
-using System.Runtime.Serialization;
 using Moryx.Modules;
 using Moryx.Serialization;
+using System.ComponentModel;
+using System.Runtime.Serialization;
 
-namespace Moryx.Products.Management.Importers
+namespace Moryx.Products.Management.Components
 {
     /// <summary>
     /// Config for product importers

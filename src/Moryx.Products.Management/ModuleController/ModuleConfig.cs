@@ -2,14 +2,15 @@
 // Licensed under the Apache License, Version 2.0
 
 
+using Moryx.Configuration;
+using Moryx.Products.Management.Components;
+using Moryx.Products.Management.Implementations.Storage;
+using Moryx.Products.Management.Modification;
+using Moryx.Products.Management.Plugins.Importers;
+using Moryx.Serialization;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using Moryx.AbstractionLayer;
-using Moryx.Configuration;
-using Moryx.Products.Management.Importers;
-using Moryx.Products.Management.Modification;
-using Moryx.Serialization;
 #if USE_WCF
 using Moryx.Tools.Wcf;
 #endif

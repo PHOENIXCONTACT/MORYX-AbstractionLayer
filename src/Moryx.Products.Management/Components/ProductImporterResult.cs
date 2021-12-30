@@ -2,9 +2,8 @@
 // Licensed under the Apache License, Version 2.0
 
 using Moryx.AbstractionLayer.Products;
-using Moryx.Products.Management.Importers;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Components
 {
     /// <summary>
     /// Return value for <see cref="IProductImporter"/>

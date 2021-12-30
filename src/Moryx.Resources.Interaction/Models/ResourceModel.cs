@@ -1,11 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Runtime.Serialization;
 using Moryx.AbstractionLayer.Resources;
 using Moryx.Serialization;
+using System.Runtime.Serialization;
 
-namespace Moryx.Resources.Interaction
+namespace Moryx.Resources.Interaction.Models
 {
     /// <summary>
     /// Base model used by details view and tree

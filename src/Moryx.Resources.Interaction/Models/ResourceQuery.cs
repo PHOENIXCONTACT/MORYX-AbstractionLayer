@@ -3,7 +3,7 @@
 
 using System.Runtime.Serialization;
 
-namespace Moryx.Resources.Interaction
+namespace Moryx.Resources.Interaction.Models
 {
     /// <summary>
     /// Filter object to fetch resources from the server

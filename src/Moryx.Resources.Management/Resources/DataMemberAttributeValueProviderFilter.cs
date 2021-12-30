@@ -1,11 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Configuration;
 using System.Reflection;
 using System.Runtime.Serialization;
-using Moryx.Configuration;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     public class DataMemberAttributeValueProviderFilter : IValueProviderFilter
     {
@@ -18,7 +18,7 @@ namespace Moryx.Resources.Management
 
         public bool CheckProperty(PropertyInfo propertyInfo)
         {
-            if(_filterDataMembers)
+            if (_filterDataMembers)
                 return propertyInfo.GetCustomAttribute<DataMemberAttribute>() == null;
             return propertyInfo.GetCustomAttribute<DataMemberAttribute>() != null;
         }

@@ -1,11 +1,12 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Attributes;
+using Moryx.Serialization;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Serialization;
 
 namespace Moryx.Resources.Samples
 {
@@ -17,7 +18,7 @@ namespace Moryx.Resources.Samples
 
         [EntrySerialize, DisplayName("Add Value")]
         [Description("Add typed value to the buffer")]
-        public int AddValue([ResourceTypes(typeof(BufferValue))]string type, string name, string value)
+        public int AddValue([ResourceTypes(typeof(BufferValue))] string type, string name, string value)
         {
             var bufferValue = Graph.Instantiate<BufferValue>(type);
             bufferValue.Name = name;

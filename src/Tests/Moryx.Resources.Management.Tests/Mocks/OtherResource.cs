@@ -3,7 +3,7 @@
 
 using Moryx.AbstractionLayer.Resources;
 
-namespace Moryx.Resources.Management.Tests
+namespace Moryx.Resources.Management.Tests.Mocks
 {
     public class OtherResource : Resource
     {

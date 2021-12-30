@@ -1,13 +1,13 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Identity;
+using Moryx.AbstractionLayer.Recipes;
+using Moryx.Workflows;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Moryx.AbstractionLayer.Identity;
-using Moryx.AbstractionLayer.Recipes;
-using Moryx.Workflows;
 
 namespace Moryx.AbstractionLayer.Products
 {
@@ -123,7 +123,7 @@ namespace Moryx.AbstractionLayer.Products
         IReadOnlyList<TInstance> GetInstances<TInstance>(Expression<Func<TInstance, bool>> selector)
             where TInstance : IProductInstance;
     }
-    
+
     /// <summary>
     /// Additional interface for type storage to search for product types by expression
     /// TODO: Remove in AL 6

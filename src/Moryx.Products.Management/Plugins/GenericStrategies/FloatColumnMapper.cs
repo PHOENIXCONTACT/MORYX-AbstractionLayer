@@ -1,10 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System;
 using Moryx.Container;
+using Moryx.Products.Management.Implementations.Storage;
+using System;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Mapper for columns of type <see cref="double"/>

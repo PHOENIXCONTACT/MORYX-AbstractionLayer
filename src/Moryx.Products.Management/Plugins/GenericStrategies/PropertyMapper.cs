@@ -1,13 +1,13 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Products.Model;
+using Moryx.Tools;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using Moryx.Products.Model;
-using Moryx.Tools;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Base class for specialized column mappers

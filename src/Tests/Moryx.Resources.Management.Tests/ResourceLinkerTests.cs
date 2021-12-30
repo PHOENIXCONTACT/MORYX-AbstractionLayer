@@ -1,17 +1,19 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moq;
+using Moryx.AbstractionLayer.Resources;
+using Moryx.Model.Repositories;
+using Moryx.Resources.Management.Resources;
+using Moryx.Resources.Management.Tests.Mocks;
+using Moryx.Resources.Model.API;
+using Moryx.Resources.Model.Entities;
+using Moryx.TestTools.UnitTest;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Model;
-using Moryx.Resources.Model;
-using Moryx.TestTools.UnitTest;
-using Moq;
-using Moryx.Model.Repositories;
-using NUnit.Framework;
 
 namespace Moryx.Resources.Management.Tests
 {

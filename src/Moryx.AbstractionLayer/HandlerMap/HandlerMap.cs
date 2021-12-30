@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.HandlerMap
 {
     /// <summary>
     /// Base class for 

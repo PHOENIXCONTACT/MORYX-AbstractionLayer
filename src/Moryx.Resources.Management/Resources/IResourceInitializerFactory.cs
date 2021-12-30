@@ -1,10 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using Moryx.AbstractionLayer.Resources;
+using Moryx.AbstractionLayer.Resources.Initializer;
 using Moryx.Container;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Factory to create <see cref="IResourceInitializer"/>

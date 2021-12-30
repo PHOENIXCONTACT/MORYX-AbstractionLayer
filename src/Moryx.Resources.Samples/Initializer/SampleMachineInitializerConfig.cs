@@ -1,8 +1,8 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Resources.Initializer;
 using System.ComponentModel;
-using Moryx.AbstractionLayer.Resources;
 
 namespace Moryx.Resources.Samples.Initializer
 {

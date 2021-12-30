@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Moryx.AbstractionLayer.Resources
+namespace Moryx.AbstractionLayer.Resources.Attributes
 {
     /// <summary>
     /// Attribute used to decorate a property that references another resource

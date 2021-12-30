@@ -1,6 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -9,9 +12,46 @@ using Moryx.AbstractionLayer;
 using Moryx.AbstractionLayer.Identity;
 using Moryx.AbstractionLayer.Products;
 using Moryx.Modules;
-using Moryx.Products.Management.Importers;
+After:
+using Moryx.AbstractionLayer;
+using Moryx.Collections.Identity;
+using System.AbstractionLayer.Products;
+using System.Modules;
+using Moryx.Products.Management.Implementations;
+using System;
+using System.Collections.Generic;
+using System.Linq.Modules;
+*/
 
-namespace Moryx.Products.Management
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Moryx.AbstractionLayer;
+using Moryx.AbstractionLayer.Identity;
+using Moryx.AbstractionLayer.Products;
+using Moryx.Modules;
+After:
+using Moryx.AbstractionLayer;
+using Moryx.Collections.Identity;
+using System.AbstractionLayer.Products;
+using System.Modules;
+using Moryx.Products.Management.Implementations;
+using System;
+using System.Collections.Generic;
+using System.Linq.Modules;
+*/
+using Moryx.AbstractionLayer.Products;
+using Moryx.Modules;
+using Moryx.Products.Management.Implementations;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+
+namespace Moryx.Products.Management.Components
 {
     /// <summary>
     /// Management component

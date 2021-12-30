@@ -4,7 +4,7 @@
 using Moryx.AbstractionLayer.Resources;
 using Moryx.Container;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Factory for resources

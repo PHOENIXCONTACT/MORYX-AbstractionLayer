@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Moryx.AbstractionLayer
+namespace Moryx.AbstractionLayer.HandlerMap
 {
     /// <summary>
     /// Interface for handler classes used to distribute mixed type messages to specialized handler methods

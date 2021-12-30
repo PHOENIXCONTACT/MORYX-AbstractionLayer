@@ -1,15 +1,54 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
 using System;
 using System.ComponentModel;
-using System.Runtime.Serialization;
+After:
+using Moryx.Configuration;
+using Moryx.ComponentModel;
+*/
+
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using System;
+using System.ComponentModel;
+After:
+using Moryx.Configuration;
+using Moryx.ComponentModel;
+*/
+using Moryx.Modules;
+using Moryx.Serialization;
+
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
 using System.Text.RegularExpressions;
 using Moryx.Configuration;
 using Moryx.Modules;
 using Moryx.Serialization;
+After:
+using System;
+using System.ComponentModel;
+using System.Runtime.Serialization;
+using System.Text.Serialization;
+*/
 
-namespace Moryx.Products.Management
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using System.Text.RegularExpressions;
+using Moryx.Configuration;
+using Moryx.Modules;
+using Moryx.Serialization;
+After:
+using System;
+using System.ComponentModel;
+using System.Runtime.Serialization;
+using System.Text.Serialization;
+*/
+
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Configuration how a single property should be stored

@@ -1,20 +1,56 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
 using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Moryx.AbstractionLayer;
-using Moryx.AbstractionLayer.Identity;
+After:
+using Moryx.AbstractionLayer;
+*/
+
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using System;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
+using Moryx.AbstractionLayer;
+After:
+using Moryx.AbstractionLayer;
+*/
 using Moryx.Container;
+using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Products.Model;
 using Moryx.Serialization;
 using Moryx.Tools;
 using Newtonsoft.Json;
-using static Moryx.Products.Management.ProductExpressionHelpers;
+using System;
+using System.Linq;
+/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
+Before:
+using System;
+using System.Linq;
+After:
+using System.Linq;
+using System.Linq.Expressions;
+*/
 
-namespace Moryx.Products.Management
+/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
+Before:
+using System;
+using System.Linq;
+After:
+using System.Linq;
+using System.Linq.Expressions;
+*/
+
+
+namespace Moryx.Products.Management.Plugins.GenericStrategies
 {
     /// <summary>
     /// Reusable component to map business objects onto entities of type
@@ -72,12 +108,12 @@ namespace Moryx.Products.Management
                     object value;
                     if (binary.Left is MemberExpression bLeft && bLeft.Expression is ParameterExpression)
                     {
-                        value = ExtractExpressionValue(binary.Right);
+                        value = ProductExpressionHelpers.ExtractExpressionValue(binary.Right);
                         return Convert(bLeft.Member.Name, binary.NodeType, value);
                     }
                     if (binary.Right is MemberExpression bRight && bRight.Expression is ParameterExpression)
                     {
-                        value = ExtractExpressionValue(binary.Left);
+                        value = ProductExpressionHelpers.ExtractExpressionValue(binary.Left);
                         return Convert(bRight.Member.Name, binary.NodeType, value);
                     }
                     break;
@@ -89,11 +125,11 @@ namespace Moryx.Products.Management
                         object callValue;
                         if (call.Object is MemberExpression callMemEx && callMemEx.Expression is ConstantExpression)
                         {
-                            callValue = ExtractExpressionValue(call.Object);
+                            callValue = ProductExpressionHelpers.ExtractExpressionValue(call.Object);
                             return Convert(((MemberExpression)call.Arguments.First()).Member.Name, ExpressionType.Equal, callValue);
                         }
-                        
-                        callValue = ExtractExpressionValue(call.Arguments.First());
+
+                        callValue = ProductExpressionHelpers.ExtractExpressionValue(call.Arguments.First());
                         return Convert(((MemberExpression)call.Object).Member.Name, ExpressionType.Equal, callValue);
                     }
                     break;

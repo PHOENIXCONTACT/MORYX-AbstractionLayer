@@ -1,10 +1,10 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Collections.Generic;
 using Moryx.Modules;
+using System.Collections.Generic;
 
-namespace Moryx.AbstractionLayer.Resources
+namespace Moryx.AbstractionLayer.Resources.Initializer
 {
     /// <summary>
     /// Resource initializers are used to create an initial set of resources. 

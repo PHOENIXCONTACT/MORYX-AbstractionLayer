@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Moryx.AbstractionLayer.Resources;
+using Moryx.Resources.Management.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Moryx.AbstractionLayer.Resources;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Extensions
 {
     internal static class ResourceExtensions
     {

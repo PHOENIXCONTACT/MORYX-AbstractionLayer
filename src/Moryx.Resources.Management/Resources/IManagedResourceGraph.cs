@@ -1,11 +1,11 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.AbstractionLayer.Resources;
 using System;
 using System.Collections.Generic;
-using Moryx.AbstractionLayer.Resources;
 
-namespace Moryx.Resources.Management
+namespace Moryx.Resources.Management.Resources
 {
     /// <summary>
     /// Additional interface for the resource graph used by <see cref="IResourceManager"/>
