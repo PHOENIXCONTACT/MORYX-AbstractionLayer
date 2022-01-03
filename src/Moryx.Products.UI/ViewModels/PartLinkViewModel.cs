@@ -5,13 +5,14 @@ using Caliburn.Micro;
 using Moryx.AbstractionLayer.UI;
 using Moryx.Controls;
 using Moryx.Products.UI.ProductService;
+using System.ComponentModel;
 
 namespace Moryx.Products.UI
 {
     /// <summary>
     /// View model that represents a single part connector
     /// </summary>
-    public class PartLinkViewModel : PropertyChangedBase, IIdentifiableObject
+    public class PartLinkViewModel : PropertyChangedBase, IIdentifiableObject, IEditableObject
     {
         private EntryViewModel _properties;
 
@@ -38,8 +39,13 @@ namespace Moryx.Products.UI
             get { return _properties; }
             private set
             {
-                _properties = value;
-                NotifyOfPropertyChange();
+                if (_properties is null)
+                {
+                    _properties = value;
+                    NotifyOfPropertyChange();
+                }
+                else
+                    _properties.UpdateModel(value.Entry);
             }
         }
 
@@ -83,6 +89,23 @@ namespace Moryx.Products.UI
         public void CopyToModel()
         {
             Model.Properties = Properties.Entry.ToServiceEntry();
+        }
+
+        public void BeginEdit()
+        {
+            Properties.BeginEdit();
+        }
+
+        public void EndEdit()
+        {
+            Properties.EndEdit();
+            CopyToModel();
+        }
+
+        public void CancelEdit()
+        {
+            Properties.CancelEdit();
+            CopyFromModel();
         }
     }
 }

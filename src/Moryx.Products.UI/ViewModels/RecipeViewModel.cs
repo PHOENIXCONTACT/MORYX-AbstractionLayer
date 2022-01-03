@@ -55,8 +55,13 @@ namespace Moryx.Products.UI
             get { return _properties; }
             private set
             {
-                _properties = value;
-                NotifyOfPropertyChange(nameof(Properties));
+                if (_properties is null)
+                {
+                    _properties = value;
+                    NotifyOfPropertyChange();
+                }
+                else
+                    _properties.UpdateModel(value.Entry);
             }
         }
 
@@ -158,17 +163,20 @@ namespace Moryx.Products.UI
         /// <inheritdoc />
         public virtual void BeginEdit()
         {
+            Properties.BeginEdit();
         }
 
         /// <inheritdoc />
         public virtual void EndEdit()
         {
+            Properties.EndEdit();
             CopyToModel();
         }
 
         /// <inheritdoc />
         public virtual void CancelEdit()
         {
+            Properties.CancelEdit();
             CopyFromModel();
         }
     }
