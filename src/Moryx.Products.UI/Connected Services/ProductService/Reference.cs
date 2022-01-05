@@ -828,6 +828,8 @@ namespace Moryx.Products.UI.ProductService
     public partial class ProductModel : object
     {
         
+        private Moryx.Products.UI.ProductService.ProductFileModel[] FileModelsField;
+        
         private Moryx.Products.UI.ProductService.ProductFile[] FilesField;
         
         private long IdField;
@@ -847,6 +849,19 @@ namespace Moryx.Products.UI.ProductService
         private Moryx.Products.UI.ProductService.ProductState StateField;
         
         private string TypeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Moryx.Products.UI.ProductService.ProductFileModel[] FileModels
+        {
+            get
+            {
+                return this.FileModelsField;
+            }
+            set
+            {
+                this.FileModelsField = value;
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public Moryx.Products.UI.ProductService.ProductFile[] Files
@@ -980,7 +995,89 @@ namespace Moryx.Products.UI.ProductService
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductFileModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
+    public partial class ProductFileModel : object
+    {
+        
+        private string FileHashField;
+        
+        private string FileNameField;
+        
+        private string FilePathField;
+        
+        private string MimeTypeField;
+        
+        private string PropertyNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileHash
+        {
+            get
+            {
+                return this.FileHashField;
+            }
+            set
+            {
+                this.FileHashField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName
+        {
+            get
+            {
+                return this.FileNameField;
+            }
+            set
+            {
+                this.FileNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FilePath
+        {
+            get
+            {
+                return this.FilePathField;
+            }
+            set
+            {
+                this.FilePathField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MimeType
+        {
+            get
+            {
+                return this.MimeTypeField;
+            }
+            set
+            {
+                this.MimeTypeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PropertyName
+        {
+            get
+            {
+                return this.PropertyNameField;
+            }
+            set
+            {
+                this.PropertyNameField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ProductFile", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products")]
     public partial class ProductFile : object
     {
