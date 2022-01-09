@@ -4,14 +4,17 @@
 using Caliburn.Micro;
 using Moryx.Controls;
 using Moryx.Resources.UI.ResourceService;
+using System.ComponentModel;
 
 namespace Moryx.Resources.UI
 {
     /// <summary>
     /// View model that represents an editorVisible of a resource
     /// </summary>
-    public class ResourceMethodViewModel : PropertyChangedBase
+    public class ResourceMethodViewModel : PropertyChangedBase, IEditableObject
     {
+        private EntryViewModel _parameters;
+
         /// <summary>
         /// Underlying model
         /// </summary>
@@ -53,6 +56,33 @@ namespace Moryx.Resources.UI
         /// <summary>
         /// Parameters which are necessary for the method call
         /// </summary>
-        public EntryViewModel Parameters { get; private set; }
+        public EntryViewModel Parameters
+        {
+            get { return _parameters; }
+            private set
+            {
+                if (_parameters is null)
+                    _parameters = value;
+                else
+                    _parameters.UpdateModel(value.Entry);
+            }
+        }
+
+        public void BeginEdit()
+        {
+            Parameters.BeginEdit();
+        }
+
+        public void EndEdit()
+        {
+            Parameters.EndEdit();
+            CopyToModel();
+        }
+
+        public void CancelEdit()
+        {
+            Parameters.CancelEdit();
+            CopyFromModel(Model);
+        }
     }
 }

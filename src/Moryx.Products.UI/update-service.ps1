@@ -1,0 +1,1 @@
+﻿dotnet-svcutil --projectFile .\Moryx.Products.UI.csproj --update

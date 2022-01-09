@@ -1,17 +1,18 @@
-﻿{
-  "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
-  "Version": "15.0.40203.910",
-  "ExtendedData": {
+{
+  "providerId": "Microsoft.Tools.ServiceModel.Svcutil",
+  "version": "2.0.1",
+  "options": {
     "inputs": [
-      "http://localhost/metadata/products"
+      "http://localhost/metadata/resources"
     ],
     "collectionTypes": [
       "System.Array",
       "System.Collections.Generic.Dictionary`2"
     ],
     "namespaceMappings": [
-      "*, Moryx.Products.UI.ProductService"
+      "*, Moryx.Resources.UI.ResourceService"
     ],
+    "outputFile": "Reference.cs",
     "targetFramework": "net45",
     "typeReuseMode": "None"
   }
