@@ -1264,6 +1264,8 @@ namespace Moryx.Products.UI.ProductService
         
         private long WorkplanIdField;
         
+        private Moryx.Products.UI.ProductService.WorkplanModel WorkplanModelField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public Moryx.Products.UI.ProductService.RecipeClassificationModel Classification
         {
@@ -1380,6 +1382,19 @@ namespace Moryx.Products.UI.ProductService
                 this.WorkplanIdField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Moryx.Products.UI.ProductService.WorkplanModel WorkplanModel
+        {
+            get
+            {
+                return this.WorkplanModelField;
+            }
+            set
+            {
+                this.WorkplanModelField = value;
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
@@ -1448,8 +1463,8 @@ namespace Moryx.Products.UI.ProductService
             }
         }
     }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RecipeClassificationModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     public enum RecipeClassificationModel : int
     {
@@ -1469,8 +1484,8 @@ namespace Moryx.Products.UI.ProductService
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Part = 4,
     }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RecipeState", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Recipes")]
     public enum RecipeState : int
     {
@@ -1670,8 +1685,8 @@ namespace Moryx.Products.UI.ProductService
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Revoked = 2,
     }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Moryx.Products.UI.ProductService.IProductInteraction")]
     public interface IProductInteraction
     {
@@ -1727,8 +1742,8 @@ namespace Moryx.Products.UI.ProductService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipeProviderName", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipeProviderNameResponse")]
         System.Threading.Tasks.Task<string> GetRecipeProviderNameAsync();
     }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public interface IProductInteractionChannel : Moryx.Products.UI.ProductService.IProductInteraction, System.ServiceModel.IClientChannel
     {
     }
