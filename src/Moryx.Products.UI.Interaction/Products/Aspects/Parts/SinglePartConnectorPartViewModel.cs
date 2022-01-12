@@ -70,14 +70,14 @@ namespace Moryx.Products.UI.Interaction.Aspects
 
         public override void BeginEdit()
         {
-            PartLink.BeginEdit();
+            PartLink?.BeginEdit();
             PartConnector.BeginEdit();
             base.BeginEdit();
         }
 
         public override void EndEdit()
         {
-            PartLink.EndEdit();
+            PartLink?.EndEdit();
             PartConnector.EndEdit();
             base.EndEdit();
         }
@@ -87,7 +87,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
             // If single used, reset part link
             if (!PartConnector.IsCollection)
                 PartLink = PartConnector.PartLinks.FirstOrDefault();
-            PartLink.CancelEdit();
+            PartLink?.CancelEdit();
             PartConnector.CancelEdit();
             base.CancelEdit();
         }
