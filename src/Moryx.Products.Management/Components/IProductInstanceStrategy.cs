@@ -1,24 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using System;
-using System.Linq.Expressions;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using System;
-using System.Linq.Expressions;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
 using Moryx.AbstractionLayer.Products;
 using Moryx.Modules;
 using Moryx.Products.Management.Implementations.Storage;

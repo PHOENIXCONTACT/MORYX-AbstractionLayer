@@ -8,20 +8,6 @@ using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Products.Model;
 using System;
 using System.Linq.Expressions;
-/* Unmerged change from project 'Moryx.Products.Samples (netcoreapp3.1)'
-Before:
-using System;
-After:
-using System.Linq.Expressions;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Samples (net5.0)'
-Before:
-using System;
-After:
-using System.Linq.Expressions;
-*/
-
 
 namespace Moryx.Products.Samples
 {

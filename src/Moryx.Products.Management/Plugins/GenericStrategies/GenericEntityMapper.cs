@@ -1,28 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using System;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using System;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
 using Moryx.Container;
 using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Products.Model;
@@ -32,24 +10,6 @@ using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using System;
-using System.Linq;
-After:
-using System.Linq;
-using System.Linq.Expressions;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using System;
-using System.Linq;
-After:
-using System.Linq;
-using System.Linq.Expressions;
-*/
-
 
 namespace Moryx.Products.Management.Plugins.GenericStrategies
 {

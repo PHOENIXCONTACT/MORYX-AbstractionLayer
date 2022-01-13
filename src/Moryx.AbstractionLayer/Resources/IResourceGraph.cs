@@ -3,20 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-/* Unmerged change from project 'Moryx.AbstractionLayer (net45)'
-Before:
-using Moryx.AbstractionLayer.Capabilities;
-After:
-using System.Collections.Generic;
-*/
-
-/* Unmerged change from project 'Moryx.AbstractionLayer (net5.0)'
-Before:
-using Moryx.AbstractionLayer.Capabilities;
-After:
-using System.Collections.Generic;
-*/
-
 
 namespace Moryx.AbstractionLayer.Resources
 {

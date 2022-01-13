@@ -1,39 +1,7 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.AbstractionLayer (net45)'
-Before:
-using System;
-After:
 using Moryx.AbstractionLayer.Identity;
-using System;
-*/
-
-/* Unmerged change from project 'Moryx.AbstractionLayer (net5.0)'
-Before:
-using System;
-After:
-using Moryx.AbstractionLayer.Identity;
-using System;
-*/
-using Moryx.AbstractionLayer.Identity;
-
-/* Unmerged change from project 'Moryx.AbstractionLayer (net45)'
-Before:
-using System.Threading;
-using Moryx.AbstractionLayer.Identity;
-After:
-using System.Threading;
-*/
-
-/* Unmerged change from project 'Moryx.AbstractionLayer (net5.0)'
-Before:
-using System.Threading;
-using Moryx.AbstractionLayer.Identity;
-After:
-using System.Threading;
-*/
 using System;
 using System.Text.RegularExpressions;
 

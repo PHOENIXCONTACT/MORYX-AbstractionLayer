@@ -1,28 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using System;
-using System.Collections.Generic;
-using System.Linq;
-After:
-using Moryx.Configuration;
-using System.Container;
-using Moryx.Products.Model;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using System;
-using System.Collections.Generic;
-using System.Linq;
-After:
-using Moryx.Configuration;
-using System.Container;
-using Moryx.Products.Model;
-*/
 using Moryx.Container;
 using Moryx.Products.Model;
 using Moryx.Serialization;

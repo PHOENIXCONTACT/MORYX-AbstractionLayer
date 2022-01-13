@@ -3,56 +3,8 @@
 
 using Moryx.AbstractionLayer.Resources;
 using Moryx.Container;
-
-/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
-Before:
-using System.Collections.Generic;
-After:
-using Moryx.Resources.Management.Extensions;
-*/
-
-/* Unmerged change from project 'Moryx.Resources.Management (net45)'
-Before:
-using System.Collections.Generic;
-After:
-using Moryx.Resources.Management.Extensions;
-*/
 using Moryx.Resources.Management.Extensions;
 using System;
-
-/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
-Before:
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Container;
-using Moryx.Resources.Management.Extensions;
-After:
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using Moryx.Reflection;
-using System.Threading;
-*/
-
-/* Unmerged change from project 'Moryx.Resources.Management (net45)'
-Before:
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using Moryx.AbstractionLayer.Resources;
-using Moryx.Container;
-using Moryx.Resources.Management.Extensions;
-After:
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using Moryx.Reflection;
-using System.Threading;
-*/
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;

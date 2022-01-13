@@ -3,24 +3,6 @@
 
 using Moryx.AbstractionLayer.Capabilities;
 using Moryx.AbstractionLayer.Resources.Initializer;
-
-/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
-Before:
-using Moryx.Modules;
-After:
-using Moryx.Modules;
-using System;
-using System.Collections.Generic;
-*/
-
-/* Unmerged change from project 'Moryx.Resources.Management (net45)'
-Before:
-using Moryx.Modules;
-After:
-using Moryx.Modules;
-using System;
-using System.Collections.Generic;
-*/
 using Moryx.Modules;
 using System;
 

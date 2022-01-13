@@ -1,26 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.Products.Samples (netcoreapp3.1)'
-Before:
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Samples (net5.0)'
-Before:
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Products.Import;
 using Moryx.Container;
@@ -30,24 +10,6 @@ using Moryx.Products.Management.Implementations.Import;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
-/* Unmerged change from project 'Moryx.Products.Samples (netcoreapp3.1)'
-Before:
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-After:
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Samples (net5.0)'
-Before:
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-After:
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-*/
-
 
 namespace Moryx.Products.Samples
 {

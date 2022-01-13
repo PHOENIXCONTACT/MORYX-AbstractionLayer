@@ -5,26 +5,6 @@ using Moryx.Container;
 using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Serialization;
 using Moryx.Tools;
-
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using Newtonsoft.Json;
-After:
-using Newtonsoft.Json;
-using System;
-using System.Linq.Expressions;
-using System.Reflection;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using Newtonsoft.Json;
-After:
-using Newtonsoft.Json;
-using System;
-using System.Linq.Expressions;
-using System.Reflection;
-*/
 using Newtonsoft.Json;
 using System;
 using System.Reflection;

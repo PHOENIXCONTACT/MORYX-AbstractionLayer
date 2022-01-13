@@ -1,32 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
-Before:
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection;
-using Moryx.AbstractionLayer.Resources;
-After:
-using Moryx.AbstractionLayer.Resources;
-*/
-
-/* Unmerged change from project 'Moryx.Resources.Management (net45)'
-Before:
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection;
-using Moryx.AbstractionLayer.Resources;
-After:
-using Moryx.AbstractionLayer.Resources;
-*/
 using Moryx.AbstractionLayer.Resources;
 using Moryx.AbstractionLayer.Resources.Attributes;
 using Moryx.Container;
@@ -42,36 +16,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
-Before:
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-After:
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Linq;
-using System.Reflection;
-*/
-
-/* Unmerged change from project 'Moryx.Resources.Management (net45)'
-Before:
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-After:
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Linq;
-using System.Reflection;
-*/
-
 
 namespace Moryx.Resources.Management.Resources
 {

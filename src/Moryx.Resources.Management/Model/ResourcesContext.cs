@@ -1,32 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
-Before:
-using System;
-using System.Data.Common;
-using System.Data.Entity;
-using Moryx.Model;
-After:
-using Moryx.Model;
-using Moryx.Model.PostgreSQL;
-using System.Resources.Model.Entities;
-using System;
-*/
-
-/* Unmerged change from project 'Moryx.Resources.Management (net45)'
-Before:
-using System;
-using System.Data.Common;
-using System.Data.Entity;
-using Moryx.Model;
-After:
-using Moryx.Model;
-using Moryx.Model.PostgreSQL;
-using System.Resources.Model.Entities;
-using System;
-*/
 using Moryx.Model;
 using Moryx.Model.PostgreSQL;
 using Moryx.Resources.Model.Entities;

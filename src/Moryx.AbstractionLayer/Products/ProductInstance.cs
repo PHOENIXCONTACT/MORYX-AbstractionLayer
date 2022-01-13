@@ -1,20 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-/* Unmerged change from project 'Moryx.AbstractionLayer (net45)'
-Before:
-using Moryx.AbstractionLayer.Identity;
-After:
-using System.Runtime.Serialization;
-*/
-
-/* Unmerged change from project 'Moryx.AbstractionLayer (net5.0)'
-Before:
-using Moryx.AbstractionLayer.Identity;
-After:
-using System.Runtime.Serialization;
-*/
-
 using System.Runtime.Serialization;
 
 namespace Moryx.AbstractionLayer.Products

@@ -9,24 +9,6 @@ using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Products.Model;
 using System;
 using System.Linq.Expressions;
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using System;
-using System.Linq;
-After:
-using System.Linq;
-using System.Linq.Expressions;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using System;
-using System.Linq;
-After:
-using System.Linq;
-using System.Linq.Expressions;
-*/
-
 
 namespace Moryx.Products.Management.Plugins.GenericStrategies
 {

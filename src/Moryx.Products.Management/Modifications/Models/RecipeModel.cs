@@ -1,45 +1,9 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using System;
-using System.Runtime.Serialization;
-After:
-using Moryx.AbstractionLayer;
-using Moryx.Runtime.Serialization;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using System;
-using System.Runtime.Serialization;
-After:
-using Moryx.AbstractionLayer;
-using Moryx.Runtime.Serialization;
-*/
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Serialization;
 using System;
-
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using Moryx.AbstractionLayer.Recipes;
-using Moryx.Serialization;
-After:
-using System;
-using System.Runtime.Serialization;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using Moryx.AbstractionLayer.Recipes;
-using Moryx.Serialization;
-After:
-using System;
-using System.Runtime.Serialization;
-*/
 using System.Runtime.Serialization;
 
 namespace Moryx.Products.Management.Modification.Models

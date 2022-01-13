@@ -1,24 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.Resources.Samples (netstandard2.0)'
-Before:
-using System.ComponentModel;
-using System.Runtime.Serialization;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
-
-/* Unmerged change from project 'Moryx.Resources.Samples (net5.0)'
-Before:
-using System.ComponentModel;
-using System.Runtime.Serialization;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
 using Moryx.AbstractionLayer.Drivers.Message;
 using Moryx.AbstractionLayer.HandlerMap;
 using Moryx.AbstractionLayer.Resources;
@@ -26,20 +8,6 @@ using Moryx.AbstractionLayer.Resources.Attributes;
 using Moryx.Serialization;
 using System.ComponentModel;
 using System.Runtime.Serialization;
-/* Unmerged change from project 'Moryx.Resources.Samples (netstandard2.0)'
-Before:
-using System.ComponentModel;
-After:
-using System.Runtime.Serialization;
-*/
-
-/* Unmerged change from project 'Moryx.Resources.Samples (net5.0)'
-Before:
-using System.ComponentModel;
-After:
-using System.Runtime.Serialization;
-*/
-
 
 namespace Moryx.Resources.Samples
 {

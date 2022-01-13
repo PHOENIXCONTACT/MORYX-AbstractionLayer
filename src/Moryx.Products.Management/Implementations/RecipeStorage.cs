@@ -1,24 +1,4 @@
-﻿
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Moryx.AbstractionLayer;
-After:
-using Moryx.AbstractionLayer;
-*/
-using Moryx.AbstractionLayer.Activities;
+﻿using Moryx.AbstractionLayer.Activities;
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.AbstractionLayer.Tasks;
@@ -31,24 +11,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using System;
-using System.Collections.Generic;
-After:
-using System.Collections.Generic;
-using System.Linq;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using System;
-using System.Collections.Generic;
-After:
-using System.Collections.Generic;
-using System.Linq;
-*/
-
 
 namespace Moryx.Products.Management.Implementations
 {

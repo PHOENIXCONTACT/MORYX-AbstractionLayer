@@ -4,26 +4,6 @@
 using Moryx.AbstractionLayer.Products;
 using Moryx.Products.Management.Components;
 using Moryx.Products.Model;
-
-/* Unmerged change from project 'Moryx.Products.Management (net5.0)'
-Before:
-using Moryx.Tools;
-After:
-using Moryx.Tools;
-using System;
-using System.Linq;
-using System.Linq.Expressions;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Management (netcoreapp3.1)'
-Before:
-using Moryx.Tools;
-After:
-using Moryx.Tools;
-using System;
-using System.Linq;
-using System.Linq.Expressions;
-*/
 using Moryx.Tools;
 using System.Linq;
 

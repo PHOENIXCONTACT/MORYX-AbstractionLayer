@@ -1,24 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-
-/* Unmerged change from project 'Moryx.Products.Model (net5.0)'
-Before:
-using System;
-using Moryx.Model;
-After:
-using Moryx.Model;
-using System;
-*/
-
-/* Unmerged change from project 'Moryx.Products.Model (net45)'
-Before:
-using System;
-using Moryx.Model;
-After:
-using Moryx.Model;
-using System;
-*/
 using Moryx.Model;
 using System.Collections.Generic;
 
