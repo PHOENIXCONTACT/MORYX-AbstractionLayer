@@ -11,7 +11,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.ModuleControllers
 {
     [ServerModuleConsole]
     internal class ModuleConsole : IServerModuleConsole

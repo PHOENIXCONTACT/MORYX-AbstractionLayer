@@ -12,6 +12,7 @@ using Moryx.Products.Management;
 using Moryx.Products.Management.Components;
 using Moryx.Products.Management.Implementations;
 using Moryx.Products.Management.Implementations.Storage;
+using Moryx.Products.Management.ModuleControllers;
 using Moryx.Products.Management.Plugins.GenericStrategies;
 using Moryx.Products.Management.Plugins.NullStrategies;
 using Moryx.Products.Model;

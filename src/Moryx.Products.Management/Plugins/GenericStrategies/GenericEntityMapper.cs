@@ -31,6 +31,7 @@ using Moryx.Tools;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 /* Unmerged change from project 'Moryx.Products.Management (net5.0)'
 Before:
 using System;

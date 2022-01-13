@@ -21,6 +21,7 @@ using Moryx.Runtime.Serialization;
 */
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Serialization;
+using System;
 
 /* Unmerged change from project 'Moryx.Products.Management (net5.0)'
 Before:
@@ -41,7 +42,7 @@ using System.Runtime.Serialization;
 */
 using System.Runtime.Serialization;
 
-namespace Moryx.Products.Management.Modification
+namespace Moryx.Products.Management.Modification.Models
 {
     /// <summary>
     /// DTO representation of a recipe

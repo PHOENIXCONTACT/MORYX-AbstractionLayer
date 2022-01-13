@@ -6,6 +6,7 @@ using Moryx.AbstractionLayer.Identity;
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.AbstractionLayer.TestTools;
+using Moryx.Products.Management.Components;
 using Moryx.Products.Management.Modification;
 using Moryx.Tools;
 using Moryx.Workflows;

@@ -25,6 +25,7 @@ using Moryx.AbstractionLayer.Resources;
 using Moryx.AbstractionLayer.Resources.Attributes;
 using Moryx.Serialization;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 /* Unmerged change from project 'Moryx.Resources.Samples (netstandard2.0)'
 Before:
 using System.ComponentModel;

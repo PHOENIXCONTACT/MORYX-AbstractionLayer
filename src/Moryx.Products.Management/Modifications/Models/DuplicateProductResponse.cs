@@ -3,7 +3,7 @@
 
 using System.Runtime.Serialization;
 
-namespace Moryx.Products.Management.Modification
+namespace Moryx.Products.Management.Modification.Models
 {
     [DataContract]
     internal class DuplicateProductResponse

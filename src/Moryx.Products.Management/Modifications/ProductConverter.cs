@@ -5,6 +5,7 @@ using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Container;
 using Moryx.Products.Management.Components;
+using Moryx.Products.Management.Modification.Models;
 using Moryx.Serialization;
 using Moryx.Tools;
 using Moryx.Workflows;

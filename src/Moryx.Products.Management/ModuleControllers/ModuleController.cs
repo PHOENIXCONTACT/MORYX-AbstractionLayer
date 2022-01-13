@@ -7,6 +7,7 @@ using Moryx.Model;
 using Moryx.Products.Management.Components;
 using Moryx.Products.Management.Facades;
 using Moryx.Products.Management.Modification;
+using Moryx.Products.Management.Modification.Endpoints;
 using Moryx.Products.Management.Plugins.GenericStrategies;
 using Moryx.Runtime.Container;
 using Moryx.Runtime.Modules;
@@ -15,7 +16,7 @@ using Moryx.Runtime.Wcf;
 using Moryx.Tools.Wcf;
 #endif
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.ModuleControllers
 {
     /// <summary>
     /// The main controller of all product modules.

@@ -3,6 +3,7 @@
 
 using Moryx.AbstractionLayer.Products;
 using Moryx.Serialization;
+using Moryx.Products.Management.Modification.Models;
 #if USE_WCF
 using System.Net;
 using System.ServiceModel;
@@ -10,7 +11,7 @@ using System.ServiceModel.Web;
 using Moryx.Tools.Wcf;
 #endif
 
-namespace Moryx.Products.Management.Modification
+namespace Moryx.Products.Management.Modification.Endpoints
 {
 #if USE_WCF
     [ServiceContract]

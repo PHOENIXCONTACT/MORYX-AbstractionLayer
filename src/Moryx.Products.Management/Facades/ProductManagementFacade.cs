@@ -5,6 +5,7 @@ using Moryx.AbstractionLayer.Identity;
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Products.Management.Components;
+using Moryx.Products.Management.ModuleControllers;
 using Moryx.Runtime.Modules;
 using Moryx.Workflows;
 using System;

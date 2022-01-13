@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0
 
 using System;
+using System.Collections.Generic;
 /* Unmerged change from project 'Moryx.AbstractionLayer (net45)'
 Before:
 using Moryx.AbstractionLayer.Capabilities;

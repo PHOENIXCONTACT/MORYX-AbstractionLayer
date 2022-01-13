@@ -26,6 +26,7 @@ using Moryx.Products.Management.Components;
 using Moryx.Products.Model;
 using Moryx.Tools;
 using System.Collections.Generic;
+using System.Linq;
 /* Unmerged change from project 'Moryx.Products.Management (net5.0)'
 Before:
 using System;

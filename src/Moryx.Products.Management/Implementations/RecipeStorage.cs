@@ -30,6 +30,7 @@ using Moryx.Workflows.WorkplanSteps;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 /* Unmerged change from project 'Moryx.Products.Management (net5.0)'
 Before:
 using System;

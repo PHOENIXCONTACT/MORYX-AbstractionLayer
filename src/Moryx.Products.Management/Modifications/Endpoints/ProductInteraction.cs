@@ -20,11 +20,13 @@ using Moryx.Container;
 using Moryx.Logging;
 using Moryx.Products.Management.Components;
 using Moryx.Products.Management.Implementations.Storage;
+using Moryx.Products.Management.Modification.Models;
+using Moryx.Products.Management.ModuleControllers;
 using Moryx.Serialization;
 using Moryx.Tools;
 using Moryx.Workflows;
 
-namespace Moryx.Products.Management.Modification
+namespace Moryx.Products.Management.Modification.Endpoints
 {
     [Plugin(LifeCycle.Transient, typeof(IProductInteraction))]
 #if USE_WCF

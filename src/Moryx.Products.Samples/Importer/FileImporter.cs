@@ -26,6 +26,7 @@ using Moryx.Modules;
 using Moryx.Products.Management.Components;
 using Moryx.Products.Management.Implementations.Import;
 using System.IO;
+using System.Threading.Tasks;
 /* Unmerged change from project 'Moryx.Products.Samples (netcoreapp3.1)'
 Before:
 using System.IO;

@@ -15,6 +15,8 @@ After:
 using System.Runtime.Serialization;
 */
 
+using System.Runtime.Serialization;
+
 namespace Moryx.AbstractionLayer.Products
 {
     /// <summary>

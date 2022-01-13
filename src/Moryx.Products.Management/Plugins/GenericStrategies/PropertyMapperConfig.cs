@@ -21,6 +21,7 @@ using Moryx.ComponentModel;
 */
 using Moryx.Modules;
 using Moryx.Serialization;
+using System.Runtime.Serialization;
 
 /* Unmerged change from project 'Moryx.Products.Management (net5.0)'
 Before:

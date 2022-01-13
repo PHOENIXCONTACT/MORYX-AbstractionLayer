@@ -4,10 +4,10 @@
 using Moryx.Serialization;
 using System.Runtime.Serialization;
 
-namespace Moryx.Products.Management.Modification
+namespace Moryx.Products.Management.Modification.Models
 {
     [DataContract]
-    internal class PartConnector
+    internal class ProductDefinitionModel
     {
         [DataMember]
         public string Name { get; set; }
@@ -16,15 +16,9 @@ namespace Moryx.Products.Management.Modification
         public string DisplayName { get; set; }
 
         [DataMember]
-        public string Type { get; set; }
+        public string BaseDefinition { get; set; }
 
         [DataMember]
-        public bool IsCollection { get; set; }
-
-        [DataMember]
-        public PartModel[] Parts { get; set; }
-
-        [DataMember]
-        public Entry PropertyTemplates { get; set; }
+        public Entry Properties { get; set; }
     }
 }

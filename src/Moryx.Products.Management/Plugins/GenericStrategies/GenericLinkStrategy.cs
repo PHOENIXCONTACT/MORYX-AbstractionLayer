@@ -25,6 +25,7 @@ using Moryx.Modules;
 using Moryx.Products.Management.Components;
 using Moryx.Products.Management.Implementations.Storage;
 using Moryx.Products.Model;
+using System.Collections.Generic;
 /* Unmerged change from project 'Moryx.Products.Management (net5.0)'
 Before:
 using System;

@@ -7,6 +7,7 @@ using Moryx.Configuration;
 using Moryx.Container;
 using Moryx.Modules;
 using Moryx.Products.Management.Components;
+using Moryx.Products.Management.ModuleControllers;
 using Moryx.Products.Management.Plugins.GenericStrategies;
 using Moryx.Products.Model;
 using Moryx.Tools;

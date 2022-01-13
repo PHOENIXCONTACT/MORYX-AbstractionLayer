@@ -11,6 +11,7 @@ using Moryx.Resources.Model.Entities;
 using Moryx.Serialization;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 /* Unmerged change from project 'Moryx.Resources.Management (net5.0)'
 Before:
 using System.Collections.Generic;

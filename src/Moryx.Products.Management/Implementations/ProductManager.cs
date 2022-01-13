@@ -64,6 +64,7 @@ using Moryx.AbstractionLayer.Recipes;
 using Moryx.Container;
 using Moryx.Model.Repositories;
 using Moryx.Products.Management.Components;
+using Moryx.Products.Management.ModuleControllers;
 using Moryx.Products.Model;
 using Moryx.Tools;
 using System;

@@ -3,6 +3,7 @@
 
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
+using Moryx.Products.Management.Modification.Models;
 using Moryx.Workflows;
 using System;
 

@@ -11,11 +11,12 @@ using Moryx.Serialization;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using Moryx.Products.Management.Modification.Endpoints;
 #if USE_WCF
 using Moryx.Tools.Wcf;
 #endif
 
-namespace Moryx.Products.Management
+namespace Moryx.Products.Management.ModuleControllers
 {
     /// <summary>
     /// Configuration of this module
