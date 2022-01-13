@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Moryx.Resources.Management.Facades
 {
-    internal class ResourceManagementFacade : IResourceManagement, IFacadeControl
+    internal class ResourceManagementFacade : IResourceManagement, IFacadeControl, IResourceModification
     {
         #region Dependency Injection
 
@@ -110,6 +110,52 @@ namespace Moryx.Resources.Management.Facades
         {
             ValidateHealthState();
             return ResourceGraph.GetResources(predicate).Proxify(TypeController);
+        }
+
+        public long Create(Type resourceType, Action<Resource> initializer)
+        {
+            ValidateHealthState();
+
+            var resource = TypeController.Create(resourceType.ResourceType());
+            initializer(resource);
+            ResourceGraph.Save(resource);
+            return resource.Id;
+        }
+
+        public TResult Read<TResult>(long id, Func<Resource, TResult> accessor)
+        {
+            ValidateHealthState();
+
+            var resource = ResourceGraph.Get(id);
+            if (resource == null)
+                throw new KeyNotFoundException($"No resource with Id {id} found!");
+
+            var result = accessor(resource);
+            return result;
+        }
+
+        public void Modify(long id, Func<Resource, bool> modifier)
+        {
+            ValidateHealthState();
+
+            var resource = ResourceGraph.Get(id);
+            if (resource == null)
+                throw new KeyNotFoundException($"No resource with Id {id} found!");
+
+            var result = modifier(resource);
+            if (result)
+                ResourceGraph.Save(resource);
+        }
+
+        public bool Delete(long id)
+        {
+            ValidateHealthState();
+
+            var resource = ResourceGraph.Get(id);
+            if (resource == null)
+                return false;
+
+            return ResourceGraph.Destroy(resource);
         }
 
         /// <inheritdoc />

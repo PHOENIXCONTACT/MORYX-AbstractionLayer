@@ -828,6 +828,8 @@ namespace Moryx.Products.UI.ProductService
     public partial class ProductModel : object
     {
         
+        private Moryx.Products.UI.ProductService.ProductFileModel[] FileModelsField;
+        
         private Moryx.Products.UI.ProductService.ProductFile[] FilesField;
         
         private long IdField;
@@ -847,6 +849,19 @@ namespace Moryx.Products.UI.ProductService
         private Moryx.Products.UI.ProductService.ProductState StateField;
         
         private string TypeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Moryx.Products.UI.ProductService.ProductFileModel[] FileModels
+        {
+            get
+            {
+                return this.FileModelsField;
+            }
+            set
+            {
+                this.FileModelsField = value;
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public Moryx.Products.UI.ProductService.ProductFile[] Files
@@ -980,7 +995,89 @@ namespace Moryx.Products.UI.ProductService
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductFileModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
+    public partial class ProductFileModel : object
+    {
+        
+        private string FileHashField;
+        
+        private string FileNameField;
+        
+        private string FilePathField;
+        
+        private string MimeTypeField;
+        
+        private string PropertyNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileHash
+        {
+            get
+            {
+                return this.FileHashField;
+            }
+            set
+            {
+                this.FileHashField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName
+        {
+            get
+            {
+                return this.FileNameField;
+            }
+            set
+            {
+                this.FileNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FilePath
+        {
+            get
+            {
+                return this.FilePathField;
+            }
+            set
+            {
+                this.FilePathField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MimeType
+        {
+            get
+            {
+                return this.MimeTypeField;
+            }
+            set
+            {
+                this.MimeTypeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PropertyName
+        {
+            get
+            {
+                return this.PropertyNameField;
+            }
+            set
+            {
+                this.PropertyNameField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ProductFile", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Products")]
     public partial class ProductFile : object
     {
@@ -1153,6 +1250,8 @@ namespace Moryx.Products.UI.ProductService
         
         private long IdField;
         
+        private bool IsCloneField;
+        
         private string NameField;
         
         private Moryx.Products.UI.ProductService.Entry PropertiesField;
@@ -1164,6 +1263,8 @@ namespace Moryx.Products.UI.ProductService
         private string TypeField;
         
         private long WorkplanIdField;
+        
+        private Moryx.Products.UI.ProductService.WorkplanModel WorkplanModelField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public Moryx.Products.UI.ProductService.RecipeClassificationModel Classification
@@ -1188,6 +1289,19 @@ namespace Moryx.Products.UI.ProductService
             set
             {
                 this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsClone
+        {
+            get
+            {
+                return this.IsCloneField;
+            }
+            set
+            {
+                this.IsCloneField = value;
             }
         }
         
@@ -1268,6 +1382,19 @@ namespace Moryx.Products.UI.ProductService
                 this.WorkplanIdField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Moryx.Products.UI.ProductService.WorkplanModel WorkplanModel
+        {
+            get
+            {
+                return this.WorkplanModelField;
+            }
+            set
+            {
+                this.WorkplanModelField = value;
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
@@ -1336,8 +1463,8 @@ namespace Moryx.Products.UI.ProductService
             }
         }
     }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RecipeClassificationModel", Namespace="http://schemas.datacontract.org/2004/07/Moryx.Products.Management.Modification")]
     public enum RecipeClassificationModel : int
     {
@@ -1357,8 +1484,8 @@ namespace Moryx.Products.UI.ProductService
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Part = 4,
     }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RecipeState", Namespace="http://schemas.datacontract.org/2004/07/Moryx.AbstractionLayer.Recipes")]
     public enum RecipeState : int
     {
@@ -1558,8 +1685,8 @@ namespace Moryx.Products.UI.ProductService
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Revoked = 2,
     }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Moryx.Products.UI.ProductService.IProductInteraction")]
     public interface IProductInteraction
     {
@@ -1615,8 +1742,8 @@ namespace Moryx.Products.UI.ProductService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductInteraction/GetRecipeProviderName", ReplyAction="http://tempuri.org/IProductInteraction/GetRecipeProviderNameResponse")]
         System.Threading.Tasks.Task<string> GetRecipeProviderNameAsync();
     }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public interface IProductInteractionChannel : Moryx.Products.UI.ProductService.IProductInteraction, System.ServiceModel.IClientChannel
     {
     }

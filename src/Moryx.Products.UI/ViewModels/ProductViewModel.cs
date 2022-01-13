@@ -1,7 +1,6 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -10,7 +9,6 @@ using Moryx.AbstractionLayer.UI;
 using Moryx.Controls;
 using Moryx.Products.UI.ProductService;
 using Moryx.Tools;
-using Entry = Moryx.Serialization.Entry;
 
 namespace Moryx.Products.UI
 {
@@ -48,7 +46,7 @@ namespace Moryx.Products.UI
             State = Model.State;
             Properties = Model.Properties != null
                 ? new EntryViewModel(Model.Properties.ToSerializationEntry())
-                : new EntryViewModel(new List<Entry>());
+                : new EntryViewModel();
 
             if (Model.Parts != null)
                 Parts.MergeCollection(Model.Parts, _partMergeStrategy);
@@ -136,8 +134,13 @@ namespace Moryx.Products.UI
             get { return _properties; }
             private set
             {
-                _properties = value;
-                NotifyOfPropertyChange();
+                if (_properties is null)
+                {
+                    _properties = value;
+                    NotifyOfPropertyChange();
+                }
+                else
+                    _properties.UpdateModel(value.Entry);
             }
         }
 
@@ -145,12 +148,16 @@ namespace Moryx.Products.UI
         public void BeginEdit()
         {
             Parts.BeginEdit();
+            Recipes.BeginEdit();
+            Properties.BeginEdit();
         }
 
         /// <inheritdoc />
         public void EndEdit()
         {
             Parts.EndEdit();
+            Recipes.EndEdit();
+            Properties.EndEdit();
             CopyToModel();
         }
 
@@ -158,6 +165,8 @@ namespace Moryx.Products.UI
         public void CancelEdit()
         {
             Parts.CancelEdit();
+            Recipes.CancelEdit();
+            Properties.CancelEdit();
             CopyFromModel();
         }
 

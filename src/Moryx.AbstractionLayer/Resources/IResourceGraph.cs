@@ -96,6 +96,7 @@ namespace Moryx.AbstractionLayer.Resources
         /// <summary>
         /// Remove a resource permanently and irreversible
         /// </summary>
+        [Obsolete("Permanent removal of resources will be removed in the next major")]
         bool Destroy(IResource resource, bool permanent);
     }
 }
