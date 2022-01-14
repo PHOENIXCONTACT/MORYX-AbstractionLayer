@@ -65,6 +65,7 @@ namespace Moryx.Products.UI
         /// <returns>State of the import</returns>
         Task<ImportStateModel> Import(string importerName, Entry parameters);
 
+        // TODO: AL6 Update ServiceReference and change to string
         /// <summary>
         /// Returns the current importer state
         /// </summary>

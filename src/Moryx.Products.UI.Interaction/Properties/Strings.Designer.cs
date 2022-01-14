@@ -619,6 +619,42 @@ namespace Moryx.Products.UI.Interaction.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string PropertyFilterDialogView_Add {
+            get {
+                return ResourceManager.GetString("PropertyFilterDialogView_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string PropertyFilterDialogView_Apply {
+            get {
+                return ResourceManager.GetString("PropertyFilterDialogView_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string PropertyFilterDialogView_Cancel {
+            get {
+                return ResourceManager.GetString("PropertyFilterDialogView_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Filter for &apos;{0}&apos;.
+        /// </summary>
+        public static string PropertyFilterDialogViewModel_DisplayName {
+            get {
+                return ResourceManager.GetString("PropertyFilterDialogViewModel_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a recipe from the list.
         /// </summary>
         public static string RecipeAspectView_NonRecipeSelected {

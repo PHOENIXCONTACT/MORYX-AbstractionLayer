@@ -63,7 +63,7 @@ namespace Moryx.Products.UI.Interaction
 
             WorkplanViewModel wp = null;
             if (recipeModel.WorkplanId != 0)
-                wp = workplans.FirstOrDefault(w => w.Id == recipeModel.WorkplanId);
+                wp = Workplans.FirstOrDefault(w => w.Id == recipeModel.WorkplanId);
 
             EditableObject = new RecipeViewModel(recipeModel)
             {
@@ -81,8 +81,8 @@ namespace Moryx.Products.UI.Interaction
             await LoadTypeAndWorkplans(recipeVm.Model, workplans);
 
             WorkplanViewModel wp = null;
-            if (recipeVm.Model.WorkplanId != 0)
-                wp = workplans.FirstOrDefault(w => w.Id == recipeVm.Model.WorkplanId);
+            if ((recipeVm.Model.WorkplanModel?.Id ?? recipeVm.Model.WorkplanId) != 0)
+                wp = Workplans.FirstOrDefault(w => w.Id == (recipeVm.Model.WorkplanModel?.Id ?? recipeVm.Model.WorkplanId));
             recipeVm.Workplan = wp;
 
             EditableObject = recipeVm;
@@ -90,7 +90,10 @@ namespace Moryx.Products.UI.Interaction
 
         private async Task LoadTypeAndWorkplans(RecipeModel model, IReadOnlyCollection<WorkplanViewModel> workplans)
         {
-            Workplans = workplans;
+            if (!workplans.Any(w => w.Id == (model.WorkplanModel?.Id ?? model.WorkplanId)) && model.WorkplanModel is not null)
+                Workplans = workplans.Concat(new WorkplanViewModel[] { new WorkplanViewModel(model.WorkplanModel) }).ToList();
+            else
+                Workplans = workplans;
             NotifyOfPropertyChange(nameof(Workplans));
 
             var customization = await ProductServiceModel.GetCustomization();

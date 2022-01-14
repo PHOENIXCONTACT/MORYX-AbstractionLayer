@@ -13,6 +13,7 @@ namespace Moryx.Resources.UI
     public class ConstructorViewModel : PropertyChangedBase
     {
         private bool _isSelected;
+        private EntryViewModel _parameters;
 
         /// <summary>
         /// Underlying model for the constructor
@@ -27,7 +28,17 @@ namespace Moryx.Resources.UI
         /// <summary>
         /// View model of the parameters for the config editor
         /// </summary>
-        public EntryViewModel Parameters { get; private set; }
+        public EntryViewModel Parameters 
+        {
+            get { return _parameters; } 
+            private set 
+            {
+                if (_parameters is null)
+                    _parameters = value;
+                else
+                    _parameters.UpdateModel(value.Entry);
+            } 
+        }
 
         /// <summary>
         /// Flag if this constructor was selected
