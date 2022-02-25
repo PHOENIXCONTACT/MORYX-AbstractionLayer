@@ -63,81 +63,15 @@
                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
             </Style>
 
-            <ControlTemplate x:Key="SelectedResourceTemplate">
-                <DockPanel>
-                    <controls:EditModeButtonControl DockPanel.Dock="Bottom"
-                                                        Margin="0,5,0,0"
-                                                        HorizontalAlignment="Right"
-                                                        EnterEditCmd="{Binding EnterEditCmd}"
-                                                        EnterEditContent="{x:Static properties:Strings.InteractionWorkspaceView_Edit}"
-                                                        CancelEditCmd="{Binding CancelEditCmd}"
-                                                        CancelEditContent="{x:Static properties:Strings.InteractionWorkspaceView_Cancel}"
-                                                        SaveCmd="{Binding SaveCmd}"
-                                                        SaveContent="{x:Static properties:Strings.InteractionWorkspaceView_Save}"
-                                                        Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanEdit}}"/>
+            <Style x:Key="EditableObjectVisibilityStyle" TargetType="FrameworkElement">
+                <Setter Property="Visibility" Value="Visible" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding CurrentDetails.EditableObject}" Value="{x:Null}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
 
-                    <Border DockPanel.Dock="Top"
-                                Background="#FFF1F3F5"
-                                BorderBrush="#FFC5CACE"
-                                BorderThickness="1"
-                                Margin="0,0,0,5">
-                        <DockPanel LastChildFill="True">
-                            <Border DockPanel.Dock="Right" BorderThickness="1,0,0,0" BorderBrush="DarkGray" Margin="3">
-                                <StackPanel MinWidth="155" Margin="3,0,0,0">
-
-                                    <Button Style="{StaticResource ExtendedToolBarButtonStyle}"
-                                            Command="{Binding RemoveResourceCmd}"
-                                            Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanRemove}}">
-                                        <DockPanel>
-                                            <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Minus"/>
-                                            <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.InteractionWorkspaceView_Remove}"/>
-                                        </DockPanel>
-                                    </Button>
-
-                                    <Separator BorderBrush="DarkGray" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanRemove}}"/>
-                                </StackPanel>
-                            </Border>
-
-                            <StackPanel DockPanel.Dock="Left" Margin="10" HorizontalAlignment="Stretch">
-                                <StackPanel.Resources>
-                                    <Style TargetType="LabeledControlHost">
-                                        <Setter Property="Eddie.TextFormat" Value="Bold" />
-                                    </Style>
-                                </StackPanel.Resources>
-                                <TextBlock Eddie.TextFormat="Header2" Margin="0" Text="{Binding CurrentDetails.Type.DisplayName}"/>
-
-                                <Grid Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="150" />
-                                    </Grid.ColumnDefinitions>
-                                    <LabeledControlHost LabelA="{x:Static properties:Strings.InteractionWorkspaceView_Name}" LabelMinWidth="100" Margin="0,0,10,0">
-                                        <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Name, UpdateSourceTrigger=PropertyChanged}"
-                                                      IsEnabled="{Binding IsEditMode}"/>
-                                    </LabeledControlHost>
-
-                                    <LabeledControlHost Grid.Column="1" LabelA="Id:">
-                                        <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Id, Mode=OneWay}"
-                                                      IsEnabled="false"/>
-                                    </LabeledControlHost>
-                                </Grid>
-
-                                <LabeledControlHost Margin="0,10,0,0" LabelA="{x:Static properties:Strings.InteractionWorkspaceView_Description}" LabelMinWidth="100">
-                                    <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Description, UpdateSourceTrigger=PropertyChanged}"
-                                                  IsEnabled="{Binding IsEditMode}"/>
-                                </LabeledControlHost>
-                            </StackPanel>
-                        </DockPanel>
-                    </Border>
-
-                    <ContentControl DockPanel.Dock="Top"
-                                    cal:View.Model="{Binding ActiveItem}" />
-                </DockPanel>
-            </ControlTemplate>
-
-            <ControlTemplate x:Key="NoSelectedResourceTemplate">
-                <ContentControl cal:View.Model="{Binding ActiveItem}"/>
-            </ControlTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
     <UserControl.InputBindings>
@@ -205,18 +139,77 @@
                 </EddieTreeView>
             </DockPanel>
 
-            <ContentControl Grid.Column="1">
-                <ContentControl.Style>
-                    <Style TargetType="ContentControl">
-                        <Setter Property="Template" Value="{StaticResource SelectedResourceTemplate}"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentDetails.EditableObject}" Value="{x:Null}">
-                                <Setter Property="Template" Value="{StaticResource NoSelectedResourceTemplate}" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ContentControl.Style>
-            </ContentControl>
+            <DockPanel Grid.Column="1">
+                <controls:EditModeButtonControl DockPanel.Dock="Bottom"
+                                                Style="{StaticResource EditableObjectVisibilityStyle}"
+                                                Margin="0,5,0,0"
+                                                HorizontalAlignment="Right"
+                                                EnterEditCmd="{Binding EnterEditCmd}"
+                                                EnterEditContent="{x:Static properties:Strings.InteractionWorkspaceView_Edit}"
+                                                CancelEditCmd="{Binding CancelEditCmd}"
+                                                CancelEditContent="{x:Static properties:Strings.InteractionWorkspaceView_Cancel}"
+                                                SaveCmd="{Binding SaveCmd}"
+                                                SaveContent="{x:Static properties:Strings.InteractionWorkspaceView_Save}"
+                                                Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanEdit}}"/>
+
+                <Border DockPanel.Dock="Top"
+                        Style="{StaticResource EditableObjectVisibilityStyle}"
+                        Background="#FFF1F3F5"
+                        BorderBrush="#FFC5CACE"
+                        BorderThickness="1"
+                        Margin="0,0,0,5">
+                    <DockPanel LastChildFill="True">
+                        <Border DockPanel.Dock="Right" BorderThickness="1,0,0,0" BorderBrush="DarkGray" Margin="3">
+                            <StackPanel MinWidth="155" Margin="3,0,0,0">
+
+                                <Button Style="{StaticResource ExtendedToolBarButtonStyle}"
+                                        Command="{Binding RemoveResourceCmd}"
+                                        Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanRemove}}">
+                                    <DockPanel>
+                                        <Path Style="{StaticResource IconPathStyle}" Eddie.Icon="Minus"/>
+                                        <TextBlock Style="{StaticResource TextBlockStyle}" Text="{x:Static properties:Strings.InteractionWorkspaceView_Remove}"/>
+                                    </DockPanel>
+                                </Button>
+
+                                <Separator BorderBrush="DarkGray" Visibility="{principals:VisibilityPermission Action={x:Static interaction:Permissions.CanRemove}}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel DockPanel.Dock="Left" Margin="10" HorizontalAlignment="Stretch">
+                            <StackPanel.Resources>
+                                <Style TargetType="LabeledControlHost">
+                                    <Setter Property="Eddie.TextFormat" Value="Bold" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <TextBlock Eddie.TextFormat="Header2" Margin="0" Text="{Binding CurrentDetails.Type.DisplayName}"/>
+
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="150" />
+                                </Grid.ColumnDefinitions>
+                                <LabeledControlHost LabelA="{x:Static properties:Strings.InteractionWorkspaceView_Name}" LabelMinWidth="100" Margin="0,0,10,0">
+                                    <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Name, UpdateSourceTrigger=PropertyChanged}" 
+                                                  IsEnabled="{Binding IsEditMode}"/>
+                                </LabeledControlHost>
+
+                                <LabeledControlHost Grid.Column="1" LabelA="Id:">
+                                    <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Id, Mode=OneWay}" 
+                                                  IsEnabled="false"/>
+                                </LabeledControlHost>
+                            </Grid>
+
+                            <LabeledControlHost Margin="0,10,0,0" LabelA="{x:Static properties:Strings.InteractionWorkspaceView_Description}" LabelMinWidth="100">
+                                <EddieTextBox Text="{Binding CurrentDetails.EditableObject.Description, UpdateSourceTrigger=PropertyChanged}" 
+                                              IsEnabled="{Binding IsEditMode}"/>
+                            </LabeledControlHost>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+
+                <ContentControl DockPanel.Dock="Top"
+                                cal:View.Model="{Binding ActiveItem}" />
+            </DockPanel>
 
             <Border Grid.Column="0" Grid.ColumnSpan="2" Background="#33D3D3D3"
                     Visibility="{Binding IsBusy, Converter={StaticResource VisibilityConverter}}">
