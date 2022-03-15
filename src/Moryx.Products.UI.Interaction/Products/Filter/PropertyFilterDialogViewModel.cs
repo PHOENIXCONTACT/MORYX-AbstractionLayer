@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Moryx.ClientFramework.Commands;
 using Moryx.ClientFramework.Dialog;
 using Moryx.Controls;
 using Moryx.Products.UI.Interaction.Properties;
@@ -46,7 +49,7 @@ namespace Moryx.Products.UI.Interaction
         public PropertyFilterDialogViewModel(ProductDefinitionViewModel productType)
         {
             ProductType = productType;
-            CurrentFilter = new EntryViewModel(new List<Entry>());
+            CurrentFilter = new EntryViewModel();
 
             // Currently no collections or special units are not supported
             PossibleProperties = productType.Properties.SubEntries
@@ -54,13 +57,13 @@ namespace Moryx.Products.UI.Interaction
                             e.Entry.Value.UnitType == EntryUnitType.None).ToArray();
 
             AddCmd = new RelayCommand(Add, CanAdd);
-            ApplyCmd = new RelayCommand(Apply);
-            CancelCmd = new RelayCommand(Cancel);
+            ApplyCmd = new AsyncCommand(Apply);
+            CancelCmd = new AsyncCommand(Cancel);
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken token)
         {
-            base.OnInitialize();
+            await base.OnInitializeAsync(token);
 
             DisplayName = string.Format(Strings.PropertyFilterDialogViewModel_DisplayName, ProductType.DisplayName);
         }
@@ -74,14 +77,14 @@ namespace Moryx.Products.UI.Interaction
             CurrentFilter.SubEntries.Add(new EntryViewModel(entry));
         }
 
-        private void Apply(object obj)
+        private async Task Apply(object obj)
         {
-            TryClose(true);
+            await TryCloseAsync(true);
         }
 
-        private void Cancel(object obj)
+        private async Task Cancel(object obj)
         {
-            TryClose(false);
+            await TryCloseAsync(false);
         }
     }
 }

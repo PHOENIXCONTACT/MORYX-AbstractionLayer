@@ -142,9 +142,9 @@ namespace Moryx.Products.UI.Interaction
             ResetQuery();
         }
 
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken token)
         {
-            await base.OnInitializeAsync(cancellationToken);
+            await base.OnInitializeAsync(token);
 
             ProductServiceModel.AvailabilityChanged += OnAvailabilityChanged;
 
