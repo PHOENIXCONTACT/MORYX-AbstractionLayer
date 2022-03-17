@@ -70,8 +70,19 @@
                                     SharedSizeGroupName="EditRecipe"
                                     Margin="0,0,0,5">
                     <EddieComboBox ItemsSource="{Binding Source={StaticResource RecipeClassificationValues}}"
-                                   SelectedItem="{Binding EditableObject.Classification, Mode=TwoWay}"
-                                   IsEnabled="{Binding IsEditMode}">
+                                   SelectedItem="{Binding EditableObject.Classification, Mode=TwoWay}">
+                        <EddieComboBox.Style>
+                            <Style TargetType="EddieComboBox">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EditableObject.IsClone}" Value="true">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsEditMode}" Value="false">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </EddieComboBox.Style>
                     </EddieComboBox>
                 </LabeledControlHost>
 

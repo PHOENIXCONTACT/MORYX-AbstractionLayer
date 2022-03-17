@@ -89,17 +89,20 @@ namespace Moryx.Products.UI
         /// <inheritdoc />
         public void BeginEdit()
         {
+            PartLinks.BeginEdit();
         }
 
         /// <inheritdoc />
         public void EndEdit()
         {
+            PartLinks.EndEdit();
             CopyToModel();
         }
 
         /// <inheritdoc />
         public void CancelEdit()
         {
+            PartLinks.CancelEdit();
             CopyFromModel();
         }
 

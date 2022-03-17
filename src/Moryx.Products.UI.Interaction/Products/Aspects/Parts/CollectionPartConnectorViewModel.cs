@@ -74,13 +74,14 @@ namespace Moryx.Products.UI.Interaction.Aspects
         {
             base.BeginEdit();
 
-            PartLinks.ForEach(p => p.BeginEdit());
+            PartLinks.BeginEdit();
+            PartConnector.BeginEdit();
         }
 
         public override void EndEdit()
         {
             // End on part links
-            PartLinks.ForEach(p => p.EndEdit());
+            PartLinks.EndEdit();
 
             // Add new links
             var newLinks = _newLinks.Select(n => n.PartLink);
@@ -91,6 +92,7 @@ namespace Moryx.Products.UI.Interaction.Aspects
             PartConnector.PartLinks.RemoveRange(_removedLinks.Select(l => l.PartLink));
             _removedLinks.Clear();
 
+            PartConnector.EndEdit();
             base.EndEdit();
         }
 
@@ -105,8 +107,8 @@ namespace Moryx.Products.UI.Interaction.Aspects
             _removedLinks.Clear();
 
             // Cancel on existent
-            PartLinks.ForEach(p => p.CancelEdit());
-
+            PartLinks.CancelEdit();
+            PartConnector.CancelEdit();
             base.CancelEdit();
         }
 

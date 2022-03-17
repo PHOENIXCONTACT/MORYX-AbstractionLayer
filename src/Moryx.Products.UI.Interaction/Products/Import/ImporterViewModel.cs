@@ -1,11 +1,13 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Moryx.Controls;
 using Moryx.Products.UI.ProductService;
+using Moryx.Tools;
 
 namespace Moryx.Products.UI.Interaction
 {
@@ -25,31 +27,30 @@ namespace Moryx.Products.UI.Interaction
 
         private void CreateParameterViewModel(Entry parameters)
         {
-            if (Parameters != null)
-            {
-                foreach (var entry in Parameters.SubEntries.Cast<ImportParameterViewModel>())
-                {
-                    entry.ValueChanged -= OnUpdateTriggerChanged;
-                }
-            }
+            Parameters = new EntryViewModel(parameters.ToSerializationEntry());
+            Parameters.SubEntries.ForEach(e => e.PropertyChanged += OnUpdateTriggerChanged);
+        }
 
-            Parameters = new EntryViewModel(new Serialization.Entry { DisplayName = "Root" });
-            foreach (var parameter in parameters.SubEntries)
-            {
-                var viewModel = new ImportParameterViewModel(parameter.ToSerializationEntry());
-                viewModel.ValueChanged += OnUpdateTriggerChanged;
-                Parameters.SubEntries.Add(viewModel);
-            }
+        private void UpdateParameterViewModel(Entry parameters)
+        {
+            Parameters.SubEntries.ForEach(e => e.PropertyChanged -= OnUpdateTriggerChanged);
+            Parameters.UpdateModel(parameters.ToSerializationEntry());
+            Parameters.SubEntries.ForEach(e => e.PropertyChanged += OnUpdateTriggerChanged);
         }
 
         /// <summary>
-        /// Update parameters if a <see cref="ImportParameterViewModel.ValueChanged"/> was modified
+        /// Update parameters if a <see cref="EntryViewModel.Value"/> was modified
         /// </summary>
-        private async void OnUpdateTriggerChanged(object sender, Serialization.Entry importParameter)
+        private async void OnUpdateTriggerChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
+            var entry = sender as EntryViewModel;
+            if (sender is null || propertyChangedEventArgs.PropertyName != nameof(EntryViewModel.Value))
+                return;
+
+            Parameters.EndEdit();
             var parameters = Parameters.Entry;
             var updatedParameters = await _productServiceModel.UpdateImportParameters(_importer.Name, parameters.ToServiceEntry());
-            CreateParameterViewModel(updatedParameters);
+            UpdateParameterViewModel(updatedParameters);
         }
 
         /// <summary>
@@ -68,8 +69,13 @@ namespace Moryx.Products.UI.Interaction
             {
                 if (Equals(value, _parameters))
                     return;
-                _parameters = value;
-                NotifyOfPropertyChange();
+                if (_parameters is null || value is null)
+                {
+                    _parameters = value;
+                    NotifyOfPropertyChange();
+                }
+                else
+                    _parameters.UpdateModel(value.Entry);
             }
         }
 

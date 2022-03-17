@@ -78,6 +78,7 @@ namespace Moryx.Resources.UI
             }
         }
 
+        // TODO: AL 6 Remove public setter
         /// <summary>
         /// Properties of this resource
         /// </summary>
@@ -86,8 +87,13 @@ namespace Moryx.Resources.UI
             get => _properties;
             set
             {
-                _properties = value;
-                NotifyOfPropertyChange();
+                if (_properties is null || value is null)
+                {
+                    _properties = value;
+                    NotifyOfPropertyChange();
+                }
+                else
+                    _properties.UpdateModel(value.Entry);
             }
         }
 
@@ -116,19 +122,25 @@ namespace Moryx.Resources.UI
         public void BeginEdit()
         {
             References.BeginEdit();
+            Properties.BeginEdit();
+            Methods.BeginEdit();
         }
 
         /// <inheritdoc />
         public void EndEdit()
         {
+            Properties.EndEdit();
             References.EndEdit();
+            Methods.EndEdit();
             CopyToModel();
         }
 
         /// <inheritdoc />
         public void CancelEdit()
         {
+            Properties.CancelEdit();
             References.CancelEdit();
+            Methods.CancelEdit();
             CopyFromModel();
         }
 
@@ -163,7 +175,7 @@ namespace Moryx.Resources.UI
 
             Properties = Model.Properties != null
                 ? new EntryViewModel(Model.Properties.ToSerializationEntry())
-                : new EntryViewModel(new List<Entry>());
+                : new EntryViewModel();
 
             Methods = Model.Methods != null
                 ? Model.Methods.Select(m => new ResourceMethodViewModel(m)).ToArray()

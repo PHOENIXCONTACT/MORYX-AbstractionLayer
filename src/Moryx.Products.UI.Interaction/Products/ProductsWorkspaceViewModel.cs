@@ -16,6 +16,7 @@ using Moryx.AbstractionLayer.UI.Aspects;
 using Moryx.ClientFramework;
 using Moryx.ClientFramework.Commands;
 using Moryx.Container;
+using Moryx.Controls;
 using Moryx.Products.UI.Interaction.Properties;
 using Moryx.Products.UI.ProductService;
 using Moryx.Tools;
@@ -63,6 +64,8 @@ namespace Moryx.Products.UI.Interaction
 
         public ICommand FilterCmd { get; }
 
+        public ICommand PropertyFilterCmd { get; }
+
         public ICommand AspectConfiguratorCmd { get; }
 
         private TreeItemViewModel _selectedItem;
@@ -88,6 +91,7 @@ namespace Moryx.Products.UI.Interaction
         }
 
         private bool _isCustomQuery;
+
         public bool IsCustomQuery
         {
             get => _isCustomQuery;
@@ -95,6 +99,29 @@ namespace Moryx.Products.UI.Interaction
             {
                 _isCustomQuery = value;
                 NotifyOfPropertyChange();
+            }
+        }
+
+        // TODO: Change to ObservableCollection in the next major
+        public ProductDefinitionViewModel[] ProductTypes
+        {
+            get => ProductTypesObservable.ToArray();
+            set
+            {
+                ProductTypesObservable = new ObservableCollection<ProductDefinitionViewModel>(value);
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private ObservableCollection<ProductDefinitionViewModel> _productTypesObservable = new ObservableCollection<ProductDefinitionViewModel>();
+        public ObservableCollection<ProductDefinitionViewModel> ProductTypesObservable
+        {
+            get => _productTypesObservable;
+            set
+            {
+                _productTypesObservable = value;
+                NotifyOfPropertyChange();
+                NotifyOfPropertyChange(nameof(ProductTypes));
             }
         }
 
@@ -108,20 +135,16 @@ namespace Moryx.Products.UI.Interaction
             RemoveCmd = new AsyncCommand(RemoveProduct, CanRemoveProduct, true);
             ShowRevisionsCmd = new AsyncCommand(ShowRevisions, CanShowRevisions, true);
             FilterCmd = new RelayCommand(ShowFilter);
+            PropertyFilterCmd = new AsyncCommand(ShowPropertyFilter, _ => true, true);
             AspectConfiguratorCmd = new AsyncCommand(ShowAspectConfigurator, CanShowAspectConfigurator, true);
 
             // Set initial query
             ResetQuery();
         }
 
-        private void ShowFilter(object obj)
+        protected override async Task OnInitializeAsync(CancellationToken token)
         {
-            IsCustomQuery = !IsCustomQuery;
-        }
-
-        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
-        {
-            await base.OnInitializeAsync(cancellationToken);
+            await base.OnInitializeAsync(token);
 
             ProductServiceModel.AvailabilityChanged += OnAvailabilityChanged;
 
@@ -215,6 +238,26 @@ namespace Moryx.Products.UI.Interaction
                 var customization = await ProductServiceModel.GetCustomization(true);
                 var productTypes = customization.ProductTypes;
 
+                // Merge type collection
+                var removed = ProductTypesObservable.Where(r => productTypes.All(u => u.Name != r.Model.Name)).ToList();
+                foreach (var obj in removed)
+                    ProductTypesObservable.Remove(obj);
+
+                foreach (var updatedModel in productTypes)
+                {
+                    var match = ProductTypesObservable.FirstOrDefault(r => r.Model.Name == updatedModel.Name);
+                    if (match != null)
+                    {
+                        // TODO: Update definition
+                    }
+                    else
+                    {
+                        var vm = new ProductDefinitionViewModel(updatedModel);
+                        ProductTypesObservable.Add(vm);
+                        NotifyOfPropertyChange(nameof(ProductTypes));
+                    }
+                }
+
                 var products = await ProductServiceModel.GetProducts(Query.GetQuery());
 
                 Merge(productTypes, products);
@@ -251,6 +294,24 @@ namespace Moryx.Products.UI.Interaction
             IsBusy = false;
             if (reset)
                 IsCustomQuery = false;
+        }
+
+        private async Task ShowPropertyFilter(object arg)
+        {
+            var filterDialog = new PropertyFilterDialogViewModel(Query.Type);
+            await DialogManager.ShowDialogAsync(filterDialog);
+            if (!filterDialog.Result)
+                return;
+
+            var configuredProperties = filterDialog.CurrentFilter?.SubEntries
+                                       ?? new ObservableCollection<EntryViewModel>();
+
+            Query.PropertyFilters = configuredProperties.Select(c => new PropertyFilterViewModel(c.Entry)).ToList();
+        }
+
+        private void ShowFilter(object obj)
+        {
+            IsCustomQuery = !IsCustomQuery;
         }
 
         private bool CanImportProduct(object obj) =>
@@ -413,30 +474,108 @@ namespace Moryx.Products.UI.Interaction
 
         private void Merge(IEnumerable<ProductDefinitionModel> productTypes, ProductModel[] products)
         {
-            var productItemMergeStrategy = new ProductItemMergeStrategy();
-            var updatedGroups = new List<TypeItemViewModel>();
-            foreach (var productType in productTypes)
+            if (!Config.ShowProductTypeTree)
             {
-                var groupItem = ProductGroups.FirstOrDefault(item => item.TypeName == productType.Name);
-                var productsForGroup = products.Where(p => p.Type == productType.Name);
-
-                if (groupItem == null)
+                var productItemMergeStrategy = new ProductItemMergeStrategy();
+                var updatedGroups = new List<TypeItemViewModel>();
+                foreach (var productType in productTypes)
                 {
-                    groupItem = new TypeItemViewModel(productType);
-                    groupItem.Children.AddRange(productsForGroup.Select(p => new ProductItemViewModel(p)));
-                    ProductGroups.Add(groupItem);
+                    var groupItem = ProductGroups.FirstOrDefault(item => item.TypeName == productType.Name);
+                    var productsForGroup = products.Where(p => p.Type == productType.Name);
+
+                    if (groupItem == null)
+                    {
+                        groupItem = new TypeItemViewModel(productType);
+                        groupItem.Children.AddRange(productsForGroup.Select(p => new ProductItemViewModel(p)));
+                        ProductGroups.Add(groupItem);
+                    }
+                    else
+                    {
+                        groupItem.UpdateModel(productType);
+                        groupItem.Children.MergeCollection(productsForGroup.ToArray(), productItemMergeStrategy);
+                    }
+
+                    updatedGroups.Add(groupItem);
                 }
+
+                var removedGroups = ProductGroups.Where(treeItem => !updatedGroups.Select(g => g.TypeName).Contains(treeItem.TypeName)).ToArray();
+                ProductGroups.RemoveRange(removedGroups);
+            }
+            else
+            {
+                // Create target tree
+                var targetStructure = new List<TypeItemViewModel>();
+                var typeItems = productTypes.Select(p => new TypeItemViewModel(p)).ToList();
+                foreach (var typeItem in typeItems)
+                {
+                    var productsForGroup = products.Where(p => p.Type == typeItem.TypeName);
+                    typeItem.Children.AddRange(productsForGroup.Select(p => new ProductItemViewModel(p)));
+                    var parent = typeItems.FirstOrDefault(i => i.TypeName == typeItem.Model.BaseDefinition);
+                    if (parent != null)
+                    {
+                        parent.Children.Add(typeItem);
+                    }
+                    else
+                    {
+                        targetStructure.Add(typeItem);
+                    }
+                }
+
+                // Update root entries
+                var added = targetStructure.Where(t => ProductGroups.All(s => s.TypeName != t.TypeName));
+                var removed = ProductGroups.Where(s => targetStructure.All(t => t.TypeName != s.TypeName));
+                ProductGroups.RemoveRange(removed);
+                ProductGroups.AddRange(added);
+
+                // Update each branch
+                foreach (var template in targetStructure)
+                {
+                    var toUpdate = ProductGroups.First(s => s.TypeName == template.TypeName);
+                    toUpdate.UpdateModel(template.Model);
+                    UpdateBranch(template, toUpdate);
+                }
+            }
+        }
+
+        private static void UpdateBranch(TypeItemViewModel template, TypeItemViewModel toUpdate)
+        {
+            var productsForGroup = template.Children.OfType<ProductItemViewModel>().Select(c => c.Product.Model);
+            var subGroups = template.Children.OfType<TypeItemViewModel>();
+
+            var removedProducts = toUpdate.Children
+                .OfType<ProductItemViewModel>()
+                .Where(c => productsForGroup.All(p => p.Id != c.Id));
+            var removedSubGroups = toUpdate.Children
+                .OfType<TypeItemViewModel>()
+                .Where(c => subGroups.All(g => g.TypeName != c.TypeName));
+
+            toUpdate.Children.RemoveRange(removedProducts);
+            toUpdate.Children.RemoveRange(removedSubGroups);
+
+            // Update products for parent group
+            foreach (var productModel in productsForGroup)
+            {
+                var productItem = (ProductItemViewModel)toUpdate.Children.FirstOrDefault(c => c.Id == productModel.Id);
+                if(productItem == null)
+                    toUpdate.Children.Add(new ProductItemViewModel(productModel));
                 else
-                {
-                    groupItem.UpdateModel(productType);
-                    groupItem.Children.MergeCollection(productsForGroup.ToArray(), productItemMergeStrategy);
-                }
-
-                updatedGroups.Add(groupItem);
+                    productItem.UpdateModel(productModel);
             }
 
-            var removedGroups = ProductGroups.Where(treeItem => !updatedGroups.Select(g => g.TypeName).Contains(treeItem.TypeName)).ToArray();
-            ProductGroups.RemoveRange(removedGroups);
+            // Update subgroups
+            foreach (var group in subGroups)
+            {
+                var groupItem = toUpdate.Children.OfType<TypeItemViewModel>().FirstOrDefault(c => c.TypeName == group.TypeName);
+                if (groupItem == null)
+                {
+                    groupItem = new TypeItemViewModel(group.Model);
+                    toUpdate.Children.Add(groupItem);
+                }
+                else
+                    groupItem.UpdateModel(group.Model);
+
+                UpdateBranch(group, groupItem);
+            }
         }
 
         private class ProductItemMergeStrategy : IMergeStrategy<ProductModel, TreeItemViewModel>

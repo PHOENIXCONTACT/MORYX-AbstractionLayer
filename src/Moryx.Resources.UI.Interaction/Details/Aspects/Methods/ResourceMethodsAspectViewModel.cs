@@ -51,8 +51,13 @@ namespace Moryx.Resources.UI.Interaction.Aspects
             get { return _methodInvocationResult; }
             set
             {
-                _methodInvocationResult = value;
-                NotifyOfPropertyChange();
+                if (_methodInvocationResult is null || value is null)
+                {
+                    _methodInvocationResult = value;
+                    NotifyOfPropertyChange();
+                }
+                else
+                    _methodInvocationResult.UpdateModel(value.Entry);
             }
         }
 
@@ -87,6 +92,30 @@ namespace Moryx.Resources.UI.Interaction.Aspects
                 MethodInvocationResult = new EntryViewModel(resultEntry);
             else
                 MethodInvocationResult = new EntryViewModel(new List<Entry> { resultEntry });
+        }
+
+        /// <inheritdoc />
+        public override void BeginEdit()
+        {
+            SelectedMethod?.BeginEdit();
+            MethodInvocationResult?.BeginEdit();
+            base.BeginEdit();
+        }
+
+        /// <inheritdoc />
+        public override void EndEdit()
+        {
+            SelectedMethod?.EndEdit();
+            MethodInvocationResult?.EndEdit();
+            base.EndEdit();
+        }
+
+        /// <inheritdoc />
+        public override void CancelEdit()
+        {
+            SelectedMethod?.CancelEdit();
+            MethodInvocationResult?.CancelEdit();
+            base.CancelEdit();
         }
     }
 }

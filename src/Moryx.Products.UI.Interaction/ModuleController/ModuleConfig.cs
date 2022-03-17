@@ -66,5 +66,11 @@ namespace Moryx.Products.UI.Interaction
         /// </summary>
         [DataMember]
         public List<AspectConfiguration> DefaultAspects { get; set; }
+
+        /// <summary>
+        /// Set to true to show the product types as a tree instead of a flat list
+        /// </summary>
+        [DataMember]
+        public bool ShowProductTypeTree { get; set; }
     }
 }

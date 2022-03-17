@@ -1,0 +1,19 @@
+{
+  "providerId": "Microsoft.Tools.ServiceModel.Svcutil",
+  "version": "2.0.1",
+  "options": {
+    "inputs": [
+      "http://localhost/metadata/resources"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, Moryx.Resources.UI.ResourceService"
+    ],
+    "outputFile": "Reference.cs",
+    "targetFramework": "net45",
+    "typeReuseMode": "None"
+  }
+}
