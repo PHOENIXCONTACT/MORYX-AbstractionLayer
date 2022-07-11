@@ -16,7 +16,7 @@ using Moryx.Workflows;
 namespace Moryx.Products.Management.Modification
 {
     [Component(LifeCycle.Singleton, typeof(IProductConverter))]
-    internal class ProductConverter : IProductConverter
+     class ProductConverter : IProductConverter
     {
         #region Dependency Injection
 
