@@ -412,7 +412,8 @@ namespace Moryx.Products.UI.Interaction
             IsBusy = true;
 
             // Get group
-            var group = ProductGroups.Single(t => t.TypeName == dialog.CreatedProduct.Type);
+            var flatProductGroups = ProductGroups.Flatten(g => g.Children.OfType<TypeItemViewModel>());
+            var group = flatProductGroups.Single(t => t.TypeName == dialog.CreatedProduct.Type);
 
             // Create new tree item
             var newItem = new ProductItemViewModel(createdProduct.Model);
@@ -449,7 +450,8 @@ namespace Moryx.Products.UI.Interaction
             IsBusy = true;
 
             // Get group
-            var group = ProductGroups.Single(t => t.TypeName == dialog.ClonedProduct.Type);
+            var flatProductGroups = ProductGroups.Flatten(g => g.Children.OfType<TypeItemViewModel>());
+            var group = flatProductGroups.Single(t => t.TypeName == dialog.ClonedProduct.Type);
 
             // Create new tree item
             var newItem = new ProductItemViewModel(dialog.ClonedProduct);
