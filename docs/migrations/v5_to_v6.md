@@ -6,4 +6,5 @@ Several interfaces created for minor confirm updates got merged or removed throu
 - IActivityTracing, ITracing -> Tracing
 - IRecipeTemplating -> IRecipe
 - IActivityProgress -> Tracing
-
+- IProductTypeEntityRepository -> IProductTypeRepository
+- IProductRecipeEntityRepository -> IProductRecipeRepository
