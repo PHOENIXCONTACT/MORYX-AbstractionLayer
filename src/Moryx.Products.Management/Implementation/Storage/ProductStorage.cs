@@ -353,6 +353,9 @@ namespace Moryx.Products.Management
             else if (query.RecipeFilter == RecipeFilter.WithoutRecipes)
                 productsQuery = productsQuery.Where(p => p.Recipes.Count == 0);
 
+            // Include current version
+            productsQuery = productsQuery.Include(p => p.CurrentVersion);
+
             // Apply selector
             switch (query.Selector)
             {
@@ -366,8 +369,6 @@ namespace Moryx.Products.Management
                     break;
             }
 
-            // Include current version
-            productsQuery = productsQuery.Include(p => p.CurrentVersion);
 
             // Execute the query
             var products = productsQuery.OrderBy(p => p.TypeName)
