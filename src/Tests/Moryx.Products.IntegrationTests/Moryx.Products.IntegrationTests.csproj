@@ -11,10 +11,10 @@
     <PackageReference Include="NUnit" />
     <PackageReference Include="NUnit3TestAdapter" />
     <PackageReference Include="Moq" />
-    <PackageReference Include="Moryx.Model.InMemory" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\MORYX-Core\src\Moryx.Model.InMemory\Moryx.Model.InMemory.csproj" />
     <ProjectReference Include="..\..\Moryx.Products.Samples\Moryx.Products.Samples.csproj" />
   </ItemGroup>
 

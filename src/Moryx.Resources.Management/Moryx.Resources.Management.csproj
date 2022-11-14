@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net6.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>ResourceManagement module composing and maintaining the resource graph as the habitat for digital twins of manufacturing assets.</Description>
     <CreatePackage>true</CreatePackage>
@@ -13,15 +13,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\MORYX-Core\src\Moryx.Model.PostgreSQL\Moryx.Model.PostgreSQL.csproj" />
     <ProjectReference Include="..\Moryx.AbstractionLayer\Moryx.AbstractionLayer.csproj" />
     <ProjectReference Include="..\Moryx.Notifications\Moryx.Notifications.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.11" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
-
-    <PackageReference Include="Moryx.Model.PostgreSQL" />
     <PackageReference Include="Moryx.Runtime" />
   </ItemGroup>
 

@@ -47,6 +47,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StartProject.Asp", "src\Sta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moryx.AbstractionLayer.Resources.Endpoints", "src\Moryx.AbstractionLayer.Resources.Endpoints\Moryx.AbstractionLayer.Resources.Endpoints.csproj", "{F5141A5C-D29F-4870-85D5-277C04A944EC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moryx.Model.InMemory", "..\MORYX-Core\src\Moryx.Model.InMemory\Moryx.Model.InMemory.csproj", "{8C88FCE6-35E2-4052-8000-EFA5FDCA2A94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moryx", "..\MORYX-Core\src\Moryx\Moryx.csproj", "{D200F030-B4AE-4373-A3BA-6EC52465D0A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moryx.Model", "..\MORYX-Core\src\Moryx.Model\Moryx.Model.csproj", "{6FA1530B-D141-48F7-8A53-9CF5FDFA025C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moryx.Model.PostgreSQL", "..\MORYX-Core\src\Moryx.Model.PostgreSQL\Moryx.Model.PostgreSQL.csproj", "{A42937E4-8A8E-4F8B-9086-CB99829D1026}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +125,22 @@ Global
 		{F5141A5C-D29F-4870-85D5-277C04A944EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5141A5C-D29F-4870-85D5-277C04A944EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5141A5C-D29F-4870-85D5-277C04A944EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C88FCE6-35E2-4052-8000-EFA5FDCA2A94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C88FCE6-35E2-4052-8000-EFA5FDCA2A94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C88FCE6-35E2-4052-8000-EFA5FDCA2A94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C88FCE6-35E2-4052-8000-EFA5FDCA2A94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D200F030-B4AE-4373-A3BA-6EC52465D0A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D200F030-B4AE-4373-A3BA-6EC52465D0A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D200F030-B4AE-4373-A3BA-6EC52465D0A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D200F030-B4AE-4373-A3BA-6EC52465D0A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA1530B-D141-48F7-8A53-9CF5FDFA025C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA1530B-D141-48F7-8A53-9CF5FDFA025C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA1530B-D141-48F7-8A53-9CF5FDFA025C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA1530B-D141-48F7-8A53-9CF5FDFA025C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42937E4-8A8E-4F8B-9086-CB99829D1026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42937E4-8A8E-4F8B-9086-CB99829D1026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42937E4-8A8E-4F8B-9086-CB99829D1026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42937E4-8A8E-4F8B-9086-CB99829D1026}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

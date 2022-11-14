@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Moryx.AbstractionLayer\Moryx.AbstractionLayer.csproj" />
+    <PackageReference Include="Moryx.TestTools.UnitTest" Version="3.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Moryx.TestTools.UnitTest" />
+    <ProjectReference Include="..\Moryx.AbstractionLayer\Moryx.AbstractionLayer.csproj" />
   </ItemGroup>
 
 </Project>
