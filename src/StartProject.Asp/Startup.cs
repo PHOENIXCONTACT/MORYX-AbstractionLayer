@@ -52,8 +52,8 @@ namespace StartProject.Asp
                 var conventionBuilder = endpoints.MapControllers();
                 endpoints.MapRazorPages();
                 //In order to deactivate the IAM
-                //if (!env.IsDevelopment())
-                //    conventionBuilder.WithMetadata(new AllowAnonymousAttribute());
+                if (env.IsDevelopment())
+                    conventionBuilder.WithMetadata(new AllowAnonymousAttribute());
             });
         }
     }
