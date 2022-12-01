@@ -23,6 +23,7 @@
 
     <PackageReference Include="Moryx.Model.PostgreSQL" />
     <PackageReference Include="Moryx.Runtime" />
+    <PackageReference Include="Moryx.Runtime.Kernel" Version="4.0.0-future.656" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net461'">
