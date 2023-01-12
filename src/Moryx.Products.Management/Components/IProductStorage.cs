@@ -70,6 +70,12 @@ namespace Moryx.Products.Management
         /// Save multiple recipes at once
         /// </summary>
         void SaveRecipes(long productId, ICollection<IProductRecipe> recipes);
+
+        /// <summary>
+        /// Checks database's connection by making an initial attempt
+        /// </summary>
+        /// <returns></returns>
+        void CheckDatabase();
     }
 
     /// <summary>

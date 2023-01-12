@@ -289,6 +289,7 @@ namespace Moryx.Products.Management
 
         public void RemoveRecipe(long recipeId)
         {
+            ValidateHealthState();
             RecipeManagement.Remove(recipeId);
         }
     }

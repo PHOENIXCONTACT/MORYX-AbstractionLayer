@@ -972,6 +972,15 @@ namespace Moryx.Products.Management
             return archived;
         }
 
+        public void CheckDatabase()
+        {
+            using (var uow = Factory.Create())
+            {
+                uow.DbContext.Database.Connection.Open();
+                uow.DbContext.Database.Connection.Close();
+            }
+        }
+
         #endregion
 
         /// <summary>
