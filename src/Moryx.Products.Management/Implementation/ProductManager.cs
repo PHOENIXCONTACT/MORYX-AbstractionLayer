@@ -47,6 +47,7 @@ namespace Moryx.Products.Management
 
         public void Start()
         {
+            Storage.CheckDatabase();
             _importers = (from importerConfig in Config.Importers
                           select ImportFactory.Create(importerConfig)).ToList();
         }
