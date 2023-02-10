@@ -90,6 +90,7 @@ namespace Moryx.Products.UI.Interaction
         /// <returns></returns>
         public Task<ImportStateModel> Import()
         {
+            Parameters.EndEdit();
             var parameters = Parameters.Entry;
             return _productServiceModel.Import(_importer.Name, parameters.ToServiceEntry());
         }
