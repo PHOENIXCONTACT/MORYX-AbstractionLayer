@@ -1,13 +1,16 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using System;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Moryx.Controls;
 using Moryx.Products.UI.ProductService;
 using Moryx.Tools;
+using EntryValueType = Moryx.Serialization.EntryValueType;
 
 namespace Moryx.Products.UI.Interaction
 {
@@ -81,8 +84,52 @@ namespace Moryx.Products.UI.Interaction
 
         public bool ValidateInput()
         {
-            return Parameters.SubEntries.All(se => !se.Entry.Validation.IsRequired || !string.IsNullOrWhiteSpace(se.Value));
+            foreach (var subEntry in Parameters.SubEntries)
+            {
+               if (!ValidateEntry(subEntry)) 
+                   return false;
+            }
+            return true;
         }
+
+        private bool ValidateEntry(EntryViewModel entryViewModel)
+        {
+            if (!entryViewModel.Entry.Validation.IsRequired)
+                return true;
+
+            switch (entryViewModel.ValueType)
+            {
+                case EntryValueType.Class:
+                case EntryValueType.Collection:
+                case EntryValueType.Exception:
+                case EntryValueType.Stream:
+                    foreach (var subEntry in entryViewModel.SubEntries)
+                    {
+                        if (!ValidateEntry(subEntry))
+                            return false;
+                    }
+                    break;
+                default: // all value types
+                    if (string.IsNullOrWhiteSpace(entryViewModel.Value))
+                        return false;
+
+                    if (entryViewModel.Entry.Validation.Regex != null)
+                    {
+                        var validator = new RegexStringValidator(entryViewModel.Entry.Validation.Regex);
+                        try
+                        {
+                            validator.Validate(entryViewModel.Value);
+                        }
+                        catch (ArgumentException exception)
+                        {
+                            return false;
+                        }
+                    }
+                    break;
+            }
+            return true;
+        }
+        
 
         /// <summary>
         /// Import product using the current values
@@ -90,6 +137,7 @@ namespace Moryx.Products.UI.Interaction
         /// <returns></returns>
         public Task<ImportStateModel> Import()
         {
+            Parameters.EndEdit();
             var parameters = Parameters.Entry;
             return _productServiceModel.Import(_importer.Name, parameters.ToServiceEntry());
         }
