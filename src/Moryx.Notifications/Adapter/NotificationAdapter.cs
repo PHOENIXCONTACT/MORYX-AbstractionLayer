@@ -1,6 +1,7 @@
 // Copyright (c) 2020, Phoenix Contact GmbH & Co. KG
 // Licensed under the Apache License, Version 2.0
 
+using Moryx.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace Moryx.Notifications
         private readonly List<NotificationMap> _pendingPubs = new List<NotificationMap>();
 
         private readonly ReaderWriterLockSlim _listLock = new ReaderWriterLockSlim(LockRecursionPolicy.NoRecursion);
+
+        /// <summary>
+        /// Logger for the Notification Adapter
+        /// </summary>
+        public IModuleLogger Logger { get; set; }
 
         #region Adapter <> Facade
 
@@ -61,7 +67,7 @@ namespace Moryx.Notifications
 
             if (notification == null)
                 throw new ArgumentNullException(nameof(notification), "Notification must be set");
-            
+
             _listLock.EnterUpgradeableReadLock();
 
             // Lets check if the notification was already published
@@ -75,7 +81,7 @@ namespace Moryx.Notifications
             }
 
             _listLock.EnterWriteLock();
-            
+
             var managed = (IManagedNotification)notification;
             managed.Identifier = Guid.NewGuid();
             managed.Created = DateTime.Now;
@@ -222,17 +228,25 @@ namespace Moryx.Notifications
                 _pendingPubs.Remove(map);
                 _published.Add(map);
                 _listLock.ExitWriteLock();
+                return;
             }
-            else
-            {
-                // Notification is maybe not pending anymore - we only can acknowledge it
-                _listLock.ExitWriteLock();
 
-                var managed = (IManagedNotification)notification;
+            // Notification is maybe not pending anymore
+            _listLock.ExitWriteLock();
+            var managed = (IManagedNotification)notification;
+
+            // If necessary we can acknowledge it
+            if (managed.Acknowledged is null)
+            {
+                Logger.Log(LogLevel.Error, "Notification was removed from the pending publications " +
+                    "before being published but is not acknowledged.");
                 managed.Acknowledged = DateTime.Now;
                 managed.Acknowledger = nameof(NotificationAdapter);
                 Acknowledged?.Invoke(this, notification);
             }
+
+            Logger.Log(LogLevel.Warning, "Notification was removed from the pending publications. " +
+                "It was already acknowledged by {0} at {1}.", managed.Acknowledger, managed.Acknowledged);
         }
 
         /// <inheritdoc />
