@@ -49,7 +49,7 @@ namespace Moryx.Notifications.Tests
         }
 
         [Test(Description = "Check that publishing a notification publishes an event, and marks the notification as published. " +
-                            "Check, that notifications can not be published twice.")]
+                            "Check that notifications can not be published twice.")]
         public void AdapterPublish()
         {
             // Arrange
@@ -80,9 +80,9 @@ namespace Moryx.Notifications.Tests
             // Act
             _adapter.Publish(_sender, notification, tag);
             ((INotificationSourceAdapter)_adapter).PublishProcessed(notification);
-
-            // Arrange
             var published = _adapter.GetPublished(_sender, tag);
+
+            // Assert
             Assert.AreEqual(1, published.Count);
         }
 
@@ -119,7 +119,7 @@ namespace Moryx.Notifications.Tests
             Assert.AreNotEqual(_acknowledgedEventNotification.Acknowledged, default(DateTime), "Acknowledged date should have been set");
         }
 
-        [Test(Description = "Check that acknowledging a notification by the adapter for a known notification throws an exception.")]
+        [Test(Description = "Check that acknowledging a notification by the adapter for an unknown notification throws an exception.")]
         public void AdapterAcknowledgeForUnknownNotification()
         {
             // Arrange
@@ -150,9 +150,6 @@ namespace Moryx.Notifications.Tests
             Assert.AreEqual(notification, _acknowledgeCallNotification, "Acknowledged was not called for the wrong notification.");
         }
 
-        /// <summary>
-        /// Check that acknowledging a notification by the SenderAdapter-interface for an unknown notification throws an exception.
-        /// </summary>
         [Test(Description = "Check that acknowledging a notification by the SenderAdapter-interface for an unknown notification throws an exception.")]
         public void SenderAdapterAcknowledgeForUnknownNotification()
         {
