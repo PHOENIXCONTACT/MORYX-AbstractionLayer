@@ -93,30 +93,68 @@ namespace Moryx.Products.Management
             using (var uow = ModelFactory.Create())
             {
                 var versions = new List<Workplan>();
-                var repo = uow.GetRepository<IWorkplanEntityRepository>();
+                var workplanRepo = uow.GetRepository<IWorkplanEntityRepository>();
+                var referenceRepo = uow.GetRepository<IWorkplanReferenceRepository>();
+
+                var currentVersion = workplanRepo.GetByKey(workplanId);
+                if (currentVersion == null)
+                    return versions;
+
+                // Convert current version
+                versions.Add(new Workplan
+                {
+                    Id = currentVersion.Id,
+                    Name = currentVersion.Name,
+                    Version = currentVersion.Version,
+                    State = (WorkplanState)currentVersion.State
+                });
+
+                // First fetch all previous versions
+                var currentId = workplanId;
                 do
                 {
-                    var result = (from entity in repo.Linq.Active()
-                        where entity.Id == workplanId
-                        let sourceRef = entity.SourceReferences.FirstOrDefault()
-                        select new
-                        {
-                            Workplan = new Workplan
-                            {
-                                Id = entity.Id,
-                                Name = entity.Name,
-                                Version = entity.Version,
-                                State = (WorkplanState)entity.State
-                            },
-                            Source = sourceRef == null ? 0 : sourceRef.SourceId
-                        }).FirstOrDefault();
-                    
-                    if(result == null)
+                    var result = (from reference in referenceRepo.Linq
+                                  where reference.TargetId == currentId && reference.ReferenceType == (int)WorkplanReferenceType.NewVersion
+                                  let entity = reference.Source
+                                  select new Workplan
+                                  {
+                                      Id = entity.Id,
+                                      Name = entity.Name,
+                                      Version = entity.Version,
+                                      State = (WorkplanState)entity.State
+                                  }).FirstOrDefault();
+
+                    if (result == null)
                         break;
 
-                    versions.Add(result.Workplan);
-                    workplanId = result.Source;
-                } while (workplanId > 0);
+                    versions.Add(result);
+                    currentId = result.Id;
+                } while (currentId > 0);
+
+                // Now use a similar method to fetch all target versions
+                currentId = workplanId;
+                do
+                {
+                    var result = (from reference in referenceRepo.Linq
+                                  where reference.SourceId == currentId && reference.ReferenceType == (int)WorkplanReferenceType.NewVersion
+                                  let entity = reference.Target
+                                  select new Workplan
+                                  {
+                                      Id = entity.Id,
+                                      Name = entity.Name,
+                                      Version = entity.Version,
+                                      State = (WorkplanState)entity.State
+                                  }).FirstOrDefault();
+
+                    if (result == null)
+                        break;
+
+                    versions.Add(result);
+                    currentId = result.Id;
+                } while (currentId > 0);
+
+                // Sort the versions
+                versions = versions.OrderBy(v => v.Version).ToList();
 
                 return versions;
             }
