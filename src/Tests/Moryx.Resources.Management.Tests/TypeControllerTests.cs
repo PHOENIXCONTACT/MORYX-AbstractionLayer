@@ -28,6 +28,7 @@ namespace Moryx.Resources.Management.Tests
                     typeof(DerivedResource),
                     typeof(ReferenceResource),
                     typeof(NonPublicResource),
+                    typeof(DerivedResourceWithNewProxy),
                     typeof(ResourceWithImplicitApi)
                 });
 
@@ -77,6 +78,21 @@ namespace Moryx.Resources.Management.Tests
 
             // Assert: Make sure proxy is still the base type
             Assert.AreEqual(baseProxy.GetType(), proxy.GetType());
+        }
+
+        [Test]
+        public void UseNewProxyForDerivedTypeWithNewInterface()
+        {
+            // Arrange: Create instance
+            var baseInstance = new SimpleResource { Id = 2 };
+            var instance = new DerivedResourceWithNewProxy { Id = 3 };
+
+            // Act: Build Proxy
+            var baseProxy = _typeController.GetProxy(baseInstance);
+            var proxy = _typeController.GetProxy(instance);
+
+            // Assert: Make sure proxy is still the base type
+            Assert.That(baseProxy.GetType(), Is.Not.EqualTo(proxy.GetType()));
         }
 
         [Test]
