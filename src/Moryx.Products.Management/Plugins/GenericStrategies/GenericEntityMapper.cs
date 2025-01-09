@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using Moryx.AbstractionLayer.Recipes;
 using Moryx.Container;
 using Moryx.Products.Model;
 using Moryx.Serialization;
@@ -39,11 +40,20 @@ namespace Moryx.Products.Management
             var jsonColumn = typeof(IGenericColumns).GetProperty(config.JsonColumn);
             _jsonAccessor = ReflectionTool.PropertyAccessor<IGenericColumns, string>(jsonColumn);
 
-            var baseProperties = typeof(TBase).GetProperties().Select(p => p.Name).ToArray();
+            var baseProperties = typeof(TBase).GetProperties().Select(p => p.Name).ToList();
             var configuredProperties = config.PropertyConfigs.Select(cm => cm.PropertyName);
 
             var readOnlyProperties = concreteType.GetProperties()
                 .Where(p => p.GetSetMethod() == null).Select(p => p.Name).ToArray();
+
+            // As the IRecipeTemplating is a later addition to the base type which does not have
+            // a didicated database column, it is filtered by the baseProperties but not stored in
+            // the baseProperties columns. This is resolved in MORYX 6 due to the integration of the 
+            // interface in the IRecipe interface and, hence, only excplicitly tackled in here.
+            if (typeof(IRecipeTemplating).IsAssignableFrom(typeof(TBase)))
+            {
+                baseProperties.RemoveBy(p => p == nameof(IRecipeTemplating.TemplateId));
+            }
 
             // The json should not contain base, configured nor readonly properties
             var jsonIgnoredProperties = baseProperties
