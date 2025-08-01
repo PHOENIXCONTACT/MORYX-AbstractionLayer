@@ -6,13 +6,14 @@ on:
     branches: 
       - dev
       - future
-      - release/5
+      - release/*
     tags:
       - v[0-9]+.[0-9]+.[0-9]+ # Matches all semantic versioning tags with major, minor, patch
   pull_request:
     branches: 
       - dev
       - future
+      - release/*
 
 env:
   MORYX_OPTIMIZE_CODE: "false"
@@ -23,7 +24,7 @@ env:
 
 jobs:
   Build:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
@@ -45,7 +46,7 @@ jobs:
 
   UnitTests:
     needs: [Build]
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
@@ -67,7 +68,7 @@ jobs:
 
   IntegrationTests:
     needs: [Build]
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
@@ -89,7 +90,7 @@ jobs:
 
   Codecov:
     needs: [UnitTests, IntegrationTests]
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: Download test results
         uses: actions/download-artifact@v4
@@ -104,7 +105,7 @@ jobs:
 
   Documentation:
     needs: [Build]
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
@@ -122,7 +123,7 @@ jobs:
   Publish:
     needs: [Build, UnitTests, IntegrationTests]
     if: ${{ github.event_name == 'push' }}
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
