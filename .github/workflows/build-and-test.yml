@@ -33,6 +33,11 @@ jobs:
         with:
           dotnet-version: ${{ env.dotnet_sdk_version }}
 
+      - name: Install .NET Framework 4.5 Developer Pack
+        run: |
+          Invoke-WebRequest -Uri "https://download.microsoft.com/download/1/5/7/157F2D1B-6F5B-4C2B-9F3F-3E2D3C5E6A4C/NDP45-DevPack-KB2872776-ENU.exe" -OutFile "ndp45.exe"
+          Start-Process -FilePath "ndp45.exe" -ArgumentList "/quiet" -Wait
+
       - name: Build
         shell: pwsh
         run: ./Build.ps1 -Build -Pack
