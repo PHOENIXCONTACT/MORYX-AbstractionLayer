@@ -13,6 +13,7 @@ on:
     branches: 
       - dev
       - future
+      - release/5
 
 env:
   MORYX_OPTIMIZE_CODE: "false"
@@ -23,7 +24,7 @@ env:
 
 jobs:
   Build:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
@@ -31,6 +32,16 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.dotnet_sdk_version }}
+
+      - name: Install .NET Framework 4.5 Developer Pack
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri "https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.3" -OutFile "$env:TEMP\\net45sdk.zip"
+          Expand-Archive -Force -LiteralPath "$env:TEMP\\net45sdk.zip" -DestinationPath "$env:TEMP\\net45sdk"
+          if (Test-Path "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5") {
+            Remove-Item -Recurse -Force "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5"
+          }
+          Move-Item -Force -LiteralPath "$env:TEMP\\net45sdk\\build\\.NETFramework\\v4.5" -Destination "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework"
 
       - name: Build
         shell: pwsh
@@ -45,7 +56,7 @@ jobs:
 
   UnitTests:
     needs: [Build]
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
@@ -53,6 +64,16 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.dotnet_sdk_version }}
+
+      - name: Install .NET Framework 4.5 Developer Pack
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri "https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.3" -OutFile "$env:TEMP\\net45sdk.zip"
+          Expand-Archive -Force -LiteralPath "$env:TEMP\\net45sdk.zip" -DestinationPath "$env:TEMP\\net45sdk"
+          if (Test-Path "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5") {
+            Remove-Item -Recurse -Force "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5"
+          }
+          Move-Item -Force -LiteralPath "$env:TEMP\\net45sdk\\build\\.NETFramework\\v4.5" -Destination "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework"
 
       - name: Execute Unit Tests
         shell: pwsh
@@ -67,7 +88,7 @@ jobs:
 
   IntegrationTests:
     needs: [Build]
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
@@ -83,18 +104,24 @@ jobs:
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: integration-test-results
           path: artifacts/Tests/
           retention-days: 1
 
   Codecov:
     needs: [UnitTests, IntegrationTests]
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: Download test results
         uses: actions/download-artifact@v4
         with:
           name: test-results
+          path: artifacts/Tests/
+
+      - name: Download integration test results
+        uses: actions/download-artifact@v4
+        with:
+          name: integration-test-results
           path: artifacts/Tests/
 
       - name: Codecov
@@ -104,7 +131,7 @@ jobs:
 
   Documentation:
     needs: [Build]
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
@@ -122,7 +149,7 @@ jobs:
   Publish:
     needs: [Build, UnitTests, IntegrationTests]
     if: ${{ github.event_name == 'push' }}
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
