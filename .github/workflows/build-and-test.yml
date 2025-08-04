@@ -6,14 +6,14 @@ on:
     branches: 
       - dev
       - future
-      - release/*
+      - release/5
     tags:
       - v[0-9]+.[0-9]+.[0-9]+ # Matches all semantic versioning tags with major, minor, patch
   pull_request:
     branches: 
       - dev
       - future
-      - release/*
+      - release/5
 
 env:
   MORYX_OPTIMIZE_CODE: "false"
