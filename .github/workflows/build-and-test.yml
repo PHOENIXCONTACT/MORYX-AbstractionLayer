@@ -34,9 +34,14 @@ jobs:
           dotnet-version: ${{ env.dotnet_sdk_version }}
 
       - name: Install .NET Framework 4.5 Developer Pack
+        shell: pwsh
         run: |
-          Invoke-WebRequest -Uri "https://download.microsoft.com/download/1/5/7/157F2D1B-6F5B-4C2B-9F3F-3E2D3C5E6A4C/NDP45-DevPack-KB2872776-ENU.exe" -OutFile "ndp45.exe"
-          Start-Process -FilePath "ndp45.exe" -ArgumentList "/quiet" -Wait
+          Invoke-WebRequest -Uri "https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.3" -OutFile "$env:TEMP\\net45sdk.zip"
+          Expand-Archive -Force -LiteralPath "$env:TEMP\\net45sdk.zip" -DestinationPath "$env:TEMP\\net45sdk"
+          if (Test-Path "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5") {
+            Remove-Item -Recurse -Force "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5"
+          }
+          Move-Item -Force -LiteralPath "$env:TEMP\\net45sdk\\build\\.NETFramework\\v4.5" -Destination "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework"
 
       - name: Build
         shell: pwsh
@@ -59,6 +64,16 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.dotnet_sdk_version }}
+
+      - name: Install .NET Framework 4.5 Developer Pack
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri "https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.3" -OutFile "$env:TEMP\\net45sdk.zip"
+          Expand-Archive -Force -LiteralPath "$env:TEMP\\net45sdk.zip" -DestinationPath "$env:TEMP\\net45sdk"
+          if (Test-Path "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5") {
+            Remove-Item -Recurse -Force "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5"
+          }
+          Move-Item -Force -LiteralPath "$env:TEMP\\net45sdk\\build\\.NETFramework\\v4.5" -Destination "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework"
 
       - name: Execute Unit Tests
         shell: pwsh
