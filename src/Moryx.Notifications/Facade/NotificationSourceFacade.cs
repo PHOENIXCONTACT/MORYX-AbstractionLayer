@@ -57,35 +57,40 @@ namespace Moryx.Notifications
         /// <inheritdoc />
         public IReadOnlyList<INotification> GetPublished()
         {
-            ValidateHealthState();
+            if (!IsActivated)
+                ValidateHealthState();
             return NotificationAdapter.GetPublished();
         }
 
         /// <inheritdoc />
         public void Sync()
         {
-            ValidateHealthState();
+            if (!IsActivated)
+                ValidateHealthState();
             NotificationAdapter.Sync();
         }
 
         /// <inheritdoc />
         public void Acknowledge(INotification notification)
         {
-            // No ValidateHealthState: Source published the notification; it must be able to handle a response, too!
+            if (!IsActivated)
+                ValidateHealthState();
             NotificationAdapter.Acknowledge(notification);
         }
 
         /// <inheritdoc />
         public void PublishProcessed(INotification notification)
         {
-            // No ValidateHealthState: Source published the notification; it must be able to handle a response, too!
+            if (!IsActivated)
+                ValidateHealthState();
             NotificationAdapter.PublishProcessed(notification);
         }
 
         /// <inheritdoc />
         public void AcknowledgeProcessed(INotification notification)
         {
-            // No ValidateHealthState: Source acknowledge the notification; it must be able to handle a response, too!
+            if (!IsActivated)
+                ValidateHealthState();
             NotificationAdapter.AcknowledgeProcessed(notification);
         }
 
