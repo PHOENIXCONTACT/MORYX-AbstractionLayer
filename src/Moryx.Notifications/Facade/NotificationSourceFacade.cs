@@ -36,9 +36,9 @@ namespace Moryx.Notifications
         public INotificationSourceAdapter NotificationAdapter { get; set; }
 
         /// <inheritdoc />
-        public override void Activate()
+        public override void Activated()
         {
-            base.Activate();
+            base.Activated();
 
             NotificationAdapter.Published += OnNotificationPublished;
             NotificationAdapter.Acknowledged += OnNotificationAcknowledged;
