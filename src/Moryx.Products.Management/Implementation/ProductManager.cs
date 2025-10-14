@@ -189,7 +189,7 @@ namespace Moryx.Products.Management
                                    select new
                                    {
                                        entity,
-                                       parentCount = entity.Parents.Count
+                                       parentCount = entity.Parents.Active().Count // get number of undeleted Parents
                                    }).FirstOrDefault();
                 // No match, nothing removed!
                 if (queryResult == null)
