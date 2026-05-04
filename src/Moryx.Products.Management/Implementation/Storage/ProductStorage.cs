@@ -861,6 +861,11 @@ namespace Moryx.Products.Management
             productInstance.Id = entity.Id;
             productInstance.State = (ProductInstanceState)entity.State;
 
+            if (productInstance is IProductInstanceChild child && entity.ParentId.HasValue)
+            {
+                child.ParentId = entity.ParentId.Value;
+            }
+
             // Transform the instance if it has a dedicated storage
             var productType = productInstance.Type;
 
