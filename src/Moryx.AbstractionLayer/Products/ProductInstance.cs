@@ -35,7 +35,7 @@ namespace Moryx.AbstractionLayer.Products
         /// <summary>
         /// The parent product instance, null if it has no parent.
         /// </summary>
-        public ProductInstance Parent { get; internal set; }
+        public ProductInstance Parent { get; set; }
     }
 
     /// <summary>
