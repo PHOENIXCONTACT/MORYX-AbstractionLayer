@@ -10,7 +10,7 @@ namespace Moryx.AbstractionLayer.Products
     /// Base class for all product instances.
     /// </summary>
     [DataContract]
-    public abstract class ProductInstance : IProductInstance, IPersistentObject
+    public abstract class ProductInstance : IProductInstanceExtended, IPersistentObject
     {
         /// <summary>
         /// The Id of this instance
@@ -31,6 +31,11 @@ namespace Moryx.AbstractionLayer.Products
         /// Part link that created this <see cref="ProductInstance"/>. This is <value>null</value> for root instances
         /// </summary>
         public IProductPartLink PartLink { get; set; }
+
+        /// <summary>
+        /// The parent product instance, null if it has no parent.
+        /// </summary>
+        public ProductInstance Parent { get; internal set; }
     }
 
     /// <summary>

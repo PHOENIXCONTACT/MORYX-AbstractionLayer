@@ -861,11 +861,6 @@ namespace Moryx.Products.Management
             productInstance.Id = entity.Id;
             productInstance.State = (ProductInstanceState)entity.State;
 
-            if (productInstance is IProductInstanceChild child && entity.ParentId.HasValue)
-            {
-                child.ParentId = entity.ParentId.Value;
-            }
-
             // Transform the instance if it has a dedicated storage
             var productType = productInstance.Type;
 
@@ -902,6 +897,7 @@ namespace Moryx.Products.Management
                             continue;
                         }
                         var part = partGroup.Value.First(p => p.PartLink.Id == partEntity.PartLinkId);
+                        part.Parent = productInstance;
                         TransformInstance(uow, partEntity, part);
                     }
                 }
@@ -912,6 +908,7 @@ namespace Moryx.Products.Management
                     var partArticles = TransformInstances(uow, partCollection);
                     for (var index = 0; index < partArticles.Length; index++)
                     {
+                        partArticles[index].Parent = productInstance;
                         partArticles[index].PartLink = partLinks.Find(pl => pl?.Id == partCollection[index].PartLinkId.Value);
                     }
 
