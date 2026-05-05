@@ -887,7 +887,14 @@ namespace Moryx.Products.Management
             ref Dictionary<long, ProductInstance> instances)
         {
             // there must be only one with that Id, but user could request same twice or sth.
-            instances.TryAdd(entity.Id, productInstance);
+            if (!instances.ContainsKey(entity.Id))
+            {
+                instances.Add(entity.Id, productInstance);
+            }
+            else
+            {
+                Logger.Log(LogLevel.Warning, "ProductInstance for entity with Id {0} already added! ", entity.Id);
+            }
 
             productInstance.Id = entity.Id;
             productInstance.State = (ProductInstanceState)entity.State;
