@@ -191,7 +191,8 @@ namespace Moryx.Products.IntegrationTests
                     {
                         TargetType = nameof(WatchType),
                         PartName = nameof(WatchType.Watchface),
-                        PluginName = nameof(SimpleLinkStrategy)
+                        PluginName = nameof(SimpleLinkStrategy),
+                        PartCreation = PartSourceStrategy.FromEntities
                     },
                     new GenericLinkConfiguration
                     {
@@ -855,6 +856,7 @@ namespace Moryx.Products.IntegrationTests
             instance.TimeSet = true;
             instance.DeliveryDate = DateTime.Now;
             instance.Identity = new BatchIdentity("12345");
+            instance.Watchface.Identity = new BatchIdentity("23456");
             _storage.SaveInstances(new[] { instance });
 
             // Assert
@@ -870,6 +872,9 @@ namespace Moryx.Products.IntegrationTests
 
                 var single = parts.FirstOrDefault(p => p.PartLinkId == watch.Watchface.Id);
                 Assert.NotNull(single, "Single part not saved!");
+
+                Assert.That(single.Text2.Contains("BatchIdentity"));
+                Assert.That(single.Text2.Contains("23456"));
             }
 
             // Act
@@ -886,6 +891,9 @@ namespace Moryx.Products.IntegrationTests
             var byType5 = _storage.LoadInstances<WatchInstance>(i => watch == i.Type);
             identity = watch.Identity;
             var byType6 = _storage.LoadInstances<WatchInstance>(i => i.Type.Identity == identity);
+
+            var watchfaceIdentity = instance.Watchface.Identity;
+            var byWatchface = _storage.LoadInstances<WatchfaceInstance>(w => watchfaceIdentity.Equals(w.Identity));
 
             // Assert
             Assert.NotNull(watchCopy);
@@ -906,6 +914,10 @@ namespace Moryx.Products.IntegrationTests
             Assert.LessOrEqual(1, byType4.Count);
             Assert.LessOrEqual(1, byType5.Count);
             Assert.LessOrEqual(1, byType6.Count);
+
+            Assert.LessOrEqual(1, byWatchface.Count);
+            Assert.That(byWatchface.Last() is WatchfaceInstance wfi && wfi.Identity.Equals(watchfaceIdentity));
+            Assert.That(byWatchface.Last().Parent is WatchInstance wi && wi.Identity.Equals(identity));
         }
     }
 }
