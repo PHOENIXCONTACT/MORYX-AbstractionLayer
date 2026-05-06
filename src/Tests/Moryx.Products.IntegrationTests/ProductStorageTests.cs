@@ -187,11 +187,11 @@ namespace Moryx.Products.IntegrationTests
                 },
                 LinkStrategies = new List<ProductLinkConfiguration>
                 {
-                    new ProductLinkConfiguration()
+                    new GenericLinkConfiguration
                     {
                         TargetType = nameof(WatchType),
                         PartName = nameof(WatchType.Watchface),
-                        PluginName = nameof(SimpleLinkStrategy),
+                        JsonColumn = nameof(IGenericColumns.Text8),
                         PartCreation = PartSourceStrategy.FromEntities
                     },
                     new GenericLinkConfiguration
