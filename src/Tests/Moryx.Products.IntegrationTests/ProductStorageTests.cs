@@ -192,7 +192,8 @@ namespace Moryx.Products.IntegrationTests
                         TargetType = nameof(WatchType),
                         PartName = nameof(WatchType.Watchface),
                         JsonColumn = nameof(IGenericColumns.Text8),
-                        PartCreation = PartSourceStrategy.FromEntities
+                        PartCreation = PartSourceStrategy.FromEntities,
+                        PropertyConfigs = new List<PropertyMapperConfig>()
                     },
                     new GenericLinkConfiguration
                     {
