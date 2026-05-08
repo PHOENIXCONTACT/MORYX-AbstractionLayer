@@ -735,13 +735,7 @@ namespace Moryx.Products.Management
                 var repo = uow.GetRepository<IProductInstanceEntityRepository>();
                 var entities = repo.GetByKeys(id);
 
-                // get root instances and load the hole instance tree
-                var rootEntities = entities.Select(GetRoot).ToArray();
-                var lookup = new Dictionary<long, ProductInstance>();
-                var instances= TransformInstances(uow, rootEntities, ref lookup);
-
-                // get the requested instances
-                return entities.Select(e => lookup[e.Id]).ToArray();
+                return GatherFullInstanceTree<ProductInstance>(uow, entities);
             }
         }
 
@@ -803,13 +797,7 @@ namespace Moryx.Products.Management
                 var repo = uow.GetRepository<IProductInstanceEntityRepository>();
                 var entities = repo.Linq.Where(instanceSelector).ToList();
 
-                // get root instances and load the hole instance tree
-                var rootEntities = entities.Select(GetRoot).ToArray();
-                var lookup = new Dictionary<long, ProductInstance>();
-                var instances = TransformInstances(uow, rootEntities, ref lookup);
-
-                // get the requested instances
-                return entities.Select(e => lookup[e.Id]).OfType<TInstance>().ToArray();
+                return GatherFullInstanceTree<TInstance>(uow, entities);
             }
         }
 
@@ -835,13 +823,7 @@ namespace Moryx.Products.Management
                 if (query == null || (entities = query.ToList()).Count == 0)
                     return new TInstance[0];
 
-                // get root instances and load the hole instance tree
-                var rootEntities = entities.Select(GetRoot).ToArray();
-                var lookup = new Dictionary<long, ProductInstance>();
-                TransformInstances(uow, rootEntities, ref lookup);
-
-                // get the requested instances
-                var instances = entities.Select(e => lookup[e.Id]).OfType<TInstance>().ToArray();
+                var instances = GatherFullInstanceTree<TInstance>(uow, entities);
 
                 // Final check against compiled expression
                 var compiledSelector = selector.Compile();
@@ -853,7 +835,39 @@ namespace Moryx.Products.Management
         /// <summary>
         /// Transform entities to business objects
         /// </summary>
-        private ProductInstance[] TransformInstances(IUnitOfWork uow, ICollection<ProductInstanceEntity> entities, ref Dictionary<long, ProductInstance> instances)
+        private TInstance[] GatherFullInstanceTree<TInstance>(IUnitOfWork uow, ICollection<ProductInstanceEntity> entities)
+        {
+            // get root instances and load the hole instance tree
+            var rootEntities = entities.Select(GetRoot).ToArray();
+
+            var lookup = new Dictionary<long, ProductInstance>();
+
+            // Fetch all products we need to load product instances
+            var productMap = new Dictionary<long, IProductType>();
+            var requiredProducts = rootEntities.Select(e => e.ProductId).Distinct();
+            foreach (var productId in requiredProducts)
+            {
+                productMap[productId] = LoadType(uow, productId);
+            }
+
+            // Create product instance using the type and fill properties
+            foreach (var entity in rootEntities)
+            {
+                var product = productMap[entity.ProductId];
+                var instance = product.CreateInstance();
+
+                TransformInstance(uow, entity, instance, lookup);
+            }
+
+            // get the requested instances
+            var instances = entities.Select(e => lookup[e.Id]).OfType<TInstance>().ToArray();
+            return instances;
+        }
+
+        /// <summary>
+        /// Transform entities to business objects
+        /// </summary>
+        private ProductInstance[] TransformInstances(IUnitOfWork uow, ICollection<ProductInstanceEntity> entities, Dictionary<long, ProductInstance> lookup)
         {
             var results = new ProductInstance[entities.Count];
 
@@ -872,7 +886,7 @@ namespace Moryx.Products.Management
                 var product = productMap[entity.ProductId];
                 var instance = product.CreateInstance();
 
-                TransformInstance(uow, entity, instance, ref instances);
+                TransformInstance(uow, entity, instance, lookup);
 
                 results[index++] = instance;
             }
@@ -884,16 +898,12 @@ namespace Moryx.Products.Management
         /// Recursive function to transform entities into objects
         /// </summary>
         private void TransformInstance(IUnitOfWork uow, ProductInstanceEntity entity, ProductInstance productInstance,
-            ref Dictionary<long, ProductInstance> instances)
+            Dictionary<long, ProductInstance> instances)
         {
             // there must be only one with that Id, but user could request same twice or sth.
             if (!instances.ContainsKey(entity.Id))
             {
                 instances.Add(entity.Id, productInstance);
-            }
-            else
-            {
-                Logger.Log(LogLevel.Warning, "ProductInstance for entity with Id {0} already added! ", entity.Id);
             }
 
             productInstance.Id = entity.Id;
@@ -915,6 +925,7 @@ namespace Moryx.Products.Management
             var partLinks = ReflectionTool.GetReferences<IProductPartLink>(productType)
                 .SelectMany(g => g).ToList();
             var partGroups = ReflectionTool.GetReferences<ProductInstance>(productInstance)
+                .Where(p => p.Key.Name != nameof(ProductInstance.Parent))
                 .ToDictionary(p => p.Key, p => p.ToList());
             var partEntityGroups = entity.Parts.GroupBy(p => p.PartLink.PropertyName)
                 .ToDictionary(p => p.Key, p => p.ToList());
@@ -937,14 +948,14 @@ namespace Moryx.Products.Management
                         }
                         var part = partGroup.Value.First(p => p.PartLink.Id == partEntity.PartLinkId);
                         part.Parent = productInstance;
-                        TransformInstance(uow, partEntity, part, ref instances);
+                        TransformInstance(uow, partEntity, part, instances);
                     }
                 }
                 else if (linkStrategy.PartCreation == PartSourceStrategy.FromEntities)
                 {
                     // Load part using the entity and assign PartLink afterwards
                     var partCollection = partEntityGroups[partGroup.Key.Name].ToList();
-                    var partArticles = TransformInstances(uow, partCollection, ref instances);
+                    var partArticles = TransformInstances(uow, partCollection, instances);
                     for (var index = 0; index < partArticles.Length; index++)
                     {
                         partArticles[index].Parent = productInstance;
