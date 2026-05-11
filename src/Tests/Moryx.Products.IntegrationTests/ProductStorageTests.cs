@@ -187,11 +187,13 @@ namespace Moryx.Products.IntegrationTests
                 },
                 LinkStrategies = new List<ProductLinkConfiguration>
                 {
-                    new ProductLinkConfiguration()
+                    new GenericLinkConfiguration
                     {
                         TargetType = nameof(WatchType),
                         PartName = nameof(WatchType.Watchface),
-                        PluginName = nameof(SimpleLinkStrategy)
+                        JsonColumn = nameof(IGenericColumns.Text8),
+                        PartCreation = PartSourceStrategy.FromEntities,
+                        PropertyConfigs = new List<PropertyMapperConfig>()
                     },
                     new GenericLinkConfiguration
                     {
@@ -855,6 +857,7 @@ namespace Moryx.Products.IntegrationTests
             instance.TimeSet = true;
             instance.DeliveryDate = DateTime.Now;
             instance.Identity = new BatchIdentity("12345");
+            instance.Watchface.Identity = new BatchIdentity("23456");
             _storage.SaveInstances(new[] { instance });
 
             // Assert
@@ -870,6 +873,9 @@ namespace Moryx.Products.IntegrationTests
 
                 var single = parts.FirstOrDefault(p => p.PartLinkId == watch.Watchface.Id);
                 Assert.NotNull(single, "Single part not saved!");
+
+                Assert.That(single.Text2.Contains("BatchIdentity"));
+                Assert.That(single.Text2.Contains("23456"));
             }
 
             // Act
@@ -884,8 +890,11 @@ namespace Moryx.Products.IntegrationTests
             var byType3 = _storage.LoadInstances<WatchInstance>(i => watch.Equals(i.Type));
             var byType4 = _storage.LoadInstances<WatchInstance>(i => i.Type.Name == "TestWatch");
             var byType5 = _storage.LoadInstances<WatchInstance>(i => watch == i.Type);
-            identity = watch.Identity;
-            var byType6 = _storage.LoadInstances<WatchInstance>(i => i.Type.Identity == identity);
+            var typeIdentity = watch.Identity;
+            var byType6 = _storage.LoadInstances<WatchInstance>(i => i.Type.Identity.Equals(typeIdentity));
+
+            var watchfaceIdentity = instance.Watchface.Identity;
+            var byWatchface = _storage.LoadInstances<WatchfaceInstance>(w => watchfaceIdentity.Equals(w.Identity));
 
             // Assert
             Assert.NotNull(watchCopy);
@@ -895,17 +904,24 @@ namespace Moryx.Products.IntegrationTests
             Assert.AreEqual(instance.Watchface.Identifier, watchCopy.Watchface.Identifier, "Guid does not match");
             Assert.NotNull(instance.Needles);
             Assert.AreEqual(3, instance.Needles.Count);
+            Assert.That(instance.Needles.First().Type is NeedleType);
 
-            Assert.LessOrEqual(1, byIdentity.Count);
-            Assert.LessOrEqual(1, byDateTime.Count);
-            Assert.LessOrEqual(1, byBool.Count);
-            Assert.LessOrEqual(1, byType.Count);
-            Assert.LessOrEqual(1, byType1.Count);
-            Assert.LessOrEqual(1, byType2.Count);
-            Assert.LessOrEqual(1, byType3.Count);
-            Assert.LessOrEqual(1, byType4.Count);
-            Assert.LessOrEqual(1, byType5.Count);
-            Assert.LessOrEqual(1, byType6.Count);
+            Assert.AreEqual(1, byIdentity.Count);
+            Assert.AreEqual(1, byDateTime.Count);
+            Assert.AreEqual(1, byBool.Count);
+            Assert.AreEqual(1, byType.Count);
+            Assert.AreEqual(1, byType1.Count);
+            Assert.AreEqual(1, byType2.Count);
+            Assert.AreEqual(1, byType3.Count);
+            Assert.AreEqual(1, byType4.Count);
+            Assert.AreEqual(1, byType5.Count);
+            Assert.AreEqual(1, byType6.Count);
+
+            Assert.AreEqual(1, byWatchface.Count);
+            Assert.That(byWatchface[0] is WatchfaceInstance wfi && wfi.Identity.Equals(watchfaceIdentity));
+            Assert.That(byWatchface[0].Parent is WatchInstance wi && wi.Identity.Equals(identity));
+            Assert.That(byWatchface[0].Type is WatchfaceType);
+            Assert.That(byWatchface[0].Parent.Type is WatchType);
         }
     }
 }
