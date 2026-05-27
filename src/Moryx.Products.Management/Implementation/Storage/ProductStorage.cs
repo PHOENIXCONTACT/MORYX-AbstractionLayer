@@ -1022,7 +1022,9 @@ namespace Moryx.Products.Management
             strategy.SaveInstance(productInstance, archived);
 
             // Save its parts if they have a dedicated archive
-            var partsContainer = ReflectionTool.GetReferences<ProductInstance>(productInstance);
+            var partsContainer = ReflectionTool.GetReferences<ProductInstance>(productInstance)
+                .Where(p => p.Key.Name != nameof(ProductInstance.Parent));
+
             foreach (var partGroup in partsContainer)
             {
                 foreach (var part in partGroup)

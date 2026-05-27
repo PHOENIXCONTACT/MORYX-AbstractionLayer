@@ -226,8 +226,8 @@ namespace Moryx.Products.Management
                 .GetInstances<IIdentifiableObject>(i => identity.Equals(i.Identity));
             if (instances.Count > 1)
             {
-                Logger.Log(LogLevel.Error, "ProductManagement contains more than one {0} with the identity {1}.", nameof(ProductInstance), identity);
-                throw new InvalidOperationException();
+                Logger.Log(LogLevel.Error, "ProductManagement contains more than one {0} with identity {1}.", nameof(ProductInstance), identity);
+                throw new InvalidOperationException($"More than one instance found!");
             }
                 
             return (ProductInstance) instances.SingleOrDefault(); ;
