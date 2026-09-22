@@ -327,7 +327,7 @@ namespace Moryx.Products.Management
                 // Filter by identifier
                 if (!string.IsNullOrEmpty(query.Identifier))
                 {
-                    var identifierMatches = Regex.Match(query.Identifier, "(?<startCard>\\*)?(?<filter>\\w*)(?<endCard>\\*)?");
+                    var identifierMatches = Regex.Match(query.Identifier, "(?<startCard>\\*)?(?<filter>[\\w-]*)(?<endCard>\\*)?");
                     var identifier = identifierMatches.Groups["filter"].Value.ToLower();
                     if (identifierMatches.Groups["startCard"].Success && identifierMatches.Groups["endCard"].Success)
                         productsQuery = productsQuery.Where(p => p.Identifier.ToLower().Contains(identifier));
