@@ -133,10 +133,8 @@ namespace Moryx.AbstractionLayer.Products.Endpoints
                 return productModels.ToArray();
             }
 
-            var identityArray = WebUtility.HtmlEncode(identity).Split('-');
-            if(identityArray.Length != 2)
+            if (!ProductIdentity.TryParse(identity, out var productIdentity))
                 return BadRequest($"Identity has wrong format. Must be identifier-revision");
-            var productIdentity = new ProductIdentity(identityArray[0],Convert.ToInt16(identityArray[1]));
             var productType = _productManagement.LoadType(productIdentity);
             if (productType == null)
                 return NotFound(new MoryxExceptionResponse { Title = Strings.TYPE_NOT_FOUND });
@@ -215,10 +213,8 @@ namespace Moryx.AbstractionLayer.Products.Endpoints
             var template = _productManagement.LoadType(id);
             if (template == null)
                 return BadRequest($"Producttype with id {id} not found");
-            var identityArray = WebUtility.HtmlEncode(newIdentity).Split('-');
-            if (identityArray.Length != 2)
+            if (!ProductIdentity.TryParse(newIdentity, out var identity))
                 return BadRequest($"Identity has wrong format. Must be identifier-revision");
-            var identity = new ProductIdentity(identityArray[0], Convert.ToInt16(identityArray[1]));
             var newProductType = _productManagement.Duplicate(template, identity);
             if (newProductType == null)
                 return BadRequest($"Error while duplicating");

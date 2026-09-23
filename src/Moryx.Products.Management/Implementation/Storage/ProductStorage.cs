@@ -10,7 +10,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text.RegularExpressions;
+
 using Moryx.AbstractionLayer.Products;
 using Moryx.AbstractionLayer.Recipes;
 using Moryx.Container;
@@ -327,13 +327,14 @@ namespace Moryx.Products.Management
                 // Filter by identifier
                 if (!string.IsNullOrEmpty(query.Identifier))
                 {
-                    var identifierMatches = Regex.Match(query.Identifier, "(?<startCard>\\*)?(?<filter>[\\w-]*)(?<endCard>\\*)?");
-                    var identifier = identifierMatches.Groups["filter"].Value.ToLower();
-                    if (identifierMatches.Groups["startCard"].Success && identifierMatches.Groups["endCard"].Success)
+                    var hasStartCard = query.Identifier.StartsWith("*");
+                    var hasEndCard = query.Identifier.EndsWith("*");
+                    var identifier = query.Identifier.Trim('*').ToLower();
+                    if (hasStartCard && hasEndCard)
                         productsQuery = productsQuery.Where(p => p.Identifier.ToLower().Contains(identifier));
-                    else if (identifierMatches.Groups["startCard"].Success)
+                    else if (hasStartCard)
                         productsQuery = productsQuery.Where(p => p.Identifier.ToLower().EndsWith(identifier));
-                    else if (identifierMatches.Groups["endCard"].Success)
+                    else if (hasEndCard)
                         productsQuery = productsQuery.Where(p => p.Identifier.ToLower().StartsWith(identifier));
                     else
                         productsQuery = productsQuery.Where(p => p.Identifier.ToLower() == identifier);

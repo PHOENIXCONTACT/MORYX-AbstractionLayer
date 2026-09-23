@@ -40,5 +40,27 @@ namespace Moryx.AbstractionLayer.Tests
         {
             Assert.Throws(typeof(InvalidOperationException), () => _identity.SetIdentifier("HelloWorld"));
         }
+
+        [Test]
+        public void ParseShouldHandleDashInIdentifier()
+        {
+            var identity = ProductIdentity.Parse("1234567-89-01");
+            Assert.AreEqual("1234567-89", identity.Identifier);
+            Assert.AreEqual(1, identity.Revision);
+        }
+
+        [Test]
+        public void ParseShouldHandleSimpleIdentifier()
+        {
+            var identity = ProductIdentity.Parse("4564654-05");
+            Assert.AreEqual("4564654", identity.Identifier);
+            Assert.AreEqual(5, identity.Revision);
+        }
+
+        [Test]
+        public void TryParseShouldReturnFalseForInvalidFormat()
+        {
+            Assert.IsFalse(ProductIdentity.TryParse("nodash", out _));
+        }
     }
 }
