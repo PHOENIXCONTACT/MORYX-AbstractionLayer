@@ -488,7 +488,7 @@ namespace Moryx.Products.IntegrationTests
             var identity = (ProductIdentity)watch.Identity;
             var byIdentifier = productTypeEntityRepo.GetByIdentity(identity.Identifier, identity.Revision);
             Assert.NotNull(byIdentifier, "New version of watch not found by identifier ");
-            Assert.AreEqual(savedWatchId, byIdentifier.Id, "Different id�s");
+            Assert.AreEqual(savedWatchId, byIdentifier.Id, "Different id's");
         }
 
         [Test]
