@@ -488,7 +488,7 @@ namespace Moryx.Products.IntegrationTests
             var identity = (ProductIdentity)watch.Identity;
             var byIdentifier = productTypeEntityRepo.GetByIdentity(identity.Identifier, identity.Revision);
             Assert.NotNull(byIdentifier, "New version of watch not found by identifier ");
-            Assert.AreEqual(savedWatchId, byIdentifier.Id, "Different id´s");
+            Assert.AreEqual(savedWatchId, byIdentifier.Id, "Different id's");
         }
 
         [Test]
@@ -753,7 +753,38 @@ namespace Moryx.Products.IntegrationTests
             // Assert
             Assert.AreEqual(1, products.Count, "There should be a product for the given query");
         }
-        
+
+        [Test]
+        public void IdentifierQueryShouldMatchDashInIdentifier()
+        {
+            // Arrange
+            var productMgr = new ProductManager
+            {
+                Factory = _factory,
+                Storage = _storage
+            };
+            var watch = SetupProduct("Dash Watch", "1234567-");
+            _storage.SaveType(watch);
+
+            // Act - exact match
+            var exactProducts = productMgr.LoadTypes(new ProductQuery
+            {
+                Identifier = "1234567-" + WatchMaterial,
+                RevisionFilter = RevisionFilter.Latest
+            });
+
+            // Act - wildcard match
+            var wildcardProducts = productMgr.LoadTypes(new ProductQuery
+            {
+                Identifier = "1234567-*",
+                RevisionFilter = RevisionFilter.Latest
+            });
+
+            // Assert
+            Assert.AreEqual(1, exactProducts.Count, "Exact query should find product with dash in identifier");
+            Assert.GreaterOrEqual(wildcardProducts.Count, 1, "Wildcard query should find at least the product with dash in identifier");
+        }
+
         [TestCase(false, false, Description = "Duplicate product with valid id")]
         [TestCase(false, true, Description = "Duplicate product, but identity already taken")]
         [TestCase(true, false, Description = "Duplicate product but with template missmatch")]
